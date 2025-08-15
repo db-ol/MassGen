@@ -1,0 +1,47 @@
+# Benchmark Configuration for HLE Lite Multiple Choice Questions
+# Compares multi-agent vs single model performance
+
+benchmark:
+  name: "HLE Lite Multiple Choice Benchmark"
+  dataset: "cais/hle"
+  question_type: "multipleChoice"
+  max_questions: 1 # Limit for testing
+  
+  # Single Models to Test
+  single_models:
+    - name: "gpt-4o"
+      backend:
+        type: "openai"
+        model: "gpt-4o"
+      system_message: "You are a helpful AI assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+    
+    - name: "gemini-2.5-flash"
+      backend:
+        type: "gemini"
+        model: "gemini-2.5-flash"
+      system_message: "You are a helpful AI assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+    
+    
+    - name: "claude-3-5-haiku"
+      backend:
+        type: "claude"
+        model: "claude-3-5-haiku-20241022"
+      system_message: "You are a helpful AI assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+    
+  # Multi-Agent Configuration
+  multi_agent:
+    config_file: "two_models.yaml"
+    system_message: "You are a helpful AI assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+  
+
+  # Metrics to Calculate
+  metrics:
+    - accuracy
+    - calibration_error
+    - confidence_scores
+  
+  # Output
+  output:
+    format: "table"
+    save_results: true
+    results_file: "benchmark_results.json"

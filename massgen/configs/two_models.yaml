@@ -1,0 +1,30 @@
+# Simplified two-agent config without web search
+
+agents:
+  - id: "gemini25flash"
+    backend:
+      type: "gemini"
+      model: "gemini-2.5-flash"
+      enable_web_search: false
+      enable_code_execution: false
+    system_message: |
+      You are a helpful assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: "The answer is: X" where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter.
+
+  - id: "gpt-4o"
+    backend:
+      type: "openai"
+      model: "gpt-4o"
+      enable_web_search: false
+    system_message: |
+      You are a helpful assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: "The answer is: X" where X is A, B, C, D, .. Z. Do not include any additional text after the answer letter.
+
+ui:
+  display_type: "rich_terminal"
+  logging_enabled: true
+
+# Coordination settings
+coordination:
+  method: "voting"
+  voting:
+    strategy: "majority"
+    tie_breaker: "registration_order"

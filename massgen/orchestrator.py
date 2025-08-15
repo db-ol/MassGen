@@ -1246,6 +1246,54 @@ Final Session ID: {session_id}.
             state.has_voted = False
             state.restart_pending = False
 
+    async def process_question(self, question: str) -> str:
+        """
+        Process a single question using multi-agent coordination.
+        
+        Args:
+            question: The question to process
+        
+        Returns:
+            str: The coordinated answer from the agents
+        """
+        # Reset orchestrator for new question
+        self.reset()
+        
+        # Set the current task
+        self.current_task = question
+        
+        # Run coordination
+        response_content = ""
+        async for chunk in self._coordinate_agents():
+            if chunk.type == "content" and chunk.content:
+                response_content += chunk.content
+        
+        return response_content
+
+    async def coordinate(self, question: str) -> str:
+        """
+        Coordinate agents on a question (alias for process_question).
+        
+        Args:
+            question: The question to coordinate on
+        
+        Returns:
+            str: The coordinated answer
+        """
+        return await self.process_question(question)
+
+    async def run(self, question: str) -> str:
+        """
+        Run the orchestrator on a question (alias for process_question).
+        
+        Args:
+            question: The question to run
+        
+        Returns:
+            str: The coordinated answer
+        """
+        return await self.process_question(question)
+
 
 # =============================================================================
 # CONVENIENCE FUNCTIONS

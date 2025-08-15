@@ -17,6 +17,9 @@ Usage examples:
 
     # Multiple agents from config
     python -m massgen.cli --config multi_agent.yaml "Compare different approaches to renewable energy"  # noqa
+    
+    # Run benchmark
+    python -m massgen.cli --benchmark --benchmark-config benchmark.yaml
 """
 
 import argparse
@@ -546,6 +549,37 @@ async def run_interactive_mode(
     except KeyboardInterrupt:
         print("\n👋 Goodbye!")
 
+async def run_benchmark(benchmark_config_path: str):
+    """Run benchmark mode."""
+    try:
+        # Import benchmark runner
+        from .benchmark.core.benchmark_runner import HLEBenchmarkRunner
+        
+        print(f"🚀 Starting HLE Lite Benchmark...")
+        print(f"📋 Config: {benchmark_config_path}")
+        
+        # Check if HF_API_KEY is available
+        token = os.getenv("HF_API_KEY")
+        if not token:
+            print("❌ HF_API_KEY environment variable required for benchmarking")
+            print("   Set HF_API_KEY in your .env file or environment")
+            return
+        
+        # Run benchmark
+        runner = HLEBenchmarkRunner(benchmark_config_path)
+        results = await runner.run_benchmark(token)
+        runner.print_results_table()
+        
+        print(f"\n✅ Benchmark completed successfully!")
+        
+    except ImportError as e:
+        print(f"❌ Benchmark module not found: {e}")
+        print("   Make sure the benchmark module is properly installed")
+    except Exception as e:
+        print(f"❌ Benchmark error: {e}")
+        import traceback
+        traceback.print_exc()
+
 async def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -566,6 +600,9 @@ Examples:
   # Interactive mode
   python -m massgen.cli --config config.yaml
   
+  # Run benchmark
+  python -m massgen.cli --benchmark --benchmark-config benchmark.yaml
+  
   # Create sample configurations
   python -m massgen.cli --create-samples
 
@@ -574,6 +611,7 @@ Environment Variables:
   XAI_API_KEY         - Required for Grok backend  
   ANTHROPIC_API_KEY   - Required for Claude backend
   CEREBRAS_API_KEY    - Required for CEREBRAS CLOUD API (chatcompletion backend)
+  HF_API_KEY          - Required for benchmarking (HLE dataset access)
         """,
     )
 
@@ -594,6 +632,18 @@ Environment Variables:
         type=str,
         choices=["chatcompletion", "claude", "gemini", "grok", "openai", "claude_code"],
         help="Backend type for quick setup",
+    )
+
+    # Benchmark options
+    parser.add_argument(
+        "--benchmark", 
+        action="store_true", 
+        help="Run benchmark mode"
+    )
+    parser.add_argument(
+        "--benchmark-config", 
+        type=str, 
+        help="Path to benchmark configuration file (required with --benchmark)"
     )
 
     # Quick setup options
@@ -618,14 +668,27 @@ Environment Variables:
 
     args = parser.parse_args()
 
-    # Validate arguments
-    if not args.backend:
-        if not args.model and not args.config:
-            parser.error(
-                "If there is not --backend, either --config or --model must be specified"
-            )
+    # Validate benchmark arguments
+    if args.benchmark and not args.benchmark_config:
+        parser.error("--benchmark-config is required when using --benchmark")
+    
+    if args.benchmark and args.question:
+        parser.error("Cannot use --benchmark with a question. Use --benchmark for evaluation mode.")
+
+    # Validate other arguments
+    if not args.benchmark:
+        if not args.backend:
+            if not args.model and not args.config:
+                parser.error(
+                    "If there is not --backend, either --config or --model must be specified"
+                )
 
     try:
+        # Handle benchmark mode
+        if args.benchmark:
+            await run_benchmark(args.benchmark_config)
+            return
+
         # Load or create configuration
         if args.config:
             config = load_config_file(args.config)

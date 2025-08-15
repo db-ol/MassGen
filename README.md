@@ -94,6 +94,7 @@ This project started with the "threads of thought" and "iterative refinement" id
   - Improved Performance & Scalability
   - Enhanced Developer Experience
   - Web Interface
+  - Benchmark
 - [v0.0.6 Roadmap](#v006-roadmap)
 </details>
 
@@ -172,6 +173,7 @@ git clone https://github.com/Leezekun/MassGen.git
 cd MassGen
 pip install uv
 uv venv
+.venv\Scripts\activate
 ```
 
 **Optional CLI Tools** (for enhanced capabilities):
@@ -502,6 +504,54 @@ To see how MassGen works in practice, check out these detailed case studies base
 ```bash
 uv run python cli.py --config examples/fast_config.yaml "Design a logo for MassGen (multi-agent scaling system for GenAI) GitHub README"
 ``` -->
+
+### 6. 💡 Benchmarking
+
+MassGen includes a comprehensive benchmarking module for evaluating multi-agent and single-model performance on the HLE Lite dataset.
+
+#### Load Dataset
+Test dataset access and view sample questions:
+```bash
+uv run python -m massgen.benchmark.core.load_dataset
+```
+
+#### Run Benchmark
+Execute the complete benchmark comparing single models and multi-agent systems:
+```bash
+uv run python -m massgen.cli --benchmark --benchmark-config massgen/configs/benchmark.yaml
+```
+
+#### Configuration
+The benchmark configuration (`massgen/configs/benchmark.yaml`) defines:
+- **Single Models**: Individual model configurations (GPT-4o, Gemini-2.5-flash, Claude-3-5-haiku)
+- **Multi-Agent**: Reference to multi-agent config file (`two_models.yaml`), change the configs of the multi-agent at your choice
+- **Dataset Settings**: Number of questions to test, dataset parameters
+
+#### Results Storage
+Benchmark results are automatically saved to:
+- **`benchmark_results.json`**: Detailed results with individual responses, confidence scores, and timing
+- **`benchmark.txt`**: Summary table with accuracy, calibration error, and response times
+
+#### Metrics
+The benchmark measures:
+- **Accuracy**: Percentage of correct answers
+- **Calibration Error**: Expected Calibration Error (ECE) measuring confidence vs accuracy
+- **Response Time**: Total time per model/system
+
+#### Custom Benchmark Configs
+Create custom benchmark configurations by modifying `benchmark.yaml`:
+```yaml
+benchmark:
+  max_questions: 10  # Limit number of questions
+  single_models:
+    - name: "gpt-4o"
+      backend:
+        type: "openai"
+        model: "gpt-4o"
+  multi_agent:
+    config_file: "massgen/configs/your_config.yaml"
+```
+```
 
 ### 1. ❓ Question Answering
 

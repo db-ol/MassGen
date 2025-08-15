@@ -41,6 +41,7 @@ dependencies = [
     "requests>=2.31.0",
     "typing-extensions>=4.0.0",
     "claude-code-sdk>=0.0.19",
+    "pillow>=11.3.0",
 ]
 
 [project.optional-dependencies]

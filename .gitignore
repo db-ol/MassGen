@@ -204,3 +204,9 @@ gemini_streaming.txt
 agent_outputs
 mass_coordination*
 uv.lock
+
+# Benchmark specific files
+benchmark_results.json
+benchmark.txt
+mass_coordination_*.json
+agent_outputs/benchmark.txt

@@ -276,6 +276,8 @@ Consider:
 3. Feedback received through the voting process
 4. Ensuring clarity, completeness, and comprehensiveness for the final audience
 
+IMPORTANT: If this is a multiple choice question, end your final response with ONLY the letter of your chosen option in this exact format: "The answer is: X" where X is A, B, C, D, or E. Do not include any additional text after the answer letter.
+
 Present your final coordinated answer in the most helpful and complete way possible."""
 
         # Combine with original system message if provided
