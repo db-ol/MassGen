@@ -1,0 +1,26 @@
+benchmark:
+  # Question types to benchmark: both multiple choice and exact match
+  question_types: ['multipleChoice', 'exactMatch']
+  
+  # Maximum number of questions to benchmark (optional)
+  max_questions: 20
+  
+  # Single model configurations
+  single_models:
+    - name: "GPT-4"
+      backend:
+        type: "openai"
+        model: "gpt-4"
+        api_key: "${OPENAI_API_KEY}"
+      system_message: "You are a helpful AI assistant. Answer questions accurately and provide confidence scores. For multiple choice questions, always end your response with 'The answer is: X' where X is the letter (A, B, C, D, or E) of your chosen option. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+    
+    - name: "Claude-3.5-Sonnet"
+      backend:
+        type: "claude"
+        model: "claude-3-5-sonnet-20241022"
+        api_key: "${ANTHROPIC_API_KEY}"
+      system_message: "You are a helpful AI assistant. Answer questions accurately and provide confidence scores. For multiple choice questions, always end your response with 'The answer is: X' where X is the letter (A, B, C, D, or E) of your chosen option. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+  
+  # Multi-agent system configuration
+  multi_agent:
+    config_file: "three_agents_default.yaml"

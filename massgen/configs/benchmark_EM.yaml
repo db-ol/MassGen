@@ -1,0 +1,61 @@
+# Benchmark Configuration for HLE Lite Multiple Choice Questions
+# Compares multi-agent vs single model performance
+
+benchmark:
+  name: "HLE Lite Exact Match Benchmark"
+  dataset: "cais/hle"
+  question_type: "exactMatch"
+  max_questions: 1  # Change from 20 to 49
+  
+  # Judge model to judge the answer from multi agent's response
+  judge_model:
+    - name: "gpt-4o"
+      backend:
+        type: "openai"
+        model: "gpt-4o"
+      system_message: "You are a helpful AI assistant with web search capabilities. Answer questions accurately. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+             
+  # Single Models to Test
+  single_models: []
+    # - name: "gpt-4o"
+    #   backend:
+    #     type: "openai"
+    #     model: "gpt-4o"
+    #   system_message: "You are a helpful AI assistant with web search capabilities. Answer questions accurately. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+    
+    # - name: "gemini-2.5-flash"
+    #   backend:
+    #     type: "gemini"
+    #     model: "gemini-2.5-flash"
+    #   system_message: "You are a helpful AI assistant with web search capabilities. Answer questions accurately. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+    
+    
+    # - name: "claude-3-5-haiku"
+    #   backend:
+    #     type: "claude"
+    #     model: "claude-3-5-haiku-20241022"
+    #   system_message: "You are a helpful AI assistant with web search capabilities. Answer questions accurately. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+
+    # - name: "grok3mini"
+    #   backend:
+    #     type: "grok"
+    #     model: "grok-3-mini"
+    #   system_message: "You are a helpful AI assistant with web search capabilities. Answer questions accurately. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+
+  # Multi-Agent Configuration
+  multi_agent:
+    config_file: "three_agents_benchmark.yaml"
+    system_message: "You are a helpful AI assistant with web search capabilities. Answer questions accurately. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+  
+
+  # Metrics to Calculate
+  metrics:
+    - accuracy
+    - calibration_error
+    - confidence_scores
+  
+  # Output
+  output:
+    format: "json"  # Changed from "table" to "json"
+    save_results: true
+    results_file: "benchmark_results.json"

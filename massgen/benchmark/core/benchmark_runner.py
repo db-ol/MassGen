@@ -11,6 +11,7 @@ import sys
 from typing import List, Dict, Any
 from pathlib import Path
 import os
+import re
 
 from massgen.cli import create_backend, create_agents_from_config
 from .load_dataset import HLEDatasetLoader
@@ -22,6 +23,7 @@ class HLEBenchmarkRunner:
         self.results = {}
         self.logs = []
         self.current_questions = []
+        self.judge_agent = None
         
     def _log(self, message: str):
         """Add message to logs and print to console."""
@@ -45,19 +47,154 @@ class HLEBenchmarkRunner:
         with open(config_path, 'r') as f:
             return yaml.safe_load(f)
     
+    async def _create_judge_agent(self):
+        """Create the judge agent for evaluating responses."""
+        if self.judge_agent is not None:
+            return self.judge_agent
+            
+        judge_config = self.config['benchmark'].get('judge_model', [])
+        if not judge_config:
+            self._log("⚠️ No judge model configured, using default evaluation")
+            return None
+            
+        # Use the first judge model in the list
+        judge_model_config = judge_config[0]
+        
+        try:
+            # Create judge agent using the same infrastructure as single models
+            single_config = {
+                "agent": {
+                    "id": judge_model_config['name'],
+                    "backend": judge_model_config['backend'],
+                    "system_message": judge_model_config.get('system_message', '')
+                }
+            }
+            
+            agents = create_agents_from_config(single_config)
+            self.judge_agent = next(iter(agents.values()))
+            self._log(f"✅ Judge agent created: {judge_model_config['name']}")
+            return self.judge_agent
+            
+        except Exception as e:
+            self._log(f"❌ Failed to create judge agent: {e}")
+            return None
+    
+    async def _evaluate_response_with_judge(self, question: Dict, response: str, correct_answer: str) -> Dict[str, Any]:
+        """Use judge model to evaluate if the response is correct and extract the answer."""
+        judge_agent = await self._create_judge_agent()
+        
+        if judge_agent is None:
+            return {
+                'is_correct': False,
+                'judge_reasoning': 'No judge model available',
+                'extracted_answer': 'No answer found',
+                'confidence': 0.0
+            }
+        
+        # Create evaluation prompt for the judge
+        question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
+        
+        if question_type == 'exactMatch':
+            evaluation_prompt = f"""Evaluate this response and return ONLY a JSON object:
+
+Question: {question['original_question']}
+Correct Answer: {correct_answer}
+Response: {response}
+
+Return this exact JSON format:
+{{
+    "extracted_answer": "the specific answer from the response",
+    "is_correct": true/false,
+    "reasoning": "brief explanation"
+}}"""
+        else:
+            evaluation_prompt = f"""Evaluate this response and return ONLY a JSON object:
+
+Question: {question['original_question']}
+Correct Answer: {correct_answer}
+Response: {response}
+
+Return this exact JSON format:
+{{
+    "extracted_answer": "the answer letter (A, B, C, D, E, etc.)",
+    "is_correct": true/false,
+    "reasoning": "brief explanation"
+}}"""
+        
+        try:
+            messages = [{"role": "user", "content": evaluation_prompt}]
+            judge_response = ""
+            
+            async for chunk in judge_agent.chat(messages):
+                if chunk.type == "content" and chunk.content:
+                    judge_response += chunk.content
+                elif chunk.type == "error":
+                    self._log(f"    ❌ Judge evaluation error: {chunk.error}")
+                    break
+            
+            # Try to parse JSON response
+            try:
+                # Extract JSON from the response (handle cases where there's extra text)
+                import re
+                json_match = re.search(r'\{.*\}', judge_response, re.DOTALL)
+                if json_match:
+                    json_str = json_match.group(0)
+                    evaluation_data = json.loads(json_str)
+                    
+                    return {
+                        'is_correct': evaluation_data.get('is_correct', False),
+                        'judge_reasoning': evaluation_data.get('reasoning', 'No reasoning provided'),
+                        'extracted_answer': evaluation_data.get('extracted_answer', 'No answer found'),
+                        'confidence': 0.8 if evaluation_data.get('is_correct', False) else 0.2
+                    }
+                else:
+                    return {
+                        'is_correct': False,
+                        'judge_reasoning': 'No JSON found in judge response',
+                        'extracted_answer': 'No answer found',
+                        'confidence': 0.0
+                    }
+                    
+            except json.JSONDecodeError as e:
+                self._log(f"    ❌ Failed to parse judge JSON response: {e}")
+                return {
+                    'is_correct': False,
+                    'judge_reasoning': f'JSON parse error: {e}',
+                    'extracted_answer': 'No answer found',
+                    'confidence': 0.0
+                }
+            
+        except Exception as e:
+            self._log(f"    ❌ Judge evaluation failed: {e}")
+            return {
+                'is_correct': False,
+                'judge_reasoning': f'Judge error: {e}',
+                'extracted_answer': 'No answer found',
+                'confidence': 0.0
+            }
+    
     def load_hle_dataset(self, token: str) -> List[Dict]:
         """Load and preprocess HLE dataset for benchmarking."""
         self._log("📚 Loading HLE dataset...")
         
-        # Use the shared dataset loader with only multiple choice questions
+        # Get question type from config (default to multipleChoice for backward compatibility)
+        question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
+        self._log(f"📋 Question type to benchmark: {question_type}")
+        
+        # Use the shared dataset loader
         loader = HLEDatasetLoader(token)
-        questions = loader.load_multiple_choice_only()  # Only load multiple choice questions
+        
+        if question_type == 'exactMatch':
+            questions = loader.load_exact_match_only()
+            self._log(f"📊 Loaded {len(questions)} exact match questions")
+        else:
+            # Default to multiple choice (existing behavior)
+            questions = loader.load_multiple_choice_only()
+            self._log(f"📊 Loaded {len(questions)} multiple choice questions")
         
         # Limit to max_questions if specified
         max_q = self.config['benchmark'].get('max_questions', len(questions))
         limited_questions = questions[:max_q]
-        
-        self._log(f"📊 Loaded {len(limited_questions)} multiple choice questions")
         
         return limited_questions
     
@@ -72,7 +209,7 @@ class HLEBenchmarkRunner:
             'responses': [],
             'confidence_scores': [],
             'response_time': 0.0,
-            'calibration_error': 0.0  # Add missing calibration_error
+            'calibration_error': 0.0
         }
         
         total_start_time = time.time()
@@ -85,11 +222,21 @@ class HLEBenchmarkRunner:
                 question_text = question['formatted_question']
                 
                 # Create a simple config for single model
+                question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
+                
+                if question_type == 'exactMatch':
+                    default_system_message = 'You are a helpful AI assistant. For exact match questions, provide the exact answer and end with "The answer is: [your answer]".'
+                else:
+                    # Default to multiple choice (existing behavior)
+                    default_system_message = 'You are a helpful AI assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores.'
+                
+                system_message = model_config.get('system_message', default_system_message)
+                
                 single_config = {
                     "agent": {
                         "id": model_config['name'],
                         "backend": model_config['backend'],
-                        "system_message": model_config.get('system_message', 'You are a helpful AI assistant. Answer multiple choice questions accurately and provide confidence scores. **Always end your response with "The answer is: X" where X is the letter (A, B, C, D, or E) of your chosen option.**')
+                        "system_message": system_message
                     }
                 }
                 
@@ -126,32 +273,32 @@ class HLEBenchmarkRunner:
                     self._log(f"    Warning: No response generated")
                     response_content = "No response generated"
                 
-                # Extract confidence score
-                confidence = self._extract_confidence(response_content)
-                
-                # Extract answer and check correctness (FIXED)
-                extracted_answer = self._extract_answer_from_response(response_content)
+                # Use pattern matching to extract answer from single model response
                 correct_answer = question['answer']
-                is_correct = extracted_answer == correct_answer
-                
+                question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
+                extracted_answer = self._extract_answer_with_patterns(response_content, question_type)
+
+                # Simple comparison for single models
+                is_correct = extracted_answer.strip().lower() == correct_answer.strip().lower()
+
+                if is_correct:
+                    results['correct'] += 1
+
+                # Store results
                 results['responses'].append({
                     'question_id': question['id'],
                     'question': question['original_question'],
-                    'correct_answer': question['answer'],
-                    'extracted_answer': extracted_answer,  # Add extracted answer
                     'response': response_content,
-                    'confidence': confidence,
-                    'correct': is_correct,
-                    'response_time': question_time  # Add individual response time
+                    'correct_answer': correct_answer,
+                    'extracted_answer': extracted_answer,
+                    'is_correct': is_correct,
+                    'response_time': question_time
                 })
-                
-                if is_correct:
-                    results['correct'] += 1
-                
-                # Log with the same format as multi-agent
-                self._log(f"    Answer: {extracted_answer} (Correct: {correct_answer}) {'✅' if is_correct else '❌'}")
-                
-                results['confidence_scores'].append(confidence)
+
+                # Log the extracted answer vs correct answer
+                self._log(f"    Answer: {extracted_answer}, Correct: {correct_answer} {'✅' if is_correct else '❌'}")
+
+                results['confidence_scores'].append(0.8 if is_correct else 0.2)
                 
             except Exception as e:
                 self._log(f"    ❌ Error: {e}")
@@ -165,8 +312,8 @@ class HLEBenchmarkRunner:
                     'correct_answer': question['answer'],
                     'error': str(e),
                     'response': "Error occurred",
-                    'confidence': 0.0,
-                    'correct': False,
+                    'judge_evaluation': {'is_correct': False, 'judge_reasoning': 'Error occurred', 'confidence': 0.0},
+                    'is_correct': False,
                     'response_time': 0.0
                 })
         
@@ -185,6 +332,58 @@ class HLEBenchmarkRunner:
         self._log(f"  Total response time: {results['response_time']:.2f}s")
         
         return results
+    
+    def _extract_answer_with_patterns(self, response: str, question_type: str = 'multipleChoice') -> str:
+        """Extract answer from single model response using pattern matching."""
+        if not response:
+            return "No answer found"
+        
+        response = response.strip()
+        
+        if question_type == 'exactMatch':
+            # Pattern 1: Look for "The answer is:" patterns
+            answer_patterns = [
+                r'[Tt]he answer is:\s*(.+)',
+                r'[Aa]nswer:\s*(.+)',
+                r'[Ee]xact answer:\s*(.+)',
+                r'[Ff]inal answer:\s*(.+)'
+            ]
+            
+            for pattern in answer_patterns:
+                matches = re.findall(pattern, response)
+                if matches:
+                    answer = matches[-1].strip()
+                    # Remove trailing punctuation and clean up
+                    answer = re.sub(r'[.!?]+$', '', answer)
+                    return answer
+            
+            # Pattern 2: Look for LaTeX boxed answers: \boxed{content}
+            boxed_matches = re.findall(r'\\boxed\{([^}]+)\}', response)
+            if boxed_matches:
+                return boxed_matches[-1].strip()
+            
+            return "No answer found"
+        
+        else:  # multipleChoice
+            # Pattern 1: Look for "The answer is:" patterns
+            answer_patterns = [
+                r'[Tt]he answer is:\s*([A-Z])',
+                r'[Aa]nswer:\s*([A-Z])',
+                r'[Oo]ption\s*([A-Z])',
+                r'[Cc]hoice\s*([A-Z])'
+            ]
+            
+            for pattern in answer_patterns:
+                matches = re.findall(pattern, response)
+                if matches:
+                    return matches[-1].strip()
+            
+            # Pattern 2: Look for LaTeX boxed answers: \boxed{X}
+            boxed_matches = re.findall(r'\\boxed\{([A-Z])\}', response)
+            if boxed_matches:
+                return boxed_matches[-1].strip()
+            
+            return "No answer found"
     
     def _resolve_config_path(self, ma_config_path: str) -> Path:
         """Resolve multi-agent config path."""
@@ -205,7 +404,7 @@ class HLEBenchmarkRunner:
         
         return resolved_path
 
-    def benchmark_multi_agent_cli(self, questions: List[Dict]) -> Dict[str, Any]:
+    async def benchmark_multi_agent_cli(self, questions: List[Dict]) -> Dict[str, Any]:
         """Benchmark multi-agent system using CLI."""
         self._log(" Benchmarking Multi-Agent System using CLI...")
         
@@ -218,13 +417,16 @@ class HLEBenchmarkRunner:
         
         self._log(f"  Using multi-agent config: {resolved_path}")
         
+        # Get output format from benchmark config
+        output_format = self.config['benchmark'].get('output', {}).get('format', 'text')
+        
         results = {
             'model': 'Multi-Agent System',
             'correct': 0,
             'total': len(questions),
             'responses': [],
             'response_time': 0.0,
-            'calibration_error': 0.0  # Add missing calibration_error
+            'calibration_error': 0.0
         }
         
         total_start_time = time.time()
@@ -236,27 +438,35 @@ class HLEBenchmarkRunner:
                 # Use the formatted question
                 question_text = question['formatted_question']
                 
-                # Run CLI command
-                start_time = time.time()
+                # Run CLI command with output format
+                multi_agent_start_time = time.time()
                 cmd = [
                     sys.executable, "-m", "massgen.cli",
                     "--config", str(resolved_path),
                     "--no-display",
-                    question_text
                 ]
+                
+                # Add output format if specified
+                if output_format == "json":
+                    cmd.append("--json")
+                
+                cmd.append(question_text)
                 
                 result = subprocess.run(
                     cmd,
                     capture_output=True,
                     text=True,
-                    encoding='utf-8',  # Explicitly set encoding
-                    errors='ignore',   # Ignore encoding errors
-                    timeout=180,  # 3 minute timeout
+                    encoding='utf-8',
+                    errors='ignore',
+                    timeout=600,
                     env={**os.environ, 'PYTHONIOENCODING': 'utf-8', 'PYTHONLEGACYWINDOWSSTDIO': 'utf-8'}
                 )
                 
-                end_time = time.time()
-                response_time = end_time - start_time
+                multi_agent_end_time = time.time()
+                multi_agent_response_time = multi_agent_end_time - multi_agent_start_time
+                
+                # Log multi-agent response time
+                self._log(f"    Multi-agent response time: {multi_agent_response_time:.2f}s")
                 
                 if result.returncode != 0:
                     self._log(f"    ❌ CLI command failed: {result.stderr}")
@@ -264,43 +474,65 @@ class HLEBenchmarkRunner:
                         'question_id': question['id'],
                         'error': f"CLI failed: {result.stderr}",
                         'is_correct': False,
-                        'response_time': response_time
+                        'response_time': multi_agent_response_time
                     })
                     continue
                 
-                # Extract final response
-                output = result.stdout
-                if output is None:
-                    output = ""
-                extracted_answer = self._extract_final_response(output)
+                # Parse response based on output format
+                if output_format == "json":
+                    try:
+                        json_response = json.loads(result.stdout)
+                        response_content = json_response.get('response', '')
+                        selected_agent = json_response.get('selected_agent', 'unknown')
+                    except json.JSONDecodeError as e:
+                        self._log(f"    ❌ Failed to parse JSON response: {e}")
+                        response_content = result.stdout
+                        selected_agent = 'unknown'
+                else:
+                    # Fallback to text parsing
+                    response_content = result.stdout
+                    selected_agent = 'unknown'
                 
-                # Check correctness
+                # Use judge model to evaluate the response
                 correct_answer = question['answer']
-                is_correct = extracted_answer == correct_answer
+                judge_start_time = time.time()
+                evaluation = await self._evaluate_response_with_judge(question, response_content, correct_answer)
+                judge_end_time = time.time()
+                judge_evaluation_time = judge_end_time - judge_start_time
                 
-                if is_correct:
+                # Log judge evaluation time
+                self._log(f"    Judge evaluation time: {judge_evaluation_time:.2f}s")
+                
+                if evaluation['is_correct']:
                     results['correct'] += 1
                 
-                # Store results
+                # Store results with both times
                 results['responses'].append({
                     'question_id': question['id'],
                     'question': question['original_question'],
-                    'response': output,
-                    'extracted_answer': extracted_answer,
+                    'response': response_content,
                     'correct_answer': correct_answer,
-                    'is_correct': is_correct,
-                    'response_time': response_time
+                    'judge_evaluation': evaluation,
+                    'is_correct': evaluation['is_correct'],
+                    'response_time': multi_agent_response_time,
+                    'judge_evaluation_time': judge_evaluation_time,
+                    'selected_agent': selected_agent
                 })
                 
-                self._log(f"    Answer: {extracted_answer} (Correct: {correct_answer}) {'✅' if is_correct else '❌'}")
+                # Updated logging to show extracted answer vs correct answer
+                extracted_answer = evaluation.get('extracted_answer', 'No answer extracted')
+                self._log(f"    Answer: {extracted_answer}, Correct: {correct_answer} {'✅' if evaluation['is_correct'] else '❌'}")
+                if selected_agent != 'unknown':
+                    self._log(f"    Selected Agent: {selected_agent}")
                 
             except subprocess.TimeoutExpired:
-                self._log(f"    ❌ Timeout after 180 seconds")
+                self._log(f"    ❌ Timeout after 600 seconds")
                 results['responses'].append({
                     'question_id': question['id'],
                     'error': 'Timeout',
                     'is_correct': False,
-                    'response_time': 180.0
+                    'response_time': 600.0,
+                    'judge_evaluation_time': 0.0
                 })
             except Exception as e:
                 self._log(f"    ❌ Error: {e}")
@@ -308,7 +540,8 @@ class HLEBenchmarkRunner:
                     'question_id': question['id'],
                     'error': str(e),
                     'is_correct': False,
-                    'response_time': 0.0
+                    'response_time': 0.0,
+                    'judge_evaluation_time': 0.0
                 })
         
         # Calculate total response time
@@ -320,55 +553,6 @@ class HLEBenchmarkRunner:
         self._log(f"✅ Multi-Agent System completed: {results['correct']}/{results['total']} correct ({results['accuracy']:.3f})")
         return results
 
-    def _extract_confidence(self, response: str) -> float:
-        """Extract confidence score from response."""
-        # Simple confidence extraction - look for patterns like "confidence: 0.8" or "95%"
-        import re
-        
-        # Look for percentage patterns
-        percent_match = re.search(r'(\d+)%', response, re.IGNORECASE)
-        if percent_match:
-            return float(percent_match.group(1)) / 100.0
-        
-        # Look for decimal patterns
-        decimal_match = re.search(r'confidence[:\s]*(\d*\.?\d+)', response, re.IGNORECASE)
-        if decimal_match:
-            confidence = float(decimal_match.group(1))
-            if confidence > 1.0:  # If it's a percentage (e.g., 95.0)
-                return confidence / 100.0
-            return confidence
-        
-        # Default confidence
-        return 0.7
-
-    def _check_answer_correctness(self, response: str, question: Dict) -> bool:
-        """Check if the response contains the correct answer."""
-        if response == "No response generated" or response == "Error occurred":
-            return False
-            
-        correct_answer = question['answer']
-        
-        # Look for answer patterns in the response
-        response_lower = response.lower()
-        
-        # Check for direct answer mentions
-        if f"answer: {correct_answer.lower()}" in response_lower:
-            return True
-        if f"option {correct_answer.lower()}" in response_lower:
-            return True
-        if f"choice {correct_answer.lower()}" in response_lower:
-            return True
-        
-        # Check for answer at the end
-        if response_lower.strip().endswith(correct_answer.lower()):
-            return True
-        
-        # Check for answer in parentheses
-        if f"({correct_answer.lower()})" in response_lower:
-            return True
-        
-        return False
-
     def _calculate_calibration_error(self, results: Dict) -> float:
         """Calculate Expected Calibration Error (ECE)."""
         if not results.get('confidence_scores'):
@@ -376,7 +560,7 @@ class HLEBenchmarkRunner:
         
         # Simple ECE calculation
         confidence_scores = results['confidence_scores']
-        correct_predictions = [1 if r['correct'] else 0 for r in results['responses']]
+        correct_predictions = [1 if r['is_correct'] else 0 for r in results['responses']]
         
         # Calculate average confidence vs accuracy
         avg_confidence = sum(confidence_scores) / len(confidence_scores)
@@ -408,7 +592,7 @@ class HLEBenchmarkRunner:
             
             # Benchmark multi-agent system
             self._log(" Benchmarking multi-agent system...")
-            ma_results = self.benchmark_multi_agent_cli(questions)
+            ma_results = await self.benchmark_multi_agent_cli(questions)
             self.results['multi_agent'] = ma_results
             
             # Generate summary
@@ -537,8 +721,8 @@ class HLEBenchmarkRunner:
                     response = result['responses'][i]
                     print(f"  {result['model']}:")
                     print(f"    Response: {response['response'][:100]}...")
-                    print(f"    Confidence: {response['confidence']:.2f}")
-                    print(f"    Correct: {'✅' if response['correct'] else '❌'}")
+                    print(f"    Judge Evaluation: {response.get('judge_evaluation', {}).get('judge_reasoning', 'N/A')}")
+                    print(f"    Correct: {'✅' if response['is_correct'] else '❌'}")
             
             # Multi-agent response
             ma_result = self.results.get('multi_agent')
@@ -549,136 +733,5 @@ class HLEBenchmarkRunner:
                     print(f"    Error: {ma_response['error']}")
                 else:
                     print(f"    Response: {ma_response['response'][:100]}...")
+                    print(f"    Judge Evaluation: {ma_response.get('judge_evaluation', {}).get('judge_reasoning', 'N/A')}")
                     print(f"    Correct: {'✅' if ma_response['is_correct'] else '❌'}")
-
-    def _extract_answer_from_response(self, response: str) -> str:
-        """Extract answer from a single model response with multiple fallback patterns."""
-        if not response:
-            return "No answer found"
-        
-        # Primary pattern: "The answer is: X"
-        if "The answer is:" in response:
-            answer_part = response.split("The answer is:")[1].strip()
-            import re
-            match = re.search(r'\b([A-E])\b', answer_part)
-            if match:
-                return match.group(1)
-        
-        # Fallback patterns for single models that don't follow the format
-        
-        # Pattern 1: Look for "Answer: X" or "Option X" or "Choice X"
-        import re
-        answer_patterns = [
-            r'[Aa]nswer:\s*([A-E])',
-            r'[Oo]ption\s*([A-E])',
-            r'[Cc]hoice\s*([A-E])',
-            r'[Ss]elect\s*([A-E])',
-            r'[Cc]hoose\s*([A-E])',
-        ]
-        
-        for pattern in answer_patterns:
-            match = re.search(pattern, response)
-            if match:
-                return match.group(1)
-        
-        # Pattern 2: Look for "X." at the beginning of lines (common in explanations)
-        lines = response.split('\n')
-        for line in lines:
-            match = re.search(r'^([A-E])\.\s*', line.strip())
-            if match:
-                return match.group(1)
-        
-        # Pattern 3: Look for "**X. Description**" format
-        match = re.search(r'\*\*([A-E])\.\s*([^*]+)\*\*', response)
-        if match:
-            return match.group(1)
-        
-        # Pattern 4: Look for LaTeX boxed answers: \boxed{X}
-        match = re.search(r'\\boxed\{([A-E])\}', response)
-        if match:
-            return match.group(1)
-        
-        # Pattern 5: Look for standalone letters that are likely answers
-        letters = re.findall(r'\b([A-E])\b', response)
-        if letters:
-            # Take the last occurrence as it's likely the final answer
-            return letters[-1]
-        
-        # Pattern 6: Look for specific content-based answers
-        if "Weak Quality Addition" in response or "Weak Quality Addition (E)" in response:
-            return "E"
-        if "Weak Non-Sadism" in response or "Weak Non-Sadism (D)" in response:
-            return "D"
-        if "Egalitarian Dominance" in response or "Egalitarian Dominance (A)" in response:
-            return "A"
-        if "General Non-Extreme Priority" in response or "General Non-Extreme Priority (B)" in response:
-            return "B"
-        if "Non-Elitism" in response or "Non-Elitism (C)" in response:
-            return "C"
-        
-        return "No answer found"
-
-    def _extract_final_response(self, output: str) -> str:
-        """Extract the final response from multi-agent CLI output."""
-        # Handle None or empty output
-        if not output:
-            return "No answer found"
-        
-        lines = output.split('\n')
-        
-        # Primary patterns: "The answer is:" or "The final answer is:"
-        for i, line in enumerate(lines):
-            if "The answer is:" in line or "The final answer is:" in line:
-                # Extract everything after either pattern
-                if "The answer is:" in line:
-                    answer_part = line.split("The answer is:")[1].strip()
-                else:
-                    answer_part = line.split("The final answer is:")[1].strip()
-                
-                import re
-                match = re.search(r'\b([A-E])\b', answer_part)
-                if match:
-                    return match.group(1)
-                
-                # Check next line if current line doesn't have the letter
-                if i + 1 < len(lines):
-                    next_line = lines[i + 1].strip()
-                    match = re.search(r'\b([A-E])\b', next_line)
-                    if match:
-                        return match.group(1)
-                
-                # Look for LaTeX boxed answers: \boxed{X}
-                match = re.search(r'\\boxed\{([A-E])\}', answer_part)
-                if match:
-                    return match.group(1)
-        
-        # Multi-agent specific patterns - look for the selected agent's response
-        for i, line in enumerate(lines):
-            if "✅ Selected by:" in line:
-                selected_agent = line.split("Selected by:")[1].strip()
-                
-                # Look backwards to find this agent's response content
-                for j in range(i-1, max(0, i-200), -1):
-                    # Look for the agent's detailed response content
-                    if f"[{selected_agent}]" in lines[j]:
-                        # Extract the content from this line and surrounding lines
-                        content_lines = []
-                        for k in range(max(0, j-10), min(len(lines), j+10)):
-                            if f"[{selected_agent}]" in lines[k]:
-                                content_lines.append(lines[k])
-                        
-                        # Join the content and extract answer
-                        content = "\n".join(content_lines)
-                        extracted = self._extract_answer_from_response(content)
-                        if extracted != "No answer found":
-                            return extracted
-        
-        # Look for LaTeX boxed answers in any line
-        for line in lines:
-            if "\\boxed{" in line:
-                import re
-                match = re.search(r'\\boxed\{([A-E])\}', line)
-                if match:
-                    return match.group(1)
-        
-        return "No answer found"

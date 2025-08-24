@@ -5,7 +5,7 @@ benchmark:
   name: "HLE Lite Multiple Choice Benchmark"
   dataset: "cais/hle"
   question_type: "multipleChoice"
-  max_questions: 1 # Limit for testing
+  max_questions: 31 # Limit for testing
   
   # Single Models to Test
   single_models:
@@ -27,10 +27,16 @@ benchmark:
         type: "claude"
         model: "claude-3-5-haiku-20241022"
       system_message: "You are a helpful AI assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
-    
+
+    - name: "grok3mini"
+      backend:
+        type: "grok"
+        model: "grok-3-mini"
+      system_message: "You are a helpful AI assistant with web search capabilities. For any question involving current events, recent information, or real-time data, ALWAYS use web search first. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+
   # Multi-Agent Configuration
   multi_agent:
-    config_file: "two_models.yaml"
+    config_file: "three_agents_benchmark.yaml"
     system_message: "You are a helpful AI assistant. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
   
 

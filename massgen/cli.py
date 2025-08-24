@@ -20,13 +20,29 @@ Usage examples:
     
     # Run benchmark
     python -m massgen.cli --benchmark --benchmark-config benchmark.yaml
+    
+    # JSON output format
+    python -m massgen.cli --json --config config.yaml "What is the capital of France?"
+    python -m massgen.cli --output-format json --config config.yaml "What is 2+2?"
+    
+    # Create sample configurations
+    python -m massgen.cli --create-samples
+
+Environment Variables:
+  OPENAI_API_KEY      - Required for OpenAI backend
+  XAI_API_KEY         - Required for Grok backend  
+  ANTHROPIC_API_KEY   - Required for Claude backend
+  CEREBRAS_API_KEY    - Required for CEREBRAS CLOUD API (chatcompletion backend)
+  HF_API_KEY          - Required for benchmarking (HLE dataset access)
 """
 
 import argparse
 import asyncio
+import io
 import json
 import os
 import sys
+import time
 import yaml
 from pathlib import Path
 from typing import Dict, Any, Optional, List
@@ -355,8 +371,10 @@ async def run_question_with_history(
 
 async def run_single_question(
     question: str, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any]
-) -> str:
+) -> Dict[str, Any]:
     """Run MassGen with a single question."""
+    output_format = ui_config.get("output_format", "text")
+    
     # Check if we should use orchestrator for single agents (default: False for backward compatibility)
     use_orchestrator_for_single = ui_config.get(
         "use_orchestrator_for_single_agent", True
@@ -366,10 +384,11 @@ async def run_single_question(
         # Single agent mode with existing SimpleDisplay frontend
         agent = next(iter(agents.values()))
 
-        print(f"\n🤖 {BRIGHT_CYAN}Single Agent Mode{RESET}", flush=True)
-        print(f"Agent: {agent.agent_id}", flush=True)
-        print(f"Question: {question}", flush=True)
-        print("\n" + "=" * 60, flush=True)
+        if output_format == "text":
+            print(f"\n🤖 {BRIGHT_CYAN}Single Agent Mode{RESET}", flush=True)
+            print(f"Agent: {agent.agent_id}", flush=True)
+            print(f"Question: {question}", flush=True)
+            print("\n" + "=" * 60, flush=True)
 
         messages = [{"role": "user", "content": question}]
         response_content = ""
@@ -377,33 +396,84 @@ async def run_single_question(
         async for chunk in agent.chat(messages):
             if chunk.type == "content" and chunk.content:
                 response_content += chunk.content
-                print(chunk.content, end="", flush=True)
+                if output_format == "text":
+                    print(chunk.content, end="", flush=True)
             elif chunk.type == "builtin_tool_results":
                 # Skip builtin_tool_results to avoid duplication with real-time streaming
                 continue
             elif chunk.type == "error":
-                print(f"\n❌ Error: {chunk.error}", flush=True)
-                return ""
+                if output_format == "text":
+                    print(f"\n❌ Error: {chunk.error}", flush=True)
+                return {
+                    "question": question,
+                    "response": "",
+                    "selected_agent": agent.agent_id,
+                    "agents": list(agents.keys()),
+                    "error": chunk.error,
+                    "timestamp": time.time(),
+                    "mode": "single_agent"
+                }
 
-        print("\n" + "=" * 60, flush=True)
-        return response_content
+        if output_format == "text":
+            print("\n" + "=" * 60, flush=True)
+        
+        return {
+            "question": question,
+            "response": response_content,
+            "selected_agent": agent.agent_id,
+            "agents": list(agents.keys()),
+            "timestamp": time.time(),
+            "mode": "single_agent"
+        }
 
     else:
         # Multi-agent mode
         orchestrator = Orchestrator(agents=agents)
-        # Create a fresh UI instance for each question to ensure clean state
-        ui = CoordinationUI(
-            display_type=ui_config.get("display_type", "rich_terminal"),
-            logging_enabled=ui_config.get("logging_enabled", True),
-        )
-
-        print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
-        print(f"Agents: {', '.join(agents.keys())}", flush=True)
-        print(f"Question: {question}", flush=True)
-        print("\n" + "=" * 60, flush=True)
-
-        final_response = await ui.coordinate(orchestrator, question)
-        return final_response
+        
+        if output_format == "json":
+            # Redirect stdout to capture all output
+            old_stdout = sys.stdout
+            captured_output = io.StringIO()
+            sys.stdout = captured_output
+            
+            try:
+                # Create a fresh UI instance for each question to ensure clean state
+                ui = CoordinationUI(
+                    display_type="simple",  # Use simple display for JSON mode
+                    logging_enabled=False,  # Disable logging for JSON mode
+                )
+                
+                final_response = await ui.coordinate(orchestrator, question)
+                
+            finally:
+                # Restore stdout
+                sys.stdout = old_stdout
+        
+        else:
+            # Normal text mode
+            ui = CoordinationUI(
+                display_type=ui_config.get("display_type", "rich_terminal"),
+                logging_enabled=ui_config.get("logging_enabled", True),
+            )
+            
+            print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
+            print(f"Agents: {', '.join(agents.keys())}", flush=True)
+            print(f"Question: {question}", flush=True)
+            print("\n" + "=" * 60, flush=True)
+            
+            final_response = await ui.coordinate(orchestrator, question)
+        
+        # Get the selected agent from the orchestrator
+        selected_agent = getattr(orchestrator, '_selected_agent', None)
+        
+        return {
+            "question": question,
+            "response": final_response,
+            "selected_agent": selected_agent,
+            "agents": list(agents.keys()),
+            "timestamp": time.time(),
+            "mode": "multi_agent"
+        }
 
 
 def print_help_messages():
@@ -617,6 +687,10 @@ Examples:
   # Interactive mode
   python -m massgen.cli --config config.yaml
   
+  # JSON output format
+  python -m massgen.cli --json --config config.yaml "What is the capital of France?"
+  python -m massgen.cli --output-format json --config config.yaml "What is 2+2?"
+  
   # Run benchmark
   python -m massgen.cli --benchmark --benchmark-config benchmark.yaml
   
@@ -682,6 +756,18 @@ Environment Variables:
         "--no-display", action="store_true", help="Disable visual coordination display"
     )
     parser.add_argument("--no-logs", action="store_true", help="Disable logging")
+    
+    # Output format options
+    parser.add_argument(
+        "--json", action="store_true", help="Output results in JSON format"
+    )
+    parser.add_argument(
+        "--output-format", 
+        type=str, 
+        choices=["text", "json"], 
+        default="text",
+        help="Output format for results (default: text)"
+    )
 
     args = parser.parse_args()
 
@@ -729,6 +815,10 @@ Environment Variables:
             ui_config["display_type"] = "simple"
         if args.no_logs:
             ui_config["logging_enabled"] = False
+        
+        # Set output format
+        output_format = "json" if args.json else args.output_format
+        ui_config["output_format"] = output_format
 
         # Create agents
         agents = create_agents_from_config(config)
@@ -738,10 +828,11 @@ Environment Variables:
 
         # Run mode based on whether question was provided
         if args.question:
-            response = await run_single_question(args.question, agents, ui_config)
-            # if response:
-            #     print(f"\n{BRIGHT_GREEN}Final Response:{RESET}", flush=True)
-            #     print(f"{response}", flush=True)
+            result = await run_single_question(args.question, agents, ui_config)
+            if output_format == "json":
+                # Output JSON response
+                print(json.dumps(result, indent=2))
+            # else: original text output is handled in run_single_question
         else:
             await run_interactive_mode(agents, ui_config)
 
