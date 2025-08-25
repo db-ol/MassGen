@@ -33,6 +33,7 @@ dependencies = [
     "anthropic==0.49.0",
     "nest-asyncio==1.6.0",
     "cerebras-cloud-sdk==1.46.0",
+    "lmstudio==1.4.1",
     "wcwidth>=0.2.5",
     "google-genai>=1.27.0",
     "python-dotenv>=1.0.0",
@@ -155,7 +156,7 @@ ignore_errors = true
 [tool.pytest.ini_options]
 minversion = "7.0"
 addopts = "-ra -q --strict-markers --strict-config"
-testpaths = ["tests"]
+testpaths = ["massgen/tests"]
 python_files = ["test_*.py", "*_test.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
@@ -164,6 +165,7 @@ markers = [
     "integration: marks tests as integration tests",
     "unit: marks tests as unit tests",
 ]
+asyncio_mode = "auto"
 
 # Coverage configuration
 [tool.coverage.run]

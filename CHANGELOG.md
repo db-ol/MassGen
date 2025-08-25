@@ -5,6 +5,245 @@ All notable changes to MassGen will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.11] - 2025-08-25
+
+### Known Issues
+- **System Message Handling in Multi-Agent Coordination**: Critical issues affecting Claude Code agents
+  - **Lost System Messages During Final Presentation** (`orchestrator.py:1183`)
+    - Claude Code agents lose domain expertise during final presentation
+    - ConfigurableAgent doesn't properly expose system messages via `agent.system_message`
+  - **Backend Ignores System Messages** (`claude_code.py:754-762`)
+    - Claude Code backend filters out system messages from presentation_messages
+    - Only processes user messages, causing loss of agent expertise context
+    - System message handling only works during initial client creation, not with `reset_chat=True`
+  - **Ambiguous Configuration Sources**
+    - Multiple conflicting system message sources: `custom_system_instruction`, `system_prompt`, `append_system_prompt`
+    - Backend parameters silently override AgentConfig settings
+    - Unclear precedence and behavior documentation
+  - **Architecture Violations**
+    - Orchestrator contains Claude Code-specific implementation details
+    - Tight coupling prevents easy addition of new backends
+    - Violates separation of concerns principle
+
+### Fixed
+- **Custom System Message Support**: Enhanced system message configuration and preservation
+  - Added `base_system_message` parameter to conversation builders for agent's custom system message
+  - Orchestrator now passes agent's `get_configurable_system_message()` to conversation builders
+  - Custom system messages properly combined with MassGen coordination instructions instead of being overwritten
+  - Backend-specific system prompt customization (system_prompt, append_system_prompt)
+- **Claude Code Backend Enhancements**: Improved integration and configuration
+  - Better system message handling and extraction
+  - Enhanced JSON structured response parsing
+  - Improved coordination action descriptions
+- **Final Presentation & Agent Logic**: Enhanced multi-agent coordination (#135)
+  - Improved final presentation handling for Claude Code agents
+  - Better coordination between agents during final answer selection
+  - Enhanced CLI presentation logic
+  - Agent configuration improvements for workflow coordination
+- **Evaluation Message Enhancement**: Improved synthesis instructions
+  - Changed to "digest existing answers, combine their strengths, and do additional work to address their weaknesses"
+  - Added "well" qualifier to evaluation questions
+  - More explicit guidance for agents to synthesize and improve upon existing answers
+
+### Changed
+- **Documentation Updates**: Enhanced project documentation
+  - Renamed roadmap from v0.0.11 to v0.0.12 for future planning
+  - Updated README with latest features and improvements
+  - Improved CONTRIBUTING guidelines
+  - Enhanced configuration examples and best practices
+
+### Added
+- **New Configuration Files**: Introduced additional YAML configuration files
+  - Added `multi_agent_playwright_automation.yaml` for browser automation workflows
+
+### Removed
+- **Deprecated Configurations**: Cleaned up configuration files
+  - Removed `gemini_claude_code_paper_search_mcp.yaml`
+  - Removed `gpt5_claude_code_paper_search_mcp.yaml`
+- **Gemini CLI Tests**: Removed Gemini CLI related tests
+
+### Technical Details
+- **Commits**: 25+ commits including bug fixes, feature additions, and improvements
+- **Files Modified**: 35+ files across backend, orchestrator, frontend, configuration, and documentation
+- **New Configuration**: `multi_agent_playwright_automation.yaml` for browser automation workflows
+- **Contributors**: @qidanrui @Leezekun @sonichi @voidcenter @Daucloud @Henry-811 and the MassGen team
+
+## [0.0.10] - 2025-08-22
+
+### Added
+- **Azure OpenAI Support**: Integration with Azure OpenAI services
+  - New `azure_openai.py` backend with async streaming capabilities
+  - Support for Azure-hosted GPT-4.1 and GPT-5-chat models
+  - Configuration examples for single and multi-agent Azure setups
+  - Test suite for Azure OpenAI functionality
+- **Enhanced Claude Code Backend**: Major refactoring and improvements
+  - Simplified MCP (Model Context Protocol) integration
+- **Final Presentation Support**: New orchestrator presentation capabilities
+  - Support for final answer presentation in multi-agent scenarios
+  - Fallback mechanisms for presentation generation
+  - Test coverage for presentation functionality
+
+### Fixed
+- **Claude Code MCP**: Cleaned up and simplified MCP implementation
+  - Removed redundant MCP server and transport modules
+- **Configuration Management**: Improved YAML configuration handling
+  - Fixed Azure OpenAI deployment configurations
+  - Updated model mappings for Azure services
+
+### Changed
+- **Backend Architecture**: Significant refactoring of backend systems
+  - Consolidated Azure OpenAI implementation using AsyncAzureOpenAI
+  - Improved error handling and streaming capabilities
+  - Enhanced async support across all backends
+- **Documentation Updates**: Enhanced project documentation
+  - Updated README with Azure OpenAI setup instructions
+  - Renamed roadmap from v0.0.10 to v0.0.11
+  - Improved presentation materials for DataHack Summit 2025
+- **Test Infrastructure**: Expanded test coverage
+  - Added comprehensive Azure OpenAI backend tests
+  - Integration tests for final presentation functionality
+  - Simplified test structure with better coverage
+
+### Removed
+- **Deprecated MCP Components**: Removed unused MCP modules
+  - Removed standalone MCP client, transport, and server implementations
+  - Cleaned up MCP test files and testing checklist
+  - Simplified Claude Code backend by removing redundant MCP code
+
+### Technical Details
+- **Commits**: 35+ commits including Azure OpenAI integration and Claude Code improvements
+- **Files Modified**: 30+ files across backend, configuration, tests, and documentation
+- **New Backend**: Azure OpenAI backend with full async support
+- **Contributors**: @qidanrui @Leezekun @sonichi and the MassGen team
+
+## [0.0.9] - 2025-08-22
+
+### Added
+- **Quick Start Guide**: Comprehensive quickstart documentation in README
+  - Streamlined setup instructions for new users
+  - Example configurations for getting started quickly
+  - Clear installation and usage steps
+- **Multi-Agent Configuration Examples**: New configuration files for various setups
+  - Paper search configuration with GPT-5 and Claude Code
+  - Multi-agent setups with different model combinations
+- **Roadmap Documentation**: Added comprehensive roadmap for version 0.0.10
+  - Focused on Claude Code context sharing between agents
+  - Multi-agent context synchronization planning
+  - Enhanced backend features and CLI improvements roadmap
+
+### Fixed
+- **Web Search Processing**: Fixed bug in response handling for web search functionality
+  - Improved error handling in web search responses
+  - Better streaming of search results
+- **Rich Terminal Display**: Fixed rendering issues in terminal UI
+  - Resolved display formatting problems
+  - Improved message rendering consistency
+
+### Changed
+- **Claude Code Integration**: Optimized Claude Code implementation
+  - MCP (Model Context Protocol) integration
+  - Streamlined Claude Code backend configuration
+- **Documentation Updates**: Enhanced project documentation
+  - Updated README with quickstart guide
+  - Added CONTRIBUTING.md guidelines
+  - Improved configuration examples
+
+### Technical Details
+- **Commits**: 10 commits including bug fixes, code cleanup, and documentation updates
+- **Files Modified**: Multiple files across backend, configurations, and documentation
+- **Contributors**: @qidanrui @sonichi @Leezekun @voidcenter @JeffreyCh0 @stellaxiang
+
+## [0.0.8] - 2025-08-18
+
+### Added
+- **Timeout Management System**: Timeout capabilities for better control and time management
+  - New `TimeoutConfig` class for configuring timeout settings at different levels
+  - Orchestrator-level timeout with graceful fallback
+  - Added `fast_timeout_example.yaml` configuration demonstrating conservative timeout settings
+  - Test suite for timeout mechanisms in `test_timeout.py`
+  - Timeout indicators in Rich Terminal Display showing remaining time
+- **Enhanced Display Features**: Improved visual feedback and user experience
+  - Optimized message display formatting for better readability
+  - Enhanced status indicators for timeout warnings and fallback notifications
+  - Improved coordination UI with better multi-agent status tracking
+
+### Fixed
+- **Display Optimization**: Multiple improvements to message rendering
+  - Fixed message display synchronization issues
+  - Optimized terminal display refresh rates
+  - Improved handling of concurrent agent outputs
+  - Better formatting for multi-line responses
+- **Configuration Management**: Enhanced robustness of configuration loading
+  - Fixed import ordering issues in CLI module
+  - Improved error handling for missing configurations
+  - Better validation of timeout settings
+
+### Changed
+- **Orchestrator Architecture**: Simplified and enhanced timeout implementation
+  - Refactored timeout handling to be more efficient and maintainable
+  - Improved graceful degradation when timeouts occur
+  - Better integration with frontend displays for timeout notifications
+  - Enhanced error messages for timeout scenarios
+- **Code Cleanup**: Removed deprecated configurations and improved code organization
+  - Removed obsolete `two_agents_claude_code` configuration
+  - Cleaned up unused imports and redundant code
+  - Reformatted files for better consistency
+- **CLI Enhancements**: Improved command-line interface functionality
+  - Better timeout configuration parsing
+  - Enhanced error reporting for timeout scenarios
+  - Improved help documentation for timeout settings
+
+### Technical Details
+- **Commits**: 18 commits including various optimizations and bug fixes
+- **Files Modified**: 13+ files across orchestrator, frontend, configuration, and test modules
+- **Key Features**: Timeout management system with graceful fallback, enhanced display optimizations
+- **New Configuration**: `fast_timeout_example.yaml` for time-conscious usage
+- **Contributors**: @qidanrui @Leezekun @sonichi @voidcenter
+
+## [0.0.7] - 2025-08-15
+
+### Added
+- **Local Model Support**: Complete integration with LM Studio for running open-weight models locally
+  - New `lmstudio.py` backend with automatic server management
+  - Automatic model downloading and loading capabilities
+  - Zero-cost reporting for local model usage
+- **Extended Provider Support**: Enhanced ChatCompletionsBackend to support multiple providers
+  - Cerebras AI, Together AI, Fireworks AI, Groq, Nebius AI Studio, OpenRouter
+  - Provider-specific environment variable detection
+  - Automatic provider name inference from base URLs
+- **New Configuration Files**: Added configurations for local and hybrid model setups
+  - `lmstudio.yaml`: Single agent configuration for LM Studio
+  - `two_agents_opensource_lmstudio.yaml`: Hybrid setup with GPT-5 and local Qwen model
+  - `gpt5nano_glm_qwen.yaml`: Three-agent setup combining Cerebras, ZAI GLM-4.5, and local Qwen
+  - Updated `three_agents_opensource.yaml` for open-source model combinations
+
+### Fixed
+- **Backend Stability**: Improved error handling across all backend systems
+  - Fixed API key resolution and client initialization
+  - Enhanced provider name detection and configuration
+  - Resolved streaming issues in ChatCompletionsBackend
+- **Documentation**: Corrected references and updated model naming conventions
+  - Fixed GPT model references in documentation diagrams
+  - Updated case study file naming consistency
+
+### Changed
+- **Backend Architecture**: Refactored ChatCompletionsBackend for better extensibility
+  - Improved provider registry and configuration management
+  - Enhanced logging and debugging capabilities
+  - Streamlined message processing and tool handling
+- **Dependencies**: Added new requirements for local model support
+  - Added `lmstudio==1.4.1` for LM Studio Python SDK integration
+- **Documentation Updates**: Enhanced documentation for local model usage
+  - Updated environment variables documentation
+  - Added setup instructions for LM Studio integration
+  - Improved backend configuration examples
+
+### Technical Details
+- **Commits**: 16 commits including merge pull requests #80 and #100
+- **Files Modified**: 17+ files across backend, configuration, documentation, and CLI modules
+- **New Dependencies**: LM Studio SDK (`lmstudio==1.4.1`)
+- **Contributors**: @qidanrui @sonichi @Leezekun @praneeth999 @voidcenter
+
 ## [0.0.6] - 2025-08-13
 
 ### Added

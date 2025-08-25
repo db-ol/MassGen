@@ -6,9 +6,17 @@ multiple sub-agents using the proven binary decision framework behind the scenes
 
 TODOs:
 - Move CLI's coordinate_with_context logic to orchestrator and simplify CLI to just use orchestrator
+- Implement orchestrator system message functionality to customize coordination behavior:
+  * Custom voting strategies (consensus, expertise-weighted, domain-specific)
+  * Message construction templates for sub-agent instructions
+  * Conflict resolution approaches (evidence-based, democratic, expert-priority)
+  * Workflow preferences (thorough vs fast, iterative vs single-pass)
+  * Domain-specific coordination (research teams, technical reviews, creative brainstorming)
+  * Dynamic agent selection based on task requirements and orchestrator instructions
 """
 
 import asyncio
+import time
 from typing import Dict, List, Optional, Any, AsyncGenerator
 from dataclasses import dataclass, field
 from .message_templates import MessageTemplates
@@ -26,12 +34,16 @@ class AgentState:
         has_voted: Whether the agent has voted in the current round
         votes: Dictionary storing vote data for this agent
         restart_pending: Whether the agent should gracefully restart due to new answers
+        is_killed: Whether this agent has been killed due to timeout/limits
+        timeout_reason: Reason for timeout (if applicable)
     """
 
     answer: Optional[str] = None
     has_voted: bool = False
     votes: Dict[str, Any] = field(default_factory=dict)
     restart_pending: bool = False
+    is_killed: bool = False
+    timeout_reason: Optional[str] = None
 
 
 class Orchestrator(ChatAgent):
@@ -99,6 +111,17 @@ class Orchestrator(ChatAgent):
         # Internal coordination state
         self._coordination_messages: List[Dict[str, str]] = []
         self._selected_agent: Optional[str] = None
+        self._final_presentation_content: Optional[str] = None
+
+        # Timeout and resource tracking
+        self.total_tokens: int = 0
+        self.coordination_start_time: float = 0
+        self.is_orchestrator_timeout: bool = False
+        self.timeout_reason: Optional[str] = None
+
+        # Coordination state tracking for cleanup
+        self._active_streams: Dict = {}
+        self._active_tasks: Dict = {}
 
     async def chat(
         self,
@@ -146,7 +169,9 @@ class Orchestrator(ChatAgent):
             self.current_task = user_message
             self.workflow_phase = "coordinating"
 
-            async for chunk in self._coordinate_agents(conversation_context):
+            async for chunk in self._coordinate_agents_with_timeout(
+                conversation_context
+            ):
                 yield chunk
 
         elif self.workflow_phase == "presenting":
@@ -208,6 +233,48 @@ class Orchestrator(ChatAgent):
             "conversation_history": conversation_history,
             "full_messages": messages,
         }
+
+    async def _coordinate_agents_with_timeout(
+        self, conversation_context: Optional[Dict[str, Any]] = None
+    ) -> AsyncGenerator[StreamChunk, None]:
+        """Execute coordination with orchestrator-level timeout protection."""
+        self.coordination_start_time = time.time()
+        self.total_tokens = 0
+        self.is_orchestrator_timeout = False
+        self.timeout_reason = None
+
+        # Track active coordination state for cleanup
+        self._active_streams = {}
+        self._active_tasks = {}
+
+        timeout_seconds = self.config.timeout_config.orchestrator_timeout_seconds
+
+        try:
+            # Use asyncio.timeout for timeout protection
+            async with asyncio.timeout(timeout_seconds):
+                async for chunk in self._coordinate_agents(conversation_context):
+                    # Track tokens if this is a content chunk
+                    if hasattr(chunk, "content") and chunk.content:
+                        self.total_tokens += len(
+                            chunk.content.split()
+                        )  # Rough token estimation
+
+                    yield chunk
+
+        except asyncio.TimeoutError:
+            self.is_orchestrator_timeout = True
+            elapsed = time.time() - self.coordination_start_time
+            self.timeout_reason = (
+                f"Time limit exceeded ({elapsed:.1f}s/{timeout_seconds}s)"
+            )
+
+            # Force cleanup of any active agent streams and tasks
+            await self._cleanup_active_coordination()
+
+        # Handle timeout by jumping to final presentation
+        if self.is_orchestrator_timeout:
+            async for chunk in self._handle_orchestrator_timeout():
+                yield chunk
 
     async def _coordinate_agents(
         self, conversation_context: Optional[Dict[str, Any]] = None
@@ -273,8 +340,15 @@ class Orchestrator(ChatAgent):
         active_streams = {}
         active_tasks = {}  # Track active tasks to prevent duplicate task creation
 
+        # Store references for timeout cleanup
+        self._active_streams = active_streams
+        self._active_tasks = active_tasks
+
         # Stream agent outputs in real-time until all have voted
         while not all(state.has_voted for state in self.agent_states.values()):
+            # Check for orchestrator timeout - stop spawning new agents
+            if self.is_orchestrator_timeout:
+                break
             # Start any agents that aren't running and haven't voted yet
             current_answers = {
                 aid: state.answer
@@ -285,6 +359,7 @@ class Orchestrator(ChatAgent):
                 if (
                     agent_id not in active_streams
                     and not self.agent_states[agent_id].has_voted
+                    and not self.agent_states[agent_id].is_killed
                 ):
                     active_streams[agent_id] = self._stream_agent_execution(
                         agent_id,
@@ -392,6 +467,12 @@ class Orchestrator(ChatAgent):
                         )
                         await self._close_agent_stream(agent_id, active_streams)
 
+                    elif chunk_type == "debug":
+                        # Debug information - forward as StreamChunk for logging
+                        yield StreamChunk(
+                            type="debug", content=chunk_data, source=agent_id
+                        )
+
                     elif chunk_type == "done":
                         # Stream completed - emit completion status for frontend
                         yield StreamChunk(
@@ -449,6 +530,24 @@ class Orchestrator(ChatAgent):
     def _check_restart_pending(self, agent_id: str) -> bool:
         """Check if agent should restart and yield restart message if needed."""
         return self.agent_states[agent_id].restart_pending
+
+    async def _cleanup_active_coordination(self) -> None:
+        """Force cleanup of active coordination streams and tasks on timeout."""
+        # Cancel and cleanup active tasks
+        if hasattr(self, "_active_tasks") and self._active_tasks:
+            for task in self._active_tasks.values():
+                if not task.done():
+                    task.cancel()
+                    try:
+                        await task
+                    except (asyncio.CancelledError, Exception):
+                        pass  # Ignore cleanup errors
+            self._active_tasks.clear()
+
+        # Close active streams
+        if hasattr(self, "_active_streams") and self._active_streams:
+            for agent_id in list(self._active_streams.keys()):
+                await self._close_agent_stream(agent_id, self._active_streams)
 
     def _create_tool_error_messages(
         self,
@@ -515,10 +614,17 @@ class Orchestrator(ChatAgent):
         """
         agent = self.agents[agent_id]
 
+        # Initialize agent state
+        self.agent_states[agent_id].is_killed = False
+        self.agent_states[agent_id].timeout_reason = None
+
         # Clear restart pending flag at the beginning of agent execution
         self.agent_states[agent_id].restart_pending = False
 
         try:
+            # Get agent's custom system message if available
+            agent_system_message = agent.get_configurable_system_message()
+            
             # Build conversation with context support
             if conversation_context and conversation_context.get(
                 "conversation_history"
@@ -531,6 +637,7 @@ class Orchestrator(ChatAgent):
                     ),
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
+                    base_system_message=agent_system_message,
                 )
             else:
                 # Fallback to standard conversation building
@@ -538,6 +645,7 @@ class Orchestrator(ChatAgent):
                     task=task,
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
+                    base_system_message=agent_system_message,
                 )
 
             # Clean startup without redundant messages
@@ -594,7 +702,12 @@ class Orchestrator(ChatAgent):
                         response_text += chunk.content
                         # Stream agent content directly - source field handles attribution
                         yield ("content", chunk.content)
-                    elif chunk.type in ["reasoning", "reasoning_done", "reasoning_summary", "reasoning_summary_done"]:
+                    elif chunk.type in [
+                        "reasoning",
+                        "reasoning_done",
+                        "reasoning_summary",
+                        "reasoning_summary_done",
+                    ]:
                         # Stream reasoning content as tuple format
                         reasoning_chunk = StreamChunk(
                             type=chunk.type,
@@ -602,15 +715,22 @@ class Orchestrator(ChatAgent):
                             source=agent_id,
                             reasoning_delta=getattr(chunk, "reasoning_delta", None),
                             reasoning_text=getattr(chunk, "reasoning_text", None),
-                            reasoning_summary_delta=getattr(chunk, "reasoning_summary_delta", None),
-                            reasoning_summary_text=getattr(chunk, "reasoning_summary_text", None),
+                            reasoning_summary_delta=getattr(
+                                chunk, "reasoning_summary_delta", None
+                            ),
+                            reasoning_summary_text=getattr(
+                                chunk, "reasoning_summary_text", None
+                            ),
                             item_id=getattr(chunk, "item_id", None),
                             content_index=getattr(chunk, "content_index", None),
-                            summary_index=getattr(chunk, "summary_index", None)
+                            summary_index=getattr(chunk, "summary_index", None),
                         )
                         yield ("reasoning", reasoning_chunk)
                     elif chunk.type == "backend_status":
                         pass
+                    elif chunk.type == "debug":
+                        # Forward debug chunks
+                        yield ("debug", chunk.content)
                     elif chunk.type == "tool_calls":
                         # Use the correct tool_calls field
                         chunk_tool_calls = getattr(chunk, "tool_calls", []) or []
@@ -948,6 +1068,63 @@ class Orchestrator(ChatAgent):
         self.workflow_phase = "presenting"
         yield StreamChunk(type="done")
 
+    async def _handle_orchestrator_timeout(self) -> AsyncGenerator[StreamChunk, None]:
+        """Handle orchestrator timeout by jumping directly to get_final_presentation."""
+        # Output orchestrator timeout message first
+        yield StreamChunk(
+            type="content",
+            content=f"\n⚠️ **Orchestrator Timeout**: {self.timeout_reason}\n",
+            source=self.orchestrator_id,
+        )
+
+        # Count available answers
+        available_answers = {
+            aid: state.answer
+            for aid, state in self.agent_states.items()
+            if state.answer and not state.is_killed
+        }
+
+        yield StreamChunk(
+            type="content",
+            content=f"📊 Current state: {len(available_answers)} answers available\n",
+            source=self.orchestrator_id,
+        )
+
+        # If no answers available, provide fallback with timeout explanation
+        if len(available_answers) == 0:
+            yield StreamChunk(
+                type="content",
+                content="❌ No answers available from any agents due to timeout. No agents had enough time to provide responses.\n",
+                source=self.orchestrator_id,
+            )
+            self.workflow_phase = "presenting"
+            yield StreamChunk(type="done")
+            return
+
+        # Determine best available agent for presentation
+        current_votes = {
+            aid: state.votes
+            for aid, state in self.agent_states.items()
+            if state.votes and not state.is_killed
+        }
+
+        self._selected_agent = self._determine_final_agent_from_votes(
+            current_votes, available_answers
+        )
+
+        # Jump directly to get_final_presentation
+        vote_results = self._get_vote_results()
+        yield StreamChunk(
+            type="content",
+            content=f"🎯 Jumping to final presentation with {self._selected_agent} (selected despite timeout)\n",
+            source=self.orchestrator_id,
+        )
+
+        async for chunk in self.get_final_presentation(
+            self._selected_agent, vote_results
+        ):
+            yield chunk
+
     def _determine_final_agent_from_votes(
         self, votes: Dict[str, Dict], agent_answers: Dict[str, str]
     ) -> str:
@@ -981,7 +1158,9 @@ class Orchestrator(ChatAgent):
         return (
             tied_agents[0]
             if tied_agents
-            else next(iter(agent_answers)) if agent_answers else None
+            else next(iter(agent_answers))
+            if agent_answers
+            else None
         )
 
     async def get_final_presentation(
@@ -1023,8 +1202,8 @@ class Orchestrator(ChatAgent):
             selected_agent_id=selected_agent_id,
         )
 
-        # Get agent's original system message if available
-        agent_system_message = getattr(agent, "system_message", None)
+        # Get agent's configurable system message using the standard interface
+        agent_system_message = agent.get_configurable_system_message()
         # Create conversation with system and user messages
         presentation_messages = [
             {
@@ -1041,13 +1220,20 @@ class Orchestrator(ChatAgent):
         )
 
         # Use agent's chat method with proper system message (reset chat for clean presentation)
+        presentation_content = ""
         async for chunk in agent.chat(presentation_messages, reset_chat=True):
             # Use the same streaming approach as regular coordination
             if chunk.type == "content" and chunk.content:
+                presentation_content += chunk.content
                 yield StreamChunk(
                     type="content", content=chunk.content, source=selected_agent_id
                 )
-            elif chunk.type in ["reasoning", "reasoning_done", "reasoning_summary", "reasoning_summary_done"]:
+            elif chunk.type in [
+                "reasoning",
+                "reasoning_done",
+                "reasoning_summary",
+                "reasoning_summary_done",
+            ]:
                 # Stream reasoning content with proper attribution (same as main coordination)
                 reasoning_chunk = StreamChunk(
                     type=chunk.type,
@@ -1055,16 +1241,21 @@ class Orchestrator(ChatAgent):
                     source=selected_agent_id,
                     reasoning_delta=getattr(chunk, "reasoning_delta", None),
                     reasoning_text=getattr(chunk, "reasoning_text", None),
-                    reasoning_summary_delta=getattr(chunk, "reasoning_summary_delta", None),
-                    reasoning_summary_text=getattr(chunk, "reasoning_summary_text", None),
+                    reasoning_summary_delta=getattr(
+                        chunk, "reasoning_summary_delta", None
+                    ),
+                    reasoning_summary_text=getattr(
+                        chunk, "reasoning_summary_text", None
+                    ),
                     item_id=getattr(chunk, "item_id", None),
                     content_index=getattr(chunk, "content_index", None),
-                    summary_index=getattr(chunk, "summary_index", None)
+                    summary_index=getattr(chunk, "summary_index", None),
                 )
                 # Use the same format as main coordination for consistency
                 yield reasoning_chunk
             elif chunk.type == "backend_status":
                 import json
+
                 status_json = json.loads(chunk.content)
                 cwd = status_json["cwd"]
                 session_id = status_json["session_id"]
@@ -1072,7 +1263,9 @@ class Orchestrator(ChatAgent):
 Final Session ID: {session_id}.
 """
 
-                yield StreamChunk(type="content", content=content, source=selected_agent_id)
+                yield StreamChunk(
+                    type="content", content=content, source=selected_agent_id
+                )
 
             elif chunk.type == "done":
                 yield StreamChunk(type="done", source=selected_agent_id)
@@ -1083,8 +1276,49 @@ Final Session ID: {session_id}.
             # Pass through other chunk types as-is but with source
             else:
                 if hasattr(chunk, "source"):
-                    chunk.source = selected_agent_id
-                yield chunk
+                    yield StreamChunk(
+                        type=chunk.type,
+                        content=getattr(chunk, "content", ""),
+                        source=selected_agent_id,
+                        **{
+                            k: v
+                            for k, v in chunk.__dict__.items()
+                            if k not in ["type", "content", "source"]
+                        },
+                    )
+                else:
+                    yield StreamChunk(
+                        type=chunk.type,
+                        content=getattr(chunk, "content", ""),
+                        source=selected_agent_id,
+                        **{
+                            k: v
+                            for k, v in chunk.__dict__.items()
+                            if k not in ["type", "content", "source"]
+                        },
+                    )
+
+        # Store the final presentation content for logging
+        if presentation_content.strip():
+            # Store the synthesized final answer
+            self._final_presentation_content = presentation_content.strip()
+        else:
+            # If no content was generated, use the stored answer as fallback
+            stored_answer = self.agent_states[selected_agent_id].answer
+            if stored_answer:
+                fallback_content = f"\n📋 Using stored answer as final presentation:\n\n{stored_answer}"
+                yield StreamChunk(
+                    type="content",
+                    content=fallback_content,
+                    source=selected_agent_id,
+                )
+                self._final_presentation_content = stored_answer
+            else:
+                yield StreamChunk(
+                    type="content",
+                    content="\n❌ No content generated for final presentation and no stored answer available.",
+                    source=selected_agent_id,
+                )
 
     def _get_vote_results(self) -> Dict[str, Any]:
         """Get current vote results and statistics."""
@@ -1215,6 +1449,7 @@ Final Session ID: {session_id}.
             "workflow_phase": self.workflow_phase,
             "current_task": self.current_task,
             "selected_agent": self._selected_agent,
+            "final_presentation_content": self._final_presentation_content,
             "vote_results": vote_results,
             "agents": {
                 aid: {
@@ -1232,19 +1467,59 @@ Final Session ID: {session_id}.
             "conversation_length": len(self.conversation_history),
         }
 
-    def reset(self) -> None:
+    def get_configurable_system_message(self) -> Optional[str]:
+        """
+        Get the configurable system message for the orchestrator.
+        
+        This can define how the orchestrator should coordinate agents, construct messages,
+        handle conflicts, make decisions, etc. For example:
+        - Custom voting strategies
+        - Message construction templates  
+        - Conflict resolution approaches
+        - Coordination workflow preferences
+        
+        Returns:
+            Orchestrator's configurable system message if available, None otherwise
+        """
+        if self.config and hasattr(self.config, 'get_configurable_system_message'):
+            return self.config.get_configurable_system_message()
+        elif self.config and hasattr(self.config, 'custom_system_instruction'):
+            return self.config.custom_system_instruction
+        elif self.config and self.config.backend_params:
+            # Check for backend-specific system prompts
+            backend_params = self.config.backend_params
+            if "system_prompt" in backend_params:
+                return backend_params["system_prompt"]
+            elif "append_system_prompt" in backend_params:
+                return backend_params["append_system_prompt"]
+        return None
+
+    async def reset(self) -> None:
         """Reset orchestrator state for new task."""
         self.conversation_history.clear()
         self.current_task = None
         self.workflow_phase = "idle"
         self._coordination_messages.clear()
         self._selected_agent = None
+        self._final_presentation_content = None
 
         # Reset agent states
         for state in self.agent_states.values():
             state.answer = None
             state.has_voted = False
             state.restart_pending = False
+            state.is_killed = False
+            state.timeout_reason = None
+
+        # Reset orchestrator timeout tracking
+        self.total_tokens = 0
+        self.coordination_start_time = 0
+        self.is_orchestrator_timeout = False
+        self.timeout_reason = None
+
+        # Clear coordination state
+        self._active_streams = {}
+        self._active_tasks = {}
 
     async def process_question(self, question: str) -> str:
         """

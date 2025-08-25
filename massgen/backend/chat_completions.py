@@ -3,21 +3,80 @@ from __future__ import annotations
 """
 Base class for backends using OpenAI Chat Completions API format.
 Handles common message processing, tool conversion, and streaming patterns.
+
+Supported Providers and Environment Variables:
+- OpenAI: OPENAI_API_KEY
+- Cerebras AI: CEREBRAS_API_KEY
+- Together AI: TOGETHER_API_KEY
+- Fireworks AI: FIREWORKS_API_KEY
+- Groq: GROQ_API_KEY
+- Nebius AI Studio: NEBIUS_API_KEY
+- OpenRouter: OPENROUTER_API_KEY
+- ZAI: ZAI_API_KEY
 """
 
-from typing import Dict, List, Any, AsyncGenerator, Optional
+
+# Standard library imports
+import asyncio
+import os
+from dataclasses import dataclass
+from typing import Dict, List, Any, AsyncGenerator, Optional, Tuple
+from urllib.parse import urlparse
+
+# Third-party imports
+import openai
+from openai import AsyncOpenAI
+import logging
+
+# Local imports
+
 from .base import LLMBackend, StreamChunk
+
+# Set up logger
+logger = logging.getLogger(__name__)
 
 
 class ChatCompletionsBackend(LLMBackend):
     """Complete OpenAI-compatible Chat Completions API backend.
-    
-    Can be used directly with any OpenAI-compatible provider by setting base_url.
-    Supports Cerebras AI and other compatible providers.
+
+    Can be used directly with any OpenAI-compatible provider by setting provider name.
+    Supports Cerebras AI, Together AI, Fireworks AI, DeepInfra, and other compatible providers.
+
+    Environment Variables:
+        Provider-specific API keys are automatically detected based on provider name.
+        See ProviderRegistry.PROVIDERS for the complete list.
+
     """
 
     def __init__(self, api_key: Optional[str] = None, **kwargs):
         super().__init__(api_key, **kwargs)
+
+    def get_provider_name(self) -> str:
+        """Get the name of this provider."""
+        # Check if provider name was explicitly set in config
+        if "provider" in self.config:
+            return self.config["provider"]
+        elif "provider_name" in self.config:
+            return self.config["provider_name"]
+
+        # Try to infer from base_url
+        base_url = self.config.get("base_url", "")
+        if "openai.com" in base_url:
+            return "OpenAI"
+        elif "cerebras.ai" in base_url:
+            return "Cerebras AI"
+        elif "together.ai" in base_url:
+            return "Together AI"
+        elif "fireworks.ai" in base_url:
+            return "Fireworks AI"
+        elif "groq.com" in base_url:
+            return "Groq"
+        elif "openrouter.ai" in base_url:
+            return "OpenRouter"
+        elif "z.ai" in base_url:
+            return "ZAI"
+        else:
+            return "ChatCompletion"
 
     def convert_tools_to_chat_completions_format(
         self, tools: List[Dict[str, Any]]
@@ -83,10 +142,7 @@ class ChatCompletionsBackend(LLMBackend):
                             if hasattr(self, reasoning_active_key):
                                 if getattr(self, reasoning_active_key) == True:
                                     setattr(self, reasoning_active_key, False)
-                                    yield StreamChunk(
-                                        type="reasoning_done",
-                                        content=""
-                                    )
+                                    yield StreamChunk(type="reasoning_done", content="")
                             content_chunk = delta.content
                             content += content_chunk
                             yield StreamChunk(type="content", content=content_chunk)
@@ -102,7 +158,7 @@ class ChatCompletionsBackend(LLMBackend):
                                     content=thinking_delta,
                                     reasoning_delta=thinking_delta,
                                 )
-                        
+
                         # Tool calls streaming (OpenAI-style)
                         if getattr(delta, "tool_calls", None):
                             # handle reasoning first
@@ -110,10 +166,7 @@ class ChatCompletionsBackend(LLMBackend):
                             if hasattr(self, reasoning_active_key):
                                 if getattr(self, reasoning_active_key) == True:
                                     setattr(self, reasoning_active_key, False)
-                                    yield StreamChunk(
-                                        type="reasoning_done",
-                                        content=""
-                                    )
+                                    yield StreamChunk(type="reasoning_done", content="")
 
                             for tool_call_delta in delta.tool_calls:
                                 index = getattr(tool_call_delta, "index", 0)
@@ -142,7 +195,9 @@ class ChatCompletionsBackend(LLMBackend):
                                         ] = tool_call_delta.function.name
 
                                     # Accumulate arguments (as string chunks)
-                                    if getattr(tool_call_delta.function, "arguments", None):
+                                    if getattr(
+                                        tool_call_delta.function, "arguments", None
+                                    ):
                                         current_tool_calls[index]["function"][
                                             "arguments"
                                         ] += tool_call_delta.function.arguments
@@ -154,10 +209,7 @@ class ChatCompletionsBackend(LLMBackend):
                         if hasattr(self, reasoning_active_key):
                             if getattr(self, reasoning_active_key) == True:
                                 setattr(self, reasoning_active_key, False)
-                                yield StreamChunk(
-                                    type="reasoning_done",
-                                    content=""
-                                )
+                                yield StreamChunk(type="reasoning_done", content="")
 
                         if choice.finish_reason == "tool_calls" and current_tool_calls:
 
@@ -253,98 +305,107 @@ class ChatCompletionsBackend(LLMBackend):
         # Fallback in case stream ends without finish_reason
         yield StreamChunk(type="done")
 
-
     async def stream_with_tools(
         self, messages: List[Dict[str, Any]], tools: List[Dict[str, Any]], **kwargs
     ) -> AsyncGenerator[StreamChunk, None]:
-            """Stream response using OpenAI-compatible Chat Completions API."""
-            try:  
+        """Stream response using OpenAI-compatible Chat Completions API."""
+        try:
+            import openai
 
-                import openai
+            # Merge constructor config with stream kwargs (stream kwargs take priority)
+            all_params = {**self.config, **kwargs}
 
-                # Merge constructor config with stream kwargs (stream kwargs take priority)
-                all_params = {**self.config, **kwargs}
-                
-                # Get base_url from config or use OpenAI default
-                base_url = all_params.get("base_url", "https://api.openai.com/v1")
-                
-                client = openai.AsyncOpenAI(
-                    api_key=self.api_key,
-                    base_url=base_url
-                )
-                
-                # Extract framework-specific parameters
-                enable_web_search = all_params.get("enable_web_search", False)
-                enable_code_interpreter = all_params.get("enable_code_interpreter", False)
+            # Get base_url from config or use OpenAI default
+            base_url = all_params.get("base_url", "https://api.openai.com/v1")
 
-                # Convert tools to Chat Completions format
-                converted_tools = (
-                    self.convert_tools_to_chat_completions_format(tools) if tools else None
-                )
+            client = openai.AsyncOpenAI(api_key=self.api_key, base_url=base_url)
 
-                # Chat Completions API parameters
-                api_params = {
-                    "messages": messages,
-                    "stream": True,
-                }
+            # Extract framework-specific parameters
+            enable_web_search = all_params.get("enable_web_search", False)
+            enable_code_interpreter = all_params.get("enable_code_interpreter", False)
 
-                # Add tools if provided
-                if converted_tools:
-                    api_params["tools"] = converted_tools
+            # Convert tools to Chat Completions format
+            converted_tools = (
+                self.convert_tools_to_chat_completions_format(tools) if tools else None
+            )
 
-                # Direct passthrough of all parameters except those handled separately
-                excluded_params = {"enable_web_search", "enable_code_interpreter", "base_url", "agent_id", "session_id"}
-                for key, value in all_params.items():
-                    if key not in excluded_params and value is not None:
-                        api_params[key] = value
+            # Chat Completions API parameters
+            api_params = {
+                "messages": messages,
+                "stream": True,
+            }
 
+            # Add tools if provided
+            if converted_tools:
+                api_params["tools"] = converted_tools
 
-                # Add provider tools (web search, code interpreter) if enabled
-                provider_tools = []
-                if enable_web_search:
-                    provider_tools.append({
+            # Direct passthrough of all parameters except those handled separately
+            excluded_params = {
+                "enable_web_search",
+                "enable_code_interpreter",
+                "base_url",
+                "agent_id",
+                "session_id",
+                "type",
+            }
+            for key, value in all_params.items():
+                if key not in excluded_params and value is not None:
+                    api_params[key] = value
+
+            # Add provider tools (web search, code interpreter) if enabled
+            provider_tools = []
+            if enable_web_search:
+                provider_tools.append(
+                    {
                         "type": "function",
                         "function": {
-                        "name": "web_search",
-                        "description": "Search the web for current or factual information",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                            "query": {
-                                "type": "string",
-                                "description": "The search query to send to the web"
-                            }
+                            "name": "web_search",
+                            "description": "Search the web for current or factual information",
+                            "parameters": {
+                                "type": "object",
+                                "properties": {
+                                    "query": {
+                                        "type": "string",
+                                        "description": "The search query to send to the web",
+                                    }
+                                },
+                                "required": ["query"],
                             },
-                            "required": ["query"]
-                        }
-                        }
-                    })
+                        },
+                    }
+                )
 
-                if enable_code_interpreter:
-                    provider_tools.append(
-                        {"type": "code_interpreter", "container": {"type": "auto"}}
-                    )
+            if enable_code_interpreter:
+                provider_tools.append(
+                    {"type": "code_interpreter", "container": {"type": "auto"}}
+                )
 
-                if provider_tools:
-                    if "tools" not in api_params:
-                        api_params["tools"] = []
-                    api_params["tools"].extend(provider_tools)
+            if provider_tools:
+                if "tools" not in api_params:
+                    api_params["tools"] = []
+                api_params["tools"].extend(provider_tools)
 
-                # create stream
-                stream = await client.chat.completions.create(**api_params)
+            # create stream
+            stream = await client.chat.completions.create(**api_params)
 
-                # Use existing streaming handler with enhanced error handling
-                async for chunk in self.handle_chat_completions_stream(
-                    stream, enable_web_search
-                ):
-                    yield chunk
+            # Use existing streaming handler with enhanced error handling
+            async for chunk in self.handle_chat_completions_stream(
+                stream, enable_web_search
+            ):
+                yield chunk
 
-            except Exception as e:
-                yield StreamChunk(type="error", error=f"Chat Completions API error: {str(e)}")
-
-    def get_provider_name(self) -> str:
-        """Get the name of this provider."""
-        return "ChatCompletions"
+        except Exception as e:
+            yield StreamChunk(
+                type="error", error=f"Chat Completions API error: {str(e)}"
+            )
+        finally:
+            # Ensure the underlying HTTP client is properly closed to avoid event loop issues
+            try:
+                if hasattr(client, 'aclose'):
+                    await client.aclose()
+            except Exception:
+                # Suppress cleanup errors so we don't mask primary exceptions
+                pass
 
     def estimate_tokens(self, text: str) -> int:
         """Estimate token count for text (rough approximation)."""
@@ -356,7 +417,7 @@ class ChatCompletionsBackend(LLMBackend):
     ) -> float:
         """Calculate cost for token usage based on OpenAI pricing (default fallback)."""
         model_lower = model.lower()
-        
+
         # OpenAI GPT-4o pricing (most common)
         if "gpt-4o" in model_lower:
             if "mini" in model_lower:
@@ -394,6 +455,7 @@ class ChatCompletionsBackend(LLMBackend):
         if isinstance(arguments, str):
             try:
                 import json
+
                 return json.loads(arguments) if arguments.strip() else {}
             except json.JSONDecodeError:
                 return {}

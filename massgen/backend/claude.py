@@ -177,8 +177,8 @@ class ClaudeBackend(LLMBackend):
 
             # Merge constructor config with stream kwargs (stream kwargs take priority)
             all_params = {**self.config, **kwargs}
-            
-            # Extract framework-specific parameters  
+
+            # Extract framework-specific parameters
             enable_web_search = all_params.get("enable_web_search", False)
             enable_code_execution = all_params.get("enable_code_execution", False)
 
@@ -219,7 +219,12 @@ class ClaudeBackend(LLMBackend):
                 api_params["tools"] = combined_tools
 
             # Direct passthrough of all parameters except those handled separately
-            excluded_params = {"enable_web_search", "enable_code_execution", "agent_id", "session_id"}
+            excluded_params = {
+                "enable_web_search",
+                "enable_code_execution",
+                "agent_id",
+                "session_id",
+            }
             for key, value in all_params.items():
                 if key not in excluded_params and value is not None:
                     api_params[key] = value
@@ -490,6 +495,14 @@ class ClaudeBackend(LLMBackend):
 
         except Exception as e:
             yield StreamChunk(type="error", error=f"Claude API error: {e}")
+        finally:
+            # Ensure the underlying HTTP client is properly closed to avoid event loop issues
+            try:
+                if hasattr(client, 'aclose'):
+                    await client.aclose()
+            except Exception:
+                # Suppress cleanup errors so we don't mask primary exceptions
+                pass
 
     def get_provider_name(self) -> str:
         """Get the provider name."""
