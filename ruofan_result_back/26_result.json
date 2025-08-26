@@ -1,0 +1,43 @@
+{
+  "question_number": 26,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly solve the problem. Agent 1 is chosen because it provides the most detailed and clear step-by-step breakdown of the calculation. It correctly calculates the moles of H+ and OH- ions, identifies the limiting reagent, and then calculates the final enthalpy change in both kJ and kcal, making the reasoning easy to follow and verify."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive step-by-step solution with clear calculations, proper identification of limiting reagent, and correct application of enthalpy of neutralization principles. The answer is mathematically sound and well-formatted in the required JSON structure."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed step-by-step calculation of moles of ions, identification of limiting reagent, and correct conversion from kJ to kcal, leading to option A, which aligns with the consistent conclusion from other agents."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct limiting-reagent calculation, correct conversion to kcal, and it strictly follows the required JSON-only output format. Other answers either add extra text or not in the requested format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

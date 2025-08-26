@@ -1,0 +1,48 @@
+{
+  "question_number": 139,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and excellent reasoning. I am voting for gemini2.5pro as its explanation is the most detailed and clearly breaks down each step of the chemical process and analysis, making it slightly superior from a pedagogical standpoint."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and clear explanation of the stereochemical outcomes and chromatographic behaviors, addressing the original query comprehensively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "All agents chose D with correct stereochemical reasoning. gpt5’s answer is concise and accurate: anti-dihydroxylation of (E) gives meso; (Z) gives racemic pair; achiral HPLC shows 2 peaks (meso + co-eluting enantiomers); chiral HPLC shows 3 peaks. Clear, correct, and directly addresses the question."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and clearly structured explanation of the stereochemical analysis, with precise terminology and logical flow from reaction mechanism to chromatographic outcomes"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

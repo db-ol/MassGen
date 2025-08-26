@@ -1,0 +1,44 @@
+{
+  "question_number": 61,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the answer and provided solid reasoning. The reasoning from gpt5 is the most concise while still being comprehensive, accurately mapping the allegorical language of the prompt to the specific steps of the co-translational translocation and secretory pathway."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate, concise identification of SRP meeting the nascent chain in the cytosol, pausing translation, targeting to rough ER for glycosylation, and ultimate secretion to extracellular space; correctly selects option C and presents clean JSON."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provided the most comprehensive analysis with detailed citations, step-by-step breakdown of the biological dialogue, and thorough explanation of each molecular interaction while reaching the correct answer"
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer provides the most detailed, step-by-step reasoning with clear mapping of riddle elements to biological processes, making it the most comprehensive response."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

@@ -1,0 +1,47 @@
+{
+  "question_number": 78,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the three optically active compounds and provides a clear, step-by-step analysis for each of the seven compounds. The reasoning is accurate and easy to follow. It correctly identifies meso compounds, achiral molecules with planes of symmetry, and chiral molecules given as single enantiomers."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most systematic and clear analysis of each compound, correctly identifying that compound 2 with specific R,S stereochemistry is optically active rather than meso, and correctly concludes that 3 compounds exhibit optical activity."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 correctly identifies only two optically active compounds, recognizing the bicyclic anhydride (3aR,7aS,E) as meso/achiral. Others mistakenly count it as chiral. Their reasoning for the remaining compounds is accurate."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a correct count of 3 optically active compounds with detailed reasoning for each, correctly identifying the chiral nature of the second compound due to its stereochemical descriptors, while agent3 errs in classifying it as achiral."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

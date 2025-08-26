@@ -1,0 +1,45 @@
+{
+  "question_number": 75,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. However, claudesonnet420250514 gave the most chemically nuanced explanation, correctly identifying the typo in the original prompt and specifying that a cyclopropanation reaction is more likely than epoxidation in this specific case, which demonstrates a deeper understanding."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive answer with web search verification of the Corey-Chaykovsky reaction mechanism, while maintaining the correct chemical reasoning that all agents shared"
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer correctly identifies the final reaction as forming a cyclopropane rather than an epoxide, providing a more precise description of the chemistry while arriving at the correct carbon count of 11."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurately tracks carbon count through each step and correctly concludes 11 carbons. Concise, clear reasoning without extraneous or speculative details."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

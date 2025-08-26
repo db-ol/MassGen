@@ -1,0 +1,44 @@
+{
+  "question_number": 99,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but this one provides the clearest and most detailed step-by-step breakdown of the reaction sequence, which is ideal for a complex synthesis problem."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed and comprehensive step-by-step explanation of the multi-step synthesis, clearly explaining the directing effects and reaction mechanisms while reaching the correct answer A"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed step-by-step reasoning process that clearly explains each reaction and the directing effects, leading to the correct answer A, addressing the original message effectively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate, concise, and directly answers with correct product (A) using proper mechanistic reasoning (meta bromination, reduction, diazotization, Gomberg–Bachmann para coupling with anisole). Also adheres to the requested JSON-only format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

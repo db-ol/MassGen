@@ -1,0 +1,47 @@
+{
+  "question_number": 1,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies that the observed line is the redshifted 21cm line of neutral hydrogen. It correctly reasons that in our galaxy (the Milky Way), absorption features of this line are predominantly caused by the Cold Neutral Medium (CNM) due to its lower temperature and higher optical depth compared to the Warm Neutral Medium."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct: maps 3.9 µeV to ~943 MHz (redshifted 21‑cm), explains that H I absorption is dominated by the cold neutral atomic medium, directly answering the question with minimal extraneous content."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with detailed calculations, proper citations from web search, and thorough explanation of the physical processes involved in 21-cm absorption in different phases of the interstellar medium"
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "grok4 provides a concise yet comprehensive reasoning that explicitly ties the given distance of 2.1 Gpc to a redshift z ≈ 0.5, correctly identifying the absorption line as the redshifted 21-cm HI line, and accurately associates it with the cold atomic interstellar medium in the Milky Way."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

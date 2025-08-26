@@ -1,0 +1,47 @@
+{
+  "question_number": 76,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies that molecule A belongs to the C3h point group and provides a detailed, accurate analysis for why the other molecules do not. It correctly notes the planarity and C3 axis of molecule A, and crucially explains how the fusion pattern removes the perpendicular C2 axes. Its analysis of the other options is also correct, especially in identifying the lack of a horizontal mirror plane in triisopropyl borate due to steric hindrance."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and comprehensive reasoning, correctly identifying that triisopropyl borate lacks a horizontal mirror plane due to its propeller-like conformation, while explaining why option A has C3h symmetry by breaking the C2 axes through asymmetric fusion, and distinguishing it from D which has D3h."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Picks B, which is the expected C3h example (trigonal planar BO3 core with σh and no C2), and correctly classifies quinuclidine as C3v and the planar polycyclic options as D3h. Concise and most plausible among the options; other agents either pick A or misclassify triisopropyl borate."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most accurate and well-supported analysis. The key insight is that C3h symmetry requires a C3 axis with a horizontal mirror plane but NO perpendicular C2 axes. Agent1 correctly identifies that triisopropyl borate B(OiPr)3 has a trigonal planar BO3 core with C3 symmetry and a horizontal mirror plane, while the bulky isopropyl groups prevent perpendicular C2 axes due to steric hindrance. The search results confirm that boric acid B(OH)3 is \"the most commonly shown example\" of C3h symmetry, and triisopropyl borate shares the same trigonal planar BO3 geometry. Agent1 also correctly rules out the other options: quinuclidine is C3v, and the large polycyclic molecules would likely be D3h due to their extended aromatic systems retaining C2 axes."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

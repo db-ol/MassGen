@@ -32,7 +32,7 @@ _DEBUG_MODE = False
 _LOG_SESSION_DIR = None
 
 
-def get_log_session_dir() -> Path:
+def get_log_session_dir(quesiton_number) -> Path:
     """Get the current log session directory."""
     global _LOG_SESSION_DIR
     if _LOG_SESSION_DIR is None:
@@ -42,13 +42,13 @@ def get_log_session_dir() -> Path:
         
         # Create timestamped session directory
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        _LOG_SESSION_DIR = log_base_dir / f"log_{timestamp}"
+        _LOG_SESSION_DIR = log_base_dir / f"log_question_number_{quesiton_number}_{timestamp}"
         _LOG_SESSION_DIR.mkdir(parents=True, exist_ok=True)
     
     return _LOG_SESSION_DIR
 
 
-def setup_logging(debug: bool = False, log_file: Optional[str] = None):
+def setup_logging(debug: bool = False, log_file: Optional[str] = None, question_number=900):
     """
     Configure MassGen logging system using loguru.
     
@@ -94,7 +94,7 @@ def setup_logging(debug: bool = False, log_file: Optional[str] = None):
         
         # Also log to file in debug mode
         if not log_file:
-            log_session_dir = get_log_session_dir()
+            log_session_dir = get_log_session_dir(question_number)
             log_file = log_session_dir / "massgen_debug.log"
         
         logger.add(
@@ -124,7 +124,7 @@ def setup_logging(debug: bool = False, log_file: Optional[str] = None):
         
         # Always create log file in non-debug mode to capture INFO messages
         if not log_file:
-            log_session_dir = get_log_session_dir()
+            log_session_dir = get_log_session_dir(question_number)
             log_file = log_session_dir / "massgen.log"
         
         # Use the same format as console with color codes

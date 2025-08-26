@@ -1,0 +1,43 @@
+{
+  "question_number": 115,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "This agent correctly identifies the product as an enamine and provides the most chemically detailed and accurate reasoning for the selection of both the aldehyde (cyclohexanecarbaldehyde) and the strong acid catalyst (TsOH)."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Picks the correct pair (D) and clearly identifies the product as an enamine formed from a secondary amine and an aldehyde with alpha hydrogens under strong acid catalysis (TsOH). The reasoning is chemically accurate and concise, and the response is properly formatted as JSON only."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides the most accurate reasoning by correctly identifying the product as an enamine, explaining the need for an aldehyde with alpha hydrogens, and justifying TsOH as the preferred catalyst over acetic acid."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most accurate and concise mechanistic explanation, correctly identifying this as enamine formation rather than imine formation, with precise technical language about iminium formation followed by deprotonation/dehydration"
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "D"
+}

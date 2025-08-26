@@ -1,0 +1,47 @@
+{
+  "question_number": 8,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. Agent 2's explanation is the most detailed and pedagogical, explaining the underlying physics and formula clearly."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed and clear explanation of the formula, calculations, and reasoning, accurately addressing the problem."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct formula and ratio, concise, and provided in the requested pure JSON format without extraneous content."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the correct answer D with clear, concise reasoning that accurately applies the physics formula M ∝ P(K₁+K₂)³ for eclipsing binaries, leading to the correct calculation of 0.432 ≈ 0.4"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

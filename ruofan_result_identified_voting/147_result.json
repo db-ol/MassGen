@@ -1,0 +1,44 @@
+{
+  "question_number": 147,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but this agent provides the most complete reasoning by using the sum of the linewidths as the explicit criterion for the energy levels to be clearly resolved, which is a rigorous and clear standard."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive and detailed explanation with clear step-by-step calculations, proper physics reasoning, and systematic evaluation of all options. Shows the resolution criterion explicitly and provides the most educational value."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and precise reasoning, including accurate calculation of linewidths using ΔE = ℏ/τ and a clear criterion for resolution (|E₂ - E₁| > ΔE₁ + ΔE₂), leading to the correct answer D."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Provides the correct choice D with concise, accurate reasoning, uses the proper JSON-only format as requested, and includes numerical estimates of natural linewidths. Other answers are either not JSON-only or add unnecessary text."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

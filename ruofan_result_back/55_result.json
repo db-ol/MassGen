@@ -1,0 +1,44 @@
+{
+  "question_number": 55,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "gemini2.5pro": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a concise and perfectly accurate explanation based on the general formula for radiative masses from the Coleman-Weinberg potential. It correctly identifies the symmetry-breaking scale, the sign convention for boson and fermion contributions, and systematically rules out the incorrect options based on these principles."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 correctly selects option B and clearly justifies it using the Coleman–Weinberg structure, including the 1/(x^2+v^2) dependence and boson/fermion sign pattern, while pointing out the omissions/errors in other options concisely."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis by systematically evaluating each option while clearly explaining the underlying Coleman-Weinberg physics principles, including proper dimensional analysis and the correct treatment of bosonic vs fermionic contributions"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most comprehensive reasoning, explaining the Coleman-Weinberg mechanism, the structure of contributions, and why each option is correct or incorrect in detail."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

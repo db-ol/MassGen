@@ -1,0 +1,44 @@
+{
+  "question_number": 130,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provided the correct answer and sound reasoning. The reasoning from gpt5 is the most concise while still being fully accurate and even naming the specific reaction (Hurd–Mori nitrosation), which demonstrates a strong grasp of the topic. The other agents are also correct but more verbose."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct: identifies the nitrosation–hydrolysis (Hurd–Mori) of enolizable ketones to 1,2-diketones and maps both substrates to the given products without extraneous content."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive answer with detailed mechanistic explanation supported by citations, clearly explaining the nitrosation-hydrolysis pathway from ketones to 1,2-diketones"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed explanation of the mechanism, including step-by-step process and citations, which thoroughly addresses the reaction and why option D is correct."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

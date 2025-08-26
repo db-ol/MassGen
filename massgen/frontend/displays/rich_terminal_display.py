@@ -91,7 +91,7 @@ except ImportError:
 class RichTerminalDisplay(TerminalDisplay):
     """Enhanced terminal display using Rich library for beautiful formatting."""
 
-    def __init__(self, agent_ids: List[str], **kwargs):
+    def __init__(self, agent_ids: List[str], question_number, **kwargs):
         """Initialize rich terminal display.
 
         Args:
@@ -127,6 +127,7 @@ class RichTerminalDisplay(TerminalDisplay):
         self.max_content_lines = kwargs.get("max_content_lines", 8)
         self.max_line_length = kwargs.get("max_line_length", 100)
         self.show_timestamps = kwargs.get("show_timestamps", True)
+        self.question_number = question_number
 
         # Initialize Rich console and detect terminal dimensions
         self.console = Console(force_terminal=True, legacy_windows=False)
@@ -273,7 +274,7 @@ class RichTerminalDisplay(TerminalDisplay):
         # File-based output system
         # Use centralized log session directory
         from massgen.logger_config import get_log_session_dir
-        log_session_dir = get_log_session_dir()
+        log_session_dir = get_log_session_dir(self.question_number)
         self.output_dir = kwargs.get("output_dir", log_session_dir / "agent_outputs")
         self.agent_files = {}
         self.system_status_file = None
@@ -1544,7 +1545,9 @@ class RichTerminalDisplay(TerminalDisplay):
 
                 # Get user input
                 try:
-                    choice = input("Enter your choice: ").strip().lower()
+                    # choice = input("Enter your choice: ").strip().lower()
+                    
+                    choice = "q"
 
                     if choice in self._agent_keys:
                         self._show_agent_full_content(self._agent_keys[choice])

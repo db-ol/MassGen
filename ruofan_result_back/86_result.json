@@ -1,0 +1,44 @@
+{
+  "question_number": 86,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly calculates the wavelength of the emitted light, correctly applies the Stokes shift principle to determine that the absorbed light must have a higher energy (shorter wavelength), and correctly identifies Blue as the most plausible answer. The reasoning is thorough, well-structured, and supported by relevant context and citations."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive answer with proper citations supporting the fluorescence mechanism and context of textile dyes with conjugated pi-electron systems"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a comprehensive reasoning that includes wavelength calculation, context analysis, fluorescence mechanism explanation, and clear determination of the absorbed color, making it the most detailed and well-structured answer."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate, concise reasoning: converts 2.3393 eV to ~530 nm (green emission) and correctly applies Stokes shift to conclude absorption must be higher energy. It justifies choosing blue over violet by noting a reasonable Stokes shift for conjugated dyes. Clear JSON output with the correct choice C."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

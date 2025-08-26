@@ -1,0 +1,48 @@
+{
+  "question_number": 121,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The answer correctly identifies that compounds 1 and 2 are optically active and provides a detailed, accurate explanation for each. It correctly identifies atropisomerism in compound 1 and the chiral center in compound 2, while also correctly explaining why compounds 3 and 4 are achiral. The reasoning is comprehensive and easy to follow."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly selects A with concise, accurate reasoning (axial chirality for 1, stereocenter for 2; 3 and 4 achiral). Provides clean JSON with no extraneous content."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive and well-cited answer with detailed explanations of atropisomerism, chiral centers, and symmetry analysis for each compound while maintaining complete accuracy"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a comprehensive analysis with citations from sources, thoroughly explaining why compounds 1 and 2 exhibit optical isomerism while 3 and 4 do not, addressing the question effectively."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

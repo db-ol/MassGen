@@ -1,0 +1,43 @@
+{
+  "question_number": 48,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The answer is correct and provides a comprehensive, well-structured reasoning. It systematically analyzes all four options and uses citations from the provided context to substantiate its claims, making it a stronger and more verifiable response than the other agent's."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides more comprehensive analysis with detailed citations and technical explanations about why each theory does or doesn't require regularization, while maintaining correct conclusions"
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer is comprehensive, analyzes each option with citations from search results, and provides a well-reasoned explanation in the required JSON format, fully addressing the original question."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, accurate, and directly answers the question without overreaching claims or unnecessary citations. Clearly states why A, B, and D require regularization and why C does not."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 47,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 correctly identifies the key factor of 1/(4π)^6 and explains that each loop in 4D QFT contributes 1/(4π)^2, leading to the conclusion of 3 loops. It also provides a useful cross-check by analyzing the powers of the coupling constants, making its reasoning the most comprehensive among the correct answers."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most thorough analysis with multiple verification methods including power counting, coupling structure analysis, and cross-checks, while maintaining the correct core reasoning about the 1/(4π)^6 factor indicating 3 loops"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most comprehensive reasoning, including coupling constant analysis, loop counting from (4π) factors, power counting verification, and cross-check with diagram structure, while correctly identifying 3 loops."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly infers 3 loops from the (1/(4π)^6) factor using the standard per-loop (1/(4π)^2) rule, provides concise reasoning, and adheres strictly to the requested JSON-only format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

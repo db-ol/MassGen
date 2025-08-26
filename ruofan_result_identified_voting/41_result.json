@@ -1,0 +1,45 @@
+{
+  "question_number": 41,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides the most comprehensive and accurate analysis. It correctly identifies the type of mutation for all four options (missense, nonsense, in-frame deletion) and clearly explains why the nonsense mutation in Mutant 2 is the most effective for knocking out gene function by creating a truncated protein. The step-by-step breakdown of each mutant makes the reasoning exceptionally clear and easy to follow."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and accurate reasoning, correctly identifying the nonsense mutation in Mutant 2 as introducing a stop codon, and explaining the impacts on all mutants without errors."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Chooses D correctly with precise identification of a premature stop codon and mentions likely NMD; concise and accurate without errors seen in other answers (e.g., mislabeling frameshifts)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most concise yet complete explanation, correctly identifying the premature stop codon and mentioning the additional benefit of nonsense-mediated mRNA decay, which adds depth to the biological understanding"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

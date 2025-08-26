@@ -1,0 +1,45 @@
+{
+  "question_number": 87,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 3
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the major product from the initial nitration step (para-isomer) and follows the reaction sequence logically. It correctly identifies the final product as (E)-4-(4-nitrophenyl)but-3-en-2-one and accurately determines its point group to be Cs. The other agents incorrectly assume the reaction proceeds via the minor ortho-isomer to form indigo."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Selects the Baeyer–Drewson indigo pathway (o-nitrobenzaldehyde + acetone → indigo) and correctly identifies product 3’s point group as C2h. Other answers misidentify the product as a nitrochalcone and give Cs."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Correctly identifies the reaction sequence as the Baeyer-Drewsen synthesis leading to indigo and accurately assigns the C2h point group to indigo, which is a planar, centrosymmetric molecule with a C2 axis perpendicular to the molecular plane and a horizontal mirror plane."
+        },
+        {
+          "voter": "grok4",
+          "reason": "GPT5 correctly identifies the reaction sequence as the Baeyer-Drewsen indigo synthesis, starting from the ortho-nitrotoluene isomer, which is selectively oxidized by MnO2/H2SO4 to o-nitrobenzaldehyde, leading to indigo with C2h symmetry. This aligns with the specific reagents and provides the accurate symmetry group, addressing the original query well."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

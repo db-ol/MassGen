@@ -1,0 +1,46 @@
+{
+  "question_number": 148,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provided the correct answer and reasoning. Agent 1's response is the most detailed and clearly lays out each step of the calculation, from the basic formulas to the final numerical answer, making it the most helpful and comprehensive response."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-structured explanation with proper citations, detailed step-by-step derivation, and clear presentation of the physics involved, while still arriving at the correct answer."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct formula and ratio, concise and precise reasoning; directly computes p1/p2 = (M2/M1)^{1/3}(P2/P1)^{2/3} = 2^{-1/3}·3^{2/3} ≈ 1.65 and selects Planet_1 accordingly."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a concise, accurate calculation of the transit probability ratio, correctly identifying that Planet_1 has ~1.65 times higher probability, and explicitly notes no additional tools were used, aligning well with the requirements."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

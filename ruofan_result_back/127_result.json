@@ -1,0 +1,43 @@
+{
+  "question_number": 127,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the reaction as a Cope rearrangement and determines the correct product. Its reasoning is concise and accurate, and it provides the best explanation by also addressing why the other options are incorrect based on IUPAC nomenclature rules."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate identification of a Cope ([3,3]-sigmatropic) rearrangement and correct final product (B). Provides clear justification, noting A and D are the same mis-numbered structure and that C has the wrong chain length. Concise and directly addresses the options."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive answer with proper citations, detailed explanation of the Cope rearrangement mechanism, and clear discussion of IUPAC naming conventions that distinguish between the answer choices"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed explanation including citations on the Cope rearrangement and IUPAC naming rules, making it the most comprehensive and well-supported answer among the agents, all of whom correctly identify option B."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

@@ -63,6 +63,8 @@ class GrokBackend(ChatCompletionsBackend):
             # Use OpenAI client with xAI base URL
             client = openai.AsyncOpenAI(api_key=self.api_key, base_url=self.base_url)
 
+            # print("111111 ruofanz")
+
             # Merge constructor config with stream kwargs (stream kwargs take priority)
             all_params = {**self.config, **kwargs}
 
@@ -107,13 +109,19 @@ class GrokBackend(ChatCompletionsBackend):
                 merged_extra["search_parameters"] = search_params
                 api_params["extra_body"] = merged_extra
 
+            # print("222222 ruofanz")
+
             # Create stream
+
+            # print("Creating Grok chat completion stream with params:", api_params)
+
             stream = await client.chat.completions.create(**api_params)
 
             # Use base class streaming handler with logging
             async for chunk in self.handle_chat_completions_stream_with_logging(
                 stream, enable_web_search, agent_id
             ):
+                # print("44444 ruofanz yielding chunk")
                 yield chunk
 
         except Exception as e:

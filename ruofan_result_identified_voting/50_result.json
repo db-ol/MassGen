@@ -1,0 +1,45 @@
+{
+  "question_number": 50,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "This agent correctly interprets the physical meaning of 'observing a decay' in the context of detector resolution, setting up the correct exponential decay inequality. Its calculation is accurate and the use of a simple approximation (ln(3)) to arrive at the answer is a clear and effective way to justify the choice."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Grok4 provides a clear reasoning with an approximation (β≈1 and 33% for close to 30%) that precisely matches the option B value of 2.08×10^{-6} m, addressing the question effectively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "It correctly formulates the observable fraction as exp(-d/L) with L = βγ c τ0, computes γ and βγ properly, derives d = -L ln(0.3), and selects option B. The reasoning is clear and physically correct, unlike others that had misinterpretations or arithmetic slips."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "GPT-5 provides the clearest and most concise explanation with correct physics and mathematical approach. The solution correctly interprets the problem, calculates all necessary parameters (γ, β, mean decay length), and properly applies the exponential decay formula to find the minimum resolution needed to observe 30% of decays."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

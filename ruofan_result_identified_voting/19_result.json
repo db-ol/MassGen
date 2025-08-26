@@ -1,0 +1,43 @@
+{
+  "question_number": 19,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a complete and accurate step-by-step calculation for both parts of the question. The reasoning is clear, covering the initial dilution, the Henderson-Hasselbalch equation for the buffer region, and the hydrolysis calculation for the equivalence point, leading to the correct answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents provided the same correct answer with accurate calculations, but claudesonnet420250514 presented the solution in a slightly more organized format with clear step-by-step reasoning"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed and accurate calculation that correctly addresses the pH values at 25% titration and equivalence point, matching option C."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice C with clear, concise stoichiometric and buffer/hydrolysis calculations; directly answers both pH values accurately."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

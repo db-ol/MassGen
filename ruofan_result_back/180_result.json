@@ -1,0 +1,43 @@
+{
+  "question_number": 180,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent1 provides the most detailed reasoning by explicitly showing the enumeration of states to calculate the degeneracy, which is the most thorough and educational explanation."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most comprehensive and detailed explanation, including explicit enumeration of all quantum state combinations to verify the degeneracy count of 10, making the solution most educational and verifiable"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed breakdown of the degeneracy calculation, listing all combinations of quantum numbers, which makes the reasoning more comprehensive and educational."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct energy and degeneracy for 3D isotropic harmonic oscillator; concise JSON-only response that follows required format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

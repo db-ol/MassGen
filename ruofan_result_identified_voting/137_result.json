@@ -1,0 +1,47 @@
+{
+  "question_number": 137,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the answer as A and provides a clear, accurate, and well-structured explanation for all three reactions. The reasoning correctly describes the Michael addition mechanism for reaction A, the Stork enamine synthesis and hydrolysis for reaction B, and the retrosynthesis to identify the reactant in reaction C."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate and concise; correctly identifies A, B, and C with proper Michael/Stork reasoning, and adheres to the required JSON-only output without extraneous text."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive mechanistic analysis with detailed explanations of each reaction step, proper regiochemistry analysis, and systematic elimination of incorrect options while maintaining chemical accuracy"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most systematic and detailed breakdown of each reaction, including citations and clear explanations for why other options are incorrect, fully addressing the original query."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

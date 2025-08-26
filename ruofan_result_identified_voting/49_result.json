@@ -1,0 +1,47 @@
+{
+  "question_number": 49,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "grok4": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and sound reasoning. I am voting for gemini2.5pro because its explanation is particularly clear, comprehensive, and well-supported by the provided citations."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (A) with concise, accurate reasoning; adheres to JSON-only requirement without extra prose. Other answers are correct but include extra text or code fences."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-cited answer with detailed web search results supporting each symmetry requirement, while reaching the correct conclusion that SMEFT must respect Lorentz, Poincaré, and CPT symmetries but not CP symmetry"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed reasoning with citations from literature, clearly explaining why each symmetry is or isn't required, and directly addresses the question comprehensively."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

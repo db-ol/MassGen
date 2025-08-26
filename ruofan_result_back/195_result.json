@@ -1,0 +1,42 @@
+{
+  "question_number": 195,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provide the correct answer and a valid, well-explained reasoning. Agent 1's explanation is slightly more detailed, showing the algebraic manipulation in a way that is very clear and easy to follow for someone reviewing the steps. Agent 2's approach is more concise but equally correct."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides a more complete and clearer step-by-step derivation with proper mathematical notation, showing all intermediate steps including the ratio method and explicit calculation of γ₂ = 20/(1 - ln(2)/ln(3)) ≈ 54, while agent2's explanation is more condensed and harder to follow."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed derivation of the formula, correctly calculating the required Lorentz factor as approximately 54, matching option D, and addressing the problem effectively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct derivation and result (D=54), concise, uses the proper survival probability with γβ and keeps formatting as pure JSON without extra markdown."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

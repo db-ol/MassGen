@@ -1,0 +1,42 @@
+{
+  "question_number": 12,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. GPT5's response is slightly superior as it is both concise and comprehensive, explicitly noting the minor correction from the planet's radius and why it can be ignored, which demonstrates a deeper level of understanding."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct, and explicitly notes the small Rp/R* correction (~1–2%) while showing it doesn’t change the option; applies the correct scaling b2 = b1(a2/a1) and Kepler’s law to arrive at ~33.5 days."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most concise and clear explanation while covering all the essential physics, including the precise mathematical relationship and acknowledging that small corrections don't affect the answer choice"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a concise reasoning that includes the approximation note about the small Rp/R* correction not affecting the choice, and correctly arrives at option B."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

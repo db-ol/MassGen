@@ -1,0 +1,43 @@
+{
+  "question_number": 84,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identified the reaction in Part A as a [2+2] cycloaddition between cyclohexene and a ketene (2,2-diiodoethen-1-one). It also correctly determined the diene reactivity order in Part B based on conformational and electronic factors. The other agent failed to correctly identify the reactant in Part A."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Gemini selected the correct reactant (2,2-diiodoethen-1-one) consistent with a ketene–alkene [2+2] cycloaddition forming a bicyclo[4.2.0]octan-7-one with gem-diiodo substituents, and provided the correct diene reactivity order (3 > 1 > 2 > 4). Claude chose the wrong reactant (cyclobutenone)."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Gemini's answer correctly identifies the reactant A as 2,2-diiodoethen-1-one (diiodoketene) for the [2+2] cycloaddition with cyclohexene to form the product, and agrees with the correct diene reactivity order of 3,1,2,4, making option A the right choice. Claude's identification of A is incorrect."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Claude Sonnet provided the most accurate and comprehensive analysis. For part A, it correctly identified that the reaction involves [2+2] cycloaddition with 4,4-diiodocyclobut-2-en-1-one as the reactant, supported by proper mechanistic reasoning and search evidence. For part B, it accurately determined the diene reactivity order as 3,1,2,4 based on well-established principles: cyclopentadiene locked in s-cis conformation being most reactive, followed by electron-donating methyl effects in 2,3-dimethylbuta-1,3-diene, then (2E,4E) isomer, and finally (2Z,4Z) being least reactive due to steric hindrance in s-cis conformation. The search results confirm these principles and Claude's analysis aligns with the literature."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

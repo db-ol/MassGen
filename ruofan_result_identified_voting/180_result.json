@@ -1,0 +1,44 @@
+{
+  "question_number": 180,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. Claudesonnet420250514's reasoning is chosen as it provides the most fundamental explanation for the degeneracy by explicitly counting the possible quantum number combinations, which is more illustrative than simply stating the degeneracy formula."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "All agents provided correct answer A, but Claude's reasoning was most complete and systematic, clearly showing both the energy calculation and the detailed enumeration of degenerate states"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed breakdown of the degeneracy by listing the specific partitions, making the explanation clear and comprehensive."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate formula for 3D isotropic oscillator energy and degeneracy; concise and correct identification of N=3 -> E=(9/2)ħω and g=10."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

@@ -1,0 +1,47 @@
+{
+  "question_number": 33,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most well-structured and pedagogical reasoning. It clearly lists the necessary conditions for the Mott-Gurney equation's validity and then systematically analyzes each multiple-choice option against these conditions."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive analysis with proper citations from literature sources, thoroughly explaining both why option B is correct and why the other options are incorrect, while maintaining the required JSON format"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and fully correct: identifies SCLC assumptions (trap-free, single-carrier, Ohmic/barrier-free injection, diffusion negligible) and clearly explains why A, C, and D are wrong without extra noise."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a comprehensive and detailed reasoning that thoroughly explains the assumptions of the Mott-Gurney equation and systematically debunks the incorrect options, making it the most complete response."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

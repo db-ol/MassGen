@@ -1,0 +1,42 @@
+I have a dataset, you can read the dataset using this
+
+        # Login using e.g. `huggingface-cli login` to access this dataset
+        ds = load_dataset("fingertap/GPQA-Diamond")
+
+        question_number = <x>
+        case = ds["test"][question_number]
+
+        # Print fields
+        print("=" * 60)
+        print("Question:", case["question"])
+        print("=" * 60)
+        print("True Answer:", case["answer"])
+        print("=" * 60)
+
+I have a folder called "massgen_logs", inside the folder there are subfodlers named log_question_number_<x>_<timestamp>
+
+x ranges from 0 to 197
+
+inside the subfolder, for example massgen_logs/log_question_number_0_20250828_130355, there is a file in "agent_outputs/final_presentation_<model>.txt"
+
+in one of the line, there will be something like this:
+
+"answer": "<A/B/C/D>"
+
+If it does not exist, please print a message in the end so I can manually fill it, and also don't skip the row. leave the missing things blank
+
+we can call it "agent_answer"
+
+I have a folder called ruofan_result, inside it there will be many <x>_result.json.
+
+The json will have these two fields:
+
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+
+Now I want you to write a python script for me. You need to go through all the question numbers (x), ranges from 0 to 197. And output a CSV
+
+The csv should contain the question number, the question, the agent_answer, the true_answer, and selected_agent, and also correct_or_not (compare agent_answer and true_answer, if they are same it will be 1, otherwise 0)
+
+And also plz store the sum of correct_or_not in the csv as well, and also (sum of correct_or_not) / (total case number) as float
+

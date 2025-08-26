@@ -292,7 +292,17 @@ def create_agents_from_config(config: Dict[str, Any]) -> Dict[str, ConfigurableA
         agent_config.agent_id = agent_data.get("id", f"agent{i}")
         
         # Route system_message to backend-specific system prompt parameter
-        system_msg = agent_data.get("system_message")
+        # system_msg = agent_data.get("system_message")
+        system_msg = """
+ All the questions are multiple choice, with four options: A, B, C, and D.
+ Only one of the options is correct.
+ Please give your answer in the following JSON format: 
+ ```json
+ {"answer": <A/B/C/D as String>, "Reasoning": <str>}
+ ``` 
+ Please don't generate anything except JSON format.
+"""
+        print("system_msg is : ", system_msg)
         if system_msg:
             if backend_type_lower == "claude_code":
                 # For Claude Code, use append_system_prompt to preserve Claude Code capabilities
@@ -397,6 +407,8 @@ async def run_question_with_history(
         ui = CoordinationUI(
             display_type=ui_config.get("display_type", "simple"),
             logging_enabled=ui_config.get("logging_enabled", True),
+            # question_number=question_number,
+            # true_answer=true_answer
         )
 
         print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
@@ -428,7 +440,7 @@ async def run_question_with_history(
 
 
 async def run_single_question(
-    question: str, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any], **kwargs
+    question: str, question_number, true_answer, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any], **kwargs
 ) -> str:
     """Run MassGen with a single question."""
     # Check if we should use orchestrator for single agents (default: False for backward compatibility)
@@ -442,7 +454,7 @@ async def run_single_question(
 
         print(f"\n🤖 {BRIGHT_CYAN}Single Agent Mode{RESET}", flush=True)
         print(f"Agent: {agent.agent_id}", flush=True)
-        print(f"Question: {question}", flush=True)
+        print(f"Question: {question}")
         print("\n" + "=" * 60, flush=True)
 
         messages = [{"role": "user", "content": question}]
@@ -480,15 +492,20 @@ async def run_single_question(
             snapshot_storage=snapshot_storage,
             agent_temporary_workspace=agent_temporary_workspace
         )
+
+        from .logger_config import setup_logging, logger
+
         # Create a fresh UI instance for each question to ensure clean state
         ui = CoordinationUI(
             display_type=ui_config.get("display_type", "simple"),
             logging_enabled=ui_config.get("logging_enabled", True),
+            question_number=question_number,
+            true_answer=true_answer
         )
 
         print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
         print(f"Agents: {', '.join(agents.keys())}", flush=True)
-        print(f"Question: {question}", flush=True)
+        print(f"Question: {question}")
         print("\n" + "=" * 60, flush=True)
 
         final_response = await ui.coordinate(orchestrator, question)
@@ -755,6 +772,13 @@ Environment Variables:
         "--debug", action="store_true", help="Enable debug mode with verbose logging"
     )
 
+    parser.add_argument(
+        "--question-number",
+        type=int,
+        default=0,
+        help="Question number",
+    )
+
     # Timeout options
     timeout_group = parser.add_argument_group(
         "timeout settings", "Override timeout settings from config"
@@ -765,11 +789,13 @@ Environment Variables:
         help="Maximum time for orchestrator coordination in seconds (default: 1800)",
     )
 
+
+
     args = parser.parse_args()
 
     # Always setup logging (will save INFO to file, console output depends on debug flag)
     from .logger_config import setup_logging, logger
-    setup_logging(debug=args.debug)
+    setup_logging(debug=args.debug, question_number=args.question_number)
     
     if args.debug:
         logger.info("Debug mode enabled")
@@ -855,10 +881,27 @@ Environment Variables:
         if "orchestrator" in config:
             kwargs["orchestrator"] = config["orchestrator"]
 
+        from datasets import load_dataset
+
+        # Login using e.g. `huggingface-cli login` to access this dataset
+        ds = load_dataset("fingertap/GPQA-Diamond")
+
+        question_number = args.question_number
+        first_case = ds["test"][question_number]
+
+        # Print fields
+        print("=" * 60)
+        print("Question:", first_case["question"])
+        print("=" * 60)
+        print("True Answer:", first_case["answer"])
+        print("=" * 60)
+
+        args.question = first_case["question"]
+
         # Run mode based on whether question was provided
         if args.question:
             response = await run_single_question(
-                args.question, agents, ui_config, **kwargs
+                args.question, question_number, first_case["answer"], agents, ui_config, **kwargs
             )
             # if response:
             #     print(f"\n{BRIGHT_GREEN}Final Response:{RESET}", flush=True)

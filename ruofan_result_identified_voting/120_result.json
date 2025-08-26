@@ -1,0 +1,48 @@
+{
+  "question_number": 120,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly follows the entire reaction sequence. Crucially, it correctly analyzes the stereochemistry of the final Diels-Alder reaction. It correctly identifies that a cis-dienophile (cis-but-2-ene) must result in cis-substituents at the C5 and C6 positions of the product, which corresponds to an (S,R) or (R,S) stereochemical relationship. Option A (1S,4R,5S,6R) has this cis relationship (5S,6R), whereas option D, chosen by other agents, has a trans relationship (5S,6S). The agent's reasoning is logical and accurate from start to finish."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Detailed reasoning on the reaction sequence, NMR interpretation, and especially the stereochemical outcome of the Diels-Alder reaction, distinguishing exo and endo products, and selecting the matching option A for the cis-dienophile derived stereochemistry."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Selects D with clear, concise stereochemical reasoning: identifies A as n-butane, proceeds through 2-bromobutane to cis-2-butene, applies stereospecific Diels–Alder retention to place methyls cis at C5/C6 and assigns the correct absolute configuration matching option D. More precise and consistent than others (one proposes gem-dimethyl options implicitly or incorrect trans at 5/6; another relies on questionable exo/endo claim)."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and accurate stereochemical analysis of the Diels-Alder reaction, correctly identifying that cis substituents on the dienophile remain cis in the product, leading to the correct answer D with proper stereochemical reasoning."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 120,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies all the intermediate compounds and the final reaction type (Diels-Alder). Its reasoning about the stereochemistry of the Diels-Alder reaction is the most accurate and well-explained. It correctly states that the cis-dienophile leads to cis substituents on the product ring and, crucially, correctly translates this relative stereochemistry into absolute configurations, noting that for adjacent centers, a cis relationship corresponds to opposite (R,S or S,R) descriptors. This directly refutes the incorrect reasoning of Agent 3 and leads to the correct answer, A."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most thorough and accurate stereochemical analysis, correctly explaining that cis substituents on adjacent carbons in a six-membered ring have opposite absolute configurations (5S,6R), leading to the correct answer A. The reasoning is well-structured and addresses the key stereochemical principles."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed and accurate reasoning, correctly identifying that the cis configuration at positions 5 and 6 corresponds to opposite stereodescriptors (5S,6R), consistent with the cis-but-2-ene dienophile, and properly addressing the stereochemistry from the diene."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Identifies the correct product and provides stereochemical reasoning consistent with Diels–Alder stereospecificity: cis-dienophile gives C5/C6 cis (same absolute configuration), and the (E,E) diene gives a trans 1,4 relationship. Options B/C are structurally inconsistent (6,6-dimethyl), and A incorrectly implies trans at C5/C6."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

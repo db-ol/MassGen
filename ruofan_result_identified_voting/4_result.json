@@ -1,0 +1,47 @@
+{
+  "question_number": 4,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a concise and accurate derivation of the correct answer. It correctly identifies the key proportional relationships between equilibrium temperature, orbital distance, planetary mass, and radial velocity amplitude to solve the problem efficiently."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (C) with concise, valid scaling: Teq ∝ a^{-1/2}, K ∝ M_p/√a, and Δλ ∝ K; computes T1/T2 = (0.03/0.04)*(5/7) ≈ 0.536 ≈ 0.53. Clear and sufficient."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed step-by-step solution with clear explanations of each physics principle, intermediate calculations, and proper derivation of the equilibrium temperature relationship"
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Provides a concise and precise reasoning with the exact mathematical ratio, directly addressing the key relationships without unnecessary calculations, while arriving at the correct answer."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

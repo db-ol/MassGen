@@ -1,0 +1,44 @@
+{
+  "question_number": 88,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 correctly identifies that heat favors the thermodynamic EXO product. It also correctly identifies the product's base name ('epithioisobenzofuran') and, most importantly, correctly assigns the (3aR,4S,7R,7aS) stereochemistry to the EXO isomer, making option B the correct choice. The reasoning is the most thorough and well-supported among the options."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provided the most comprehensive answer with excellent literature citations supporting the formation of the thermodynamically favored EXO product under heating conditions, correct identification of the epithioisobenzofuran nomenclature, and accurate stereochemical analysis leading to option B"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed reasoning with citations supporting that option B is the EXO product, aligning with the thermodynamic favorability under heat. This addresses the original query well, and the majority consensus supports B."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 selects the correct option B with clear reasoning: recognizes maleic anhydride as the dienophile, the sulfur-bridged epithioisobenzofuran core, and correctly assigns the exo stereochemistry (3aR,4S,7R,7aS). It’s concise, accurate, and adheres to the requested JSON-only output. Agent2 is incorrect (chooses C); Agent1 adds unnecessary citations; Agent4 is also correct but Agent3’s explanation is slightly clearer."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

@@ -1,0 +1,46 @@
+{
+  "question_number": 31,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 2,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most comprehensive and nuanced reasoning. It correctly identifies that both statements A and C are factually correct but offers a superior justification for why A is the better answer in the context of the scientist's question, focusing on the fundamental chemistry of the system over its commercial implementation status."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 selects A and gives concise, chemically accurate reasoning: tandem catalysis using Group 6 (Cr) with Al-based activators to generate in-situ α-olefins; Al activators do work; noble metals not needed; industrial single-reactor implementation not established. Agent2 incorrectly claims C is also correct, and agent1 is verbose with shaky citation placeholders. Agent3 is the best current answer."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Concise reasoning that explicitly identifies only A as correct, correctly debunks C as not established for single-reactor implementation, aligns with 'only one correct' premise, and addresses weaknesses in other statements effectively."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-cited analysis, systematically evaluating each statement with specific literature citations. The answer correctly identifies Statement A as accurate regarding Group VIa (chromium) catalysts with specific activators, and definitively refutes Statement D by citing multiple sources showing aluminum-based activators are essential, not ineffective. The reasoning is thorough and scientifically grounded."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

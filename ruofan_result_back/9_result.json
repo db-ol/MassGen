@@ -1,0 +1,44 @@
+{
+  "question_number": 9,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies that with the pp-III branch eliminated, the 800–900 keV band is dominated by the intense ⁷Be neutrino line from the pp-II branch, while the 700–800 keV band is supplied by the much weaker CNO continuum. The resulting order-of-magnitude calculation for the flux ratio is accurate and leads to the correct answer."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct: identifies 7Be 862 keV line dominating 800–900 keV and CNO continua in 700–800 keV, notes pp-III stoppage is irrelevant for this range, and estimates the ratio ~10^-2. Clear, accurate, and directly answers the question."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent3 provides the most concise and accurate analysis. It correctly identifies that pp-III produces 8B neutrinos that contribute negligibly in the 0.7-0.9 MeV range, correctly explains that band 2 (800-900 keV) is dominated by the 862 keV 7Be line from pp-II (unchanged when pp-III stops), and that band 1 (700-800 keV) gets flux mainly from CNO continua. The quantitative estimate of the ratio being approximately 10^-2 is well-reasoned and matches the other agents' conclusions while being more direct."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a clear, quantitative reasoning that accurately identifies the dominant contributions to each band (CNO for band 1 and 7Be for band 2) and estimates the ratio as approximately 0.002, closest to 0.01, while addressing the removal of pp-III's negligible contribution."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

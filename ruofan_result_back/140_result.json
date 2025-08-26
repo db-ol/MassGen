@@ -1,0 +1,46 @@
+{
+  "question_number": 140,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most comprehensive and well-structured reasoning based on fundamental chemical principles without needing to cite specific external data points, making it a strong standalone explanation."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with proper citations from search results, thorough explanation of both meta and ortho/para directing effects, and includes experimental evidence to support the theoretical reasoning"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct option (B) with concise, accurate reasoning about directing effects and sterics; adheres to required JSON-only format without extraneous content."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides the most detailed and data-supported reasoning with specific percentage yields for para-isomers, even though from nitration, the trends align well with bromination, making it the best answer addressing the original query."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

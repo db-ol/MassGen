@@ -1,0 +1,45 @@
+{
+  "question_number": 2,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but gemini2.5pro provides the most detailed and clear step-by-step reasoning, explaining the underlying physics from first principles and explicitly noting why some of the provided data is not needed. This makes it the most comprehensive and educational response."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed and comprehensive step-by-step explanation while maintaining mathematical accuracy. The derivation clearly shows how equilibrium temperature relates to orbital distance and how this connects to Kepler's Third Law."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and step-by-step reasoning, clearly explaining the relationships and why certain information is irrelevant, making it the most comprehensive answer."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct, concise, and directly links equilibrium temperature to period via P ∝ T^{-3}, computes T1/T3 = 1.4×2.3 = 3.22 and P3/P1 ≈ 33.4. Minimal extraneous info and clean JSON output."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

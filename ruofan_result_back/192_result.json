@@ -1,0 +1,44 @@
+{
+  "question_number": 192,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most thorough and well-explained reasoning. It correctly identifies the necessary physics principles, uses a standard value for the distance, and presents the calculations in a clear, step-by-step manner, leading to the correct answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most thorough and accurate solution. Uses the commonly accepted 160,000 light-year distance, correctly calculates the Lorentz factor (~1961), applies time dilation properly to get ~81.6 years, and correctly concludes the astronaut survives. The detailed step-by-step approach and correct final answer (A) make this the best response."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed and accurate reasoning using a commonly accepted distance of 160,000 light-years, resulting in approximately 81 years, which matches option A and fits within the astronaut's lifespan. Other agents mostly agree, and the discrepant agent1 has flawed justification for choosing C."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Picks the correct option A with clear, concise relativistic reasoning and correct use of distance and Lorentz factor; clean JSON matches the required format."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

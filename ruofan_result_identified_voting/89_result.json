@@ -1,0 +1,44 @@
+{
+  "question_number": 89,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identify 'B' as the answer with valid reasoning. However, claudesonnet420250514 provides the most comprehensive and well-structured explanation. It clearly outlines the steps of the Pinacol-Pinacolone rearrangement mechanism and correctly applies the principles of carbocation stability and migratory aptitude to each of the three compounds, making its reasoning the most thorough and educational."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provided the most comprehensive analysis with web search citations supporting migratory aptitude principles, detailed mechanism explanation, and systematic approach to each compound while reaching the correct answer B"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and comprehensive reasoning with citations, systematically analyzing each compound based on mechanism and migratory aptitude, leading to the correct answer B."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "gpt5",
+          "reason": "Selects the correct option B with clear, mechanism-based reasoning and adheres to the required JSON-only answer format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

@@ -1,0 +1,44 @@
+{
+  "question_number": 49,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. Agent 1's response is the most comprehensive, including citations that support its claims, making it the strongest answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-cited answer, with detailed explanations backed by search results. The reasoning clearly explains why each symmetry is or isn't required, with proper citations supporting each claim about Lorentz/Poincaré invariance, CPT theorem requirements, and CP violation being allowed in SMEFT."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most comprehensive reasoning, including citations from literature search, which strengthens the explanation of why A is correct."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct and concise. Identifies that SMEFT operators must respect Lorentz and full Poincaré invariance and that CPT follows from the CPT theorem, while CP is not required. Clear justification without unnecessary fluff."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

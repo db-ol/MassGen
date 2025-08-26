@@ -1,0 +1,43 @@
+{
+  "question_number": 27,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provided excellent and correct answers. Agent 1 is chosen as marginally better because its detailed preliminary analysis, supported by citations, demonstrates a robust and verifiable reasoning process leading to the correct conclusion."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and scientifically accurate analysis, including web search citations that support the chemical principles involved. The answer clearly explains the mechanism: pH increase from 1 to 4 represents a 1000-fold decrease in [H+] concentration, which would severely inhibit a reaction that synthesizes H+-containing products. Agent1 also systematically eliminates other options with proper reasoning, noting that temperature increase would typically speed up reactions, making the pH change the primary factor."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed and comprehensive reasoning, including analysis of each option, explanation of pH impact on reaction rates, and why temperature increase would not cause slowing, effectively addressing the original question."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, accurate justification: identifies pH increase (1000-fold [H+] drop) as the cause; ties exothermic heat to neutralization; correctly dismisses temperature, pressure, and volume as primary factors. Matches the multiple-choice context cleanly."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

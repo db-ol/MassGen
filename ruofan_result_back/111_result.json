@@ -1,0 +1,43 @@
+{
+  "question_number": 111,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 correctly identifies the intramolecular Diels-Alder reaction pathway and provides a detailed, accurate analysis of why option D is the only starting material that has the correct arrangement of a dienophile, a diene, and a tether of appropriate length to form the target octahydronaphthalene skeleton with the specified substituents."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and scientifically accurate analysis, citing relevant literature on IMDA reactions and correctly identifying that the all-E geometry in option D provides the optimal spatial arrangement for octahydronaphthalene formation. The answer is well-supported by literature evidence and demonstrates proper understanding of the stereochemical requirements."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 selects D and gives a clear, chemically sound IMDA rationale: acrylate at C-2 as the dienophile, remote 8,10-diene as the diene, and correct tether length mapping to the C-2 propyl substituent. It avoids unnecessary or dubious citations and directly contrasts why other options fail. Concise and correct."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a concise and accurate reasoning, correctly identifying option D as the precursor with the required electron-poor dienophile and appropriate geometry and tether for the IMDA reaction to form the target structure, while noting weaknesses in other options."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

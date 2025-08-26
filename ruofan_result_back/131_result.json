@@ -1,0 +1,44 @@
+{
+  "question_number": 131,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 correctly identifies all the substances and reactions based on the clues provided. The reasoning is thorough, logical, and addresses every point in the original message, including the melting point, the nature of the gas, the precipitate, the organic reaction, and the final calculation. The identification of LiAlD4 is correct and well-justified."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 correctly identifies X as LiAlD4, matches every clue (violent hydrolysis with D2O, W = D2 with equal protons and neutrons, G = Al(OD)3 releasing B = D2O ~277 K, keto acid reduction to a diol with 2 O atoms), and computes the cumulative mass 4×2 + 27 = 35. It is also in the required JSON format."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent3 provides the most comprehensive and accurate analysis, correctly identifying substance X as LiAlD₄, properly explaining all chemical reactions including the formation of D₂ gas with equal protons and neutrons, the precipitate Al(OD)₃ that releases D₂O upon heating (melting point ~277K), and correctly calculating the cumulative atomic masses as 35. The reasoning is thorough and chemically sound."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed and accurate identification of Substance X as LiAlD4, explains the reaction producing the precipitate and gas, matches all clues including the keto acid reduction product having 2 oxygen atoms, and correctly calculates the cumulative atomic masses as 35."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

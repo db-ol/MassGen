@@ -1,0 +1,48 @@
+{
+  "question_number": 186,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the answer and provides a clear, accurate, and step-by-step reasoning that is easy to follow. It correctly calculates the bra vector, the normalization factor, applies the operator to the ket vector, and then combines everything to find the correct expectation value."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed step-by-step calculation, including explicit bra-ket notation and handling of normalization, making it clear and comprehensive."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate and concise; provides correct computation with proper normalization and yields -12ħ/25, formatted as required JSON."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed step-by-step calculation with clear intermediate steps, making it easiest to follow and verify the quantum mechanics calculation"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

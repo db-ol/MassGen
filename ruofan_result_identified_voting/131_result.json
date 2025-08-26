@@ -1,0 +1,45 @@
+{
+  "question_number": 131,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies all the substances involved based on the provided clues, especially the crucial melting point of substance B (~277 K), which points to heavy water (D₂O). The step-by-step reasoning is clear, logical, and easy to follow. The agent correctly identifies Substance X as LiAlD₄ and performs the final calculation accurately, summing the masses of the lightest (4 Deuterium atoms = 8) and heaviest (1 Aluminum atom = 27) elements to arrive at the correct answer of 35."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and systematic analysis with clear step-by-step reasoning, correctly identifies all chemical substances and reactions, and arrives at the correct answer with detailed explanation of the calculation"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Gemini's answer is detailed, correctly identifies all substances with accurate reasoning, handles the gas W's neutron-proton equality properly with D2, and correctly ties the melting point to D2O. It addresses all clues without errors, unlike Claude's."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Provides correct identification of X as LiAlD4, ties all clues (D2O melting point ~277 K, gas D2 with equal protons/neutrons, use in organic chemistry, keto acid product with 2 oxygens), and computes the sum correctly to 35. Clean JSON format matching the required output."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

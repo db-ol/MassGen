@@ -1,0 +1,43 @@
+{
+  "question_number": 129,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the reactants, the Diels-Alder reaction, the endo adduct as the major product, and the key NOE interaction. The reasoning correctly pinpoints the spatial proximity between the methine protons on the anhydride-derived portion of the molecule (~3.5 ppm) and the vinylic methyl groups (~1.7 ppm) in the endo isomer, which explains the observed cross-peak."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct identification of maleic anhydride and endo/exo Diels–Alder products; correctly assigns the downfield 6H singlet (~1.7 ppm) to endo methyls and the 2H singlet (~3.5 ppm) to bridge protons, explaining why the NOESY cross-peak appears only in the major (endo) product."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most concise yet complete analysis, correctly identifying the endo/exo stereoisomers and the specific NOESY cross-peak between the 6H singlet at ~1.7 ppm (vinylic methyls) and 2H singlet at ~3.5 ppm (anhydride bridge protons) that occurs only in the endo (major) product."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 correctly identifies option D as the answer, with accurate reasoning about the stereochemistry and NOE cross-peak in the endo (major) vs exo (minor) products, matching the problem's description. Agents 1 and 2 incorrectly chose A due to reversed stereochemical proximity."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

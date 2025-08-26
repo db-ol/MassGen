@@ -1,0 +1,45 @@
+{
+  "question_number": 118,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the reaction mechanisms for both parts of the question. For reaction A, it correctly notes that the only available alpha-hydrogen is at C6, leading to a specific enolate that undergoes Michael addition. For reaction B, it correctly identifies the Michael addition between the nitronate of 1-nitropropane and the unsaturated nitrile. The resulting product names for both A and B are correct, leading to the correct final answer, A."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Selects the correct option (A) with clear, concise reasoning. Correctly justifies enolate formation at C6 leading to a 2-oxocyclohexyl substituent and accurately names product B as 3-methyl-4-nitrohexanenitrile. Avoids speculative assumptions present in the D answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most accurate and comprehensive analysis of both reactions, correctly identifying the steric hindrance effects and the Michael addition mechanisms, leading to the correct products in option A"
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed and accurate reasoning for both reactions, correctly determining the major products based on steric hindrance, enolate formation at C6, and proper nomenclature, leading to option A without assuming typos in the question."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

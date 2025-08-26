@@ -1,0 +1,43 @@
+{
+  "question_number": 119,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies both reactions and provides the correct reagents with clear, step-by-step reasoning. It correctly explains that cyanohydrin formation requires an acid (H3O+) and that nitrile hydrolysis requires a strong acid (HCl), leading to the correct answer B."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most accurate analysis supported by proper citations. Both reactions require H3O+ and HCl respectively: cyanohydrin formation needs acid to generate HCN in situ from NaCN, and nitrile hydrolysis requires strong acid (HCl) under reflux. Agent3's suggestion of NaHSO3 for cyanohydrins is incorrect - bisulfite forms adducts with carbonyls but doesn't facilitate cyanohydrin formation."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed reasoning supported by citations, correctly identifying A as H3O+ for cyanohydrin formation and B as HCl for nitrile hydrolysis, which aligns with standard procedures for ketones."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 selects the correct option (B) with concise, accurate reasoning and provides the response strictly in the requested JSON-only format. Agent1 adds extra non-JSON text, and Agent3 chooses an incorrect reagent for A."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

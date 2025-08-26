@@ -1,0 +1,43 @@
+{
+  "question_number": 128,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most comprehensive and well-structured reasoning. It correctly interprets both pieces of crucial information: the IR spectra indicating a ring expansion from a 5-membered to a 6-membered ring, and the sequence of reactions as a Tiffeneau-Demjanov rearrangement. The step-by-step analysis is clear, logical, and directly supports the conclusion."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-cited analysis with detailed IR spectroscopic evidence, step-by-step mechanism explanation, and clear reasoning for the ring expansion from cyclopentanone to cyclohexanone"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed analysis, including IR spectroscopic data with citations, step-by-step reaction breakdown, and clear alignment with the ring expansion mechanism, fully addressing the original query."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct mechanism (cyanohydrin → amine → Tiffeneau–Demjanov ring expansion with N2 loss), uses IR shifts to justify 5→6 ring change, and maps to option C explicitly."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

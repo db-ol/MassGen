@@ -1,0 +1,46 @@
+{
+  "question_number": 110,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most detailed and accurate chemical reasoning. It correctly identifies the stereochemical outcome of the kinetic aldol reaction (*anti* product) and the subsequent Sₙ2 inversion by DAST, leading to the correct relative stereochemistry in the final product."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-cited analysis with correct mechanistic understanding, proper stereochemical reasoning, and arrives at the correct answer D with detailed justification from literature sources."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct JSON-only format, and sound mechanistic reasoning: aldol gives β-hydroxy ketone; excess DAST converts the ketone to gem-difluoride and the benzylic OH to F with inversion, matching option D."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 correctly accounts for the inversion at the benzylic carbon flipping the R/S designation due to similar priority ordering for OH and F, leading to option A, while other agents did not consider this."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

@@ -1,0 +1,42 @@
+{
+  "question_number": 42,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "grok4": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provide the correct answer and sound reasoning. Agent 1's explanation is slightly more concise while still accurately capturing the core mechanism of a dominant-negative mutation in a dimeric protein, which involves the mutant subunit inactivating the wild-type subunit, often leading to degradation of the complex."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Both agents chose the correct option (C) and explained dominant-negative interference via mutant–WT interactions. Agent1’s reasoning is concise and directly links dimerization-domain mutation to formation of unstable/nonfunctional heterodimers leading to co-degradation and effective loss-of-function of the WT allele, fitting the prompt best."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides correct answer with comprehensive reasoning that includes helpful contrast with mutation X, making the explanation more complete"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a clear explanation of the dominant-negative mechanism, including why the heterodimer might be degraded, and contrasts it effectively with mutation X, which helps in understanding why Y is dominant while X is recessive."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gpt5",
+      "agent2": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

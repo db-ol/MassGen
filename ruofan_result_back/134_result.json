@@ -1,0 +1,44 @@
+{
+  "question_number": 134,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies all 4 stereogenic centers (2 chiral carbons and 2 stereogenic double bonds) and correctly calculates the total number of stereoisomers as 2^4 = 16. The reasoning is the most thorough, as it explicitly and correctly explains why C2 and C9 are not chiral centers, which is a key part of the analysis."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive and detailed explanation with clear step-by-step analysis of chiral centers, geometric isomers, and systematic calculation methodology"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and comprehensive reasoning, breaking down the structure, identifying chiral centers and geometric isomers clearly, and confirming no meso compounds."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct identification of 2 chiral centers and 2 E/Z double bonds, notes absence of meso symmetry, and provides clean JSON. Other answers either add unnecessary or slightly inaccurate structural descriptions or include non-JSON content."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

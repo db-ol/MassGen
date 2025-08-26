@@ -1,0 +1,43 @@
+{
+  "question_number": 153,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the answer and provides a thorough explanation. Critically, it supports its reasoning with citations from relevant literature, which makes it the most well-supported and authoritative answer among the options."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provided the most comprehensive and well-researched answer, including citations from academic literature that directly support the conclusion, along with clear technical explanations of how partial fraction decomposition enables parallelization"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and evidence-based reasoning with citations from literature, directly addressing the key factor of partial fraction decomposition for parallelization."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (B) with precise, concise reasoning in the required JSON-only format; clearly explains how partial fraction decomposition enables parallel evaluation via independent resolvent solves. Cleaner and more specific than agent3 and adheres to formatting unlike agent1."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

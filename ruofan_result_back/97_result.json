@@ -1,0 +1,44 @@
+{
+  "question_number": 97,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most detailed and accurate analysis. It correctly identifies the products of reactions B and C through sound chemical principles (Claisen rearrangement and conservation of molecular formula in a thermal isomerization), which is sufficient to definitively eliminate all other options. The reasoning is clear, systematic, and well-explained."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-structured analysis with proper citations, detailed mechanistic explanations for each reaction, and clear reasoning for eliminating incorrect options while maintaining the correct JSON format"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most comprehensive and detailed reasoning, systematically analyzing each reaction, correcting potential misconceptions (e.g., Bergman cyclization applicability), verifying molecular formulas, and ensuring all products match the sigmatropic rearrangement mechanisms described in the original message."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 correctly selects option A and provides concise, accurate mechanistic justifications for all three transformations: Claisen rearrangement to an aldehyde for C (excluding B and D), conservation of degrees of unsaturation and correct valence isomerization for B, and formation/Z-preference of the O-allyl imidate for A. The explanation is clear and free of errors or irrelevant tangents present in some other answers."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

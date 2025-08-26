@@ -1,0 +1,45 @@
+{
+  "question_number": 150,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. However, gemini2.5pro's explanation is the most thorough, walking through the calculation of the eigenvalues from the characteristic equation before explaining the physical principles of commuting operators, making it the most complete and instructive response."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive mathematical derivation with clear step-by-step reasoning, explicitly showing the characteristic equation calculation and thoroughly explaining why each option is correct or incorrect"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Gemini's response provides a detailed step-by-step calculation of the eigenvalues, correctly identifies the operator as the spin-y component, and thoroughly evaluates each option without any notation errors, making it the most comprehensive and accurate."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate, concise, and complete. Correctly identifies Ay = (ħ/2)σy, gives real eigenvalues ±ħ/2 and eigenvectors ∝ (1, ±i)^T, and evaluates each option with proper commutation reasoning. No factual slips; cleaner than others."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

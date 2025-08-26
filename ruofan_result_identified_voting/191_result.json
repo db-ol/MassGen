@@ -1,0 +1,45 @@
+{
+  "question_number": 191,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly answered D. However, gpt5 provides the most comprehensive reasoning by not only deriving the correct formula but also verifying it against sensible physical limits (v=0, n=1) and noting its connection to the first-order approximation (Fresnel drag), which demonstrates a deeper understanding of the result."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly applies relativistic velocity addition with u'=1/n, yields option D, and validates via limiting cases and Fresnel drag. Clear and concise."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provided the most detailed step-by-step derivation with clear explanation of the physics principles involved, making it easiest to follow the reasoning"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed derivation with citations from search results, confirming the application of relativistic velocity addition to light in moving media, and clearly matches option D."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

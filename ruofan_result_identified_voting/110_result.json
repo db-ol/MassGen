@@ -1,0 +1,45 @@
+{
+  "question_number": 110,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies all key transformations and their stereochemical outcomes. It correctly deduces that the initial aldol reaction is anti-selective. It then correctly identifies that excess DAST converts the ketone to a gem-difluoride and the secondary alcohol to a fluoride via an SN2 reaction, which proceeds with inversion of stereochemistry. The reasoning is well-structured, detailed, and leads to the correct final product."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with proper citations, correctly identifies the anti-aldol selectivity and DAST inversion mechanism, and arrives at the correct stereochemical assignment matching the literature-supported answer D"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed reasoning with step-by-step analysis, citations for mechanisms and stereochemistry, and arrives at the correct answer D, consistent with the majority of agents."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, JSON-only answer with correct product rationale: aldol anti selectivity, excess DAST converts ketone to CF2 and inverts benzylic center, accounting for CIP priority change to give option D."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

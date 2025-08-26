@@ -1,0 +1,43 @@
+{
+  "question_number": 0,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "grok4": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both gpt5 and grok4 correctly identify that for a planet with the same composition, greater mass leads to higher density due to gravitational compression. Both correctly choose option D. The reasoning from gpt5 is slightly more concise while still being fully accurate."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Both agents correctly choose D (option c), but gpt5 gives a concise, accurate rationale referencing the mass–density scaling for rocky planets, clearly explaining why a 5 M⊕ Earth-composition planet is densest."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive explanation, clearly mapping the options to answer choices and giving specific density estimates for each scenario"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed explanation with density estimates, clearly maps the options, and effectively addresses why option c has the highest density due to gravitational compression."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

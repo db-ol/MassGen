@@ -1,0 +1,42 @@
+{
+  "question_number": 41,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents correctly identify Mutant 2 as the answer and provide a valid reason. Agent 1's reasoning is slightly superior because it offers a more detailed, step-by-step analysis of each mutant sequence compared to the intact gene. This makes the logic clearer and more educational for the user. Agent 2 is also correct but more concise."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed codon-by-codon analysis of each mutant, clearly explaining why the nonsense mutation in Mutant 2 is most effective, making it the most comprehensive response."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Both agents select D (Mutant 2) and justify it well, but agent2 is clearer and more concise, correctly noting the early nonsense mutation and likely NMD, directly addressing which mutation would most probably eliminate the compound."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides a more concise and accurate analysis. Both agents correctly identify that Mutant 2 introduces a premature stop codon (TAA) which would most effectively eliminate the anti-nutritional compound. However, Agent2's answer is cleaner and mentions the important point about nonsense-mediated mRNA decay, which strengthens the argument. Agent1's analysis is correct but overly verbose and contains some minor notation issues in the mutation descriptions."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gemini2.5pro",
+      "agent2": "gpt5"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

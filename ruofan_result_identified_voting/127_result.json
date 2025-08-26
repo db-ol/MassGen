@@ -1,0 +1,47 @@
+{
+  "question_number": 127,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "grok4": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the Cope rearrangement and the resulting product. gemini2.5pro's explanation is the most concise while still accurately detailing the crucial bond-breaking and bond-forming steps of the mechanism that lead to the correct answer."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "All three choose B. grok4 is concise, correct about Cope rearrangement, and avoids dubious mechanistic specifics; gemini’s bond-mapping appears incorrect. grok4 provides a clear mapping to the deca-1,5-diene product."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-structured analysis with proper citations from web search results, clearly explaining the Cope rearrangement mechanism and systematically comparing the answer options"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a comprehensive analysis, including mechanism details, comparison between options A and B, and citations from web search, effectively addressing the original question."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

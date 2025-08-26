@@ -1,0 +1,43 @@
+{
+  "question_number": 17,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provided the correct answer and reasoning. I am voting for claudesonnet420250514 because its step-by-step explanation is very clear and easy to follow, making it slightly superior to the other correct answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents provided correct calculations and arrived at the right answer, but claudesonnet420250514 offered a more detailed, step-by-step explanation that would be more helpful for understanding the solution process"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed step-by-step calculation that clearly explains the reasoning, making it the best for presenting the final answer."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Provides the correct answer (C, pH=12.62) with clear, concise stoichiometry and adheres closely to the requested JSON-only format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

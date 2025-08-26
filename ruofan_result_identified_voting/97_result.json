@@ -1,0 +1,45 @@
+{
+  "question_number": 97,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a perfectly reasoned answer. It systematically analyzes the reactions, using the Claisen rearrangement in reaction C and a molecular formula analysis in reaction B to logically eliminate the incorrect options. The explanation is clear, detailed, and easy to follow."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most systematic and detailed analysis with clear molecular formula calculations that definitively eliminate incorrect options. The reasoning is methodical, starting with the clearest reactions (C and B) to narrow down possibilities, and includes specific mechanistic understanding of sigmatropic rearrangements."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed, systematic analysis that eliminates incorrect options step-by-step based on reaction mechanisms and molecular formulas, fully addressing the original query."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct chemistry, follows the required JSON-only format, and justifies A by correctly identifying C as a Claisen aldehyde and B as the diethylidenecyclobut-1-ene valence isomer with matching formula."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

@@ -1,0 +1,44 @@
+{
+  "question_number": 155,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the relationship between wavelength shift and orbital period, provides a clear step-by-step derivation from the underlying physics, and performs the correct calculation to arrive at the right answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed step-by-step explanation with clear physical reasoning, proper mathematical derivation, and well-formatted JSON response"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct, concise, and directly applies RV scaling: K ∝ Δλ and K ∝ P^{-1/3} with equal masses, yielding P2/P1 = (5/7)^3 ≈ 0.36, option C."
+        },
+        {
+          "voter": "grok4",
+          "reason": "The reasoning is concise, accurate, and correctly derives the period ratio using the radial velocity formula, leading to the correct answer choice C."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

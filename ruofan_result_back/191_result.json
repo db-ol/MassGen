@@ -1,0 +1,42 @@
+{
+  "question_number": 191,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents are correct, but Agent2 provides a more thorough explanation by including a sanity check for v=0 and mentioning the connection to Fresnel drag, which adds valuable physical context."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correct application of relativistic velocity addition with clear, concise reasoning and adherence to the requested JSON-only output format. The derived expression matches option D and checks limits (v=0 and Fresnel drag)."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a clear explanation using relativistic velocity addition, verifies the result reduces to 1/n when v=0, and mentions consistency with Fresnel drag, making it slightly more comprehensive than agent1's similar answer."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents correctly identify this as a relativistic velocity addition problem and arrive at the correct answer D: (1+nv)/(n+v). Agent1 provides a clearer step-by-step derivation showing the algebraic manipulation more explicitly, making it easier to follow the mathematical reasoning."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

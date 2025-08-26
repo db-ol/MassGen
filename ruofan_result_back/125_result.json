@@ -1,0 +1,44 @@
+{
+  "question_number": 125,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 3
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies all intermediates in the synthesis and the final product. Its analysis of the product's symmetry is accurate, correctly noting the lack of a symmetry plane due to the two different substituents on C1. This leads to the correct conclusion that all 10 hydrogens on the cyclohexane ring are chemically distinct, and when combined with the 2 distinct environments in the ethyl group, the total is 12 signals. The reasoning is thorough, accurate, and well-explained."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 identifies the correct product and applies the Cs symmetry of a 1,1-disubstituted cyclohexane with rapid chair interconversion, giving 3 ring signal sets (C2≡C6, C3≡C5, C4) plus 2 ethyl ester signals for a total of 5, matching the intended treatment of equivalence in such problems."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Correctly identifies the Cs symmetry of ethyl 1-cyanocyclohexanecarboxylate, leading to the right answer of 5 distinct 1H NMR signals. The other agents incorrectly assume complete lack of symmetry."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 correctly identifies the product as having Cs symmetry, leading to 5 distinct 1H NMR signals, accounting for equivalence due to the plane of symmetry and chair flipping. Other agents incorrectly assume chirality and overcount the signals."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

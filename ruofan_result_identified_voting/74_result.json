@@ -1,0 +1,45 @@
+{
+  "question_number": 74,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly solve the problem. However, gpt5 provides the most concise and fundamental reasoning by directly using the zeros of the Bessel function, which is the origin of the minima in the Fraunhofer diffraction pattern for a circular aperture."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate and concise derivation using Bessel zeros with correct mapping (apothem = radius) and small-angle approximation. No dubious citations; computes Δθ ≈ 0.506 λ/a clearly and correctly."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most mathematically precise answer with exact Bessel function zeros and cleanest derivation leading to the correct result"
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed step-by-step reasoning with explicit calculations for the angular positions and their difference, closely matching the option A."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

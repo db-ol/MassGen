@@ -1,0 +1,44 @@
+{
+  "question_number": 93,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the parent compound, correctly places all substituents based on the relational descriptions, and correctly applies the IUPAC tie-breaking rule for numbering when multiple schemes yield the same set of locants. The reasoning is laid out in clear, logical steps, making it the most comprehensive and well-explained answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and systematic analysis, correctly identifying all positional constraints, applying IUPAC naming rules with proper alphabetical ordering, and explaining the tie-breaking rule for numbering schemes"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and step-by-step reasoning, thoroughly explaining the positioning, IUPAC rules, and why option B is correct."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct reasoning that satisfies all positional constraints and yields the correct IUPAC name (option B), formatted as required without extraneous elements."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

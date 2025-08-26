@@ -1,0 +1,44 @@
+{
+  "question_number": 60,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "This agent correctly identifies the answer as B and provides the most comprehensive and accurate reasoning. It correctly explains that the disappearing peaks are artifacts in 'hyper-ChIPable' regions (active promoters and enhancers) and details why the dual-fixation protocol (PFA+DSG) is more specific and eliminates these false positives."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Claude provides the most comprehensive and well-cited answer with clear evidence from the literature. The search results confirm that hyper-ChIPable artifacts occur at highly accessible chromatin regions like active promoters and enhancers, which is exactly what the literature cited by Claude indicates. The technical explanation about dual fixation eliminating formaldehyde-only artifacts at open chromatin regions is accurate and well-supported."
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer provides a detailed, well-cited explanation supported by research, correctly identifying the disappearing peaks as hyper-ChIPable artifacts at active promoters and enhancers, which aligns with the scientific literature on ChIP-seq fixation methods."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct: identifies disappearing peaks as hyper-ChIPable artifacts at active promoters/enhancers, which are reduced by PFA+DSG dual crosslinking. Matches known behavior; avoids extraneous or dubious citations."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

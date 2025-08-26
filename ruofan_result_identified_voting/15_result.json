@@ -1,0 +1,40 @@
+{
+  "question_number": 15,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly interprets all the spectroscopic data to deduce the structural components, calculates the correct molecular formula, and provides the answer in the requested JSON format. The reasoning is sound and directly addresses the question."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "They provided the correct option (C = C11H12O2) in the required JSON format with clear spectroscopic reasoning matching the data; no further improvement needed."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents provided correct analysis leading to C11H12O2, but claudesonnet420250514 presented the reasoning in a more structured and systematic way, clearly breaking down the molecular fragments and showing the calculation"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a correct and well-reasoned answer in the required JSON format, accurately identifying the compound as C11H12O2 based on the spectroscopic data."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

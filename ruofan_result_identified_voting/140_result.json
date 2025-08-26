@@ -1,0 +1,44 @@
+{
+  "question_number": 140,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. Claudesonnet's response is chosen because it is the most comprehensive, breaking down the problem clearly and supporting its reasoning with approximate experimental percentage yields, which adds a strong quantitative justification to the qualitative analysis."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive answer with detailed citations, specific percentage values, and thorough explanation of both meta-directing and ortho-para directing effects. All agents reached the correct conclusion B, but this one provided the most complete reasoning."
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer provides detailed analysis with specific approximate percentages for para-isomer yields based on literature, citations, and clear distinction between meta and ortho-para directors, making it the most comprehensive and well-supported response."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct option (B) with clear, concise reasoning about directing effects and para fractions; no extraneous or dubious citations."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 61,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies all the key biological players and processes hinted at in the riddle: the Signal Recognition Particle (SRP), the nascent chain on a cytosolic ribosome, the pause in translation, the transport to the rough ER for glycosylation, and the subsequent journey through the secretory pathway to the extracellular space. The reasoning is both accurate and concise."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct JSON-only answer: identifies SRP (ribonucleoprotein), translational pause, rough ER glycosylation clue, and correct path from cytosol to extracellular space. Fully addresses the riddle and adheres to required format."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-cited answer, correctly identifying the SRP-nascent chain interaction at the ribosome and the journey through the secretory pathway to the extracellular space. The analysis includes proper biological context and citations supporting each claim."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and well-cited reasoning, clearly explaining the biological process and aligning perfectly with option C."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

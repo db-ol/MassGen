@@ -1,0 +1,43 @@
+{
+  "question_number": 177,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provided the correct answer and reasoning. Agent1's response is chosen as the best because it provides a clear, step-by-step breakdown of the calculations for both the transition energy and the paramagnetic coupling term, making the reasoning easy to follow."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-structured answer with proper step-by-step calculations, correct identification of the hydrogen transition, and proper citations. The mathematical work is clearly shown and the final reasoning is sound."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed step-by-step calculation, confirms the specific hydrogen transition, and includes precise values, making it the most comprehensive answer that fully addresses the original query."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct physics and numerics, and already in the required JSON-only format. Computes μ_B B ≈ 5.79e-5 eV and ΔE ≈ 2.55 eV, concluding ⟨H⟩ ≪ ΔE with a clear ratio. No extraneous content."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

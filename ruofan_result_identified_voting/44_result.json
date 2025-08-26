@@ -1,0 +1,43 @@
+{
+  "question_number": 44,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the threshold energy condition, performs the calculation accurately, and provides a clear, step-by-step derivation of the formula used. The reasoning is sound and leads to the correct answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides a more detailed step-by-step derivation showing the invariant mass calculation and threshold physics clearly, making the solution easier to follow and verify"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed step-by-step derivation of the threshold energy calculation, matching the correct option B, and thoroughly addresses the original query."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Both answers are correct and well-reasoned, but grok4 is concise, directly states the threshold formula and units, and cleanly matches option B with clear numeric conversion."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

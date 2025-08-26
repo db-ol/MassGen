@@ -1,0 +1,43 @@
+{
+  "question_number": 193,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "grok4": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identified the answer and provided flawless reasoning. They all used the correct formulas for relativistic velocity subtraction and total relativistic energy. I am voting for agent1 because its reasoning is structured exceptionally well, breaking down the energy calculation for each astronaut individually before summing them, which enhances clarity."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provided the most comprehensive and clearly structured explanation, showing all steps in detail with proper notation and formatting, making it easy to follow the physics calculations"
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct application of relativistic velocity addition and energy summation with clear, precise calculations and appropriate rounding; concise and accurate."
+        },
+        {
+          "voter": "grok4",
+          "reason": "All agents provided essentially the same correct answer with solid reasoning. Agent3's response is clear, precise, and explicitly notes that no external tools were used, which aligns with the calculation-based solution."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

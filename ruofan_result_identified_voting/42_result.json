@@ -1,0 +1,47 @@
+{
+  "question_number": 42,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the most likely mechanism for a dominant-negative mutation in a dimerization domain. Its reasoning is sound and aligns with established molecular biology principles, where the mutant protein interferes with the wild-type protein, often leading to the degradation of the non-functional complex. It also correctly dismisses the other options with clear justifications. The example of osteogenesis imperfecta, while not required, strengthens the answer by providing a real-world parallel."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Grok4 provides a clear and detailed reasoning for option C, including a relevant biological example (collagen mutations in osteogenesis imperfecta), which accurately captures the dominant-negative mechanism involving degradation of defective complexes and loss-of-function of the wild-type allele. This addresses the original question well, outperforming the other answers."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Selected option C correctly explains dominant-negative action in dimerization: mutant subunits form nonfunctional heterodimers that inactivate or target WT for degradation, causing loss of WT function. Reasoning is concise and directly addresses why other options are incorrect."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most accurate mechanistic explanation - dominant-negative mutations in dimerization domains typically form non-functional heterodimers that sequester wild-type proteins, which is best described as protein aggregation leading to loss-of-function"
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "grok4",
+  "true_answer": "A"
+}

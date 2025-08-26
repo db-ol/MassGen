@@ -1,0 +1,44 @@
+{
+  "question_number": 27,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provide the correct answer and sound reasoning. They all correctly identify that the significant decrease in H+ concentration (due to the pH increase from 1 to 4) is the primary reason for the reaction slowing down, and that this effect outweighs the rate-increasing effect of the temperature rise from the exothermic reaction. Gemini2.5pro's explanation is the most detailed and thorough, explicitly quantifying the change in H+ concentration and clearly articulating the competition between the two opposing factors (pH vs. temperature)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed and comprehensive explanation with clear scientific reasoning, quantifying the H+ concentration change and explaining why temperature increase alone cannot account for the slower reaction rate"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Gemini's answer is the most comprehensive, providing detailed quantitative explanation of the pH change (1000-fold H+ reduction), clear reasoning on why temperature increase doesn't override the pH effect, and thorough dismissal of other factors, effectively addressing the original question."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct choice (A), and clearly explains why pH increase (1000× drop in [H+]) outweighs temperature rise; also rules out other options and links exothermicity to likely neutralization. No unnecessary citations or noise."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

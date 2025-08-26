@@ -1,0 +1,44 @@
+{
+  "question_number": 146,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides the most detailed and well-structured explanation. It correctly analyzes the IR and NMR data step-by-step to identify the starting material, and then correctly identifies the product of the reduction reaction. The reasoning is clear, accurate, and comprehensive."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and detailed analysis of both the spectroscopic data and the reaction mechanism, with clear step-by-step reasoning that correctly identifies compound X as 4-(sec-butyl)benzoic acid and explains how red phosphorus/HI reduces the carboxylic acid to methyl group, leading to the correct answer C."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and structured reasoning, clearly breaking down the IR and NMR data and explaining the reaction outcome."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate identification and reaction outcome; concise reasoning; adheres exactly to the required JSON output format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

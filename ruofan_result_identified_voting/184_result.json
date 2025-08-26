@@ -1,0 +1,45 @@
+{
+  "question_number": 184,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All top agents provided excellent, detailed, and correct answers. I am voting for gemini2.5pro because its step-by-step reasoning is exceptionally clear and easy to follow. It correctly identifies the pure state's zero entropy, calculates the moments of the reference Gaussian state, and then computes the entropy of that state to find the non-Gaussianity."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and detailed step-by-step calculation with explicit numerical values, clear mathematical reasoning, and thorough explanation of each step in the non-Gaussianity calculation"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides detailed step-by-step reasoning with calculations leading to the correct answer choice B, effectively addressing the original query."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "gpt5",
+          "reason": "Provides a correct, well-structured derivation with normalization and moment calculations, obtains the symplectic eigenvalue ν=1.5 and S(τ)=2 ln 2 ≈ 1.386, answers in the requested JSON format."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

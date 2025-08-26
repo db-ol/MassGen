@@ -1,0 +1,39 @@
+{
+  "question_number": 23,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 4
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent's reasoning is excellent. It correctly interprets all pieces of spectral data (FTIR, NMR, and Mass Spec) to identify the functional groups present (carboxylic acid and alkene). It then correctly uses the concept of degrees of unsaturation to definitively select the correct molecular formula among the given options. The explanation is complete and accurate."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurately interprets FTIR (broad ~3000 cm⁻¹ acid O–H, 1700 cm⁻¹ C=O, 1650 cm⁻¹ C=C), 1H NMR (vinyl H), and MS (m/z 45 for COOH+) to select C6H10O2, matching degrees of unsaturation."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "The answer correctly interprets all spectral data - the broad 3000 cm⁻¹ absorption (O-H stretch), 1700 cm⁻¹ (C=O), 1650 cm⁻¹ (C=C), vinyl hydrogens in NMR, and m/z 45 fragment (COOH⁺) - and correctly identifies C6H10O2 as an unsaturated carboxylic acid matching the molecular formula and spectroscopic evidence."
+        },
+        {
+          "voter": "grok4",
+          "reason": "The answer from grok4 comprehensively interprets the spectral data: FTIR peaks indicate a carboxylic acid with a C=C bond, NMR confirms vinyl hydrogens, and mass spec supports COOH fragment. It correctly identifies C6H10O2 as the formula matching an unsaturated carboxylic acid, and the reasoning aligns perfectly with the data provided in the original message."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 1,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "grok4",
+  "true_answer": "B"
+}

@@ -1,0 +1,44 @@
+{
+  "question_number": 8,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identify the relationship between total mass, period, and radial velocity amplitudes for an eclipsing binary system (M_total ∝ P * (K1+K2)^3). They all perform the calculation correctly, arriving at the same result (~0.432) and selecting the correct option (D). The reasoning provided by gpt5 is concise, accurate, and clearly lays out the formula and the substitution of values, making it an excellent and sufficient answer."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correct formula M_tot ∝ P (K1+K2)^3 applied, accurate calculation to 0.432 ≈ 0.4, concise and directly answers the question."
+        },
+        {
+          "voter": "grok4",
+          "reason": "gpt5 provides a correct and precise reasoning, including the mention of sin^3 i and the approximation for eclipsing binaries, leading to the accurate calculation of the mass ratio."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive explanation with clear step-by-step derivation, proper physical context, and well-formatted mathematical presentation while reaching the correct answer"
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

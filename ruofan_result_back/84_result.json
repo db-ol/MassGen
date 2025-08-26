@@ -1,0 +1,44 @@
+{
+  "question_number": 84,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies both the reactant and the diene reactivity order. Its reasoning for identifying the reactant by counting atoms is a robust and clear method that definitively eliminates half the options, making it a very strong answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent4 provides the most accurate molecular formula analysis showing that the product 8,8-diiodobicyclo[4.2.0]octan-7-one (C8H10I2O) matches cyclohexene + 2,2-diiodoethen-1-one, ruling out the cyclobutenone options. The diene reactivity order 3,1,2,4 is also correct based on s-cis conformational preferences and electronic effects."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent4 provides the most comprehensive reasoning, including a critical carbon count analysis that definitively eliminates incorrect options B and D, while correctly identifying the reactant and diene reactivity order."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies A as diiodoketene based on [2+2] ketene–alkene cycloaddition forming a fused cyclobutanone and explains gem‑diiodo placement matching 8,8-substitution; gives the correct diene reactivity order (3 > 1 > 2 > 4) with clear rationale about s‑cis locking and electron donation. Concise and accurate."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "A"
+}

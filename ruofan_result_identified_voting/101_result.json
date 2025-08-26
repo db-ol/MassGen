@@ -1,0 +1,45 @@
+{
+  "question_number": 101,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents except for 'claudesonnet420250514' correctly identified the mechanisms and products. 'gemini2.5pro' provides the most detailed and accurate reasoning. For reaction A, it correctly identifies the anionic oxy-Cope rearrangement, the formation of a 10-membered ring enolate, and the subsequent transannular cyclization to form the bridged bicyclic ketone. For reaction B, it correctly identifies the Ireland-Claisen rearrangement, the formation of a lithium enolate via LDA, and correctly deduces that the product is the lithium salt because no acidic workup was specified. This level of detail is superior to the other correct answers."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and detailed mechanistic explanation with clear step-by-step analysis of both reactions, correctly identifying the anionic oxy-Cope and Ireland-Claisen rearrangements with proper chemical reasoning"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and accurate mechanistic reasoning for both reactions, correctly identifying the anionic oxy-Cope rearrangement for A and the Ireland-Claisen for B, with emphasis on the lithium salt due to no acidic workup."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate mechanisms identified: anionic oxy‑Cope for A and Ireland–Claisen for B. Correctly concludes the bicyclic ketone for A and lithium carboxylate for B given no acidic workup. Clear and concise reasoning with no mechanistic errors."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

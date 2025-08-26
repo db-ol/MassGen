@@ -1,0 +1,39 @@
+{
+  "question_number": 151,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most direct, concise, and numerically accurate reasoning. It correctly derives the relationship Teq ∝ P^(-1/3) and applies the ratio of the periods directly, leading to a precise answer. Agent 1's method is also correct but involves intermediate calculations that result in a slightly less accurate numerical approximation."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 provides the correct choice (C) with concise, accurate reasoning using Teq ∝ P^{-1/3} and keeps to the required JSON-only format. Agent 1 includes extraneous text outside JSON and a slightly inconsistent intermediate value, despite the correct final choice."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most concise and mathematically precise solution. The derivation correctly shows that T ∝ P^(-1/3), leading to T4/T2 = (3.5/2)^(-1/3) = (1.75)^(-1/3) ≈ 0.83. While agent1's approach is also correct, agent2's solution is more direct and uses the cleaner relationship between temperature and period without intermediate orbital distance calculations."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Concise and accurate reasoning with correct calculation leading to option C."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

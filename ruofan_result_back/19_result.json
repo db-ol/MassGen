@@ -1,0 +1,43 @@
+{
+  "question_number": 19,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. Agent1's response is the most thorough, with a clear step-by-step calculation that is easy to follow for the user. It breaks down the problem logically from the initial conditions to the calculations for both required points (25% titration and equivalence point), making it the most helpful and complete answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive explanation with clear step-by-step calculations, proper chemical equations, and detailed reasoning for both 25% titration and equivalence point"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed step-by-step calculation, explicitly accounting for volumes and using the Henderson-Hasselbalch equation correctly, leading to the accurate pH values of 4.26 and 8.52, matching option C. This comprehensively addresses the original query."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct computations for both 25% titration (buffer via Henderson–Hasselbalch) and equivalence point (acetate hydrolysis). Concise, accurate, and formatted exactly as requested in JSON."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

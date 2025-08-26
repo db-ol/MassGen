@@ -1,0 +1,44 @@
+{
+  "question_number": 113,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the reaction as a Ring-Opening Cross-Metathesis (ROCM). Its reasoning clearly and accurately explains how starting material D, bicyclo[3.2.0]hept-6-ene, undergoes ring-opening of the strained cyclobutene ring and reacts with the catalyst and 1-propene to form the specific substituents (vinyl and prop-1-en-1-yl) on the resulting cyclopentane ring, directly leading to the named product. The explanation is comprehensive and chemically sound."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most accurate and detailed explanation of the ROCM mechanism for bicyclo[3.2.0]hept-6-ene, correctly identifying the strained cyclobutene ring that drives the reaction and explaining how the ring opening leads to the specific substitution pattern in the product. The search results confirm that ROCM reactions work best with strained substrates, supporting option D."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and accurate reasoning for why option D is correct, explaining the ring-opening cross-metathesis mechanism thoroughly and addressing why other options are incorrect."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies ROCM of a cyclobutene-fused system; explains how D (bicyclo[3.2.0]hept-6-ene) opens to give vicinal vinyl and propenyl substituents, and why other options don’t fit. Clear, accurate, and concise."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

@@ -1,0 +1,44 @@
+{
+  "question_number": 147,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most thorough and accurate explanation. It correctly applies the uncertainty principle, calculates the specific energy linewidth for both quantum states, and clearly explains why the energy difference must be significantly larger than these widths, leading to the correct option."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate application of ΔE ≈ ħ/τ with correct numerical values for both lifetimes and clear criterion that separation must exceed the larger linewidth; concise and correct choice of D."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed and accurate reasoning with correct calculations of the linewidths using the appropriate formula ΔE ≈ ħ/τ, and clearly explains why option D is the only one that allows clear resolution."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive explanation with detailed calculations, clear step-by-step reasoning, and thorough analysis of why each option works or doesn't work. Shows all unit conversions and explains the physical principle most clearly."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

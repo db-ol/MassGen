@@ -1,0 +1,43 @@
+{
+  "question_number": 130,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most thorough and educational explanation of the underlying chemical mechanism, breaking it down into clear steps. This makes it the most comprehensive and useful answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-cited explanation of the nitrosation mechanism with detailed step-by-step analysis, while arriving at the correct answer D with sound chemical reasoning"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed mechanism with step-by-step explanation and citations from search results, comprehensively addressing the reaction and why option D is correct."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct JSON-only answer with accurate mechanistic justification linking nitrosation of ketones to 1,2-diketones; matches required format without extraneous content."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

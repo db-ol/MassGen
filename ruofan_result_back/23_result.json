@@ -1,0 +1,39 @@
+{
+  "question_number": 23,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 4
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provided a correct and well-reasoned answer. Agent 2's reasoning is slightly more detailed by explicitly mentioning the degrees of unsaturation and how it confirms the correct choice over the other options, which makes it marginally more comprehensive."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 correctly interprets the IR (broad OH of a carboxylic acid, C=O ~1700 cm⁻¹, C=C ~1650 cm⁻¹), confirms alkene via vinyl 1H NMR, explains the m/z 45 fragment as COOH⁺, and uses degrees of unsaturation to rule out other formulas. Clearer and more complete than Agent 1."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides a more comprehensive and detailed analysis that systematically addresses all spectroscopic evidence: explains the broad 3000 cm⁻¹ peak as O-H stretch from carboxylic acid, identifies both the 1700 cm⁻¹ C=O and 1650 cm⁻¹ C=C peaks, connects vinyl hydrogens to alkene presence, explains the m/z 45 fragment as COOH⁺, and crucially calculates the degrees of unsaturation to confirm C6H10O2 has exactly the two degrees needed (C=O and C=C). Also explicitly eliminates other options by explaining what they lack."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed reasoning that clearly explains the FTIR peaks, NMR evidence, mass spectrum fragment, and degrees of unsaturation, comprehensively addressing all aspects of the characterization data."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gpt5",
+      "agent2": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "B"
+}

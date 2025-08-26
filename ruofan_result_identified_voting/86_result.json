@@ -1,0 +1,47 @@
+{
+  "question_number": 86,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a correct, step-by-step reasoning that is easy to follow. It correctly calculates the emitted wavelength, identifies the color, and accurately applies the concept of Stokes shift. The reasoning for choosing blue over violet by discussing typical Stokes shift ranges for organic dyes is particularly strong and detailed."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-documented explanation with proper citations, clearly explaining Stokes' Law and the physics behind fluorescence, while arriving at the correct answer with detailed step-by-step reasoning"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Provides the correct choice (Blue) with concise, accurate reasoning (energy-to-wavelength conversion to 530 nm green emission and Stokes shift implying higher-energy absorption). Output is in the required JSON format with no extraneous content."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Grok4 provides a comprehensive reasoning that rules out lower energy options, distinguishes between violet and blue based on the effect of extensive conjugation shifting absorption to longer wavelengths, and aligns well with the physics of fluorescence in conjugated dyes."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

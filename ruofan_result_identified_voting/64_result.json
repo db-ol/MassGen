@@ -1,0 +1,47 @@
+{
+  "question_number": 64,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the core of the question, which relates to the subcellular localization of the fluorescent markers. It correctly explains that mRaspberry, without a specific nuclear localization signal, will be distributed throughout the cytoplasm. In contrast, the TUNEL signal, which detects DNA fragmentation, is inherently nuclear. Therefore, the first and most fundamental observation when looking at the cells under the microscope would be the cytoplasmic localization of the red signal, which stands in contrast to the nuclear localization required for direct co-localization with the green TUNEL signal. This reasoning is more detailed and thorough than gpt5's, and more accurate than grok4's interpretation."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and well-cited reasoning that accurately interprets the experimental setup, correctly identifying the cytoplasmic localization of the red signal as the first noticeable observation, which directly impacts the analysis of co-localization with nuclear TUNEL staining."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Chooses the correct option (D) with clear reasoning about TUNEL being nuclear and mRaspberry being cytoplasmic; also adheres to the required JSON-only format."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Correctly interprets \"mRaspberry fused under lineage-specific promoters\" as fusion to lineage-specific proteins, which would localize to different organelles based on the native protein's subcellular targeting - this would indeed be the first obvious observation in such an experiment"
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

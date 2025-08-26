@@ -1,0 +1,43 @@
+{
+  "question_number": 60,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the correct answer (B) with the most comprehensive and accurate reasoning. It correctly identifies the disappearing peaks as 'hyper-ChIPable' artifacts found at active promoters and enhancers, and accurately explains why the more stringent PFA+DSG fixation method would eliminate these non-specific signals."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-cited answer explaining hyper-ChIPable artifacts at active regulatory regions, with extensive literature support for why peaks disappear with more stringent DSG+PFA fixation"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a comprehensive, well-reasoned answer supported by literature citations, correctly identifying the disappearing peaks as hyper-ChIPable artifacts at active promoters and enhancers, which aligns with the question's scenario."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 is concise, correct, and directly ties disappearing peaks after DSG+PFA to hyper-ChIPable/HOT artifacts at active promoters/enhancers. Agent1 also picks B but includes dubious, unnecessary citations and extraneous claims; Agent3 is incorrect. Therefore Agent2 best addresses the original question."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

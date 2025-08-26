@@ -1,0 +1,40 @@
+{
+  "question_number": 40,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies that G2's epistatic effect makes it the likely transcription factor and that the severe phenotype of the g1g3 double mutant indicates gene redundancy. It correctly assesses that option A is the best fit despite the weakness of the epistasis claim between G1 and G3, as other options have more significant flaws."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Picks A with sound justification: G2 knockout is fully susceptible and epistatic in doubles, consistent with an upstream transcription factor; g1/g3 doubles show synthetic loss indicating redundancy. Notes the epistasis between G1 and G3 is not clear, but A is still the best fit. The other answer misidentifies the TF and misuses pleiotropy."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "This agent correctly identifies G2 as the transcription factor based on its complete epistasis over other genes, and accurately describes the redundancy between G1 and G3 shown by their severe synthetic interaction in the double mutant. The analysis is methodical and the conclusion aligns best with the experimental data."
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's analysis correctly identifies G2 as the transcription factor due to its complete epistasis in mutants, and recognizes the redundancy between G1 and G3 based on the synthetic phenotype of the g1g3 double mutant. The reasoning is thorough and addresses the key interactions in the data, making it the best response despite minor caveats on epistasis."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

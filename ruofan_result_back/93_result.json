@@ -1,0 +1,43 @@
+{
+  "question_number": 93,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 1,
+      "gpt5": 3
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provided the correct answer and sound reasoning. Agent 1's explanation was particularly concise and clear, efficiently using the key structural constraint to solve the problem."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurately maps all constraints, recognizes the CN/CHO meta positions are interchangeable, and correctly applies IUPAC tie-breaking (alphabetical, lowest locant) to place cyano at C3. Produces the correct, properly ordered name matching option B."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed explanation of the IUPAC naming tie-breaking rules, specifically mentioning the \"first point of difference/lowest locant rule applied in alphabetical order\" which is crucial for understanding why CN gets position 3 over position 5"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most comprehensive reasoning, considering both possible configurations and explicitly explaining the IUPAC tiebreaker rule using alphabetical order to assign the lowest locant to cyano."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

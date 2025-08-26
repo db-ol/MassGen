@@ -1,0 +1,43 @@
+{
+  "question_number": 51,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the answer and provided sound reasoning. Agent 1's approach of using a tool to look up the precise fermion masses is the most robust methodology, even though approximate values were sufficient in this case. Its answer is well-structured, accurate, and follows best practices by citing sources."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provided the most comprehensive analysis with precise fermion masses obtained through web search, detailed calculations, and proper citations. While all agents reached the correct conclusion (option C), agent1's answer was the most thorough and well-documented."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and precise fermion masses with citations from search results, confirming the kinematic thresholds accurately, while aligning with the correct option C."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct thresholds, and directly maps the 6 GeV mass to allowed fermion pairs, clearly excluding b and t while including c, τ, μ, e and light quarks. Minimal extraneous details."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

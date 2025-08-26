@@ -1,0 +1,48 @@
+{
+  "question_number": 132,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and reasoning. The reasoning from gemini2.5pro is particularly clear, detailed, and logically structured, explaining the two separate pathways via different benzyne intermediates and the resulting products from each pathway."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and clear step-by-step reasoning, distinguishing the two benzyne intermediates and the resulting products effectively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct answer (3 products) with concise, accurate benzyne-mechanism reasoning and clear accounting of isotopomer outcomes; minimal extraneous detail and proper JSON format."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with scientific citations supporting the benzyne mechanism, includes experimental evidence from Roberts' 14C labeling studies, and gives detailed step-by-step reasoning with proper chemical nomenclature"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

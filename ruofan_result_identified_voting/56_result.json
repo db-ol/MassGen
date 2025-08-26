@@ -1,0 +1,44 @@
+{
+  "question_number": 56,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the mass dimension of each term in the Lagrangian, correctly calculates the mass dimension of kappa as -1, and correctly concludes the theory is non-renormalizable based on this result. The explanation is the most thorough and well-structured among the agents."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Provides the correct choice A with clear dimensional analysis and proper JSON-only output format, fully addressing the question. Other answers either include extra non-JSON text or lack the required JSON format."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and comprehensive reasoning, covering all aspects of dimensional analysis and renormalizability with clear steps."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most concise and clear explanation with correct dimensional analysis and proper physical reasoning about renormalizability, while maintaining mathematical rigor."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

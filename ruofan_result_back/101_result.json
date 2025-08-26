@@ -1,0 +1,40 @@
+{
+  "question_number": 101,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent2 correctly identifies the answer as D and provides a clear, concise, and accurate explanation for both reactions. It correctly names the key named reactions (anionic oxy-Cope and Ireland-Claisen) and accurately describes the product formation, including the tautomerization for the first reaction and the final state as a lithium salt for the second due to the lack of an acidic workup."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Concise, fully compliant JSON-only output; correctly identifies anionic oxy‑Cope for A and Ireland–Claisen leading to lithium carboxylate for B, explicitly noting lack of acidic workup. Clear and accurate."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most accurate and concise mechanistic analysis. They correctly identify the anionic oxy-Cope rearrangement for reaction A and the Ireland-Claisen rearrangement for reaction B, which is the appropriate mechanism when an allylic alcohol is treated with acetyl bromide in the presence of LDA. The reasoning is chemically sound and leads to the correct products in option D."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a concise yet comprehensive reasoning that correctly identifies the mechanisms (anionic oxy-Cope and Ireland-Claisen) and explains the products, including why B is the lithium salt due to no acidic workup. This addresses the original message well."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

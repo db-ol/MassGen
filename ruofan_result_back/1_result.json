@@ -1,0 +1,41 @@
+{
+  "question_number": 1,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All four agents correctly identify the answer. However, Agent 1 provides the most complete physical reasoning by explicitly stating that the optical depth of the 21-cm line is inversely proportional to the gas temperature. This is the key principle that explains why 21-cm absorption is a much stronger tracer of the cold atomic medium (CNM) than the warm atomic medium (WNM), making its reasoning the most thorough."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurately identifies the 3.9 µeV line as a redshifted 21‑cm HI transition, provides correct z≈0.5 consistency check, and clearly justifies why absorption preferentially traces the cold atomic (CNM) due to optical depth ∝ 1/Ts. Strong, precise, and well‑explained."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and detailed explanation, including specific physical reasoning about why absorption preferentially traces cold gas (optical depth inversely proportional to temperature) and gives specific temperature and density ranges for CNM vs WNM"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed explanation, including why 21-cm absorption biases towards cold gas due to optical depth dependence on temperature, along with specific temperature and density values for CNM and WNM."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

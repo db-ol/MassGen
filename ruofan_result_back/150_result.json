@@ -1,0 +1,47 @@
+{
+  "question_number": 150,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the eigenvalues, systematically eliminates incorrect options, and provides a clear and physically sound explanation for why option D is the best answer, contrasting it well with the mathematically true but less specific option B."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive analysis with proper citations, detailed mathematical explanations, and clear physical reasoning about spin operator commutation relations"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct physics and linear algebra; provides explicit eigenvalues and eigenvectors; directly evaluates each option and delivers the required JSON-only format."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "grok4",
+          "reason": "Most comprehensive reasoning with explicit eigenvalue calculation and detailed physical explanation."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

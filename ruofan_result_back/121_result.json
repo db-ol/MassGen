@@ -1,0 +1,43 @@
+{
+  "question_number": 121,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most comprehensive and well-structured reasoning. It clearly explains the concept of atropisomerism for compound 1 and explicitly lists the four different substituents for the chiral center in compound 2, making the explanation very clear."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and detailed reasoning, clearly explaining the structural basis for chirality in each compound, including the specific chiral center in compound 2 and the atropisomerism in compound 1, while correctly identifying why compounds 3 and 4 are achiral."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed and clear explanation of why each compound does or does not exhibit optical isomerism, including specifics on the chiral center and atropisomerism."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (A) with concise, chemically accurate reasoning: recognizes axial chirality in the hindered biphenyl (1), the stereocenter in methyl lactate (2), and correctly identifies benzophenone (3) and dimethyl fumarate (4) as achiral. Clean JSON formatting."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 25,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and followed the correct methodology. Agent2's reasoning is the most concise while still showing all necessary calculations with high precision, directly arriving at the value in option D."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate calculations, concise JSON-only response matching required format, correct use of buffer pH and Ka3 to obtain PO4^3− = 6.24×10^-7 M (option D)."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most precise calculations, resulting in exactly 6.24×10^-7 M, matching option D perfectly, with detailed step-by-step reasoning."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and clearly explained solution with detailed step-by-step calculations, making it easiest to follow and verify the correct answer D"
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

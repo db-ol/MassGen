@@ -1,0 +1,46 @@
+{
+  "question_number": 165,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provide the correct answer and a perfect, concise reasoning based on the conservation of total relativistic energy. Agent1's response is well-structured and accurate."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most complete and clear step-by-step derivation, showing energy conservation at both maximum amplitude and equilibrium positions, deriving the Lorentz factor, and then solving for the maximum velocity. The reasoning is mathematically sound and matches option B correctly."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (B) with concise, accurate relativistic energy conservation derivation and proper final expression, formatted as required without extra markup."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a concise and clear reasoning that correctly derives the maximum speed using energy conservation in the relativistic harmonic oscillator, matching option B."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

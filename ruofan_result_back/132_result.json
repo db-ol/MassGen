@@ -1,0 +1,43 @@
+{
+  "question_number": 132,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies all three possible products. The reaction has two competing elimination pathways. The major pathway, involving abstraction of a proton, leads to a deuterated benzyne intermediate which gives two distinct deuterated aniline products. The minor pathway, slowed by the kinetic isotope effect but still possible, involves abstraction of the deuteron and leads to one non-deuterated aniline product. Therefore, there are a total of 3 possible products. Agents 1 and 3 incorrectly discount the product from the minor pathway, answering for the number of *major* products rather than *possible* products."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 correctly counts all distinct possible products, including the unlabeled aniline from the slower D-abstraction pathway, for a total of 3. The other agents incorrectly exclude this possible product based on KIE. Agent2 also presented the required JSON format."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 correctly identifies three distinct organic products from the possible elimination pathways in benzyne formation, without incorrectly dismissing the minor pathway due to the kinetic isotope effect. The KIE reduces the amount of the unlabeled product but does not eliminate it, so all three are possible."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most thorough analysis with proper citations, correctly identifies the kinetic isotope effect as the determining factor, and gives the correct answer of 2 products with detailed mechanistic reasoning"
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

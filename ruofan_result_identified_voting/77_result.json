@@ -1,0 +1,43 @@
+{
+  "question_number": 77,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies and explains each step of the multi-step synthesis. The reasoning accurately follows the regioselectivity of the initial hydrogenation, the stereoselectivity of the epoxidation, the regioselectivity and stereospecificity (inversion of configuration) of the nucleophilic epoxide opening, and the final esterification step which retains stereochemistry. This detailed analysis correctly leads to the final product's structure and stereochemistry, matching option A."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Provides a correct, concise JSON-only answer that matches the reaction sequence and stereochemical outcomes. Also adheres to the user’s request to respond only in JSON, unlike the other answer which includes extra text."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provided comprehensive mechanistic analysis with web search citations supporting each step of the synthesis, demonstrating thorough understanding of the stereochemical outcomes at each stage"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed reasoning with citations from sources, confirming the steps and stereochemistry, leading to option A, which addresses the original message effectively."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

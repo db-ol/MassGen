@@ -1,0 +1,45 @@
+{
+  "question_number": 25,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the problem as a phosphate buffer system. It accurately calculates the molar concentrations of the dihydrogen phosphate (H2PO4-) and hydrogen phosphate (HPO4^2-) ions. It then correctly uses the Ka2 value to determine the hydrogen ion concentration [H+]. Finally, it uses the [H+] and the Ka3 value to correctly calculate the concentration of orthophosphate (PO4^3-), arriving at a value that matches option D. The reasoning is clear, step-by-step, and mathematically sound."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed, step-by-step reasoning with accurate calculations leading to the correct answer, addressing the query comprehensively without errors."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct option (D) with clear, step-by-step buffer calculation using pKa2 and Ka3, precise numbers, and no arithmetic errors."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the correct answer (D) with clear, step-by-step calculations that are mathematically accurate. The reasoning is concise yet complete, showing all key steps including molar calculations, Henderson-Hasselbalch equation application, and final Ka3 calculation."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

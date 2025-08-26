@@ -115,8 +115,11 @@ class MassAgent(ABC):
                 f"Unknown agent type: {self.agent_type}. Available types: {list(process_message_impl_map.keys())}"
             )
 
+
         # Get the appropriate process_message implementation based on the agent type
         self.process_message_impl = process_message_impl_map[self.agent_type]
+
+        print(f"Grok Initialized Agent {self.agent_id} with model {self.model} ({self.agent_type})")
 
         # Other model configuration parameters
         self.tools = model_config.tools

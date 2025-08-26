@@ -1,0 +1,44 @@
+{
+  "question_number": 126,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 1,
+      "gpt5": 3
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The reasoning is comprehensive and accurate. It correctly identifies the stereochemical outcomes for both reactions and accurately predicts the number of separable compounds on both normal-phase and chiral-phase HPLC, leading to the correct final counts."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Option A is correct: Reaction I gives two diastereomers (separable on both columns); Reaction II gives a meso isomer and an enantiomeric pair—2 peaks on normal-phase (meso + co-eluting enantiomers) and 3 on chiral (meso + resolved enantiomers). gpt5 explains this cleanly and matches the expected peak counts (5 chiral, 4 normal)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed and accurate stereochemical analysis, correctly identifying the products as diastereomers from Reaction I and explaining the meso/enantiomeric pair from Reaction II, leading to the correct peak counts"
+        },
+        {
+          "voter": "grok4",
+          "reason": "gpt5 provides a detailed and accurate reasoning that correctly identifies the stereoisomers from both reactions and explains their separation on normal-phase and chiral HPLC, leading to 4 peaks in normal and 5 in chiral, matching option A."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

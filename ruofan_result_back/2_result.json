@@ -1,0 +1,46 @@
+{
+  "question_number": 2,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identified the physical principles and performed the calculations to arrive at the right answer. Agent 3 is chosen because its reasoning is not only correct but also offers an elegant and more direct alternative calculation by establishing the relationship P ∝ 1/T_eq³, which demonstrates a slightly deeper synthesis of the concepts involved."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a clear, concise reasoning that directly computes the temperature ratio between Planet1 and Planet3, derives the orbital radius ratio, applies Kepler's third law, and explains why mass ratios are irrelevant, addressing the original question effectively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct, concise, and in the required JSON-only format. It properly uses Teq ∝ a^(-1/2) and Kepler’s third law to get P3/P1 ≈ 33.4, and ignores irrelevant planetary masses."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-structured solution with clear step-by-step reasoning, proper mathematical derivations, and explicitly addresses why the planetary mass ratios are irrelevant to the calculation. All three agents arrive at the correct answer (D, ~33.4), but agent1's explanation is the most thorough and educational."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "D"
+}

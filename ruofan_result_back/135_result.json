@@ -1,0 +1,40 @@
+{
+  "question_number": 135,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most accurate and complete explanation. It correctly identifies both the endo-selectivity and the syn-facial selectivity, providing the correct electronic reason (hyperconjugation) for the syn-selectivity, which is the key determinant for the final stereochemistry."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Picks D with clear mechanistic reasoning (endo plus syn facial selectivity for 5‑F) and supplies a clean JSON answer matching the requested format. More thorough and chemically accurate than the others."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and accurate analysis with proper citations supporting the syn facial selectivity of 5-fluorocyclopentadiene, leading to the 8s stereochemistry in option D. The response correctly identifies that fluorine acts as a σ-acceptor causing predistortion toward syn addition, supported by multiple literature sources."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed, well-reasoned explanation supported by citations, correctly identifying the syn facial selectivity for 5-fluorocyclopentadiene due to hyperconjugative effects, leading to option D as the major product. This addresses the original message comprehensively."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

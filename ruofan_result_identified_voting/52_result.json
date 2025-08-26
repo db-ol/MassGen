@@ -1,0 +1,44 @@
+{
+  "question_number": 52,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the formula for energy gain per revolution, accounting for the two accelerations and the synchronous phase. The calculation is accurate and leads to the correct option."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly applies synchrocyclotron energy gain per turn (2 e U0 cos Φ0) with given U0=190 kV and Φ0=π/4, computes ΔE≈0.2687 MeV/turn, and yields N≈3536 matching option A. Clear, concise, and directly answers the question."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-cited explanation of synchrocyclotron physics while arriving at the correct answer with proper mathematical reasoning"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed explanation including the importance of synchronous phase and citations, while arriving at the correct calculation matching option A."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

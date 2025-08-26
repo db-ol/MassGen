@@ -1,0 +1,43 @@
+{
+  "question_number": 45,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the physics principles of conservation of energy and momentum. The step-by-step calculation is accurate and easy to follow, leading to the correct kinetic energies for both the muon and the neutrino. The final answer matches the derived values."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides more detailed step-by-step physics reasoning while arriving at the correct answer, making the solution easier to follow and understand"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a more detailed step-by-step explanation of the conservation laws and calculations, making it easier to follow."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate physics with correct use of two-body decay at rest; concise derivation using p=(m_pi^2-m_mu^2)/(2m_pi) and correct numeric KE values matching option B."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

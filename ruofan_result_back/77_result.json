@@ -1,0 +1,43 @@
+{
+  "question_number": 77,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides a detailed, step-by-step analysis of the reaction sequence. It correctly identifies the regioselectivity of the initial hydrogenation and the stereochemical outcomes of the epoxidation and, most importantly, the S_N2 epoxide ring-opening with inversion of configuration, leading to the correct final product."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 selects D, provides correct stereochemical reasoning through hydrogenation, epoxidation, SN2 epoxide opening, and esterification, and adheres to the required JSON-only format. Agent1 picks A (incorrect) and includes extra text; Agent3 picks D but not in JSON format."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 provides the most accurate and complete mechanistic analysis. It correctly identifies that base-catalyzed epoxide opening occurs via SN2 mechanism at the less substituted carbon (C2) with inversion of stereochemistry, leading to (1S,2R,4R)-4-isopropyl-2-methoxy-1-methylcyclohexyl propionate (option D). The reasoning through each step is chemically sound and accounts for all stereochemical changes."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a correct structure (D) with detailed stereochemical reasoning, accounts for the inversion in epoxide opening, and explicitly acknowledges that product 4 is a mixture of isomers due to epoxide diastereomers, while selecting one valid structure from the options, addressing the original message well."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

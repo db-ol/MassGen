@@ -1,0 +1,50 @@
+{
+  "question_number": 17,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the limiting and excess reagents by calculating the moles of each acid and base. It accurately performs the neutralization calculation, first between the strong acid and strong base, and then the remaining strong base with the weak acid. The final concentration of excess hydroxide is used to correctly calculate the pOH and subsequently the pH. The answer is accurate and the reasoning is clear and follows the correct chemical principles."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct stoichiometric approach using acid/base equivalents, computes excess OH−, and yields pH = 12.62. It follows the requested JSON format concisely and accurately."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most clearly structured and comprehensive solution with excellent step-by-step formatting, clear headings, proper chemical notation, and thorough explanation of each neutralization step while maintaining accuracy throughout."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent4 provides a clear calculation and additionally addresses the negligible effect of acetate hydrolysis, making it the most comprehensive."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

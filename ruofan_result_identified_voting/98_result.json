@@ -1,0 +1,43 @@
+{
+  "question_number": 98,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a correct and complete explanation that is both accurate and concise. It correctly identifies the required starting diene type, explains the carbon mapping in the RCM reaction, and applies this logic to correctly place the substituents, leading to the correct answer."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly selects option D with clear, accurate RCM carbon mapping and adheres to the required JSON-only output format."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with proper citations, systematic evaluation of all options, and clear step-by-step reasoning for the RCM mechanism and carbon mapping"
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer provides a clear, structured reasoning with carbon mapping, evaluation of all options, and citations, effectively addressing the original query."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

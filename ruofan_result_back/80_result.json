@@ -1,0 +1,42 @@
+{
+  "question_number": 80,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the answer and provides a concise and accurate reasoning for both parts of the question. It correctly explains why benzoquinone does not show tautomerism and why methyl 2-hydroxypropanoate shows optical isomerism."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 is correct, concise, and adheres exactly to the required JSON-only output format while providing accurate chemical reasoning for both parts."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides a comprehensive analysis with detailed explanations for both parts A and B, backed by proper citations. The reasoning clearly explains why benzoquinone doesn't show tautomerism (lack of alpha hydrogens, unfavorable cumulated double bonds) and why methyl 2-hydroxypropanoate shows optical isomerism (chiral carbon with four different substituents). Agent2 gives the correct answer but with much less detailed explanation."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a more detailed analysis with citations from sources, enhancing the credibility and depth of the reasoning while correctly identifying the answer as B."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

@@ -1,0 +1,44 @@
+{
+  "question_number": 109,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "This agent provides the most accurate and clear reasoning. It correctly identifies each step of the reaction sequence (intramolecular aldol, Grignard, oxidation, and ozonolysis) and correctly predicts the resulting structural changes, leading directly to the final product named in option C."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive and well-cited analysis with clear step-by-step reasoning that addresses each transformation in detail, including proper citations for the organic chemistry mechanisms involved"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed step-by-step reasoning with explanations of each transformation, correctly identifies the product as option C, and addresses the workup conditions appropriately."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Selects the correct product (C) with concise, stepwise reasoning that matches the reaction sequence and preserves carbon count; also adheres to the requested JSON-only format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

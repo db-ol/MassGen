@@ -1,0 +1,47 @@
+{
+  "question_number": 118,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identify the answer as A. However, agent1 provides the most well-structured and detailed reasoning. It breaks down each reaction step-by-step, explaining the role of the reagents, the reason for the regioselectivity of the deprotonation (steric hindrance and availability of alpha-protons), and the mechanism of the Michael addition for both reactions, leading to the correctly named products."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-reasoned analysis with proper citations and detailed mechanistic explanations for both reactions. The answer correctly identifies that t-BuOK deprotonates at C-6 (not C-2 which lacks α-protons) and explains the Michael addition mechanism clearly. For reaction B, it properly explains the nitronate formation and conjugate addition to give the correct product names. The reasoning is thorough and scientifically accurate."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct option (A) with accurate, concise mechanistic reasoning. It strictly follows the required pure JSON output format without extra text or formatting, unlike other agents."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and step-by-step reasoning for both reactions, including precise naming conventions and mechanistic explanations that fully address steric hindrance and product stability."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

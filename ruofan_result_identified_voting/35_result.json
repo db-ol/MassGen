@@ -1,0 +1,47 @@
+{
+  "question_number": 35,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly applies the method of images to find the potential energy. The reasoning is clear, accurate, and complete, correctly identifying the image charge, its position, and the factor of 1/2 needed for the energy calculation."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correct, concise, and in the required JSON-only format; derives the image charge setup and applies the 1/2 factor properly to get option C."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive explanation with clear step-by-step derivation, explicitly shows all mathematical steps, and includes proper physical interpretation of the 1/2 factor for self-energy calculation"
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Provides a concise and elegant explanation using the potential due to induced charges, directly leading to the correct formula, and confirms no tools were needed."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

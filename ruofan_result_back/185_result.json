@@ -1,0 +1,43 @@
+{
+  "question_number": 185,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 provides the correct answer (B) and the most physically accurate reasoning. It correctly identifies that replacing two massive V particles with one massless M particle reduces the final state rest mass, thereby increasing the total available kinetic energy (Q-value) and raising the endpoint of the continuous energy spectrum."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 selects the correct option (B) and gives the strongest, most physically grounded justification: the spectrum stays continuous and the endpoint increases due to replacing two massive V particles with one massless M, increasing the maximum energy available to the E pair by ~2 m_V. This aligns with kinematics and addresses both parts of the question clearly."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides the most accurate reasoning by considering the mass of V particles, which leads to an increased Q-value and endpoint in the variant decay while keeping the spectrum continuous, correctly matching option B."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and accurate analysis. They correctly identify that both decays involve multi-body final states (original: 6 particles, variant: 5 particles) which keeps the spectrum continuous. Their key insight about the Q-value being identical in both cases (same initial and heavy final states) with fewer light particles competing for energy in the variant decay is correct. The endpoint increases because with 1M instead of 2V particles, more energy becomes available for the E particles."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "B"
+}

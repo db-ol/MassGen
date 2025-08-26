@@ -1,0 +1,48 @@
+{
+  "question_number": 78,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies that there are two optically active compounds. The reasoning is accurate and concise, correctly identifying each compound as either chiral or achiral (meso, symmetric, or lacking a chiral center)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides accurate analysis identifying only 2 optically active compounds with clear reasoning about meso compounds and stereochemistry. Correctly identifies the bicyclic anhydride as meso due to internal plane of symmetry with R,S configuration."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Gives the correct count (D: 2) with clear, accurate justification for each compound; correctly identifies 2 and 6 as achiral and 4 and 5 as optically active. Other answers either include an error (grok4 counts 3) or contain less precise reasoning."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed, structured analysis of each compound, correctly identifying only two optically active compounds, with clear reasoning on why the bicyclic compound is meso due to opposite configurations and internal symmetry."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

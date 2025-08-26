@@ -1,0 +1,44 @@
+{
+  "question_number": 107,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most comprehensive and well-structured reasoning. It correctly identifies the selectivity of each reducing agent, accurately analyzes the change in Cahn-Ingold-Prelog priorities for each reaction pathway, and correctly concludes that the LiBH4 reaction causes an inversion (S to R) while the BH3 reaction causes retention (S to S), meaning both starting materials must be the (S)-enantiomer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 provides the most comprehensive and accurate analysis, correctly identifying the reagent selectivities (LiBH4 reduces esters, BH3 reduces carboxylic acids) and systematically analyzing how CIP priority changes affect stereochemical outcomes. The detailed step-by-step reasoning about priority swapping (1→2, 2→1 for LiBH4 causing inversion, 1→1, 2→2 for BH3 causing retention) is scientifically sound and leads to the correct conclusion that both starting materials are (S)-enantiomers."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and comprehensive reasoning, correctly identifying that both starting materials are the (S)-enantiomer due to the inversion with LiBH4 and retention with BH3, leading to the correct choice A."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies that LiBH4 reduces the ester (leading to inversion of R/S due to CIP swap) and BH3 reduces the acid (retention), concluding both starting materials are the (S)-enantiomer. Clear, concise, and accurate reasoning aligned with the reaction outcomes."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

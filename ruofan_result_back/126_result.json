@@ -1,0 +1,44 @@
+{
+  "question_number": 126,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the products of both reactions and accurately predicts the number of peaks for both normal-phase and chiral HPLC. The reasoning is clear, concise, and scientifically sound, matching the analysis of agents 3 and 4 as well."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies 2 diastereomers from Reaction I and 3 stereoisomers from Reaction II; explains enantiomer coelution on normal-phase (4 peaks) and full resolution on chiral column (5 peaks). Clear, concise, and matches the requested JSON output."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most accurate and complete analysis with correct identification of all stereoisomers and proper understanding of how normal-phase vs chiral HPLC would separate them, leading to the correct answer A (5 peaks in chiral HPLC, 4 peaks in normal-phase HPLC)"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a concise and accurate analysis of the stereoisomers produced in each reaction and correctly determines the number of peaks in both normal-phase and chiral HPLC, matching the expected outcome of 4 peaks in normal (2 from Reaction I diastereomers + 2 from Reaction II: meso and co-eluted enantiomers) and 5 in chiral (2 from I + 3 from II)."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

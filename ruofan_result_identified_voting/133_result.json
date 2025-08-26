@@ -1,0 +1,45 @@
+{
+  "question_number": 133,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the starting material and product for both reactions. The reasoning is thorough and accurate, correctly explaining the ring-expansion mechanism for the first reaction and the concept of migratory aptitude (hydride shift over methyl shift) for the second reaction. The explanation is clear and provides a step-by-step analysis of the chemical transformations."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed and chemically accurate explanation of both reactions, correctly identifying the ring expansion mechanism for the first reaction and the hydride shift mechanism for the second reaction, with clear reasoning about carbocation stability and migratory aptitude"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and comprehensive reasoning, correctly explaining the ring expansion from cyclopentane to cyclohexane and the preferential hydride shift over methyl migration in the second reaction."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (A) with clear, concise mechanistic justification for both reactions; also adheres to the required plain JSON format without code fences."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

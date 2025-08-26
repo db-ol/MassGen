@@ -1,0 +1,45 @@
+{
+  "question_number": 125,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the multi-step synthesis, culminating in ethyl 1-cyanocyclohexanecarboxylate. The reasoning for the number of NMR signals is excellent, correctly identifying the plane of symmetry in the molecule and accounting for the effect of rapid chair-chair interconversion at room temperature. This leads to the correct count of 5 distinct hydrogen environments. The answer is well-structured, detailed, and accurate."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with proper citation of symmetry principles and chair flipping effects, correctly concluding 5 distinct hydrogen signals with detailed reasoning for each environment"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed and accurate reasoning, correctly identifying the product and explaining the symmetry and rapid chair flipping leading to 5 distinct hydrogen signals, supported by citations."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "gpt5",
+          "reason": "Identifies the correct product (ethyl 1-cyanocyclohexane-1-carboxylate) and correctly counts 5 chemically distinct 1H environments considering rapid chair inversion and equivalence of 2/6 and 3/5, plus the ethyl OCH2 and CH3. Provides the required JSON output format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

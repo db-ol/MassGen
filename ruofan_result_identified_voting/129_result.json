@@ -1,0 +1,44 @@
+{
+  "question_number": 129,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identify the answer as A. However, gpt5 and claudesonnet420250514 incorrectly assume that the major product is the endo adduct, which is the usual outcome for Diels-Alder reactions but not in this specific case due to steric hindrance. Grok4 correctly identifies that the exo adduct is the major product due to steric hindrance from the methyl groups on the diene. It then correctly explains that in this major exo adduct, the anhydride protons are in the endo position, placing them close to the allylic methyl groups, which results in the observed NOESY cross-peak. This reasoning is the most accurate and complete."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Grok4 provides the most accurate reasoning by accounting for the steric hindrance caused by the methyl groups at positions 2 and 3 of the diene, which reverses the typical endo selectivity, making the exo adduct the major product. The other agents incorrectly assume the standard endo-major selectivity without considering this steric effect."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "It cleanly selects option A with concise, correct reasoning about endo/exo NOE proximity and adheres to the required pure-JSON format without extra text. The other A answers either include extraneous text (claude) or incorrect endo/exo major assignment (grok)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the correct answer A with clear, concise reasoning about the Diels-Alder reaction and NOESY cross-peak without getting sidetracked by unnecessary details about which stereoisomer is major vs minor."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

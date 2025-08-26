@@ -1,0 +1,44 @@
+{
+  "question_number": 91,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides the most detailed and chemically precise reasoning. It correctly identifies the reaction, the sequence of reagents, the product, and crucially, explains the regioselectivity of the deprotonation step (formation of the kinetic enolate at the less hindered carbon) which is key to understanding the formation of the specific product."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 provides the most comprehensive and detailed mechanistic explanation, clearly explaining why LDA preferentially deprotonates the less sterically hindered α-carbon, the role of each reagent, and the correct structural transformation from pentan-2-one to heptan-4-one. The reasoning is thorough and chemically accurate."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and chemically accurate reasoning, correctly explaining the regioselectivity due to LDA, the solvent role, the alkylation, hydrolysis, and precisely deriving the product structure as heptan-4-one."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (C) with accurate, concise Stork enamine alkylation reasoning; follows required JSON format without extra text."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

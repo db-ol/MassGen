@@ -1,0 +1,40 @@
+{
+  "question_number": 21,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents correctly solve the problem with sound reasoning. Gemini2.5pro's answer is chosen because its reasoning is slightly more detailed and broken down into clear, sequential steps. It explicitly states the bond count, the calculation for the reactants' atomization energy, the calculation for the product's bond energy, and then the final subtraction and unit conversion. This step-by-step approach is more thorough and easier to follow than grok4's more condensed calculation."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies formula C12H22, counts bonds (22 C–H, 9 C–C, 2 C=C), applies given atomization/bond energies to get ΔHf = 1900 kJ/mol, and converts to 11.4 kJ/g matching option A. Clear, complete, and consistent with data."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "More detailed step-by-step explanation while maintaining accuracy, making it easier to follow the complete calculation process"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed breakdown of the molecular structure, bond counting, and step-by-step calculation, making it comprehensive and educational."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

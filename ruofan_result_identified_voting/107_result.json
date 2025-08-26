@@ -1,0 +1,47 @@
+{
+  "question_number": 107,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the selectivity of both reducing agents (LiBH4 for the ester, BH3 for the carboxylic acid) and correctly states that the stereochemistry of the starting material is retained in the product. This leads to the correct conclusion that starting material A must have the (R) configuration and B must have the (S) configuration."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise JSON-only answer that matches the problem’s constraints and gives correct, mechanism-based reasoning (LiBH4 reduces ester; BH3 reduces acid; stereocenter retained), leading to the correct choice D."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive mechanistic explanation with proper citations and detailed step-by-step reasoning about stereochemistry retention during reduction and lactonization"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed mechanistic explanation, including citations, while correctly identifying option D as the answer."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

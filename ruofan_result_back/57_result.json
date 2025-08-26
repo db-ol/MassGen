@@ -1,0 +1,43 @@
+{
+  "question_number": 57,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the answer and provided sound reasoning. Agent1's response is the most thorough, breaking down each particle and its relationship to spontaneous symmetry breaking in a clear, structured manner, making it the best of the three excellent answers."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-researched answer with detailed citations explaining why each particle is or isn't associated with spontaneous symmetry breaking. The answer clearly demonstrates understanding of Goldstone bosons vs topological solitons and provides proper scientific reasoning."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most comprehensive and detailed explanation, including citations from search results, which strengthens the reasoning and directly addresses the question effectively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct JSON-only answer that directly addresses the question: identifies magnons, phonons, and pions as (pseudo-)Goldstone modes from SSB and skyrmions as topological solitons not arising from SSB. Fully compliant with the requested format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

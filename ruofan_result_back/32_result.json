@@ -1,0 +1,44 @@
+{
+  "question_number": 32,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the answer and provided valid reasoning. Agent 2's reasoning is the most comprehensive and pedagogical, clearly deriving the formula for the mole fraction and then showing the step-by-step calculation. This makes it the most helpful response for a user trying to understand the solution."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most comprehensive and detailed explanation of the calculation, showing all steps clearly including the theoretical framework, formula derivation, and complete numerical calculations. All agents arrive at the correct answer A (16.9%), but agent2's response is the most educational and thorough."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, step-by-step calculation using the approximation that matches option A exactly, which appears to be the expected answer given the options and the common practice in such problems."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct method and calculation using cumulative stability constants; concise, accurate, and properly formatted JSON without extraneous formatting. Arrives at 16.9% (option A), matching expected result."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

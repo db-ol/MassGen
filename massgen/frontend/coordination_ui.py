@@ -22,6 +22,8 @@ class CoordinationUI:
         logger: Optional[Any] = None,
         display_type: str = "terminal",
         enable_final_presentation: bool = False,
+        question_number: int = 0,
+        true_answer: str = "",
         **kwargs,
     ):
         """Initialize coordination UI.
@@ -36,6 +38,10 @@ class CoordinationUI:
         self.enable_final_presentation = enable_final_presentation
         self.display = display
         self.logger = logger
+
+        self.question_number = question_number
+        self.true_answer = true_answer
+
         self.display_type = display_type
         self.config = kwargs
 
@@ -45,6 +51,7 @@ class CoordinationUI:
 
         # Flush output configuration (matches rich_terminal_display)
         self._flush_char_delay = 0.03  # 30ms between characters
+
 
     def _process_reasoning_summary(
         self, chunk_type: str, summary_delta: str, source: str
@@ -162,7 +169,7 @@ class CoordinationUI:
                     print("   Install with: pip install rich")
                     self.display = TerminalDisplay(self.agent_ids, **self.config)
                 else:
-                    self.display = RichTerminalDisplay(self.agent_ids, **self.config)
+                    self.display = RichTerminalDisplay(self.agent_ids, self.question_number, **self.config)
             else:
                 raise ValueError(f"Unknown display type: {self.display_type}")
 
@@ -303,6 +310,40 @@ class CoordinationUI:
             status = orchestrator.get_status()
             vote_results = status.get("vote_results", {})
             selected_agent = status.get("selected_agent")
+
+
+            def log_custom(question_number, vote_results, selected_agent, true_answer: str = ""):
+                import os
+                import json
+                """Log custom data such as vote results and selected agent into a JSON file.
+
+                Args:
+                    question_number: The question number for naming the file
+                    vote_results: Dictionary of vote results
+                    selected_agent: The agent ID selected for final answer
+                    true_answer: The correct answer (optional)
+                """
+                # Prepare log data
+                log_data = {
+                    "question_number": question_number,
+                    "vote_results": vote_results,
+                    "selected_agent": selected_agent,
+                    "true_answer": true_answer
+                }
+
+                # Ensure output directory exists
+                output_dir = "ruofan_result"
+                os.makedirs(output_dir, exist_ok=True)
+
+                # Define file path
+                file_path = os.path.join(output_dir, f"{question_number}_result.json")
+
+                # Write JSON file
+                with open(file_path, "w", encoding="utf-8") as f:
+                    json.dump(log_data, f, ensure_ascii=False, indent=2)
+
+                print(f"Log saved to {file_path}")
+            log_custom(self.question_number, vote_results=vote_results, selected_agent=selected_agent, true_answer=self.true_answer)
 
             # if vote_results.get('vote_counts'):
             #     self._display_vote_results(vote_results)
@@ -588,7 +629,7 @@ class CoordinationUI:
                     print("   Install with: pip install rich")
                     self.display = TerminalDisplay(self.agent_ids, **self.config)
                 else:
-                    self.display = RichTerminalDisplay(self.agent_ids, **self.config)
+                    self.display = RichTerminalDisplay(self.agent_ids, self.question_number, **self.config)
             else:
                 raise ValueError(f"Unknown display type: {self.display_type}")
 

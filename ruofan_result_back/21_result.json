@@ -1,0 +1,47 @@
+{
+  "question_number": 21,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 1,
+      "gpt5": 1,
+      "gemini2.5pro": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identify the answer and use the correct method. Agent 1 provides the most clear, well-structured, and easy-to-follow step-by-step breakdown of the calculation, from determining the molecular formula to the final unit conversion. This makes it the best and most instructive answer."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct computation, clear bond counting, correct unit conversion, and adheres to the required JSON-only format succinctly."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive step-by-step calculation with clear explanation of each step, correctly identifies molecular formula C12H22, accurately counts bonds (22 C-H, 9 C-C, 2 C=C), performs correct calculations (13100 - 11200 = 1900 kJ/mol), and properly converts to kJ/g (1900/166 = 11.44 kJ/g) to match option A"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and step-by-step reasoning, clearly explaining each part of the calculation, including the molecular formula, bond counts, and unit conversion, which comprehensively addresses the original query."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 144,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the answer and the key chemical principles. Agent 1 provided the most detailed and well-structured reasoning, breaking down the problem step-by-step, which makes the logic behind the answer the clearest."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-supported analysis with web search citations that validate the nucleophilicity principles, while still arriving at the correct answer D with clear reasoning for each compound's relative nucleophilicity."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed, well-cited reasoning that comprehensively explains the nucleophilicity order in aqueous solution, addressing all key factors like polarizability, charge delocalization, and comparisons between species."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct ordering for nucleophilicity in aqueous solution with clear justification (thiolate > hydroxide > hindered alkoxide > carboxylate > neutral alcohol). Matches option D and addresses sterics and resonance appropriately."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

@@ -1,0 +1,42 @@
+{
+  "question_number": 66,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provide a correct and well-reasoned answer. They both correctly identify that high variability in the variable heavy chain of proliferating cells in a secondary lymphoid organ (Peyer's patch) after antigen exposure is the hallmark of somatic hypermutation. They also correctly eliminate the other options. Agent 1's reasoning is slightly more concise while remaining completely accurate."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Both answers are correct and well-reasoned, but agent1 adds the AID mechanism note and clearly contrasts constant-region class switching vs variable-region diversification, making it slightly stronger."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed and precise explanation of why somatic hypermutation is the correct process, effectively distinguishing it from the other options."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents correctly identified somatic hypermutation, but agent2 provided a more comprehensive explanation that explicitly mentioned affinity maturation and was more detailed about the biological context"
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gpt5",
+      "agent2": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

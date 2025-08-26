@@ -1,0 +1,44 @@
+{
+  "question_number": 165,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the principle of conservation of total relativistic energy. It sets up the energy balance equation between the points of maximum displacement and maximum velocity. The derivation is clear, accurate, and directly leads to the correct multiple-choice option (B). The answer is also provided in the correct JSON format."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice (B) with clear, concise relativistic energy conservation reasoning and proper JSON format."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most complete and clear derivation with proper step-by-step reasoning, showing the energy conservation principle, setting up the equations correctly, and solving systematically to arrive at option B. The mathematical work is shown in detail and is correct."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provided a detailed, step-by-step reasoning that correctly derives the expression for v_max using relativistic energy conservation, and formatted the response in the requested JSON structure."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

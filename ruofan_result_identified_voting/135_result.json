@@ -1,0 +1,45 @@
+{
+  "question_number": 135,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "This agent correctly identifies all key stereochemical principles governing the reaction: endo selectivity and, crucially, the syn facial selectivity for the 5-fluoro substituent due to electronic/hyperconjugative effects. It correctly deduces that this leads to an exo-F product and correctly assigns the IUPAC stereodescriptor '8s' to this position, providing a complete and accurate rationale for the correct answer, D."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "This agent provides the most comprehensive and well-cited analysis, correctly identifying syn facial selectivity of 5-fluorocyclopentadiene based on hyperconjugative effects, with proper literature support and detailed mechanistic reasoning leading to answer D with 8s configuration."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Claude provides the most detailed and well-supported reasoning, including citations from literature that explain the syn facial selectivity due to hyperconjugative effects for the electron-withdrawing fluorine substituent, combined with endo addition, leading to the major product in option D. Other agents have inconsistencies, such as incorrect assignment of endo/exo or opposing selectivity without supporting evidence."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "gpt5",
+          "reason": "Provides a coherent mechanistic rationale (endo rule + syn facial selectivity for 5-fluoro substituent) and maps this to a specific stereochemical descriptor, yielding option C. Other answers contain a mechanistic error (anti approach due to A1,3 strain) or unsupported assumptions. Gemini’s answer is the most consistent with known syn selectivity of 5-σ-withdrawing cyclopentadienes."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

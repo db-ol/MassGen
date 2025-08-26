@@ -1,0 +1,44 @@
+{
+  "question_number": 113,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The answer is correct and provides a clear, accurate, and well-structured explanation of the chemical reaction (Ring-Opening Cross-Metathesis). It correctly identifies the starting material and explains why it leads to the given product, while also correctly dismissing the other options."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Gemini chose the correct option D and provided a clear ROCM rationale while complying with the required JSON-only output format. The other answers included extra prose or lacked the strict format."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with detailed mechanistic explanation, proper citation of research sources, and clear step-by-step reasoning for why bicyclo[3.2.0]hept-6-ene undergoes ROCM to give the specific product. The answer is well-supported by scientific literature on ring-opening metathesis reactions."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a comprehensive explanation with citations from searches, detailing the ROCM mechanism and why option D leads to the product, while addressing other options."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

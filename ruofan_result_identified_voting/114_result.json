@@ -1,0 +1,48 @@
+{
+  "question_number": 114,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the answer and the general reaction pathway. However, gemini2.5pro provided the most comprehensive and well-structured reasoning. It clearly outlines each step of the reaction sequence, identifies all the intermediate compounds, and then systematically evaluates each of the four statements with clear, accurate explanations. This makes it the most helpful and complete answer."
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer provides the most comprehensive and detailed reasoning, correctly identifying the reaction sequence, explaining each compound, and thoroughly evaluating why each statement is correct or incorrect, with a clear conclusion that C is the incorrect statement."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, accurate mapping of the reaction sequence to mesitylene/mesidine/mesitol and correct evaluation of each statement; no contradictions or unnecessary digressions."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with proper citations and systematic step-by-step evaluation of each reaction, while maintaining accuracy throughout the entire sequence"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

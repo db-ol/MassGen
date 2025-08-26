@@ -1,0 +1,40 @@
+{
+  "question_number": 40,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies that G2 is the epistatic transcription factor and that the interaction between G1 and G3 is gene redundancy. This aligns best with the experimental data, making option A the most plausible choice despite a minor inaccuracy in the option's third clause."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies G2 as the essential upstream regulator (consistent with a TF) and recognizes G1/G3 functional redundancy based on the severe g1g3 double phenotype; other options misassign the TF or invoke unsupported notions (pleiotropy/same promoter)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 correctly identifies G2 as the transcription factor based on its epistatic effects, and accurately recognizes the genetic redundancy between G1 and G3. The reasoning is sound and matches the experimental evidence."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most accurate interpretation: G2 as the upstream transcription factor due to its knockout resulting in complete loss of resistance that masks other mutations, and G1/G3 showing redundancy as their double mutant has a synergistically worse phenotype than expected from additive effects. This aligns best with the data and option A, despite the potentially confusing epistasis clause in the option."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

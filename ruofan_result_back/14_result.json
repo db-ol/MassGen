@@ -1,0 +1,47 @@
+{
+  "question_number": 14,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the answer and provides a very clear, well-structured explanation that separates the thermodynamic and kinetic aspects of the question, making the reasoning easy to follow."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct answer with concise, accurate reasoning and proper JSON-only format that follows the user’s instructions."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive answer with proper citations from web search results, explaining both the thermodynamic aspect (standard reduction potentials) and kinetic aspect (ORR kinetics in different pH conditions) with supporting evidence from multiple sources."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a comprehensive answer with citations from search results, confirming the thermodynamic and kinetic aspects thoroughly."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

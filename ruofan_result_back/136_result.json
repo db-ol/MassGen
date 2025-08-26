@@ -1,0 +1,43 @@
+{
+  "question_number": 136,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identified the product and the reaction pathway. Agent 1's answer is chosen as the best because its reasoning is broken down into clear, well-explained steps, making the complex analysis very easy to follow."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and detailed explanation, clearly outlining each step of the reaction sequence and emphasizing the key role of heat in driving the dehydration to form the conjugated product. The analysis is thorough and well-structured."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies the starting material from NMR, applies diazotization → phenol formation → base/heat self-aldol condensation with dehydration, and selects option B. Also the only response that adheres strictly to the required JSON-only format."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a concise yet detailed reasoning that correctly identifies the starting compound, explains the reaction sequence, acknowledges the intermediate (option C), and justifies the dehydration to the final product under heating conditions."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

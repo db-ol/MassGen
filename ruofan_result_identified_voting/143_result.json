@@ -1,0 +1,45 @@
+{
+  "question_number": 143,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "This agent correctly identifies the answer and provides the most thorough reasoning. It accurately describes the tandem aza-Cope/Mannich cyclization mechanism and crucially includes the detail about the chair-like transition state, which explains the specific stereochemical and regiochemical outcome of the reaction."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a detailed mechanistic analysis with citations, emphasizing the chair-like transition state and stereoselectivity, leading to the correct product D."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Chooses D with clear, mechanism-grounded reasoning that correctly identifies the 1,5-diene aza‑Cope and resulting 3H tautomer and saturation pattern. More precise and internally consistent than others (grok4 has inconsistencies; gemini is vaguer; claude adds unnecessary citations)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the clearest and most concise mechanistic explanation of the aza-Cope rearrangement followed by Mannich cyclization, correctly identifying the 1,5-diene system and the specific product formation with proper chemical reasoning"
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

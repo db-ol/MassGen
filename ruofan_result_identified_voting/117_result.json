@@ -1,0 +1,48 @@
+{
+  "question_number": 117,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and sound reasoning. Gemini2.5pro's explanation is particularly clear, breaking down the Stork enamine synthesis into its constituent steps (enamine formation, Michael addition, hydrolysis) in a logical and easy-to-follow manner."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and comprehensive reasoning, explaining the entire Stork enamine synthesis mechanism step by step, including why TsOH is preferred and the structure of the product."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct explanation identifying TsOH as the suitable acid for enamine formation and Stork Michael addition to yield 3-(2-oxocyclohexyl)propanal; directly answers A and B accurately."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "All agents provided the correct answer B, but claudesonnet420250514 gave the most comprehensive explanation with detailed mechanistic reasoning, appropriate use of citations, and clear discussion of why TsOH is preferred over HCl as the acid catalyst."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

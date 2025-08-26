@@ -1,0 +1,44 @@
+{
+  "question_number": 94,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a perfect analysis of the stereochemical outcomes of the reaction. It correctly identifies the product, the creation of new chiral centers and a double bond, and correctly deduces that the question asks for the number of separable fractions (4), which includes racemic mixtures and meso compounds. The reasoning is flawless and very clearly explained."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and accurate analysis. Correctly identifies that the self-metathesis produces 3,6-dimethyloct-4-ene with both chiral centers and E/Z isomerism, properly accounts for all possible coupling combinations (R+R, S+S, R+S), and correctly interprets \"possible products\" as separable fractions rather than individual stereoisomers. The answer of 4 separable products is chemically sound and well-reasoned."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a correct and concise reasoning for choosing 4 as the number of separable products, accurately distinguishing between meso and chiral forms for E and Z isomers."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "gpt5",
+          "reason": "Gemini provided the correct choice (C) with clear stereochemical reasoning and adhered to the required pure JSON output format, unlike others. The count of 4 products is the most appropriate interpretation for separable products in this metathesis reaction."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

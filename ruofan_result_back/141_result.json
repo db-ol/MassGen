@@ -1,0 +1,47 @@
+{
+  "question_number": 141,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most thorough and well-structured explanation, breaking down the reaction and the concept of IHD clearly. The use of citations further strengthens the answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with detailed step-by-step reasoning, explains the reaction mechanism clearly, and includes proper citations while maintaining accuracy throughout"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct chemistry and IHD reasoning, concise and entirely in the required JSON format. It states that HI/red P reduces all pi bonds and carbonyls leaving only the ring, so IHD = 1 (answer C)."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Provides the molecular formula of the product and explicitly calculates the IHD, offering a clear and verifiable confirmation of the answer."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

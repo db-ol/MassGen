@@ -1,0 +1,44 @@
+{
+  "question_number": 50,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the physical principles, including calculating the Lorentz factor and the mean decay length. Crucially, it recognizes the ambiguity in the phrase 'observe at least 30% of the decays'. It first tests a literal interpretation, notes it doesn't match the options, and then tests a plausible alternative interpretation (related to ln(3)) that provides an exact match for one of the answers. This demonstrates a robust problem-solving approach suitable for multiple-choice questions where the intended calculation might be non-obvious."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed reasoning, acknowledging the ambiguity in the problem statement and explaining why the calculation using ln(3) matches option B exactly, while considering relativistic approximations."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Clear, correct decay-length formulation using P(ℓ ≥ d) = exp(-d/(βγcτ0)) and solving for d at 30%. Minor rounding slip, but it reaches option B with sound reasoning and uses the given 30% rather than approximating to 1/3."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent3 provides the most accurate and concise solution with correct physics principles, proper use of the exponential decay formula, and arrives at the exact numerical answer without unnecessary complexity or approximation errors."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

@@ -1,0 +1,47 @@
+{
+  "question_number": 144,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the answer and provided solid reasoning. Grok4's explanation is marginally the most complete as it explicitly mentions all the relevant factors influencing nucleophilicity in this context: charge, basicity, polarizability, solvation, and steric hindrance."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct answer (D) with concise, accurate reasoning addressing aqueous (protic) solvent effects, polarizability of sulfur, resonance stabilization of carboxylates, and steric effects of the alkoxide. Clear and complete."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provided the most comprehensive analysis with proper citations supporting each step of the nucleophilicity ranking, demonstrating thorough research and clear explanation of the underlying chemical principles"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provided a detailed reasoning with citations from search results, confirming the nucleophilicity order based on principles like polarizability, charge delocalization, and comparisons between anionic and neutral species, accurately selecting option D."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

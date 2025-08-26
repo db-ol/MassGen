@@ -126,10 +126,13 @@ def process_message(
     else:
         api_key_val = api_key
 
+    # print(f"Using XAI API Key: {api_key_val}")
+
     if not api_key_val:
         raise ValueError("XAI_API_KEY not found in environment variables")
 
     client = Client(api_key=api_key_val)
+
 
     # Handle backward compatibility for old tools=["live_search"] format
     enable_search = False
@@ -186,6 +189,8 @@ def process_message(
             "search_parameters": search_parameters,
         }
 
+        print("111111")
+
         # Add optional parameters only if they have values
         if temperature is not None:
             chat_params["temperature"] = temperature
@@ -197,6 +202,8 @@ def process_message(
             chat_params["tools"] = api_tools
 
         chat = client.chat.create(**chat_params)
+
+        print("222222")
 
         for message in messages:
             role = message.get("role", None)
@@ -213,6 +220,8 @@ def process_message(
             elif message.get("type", None) == "function_call_output":
                 content = message.get("output", None)
                 chat.append(tool_result(content))
+
+        print("333333")
 
         if stream:
             return chat.stream()

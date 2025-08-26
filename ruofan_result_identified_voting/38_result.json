@@ -1,0 +1,39 @@
+{
+  "question_number": 38,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the radiation from an oscillating spheroid as electric quadrupole radiation. It accurately determines the angular dependence of the radiated power to be proportional to sin²θ cos²θ. The agent's calculation of the fraction of maximum power at θ = 30° is correct (3/4). Furthermore, it correctly identifies the wavelength dependence for electric quadrupole radiation as λ⁻⁶. This comprehensive and accurate analysis leads to the correct answer, B."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies quadrupole radiation for an axisymmetric oscillating spheroid, uses the sin^2θ cos^2θ (or sin^2 2θ) pattern to get a 3/4 fraction at 30°, and the λ^-6 scaling for quadrupole radiation; selects option B accurately."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "The answer correctly identifies this as quadrupole radiation due to the spheroidal symmetry, accurately calculates the angular dependence as sin²θ cos²θ, properly determines the fraction 3/4 at θ=30°, and correctly identifies the λ⁻⁶ wavelength dependence for quadrupole radiation. The reasoning is thorough and mathematically sound."
+        },
+        {
+          "voter": "grok4",
+          "reason": "The answer correctly identifies the radiation as quadrupole, accurately calculates the power fraction at 30° as 3/4 based on the sin²θ cos²θ distribution, and determines the wavelength dependence as λ^{-6}, matching option B."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 1,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

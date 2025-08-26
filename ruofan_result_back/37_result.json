@@ -1,0 +1,43 @@
+{
+  "question_number": 37,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly solve the problem using the Divergence Theorem. Agent 1 provides a very clear and comprehensive explanation, noting the singularity at the origin, the application of Gauss's law, and a concise calculation of the resulting flux."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and detailed explanation, clearly explaining the singularity behavior, the application of divergence theorem, and the physical interpretation with the Dirac delta function, while maintaining mathematical rigor throughout"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly applies Gauss’s theorem and the delta-function interpretation, computes the flux cleanly, and gives the correct, concise result 4π (option C)."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a clear and detailed computation of the flux integral using spherical coordinates, along with the delta function explanation, addressing the query comprehensively."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

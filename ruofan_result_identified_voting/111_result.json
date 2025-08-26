@@ -1,0 +1,43 @@
+{
+  "question_number": 111,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies that an Intramolecular Diels-Alder (IMDA) reaction is required and correctly selects option B. The reasoning is sound, accurately breaking down the precursor in option B to show how it would form the target molecule's 6,6-fused ring system with the propyl and ester substituents in the correct positions. It correctly dismisses the other options, even if the specific reason for dismissing D is slightly imprecise (it does have a 1,3-diene, but it would give the wrong regioisomer)."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies option B as the appropriate IMDA trienoate precursor; notes that D lacks a 1,3-diene and that A/C are unsuitable intermolecular combinations. Clear and accurate reasoning aligned with the target structure."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Better analysis of stereochemical requirements for IMDA reaction with literature support showing E-geometry is preferred for octahydronaphthalene formation, and more thorough consideration of orbital overlap requirements"
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer correctly identifies option D as the starting material for the IMDA reaction, provides detailed reasoning supported by literature citation, and addresses weaknesses in other options. The competing answer from gpt5 contains an error in dismissing D."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

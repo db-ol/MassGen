@@ -1,0 +1,44 @@
+{
+  "question_number": 161,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "grok4": 2
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The reasoning is perfectly correct and concise. It correctly identifies that the observed peak wavelengths being equal implies a difference in intrinsic temperatures due to the Doppler effect on Star_2. It correctly applies the non-relativistic Doppler shift and the Stefan-Boltzmann law to arrive at the right answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Correctly identified that the Doppler effect from Star_2's radial velocity affects the temperature ratio calculation, leading to the accurate answer of ~2.23. The reasoning was concise and mathematically sound."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Chooses D and correctly accounts for Doppler shift due to Star_2’s 700 km/s recession using the relativistic formula, then applies L ∝ R^2 T^4 to get ~2.229. Clear, precise, and addresses the mass irrelevance."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Grok4 provides the correct answer with precise relativistic Doppler shift calculation, accounting for the redshift effect on the observed peak wavelength, leading to the luminosity ratio of approximately 2.23. This addresses the original message accurately, while Claude missed the Doppler effect."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

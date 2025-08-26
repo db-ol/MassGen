@@ -1,0 +1,42 @@
+{
+  "question_number": 122,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents correctly identify the product and the mechanism. Agent 1's reasoning is slightly more detailed and breaks down the concepts of tautomerization and the nucleophilic role of the enol, which is beneficial for understanding."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive answer with detailed mechanistic explanation, proper citations, and clear step-by-step reasoning while maintaining accuracy throughout"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a more detailed explanation of the mechanism, including tautomerization and acid-catalyzed α-bromination, addressing the reaction comprehensively and correctly identifying option B as the major product."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct chemistry (acidic α-bromination of an enol to give the α-bromoketone at C-2) and already in the required JSON-only format without extraneous text."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

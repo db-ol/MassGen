@@ -1,0 +1,47 @@
+{
+  "question_number": 117,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides the most detailed and comprehensive explanation of the reaction mechanism. It correctly identifies all steps of the Stork enamine synthesis, explains the role of each reactant and catalyst, and clearly justifies why the chosen option is correct while the others are not."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most comprehensive and step-by-step reasoning, explaining the mechanism, catalyst preference, and why the product is the hydrolyzed form, directly addressing the original message's query and misconceptions."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct identification of the Stork enamine sequence with appropriate choice of TsOH and the correct final product. It clearly explains why HCl is less favorable (over-protonation suppressing enamine formation). Minimal fluff, directly answers both parts."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive answer with detailed citations, thorough mechanistic explanation, and clear distinction between why TsOH is preferred over HCl and why the final product is the hydrolyzed ketone rather than the iminium intermediate"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

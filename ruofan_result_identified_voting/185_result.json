@@ -1,0 +1,42 @@
+{
+  "question_number": 185,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies that the spectrum remains continuous due to the multi-body final state and that the endpoint increases because replacing two massive particles (V) with a single massless particle (M) reduces the total rest mass of the final products, thus increasing the total available kinetic energy for the decay."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Selects the correct option (B) and clearly explains both aspects: spectrum remains continuous due to multi-body final state and endpoint increases because a massless particle can carry arbitrarily little energy compared to two massive V’s. Concise and aligned with decay kinematics."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most thorough and accurate physics analysis, correctly identifying that the spectrum remains continuous due to multi-body kinematics and the endpoint increases because replacing two massive V particles with one massless M particle reduces the minimum energy requirement for the V/M system, leaving more energy for the E particles"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a clear and detailed explanation distinguishing the continuity of the spectrum due to multi-body decay and the increase in endpoint energy because the massless M requires less minimum energy than the two presumably massive V particles, aligning with the physics of the decay processes."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

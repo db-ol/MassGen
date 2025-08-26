@@ -1,0 +1,48 @@
+{
+  "question_number": 151,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents provided the correct answer and sound reasoning. I am voting for gemini2.5pro because its explanation is the most detailed and walks through each step of the physics and calculation very clearly, making it easy to understand."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct application of T ∝ P^{-1/3}, computes (3.5/2)^{-1/3} ≈ 0.83, matching option C with clear reasoning."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive step-by-step explanation while maintaining accuracy, making the solution clear and educational"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a clear step-by-step reasoning with explicit calculations of relative distances and temperature ratio, making it comprehensive and easy to follow."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

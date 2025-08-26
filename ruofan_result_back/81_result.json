@@ -1,0 +1,43 @@
+{
+  "question_number": 81,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the mechanism involving protonation followed by two competing intramolecular cyclization pathways (one direct, one after a 1,2-methyl shift). The reasoning is explained in a clear, step-by-step manner, and it accurately predicts the two products listed in option C, which explains the two spots observed on TLC."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-structured explanation, clearly outlining the step-by-step mechanism, explaining why two products form, and directly addressing why this mechanism is more consistent with the TLC observation than alternatives. The reasoning is thorough and pedagogically clear."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed and clear explanation of the carbocation mechanism, rearrangement, and intramolecular cyclization leading to the two products in option C, effectively addressing the observation of two new TLC spots."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 gives the correct choice (C) with plausible mechanistic reasoning and, importantly, complies with the user’s required pure JSON output, unlike the others."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

@@ -1,0 +1,39 @@
+{
+  "question_number": 95,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 4
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent's reasoning is comprehensive and accurate. It correctly interprets all the provided spectral data (IR and 1H NMR) to deduce the structural features of the unknown compound. It correctly identifies the primary amine, the ethyl ester group, and the para-disubstituted benzene ring. Furthermore, it provides clear and correct reasons for eliminating each of the other options. The final conclusion is well-supported by the evidence."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies IR N–H stretches (primary amine) and ester C=O at ~1720 cm⁻¹, matches NMR ethyl group (t at 1.2, q at 4.5), NH2 broad singlet (~4.0), and para-disubstituted aromatic pattern (two 2H doublets). Concludes A: ethyl 4-aminobenzoate, and rules out amides and propionate correctly."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides comprehensive and accurate spectroscopic analysis, correctly identifies all key features (primary amine IR stretches, ester carbonyl, ethyl ester NMR pattern, para-disubstituted benzene), and systematically eliminates incorrect options with valid chemical reasoning."
+        },
+        {
+          "voter": "grok4",
+          "reason": "The reasoning provided is comprehensive, accurately interprets the IR and NMR data, and correctly eliminates the other options based on mismatches in functional groups, proton environments, and spectral features."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 1,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "grok4",
+  "true_answer": "A"
+}

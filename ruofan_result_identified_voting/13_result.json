@@ -1,0 +1,43 @@
+{
+  "question_number": 13,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "grok4": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provide the correct answer and follow the same correct logical steps. The reasoning is sound, involving setting up the equilibrium expression for the formation of the Ca-EDTA complex, making a valid approximation because the formation constant is very large, and then accurately solving for the calcium ion concentration. There is no need for a new answer as the existing ones are excellent."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both answers are correct and arrive at the same result, but claudesonnet420250514 provides a slightly more detailed step-by-step explanation of the equilibrium chemistry and the assumptions made"
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly applies the formation constant, sets up equilibrium with [CaEDTA] ≈ 0.02 M, solves x^2 = 0.02/(5×10^10) to get [Ca2+] ≈ 6.3×10^-7 M (option A). Clear and accurate."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides a precise calculation and clear reasoning that directly addresses the question, matching option A effectively."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

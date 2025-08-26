@@ -1,0 +1,43 @@
+{
+  "question_number": 112,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the answer and provides a detailed, accurate step-by-step reasoning. It correctly notes the unusual regioselectivity of the epoxide opening reaction and offers a plausible mechanistic explanation, which the other agent failed to do."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Both agents chose D, but gemini2.5pro provided clearer stepwise reasoning, correct reagent formation, and plausibly rationalized the atypical regioselectivity needed to match product D. Despite minor assumptions, it better addresses the original question and yields the correct option."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Gemini's reasoning accurately explains the structure, the epoxidation, and the unusual regioselectivity in epoxide opening due to possible chelation, leading to product D. It correctly matches the carbon count and name. Claude's reasoning contains errors in carbon counting and inconsistency in regioselectivity while still choosing D."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provided the clearest and most systematic mechanistic analysis with proper citations, correctly identifying the epoxidation step, Gilman reagent formation, and regioselective epoxide opening to arrive at the correct answer D"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

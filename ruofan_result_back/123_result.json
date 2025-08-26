@@ -1,0 +1,44 @@
+{
+  "question_number": 123,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gemini2.5pro": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the four-step reaction sequence: 1) nucleophilic substitution to form an alcohol, 2) oxidation to a ketone, 3) Wittig reaction to an alkene, and 4) an acid-catalyzed rearrangement. It correctly deduces that the final step is a Wagner-Meerwein rearrangement involving a 1,2-methyl shift to form a more stable tertiary carbocation, which then eliminates a proton. This mechanism correctly predicts the formation of a product with a 3a-methyl and a 5,5-gem-dimethyl group, which corresponds to option A. The agent's reasoning is the most thorough as it compares different potential mechanisms and justifies why the Wagner-Meerwein rearrangement is the most chemically sound pathway."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with literature citations supporting Wagner-Meerwein rearrangements, detailed mechanistic explanation, and correctly identifies the consensus answer A with strong chemical reasoning"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a comprehensive evaluation of other agents' answers, incorporates literature-like citations for the mechanism, and arrives at a well-reasoned conclusion supporting option A with a clear summary in JSON format."
+        }
+      ],
+      "gemini2.5pro": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, chemically consistent mechanism: hydrolysis → PDC oxidation → Wittig methylenation → TsOH-promoted protonation and 1,2-methyl shift giving gem-dimethyl at C5 and retention of 3a-methyl, matching option A. Clearer and more defensible than ring-contraction proposal."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

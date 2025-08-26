@@ -1,0 +1,45 @@
+{
+  "question_number": 76,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "This agent provides the correct answer and the most thorough and accurate reasoning. It correctly identifies the point groups of all the options, explaining why A, C, and D are incorrect. Its explanation for why triisopropyl borate has C3h symmetry is detailed and chemically sound, noting that the conformation of the isopropyl groups breaks the perpendicular C2 axes found in higher symmetry D3h molecules. It also supports its reasoning by referencing similar molecules, which adds to the quality of the explanation."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and accurate reasoning, citing structural similarities to known C3h molecules and explaining why the asymmetry in triisopropyl borate prevents C2 axes, making it C3h, while correctly identifying symmetries of others."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "It correctly identifies triisopropyl borate as C3h and distinguishes the others (quinuclidine C3v; the planar polycyclic options D3h). The reasoning is concise and accurate without dubious claims."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "GPT5 correctly identified triisopropyl borate as having C3h symmetry with clear reasoning about the structural requirements: C3 axis, σh plane, but no perpendicular C2 axes due to the asymmetric isopropyl groups. This analysis aligns with the search results showing boric acid and related compounds as C3h examples."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

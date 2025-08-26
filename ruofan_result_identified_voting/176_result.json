@@ -1,0 +1,43 @@
+{
+  "question_number": 176,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 3
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provide the correct answer and a correct, albeit different, line of reasoning. Agent gemini2.5pro's response is chosen because it gives a slightly more detailed conceptual explanation of the underlying physics (Larmor precession), which is very helpful for understanding the result. Agent gpt5's answer is also excellent, providing a more mathematical and direct explanation."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct application of Larmor precession with Hamiltonian H = -γBS_y and explicit form ⟨S_z(t)⟩ = (ħ/2) cos(γBt). Clear and directly addresses the asked oscillation frequency without irrelevant placeholders."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents give correct answer B with sound physics reasoning, but GPT-5 provides more complete mathematical derivation showing explicit time dependence of the oscillation"
+        },
+        {
+          "voter": "grok4",
+          "reason": "GPT5 provides a concise and precise quantum mechanical derivation, including the explicit form of ⟨S_z(t)⟩, directly justifying the oscillation frequency as γ B."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

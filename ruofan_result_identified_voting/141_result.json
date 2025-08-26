@@ -1,0 +1,48 @@
+{
+  "question_number": 141,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 1,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the starting material's IHD, the powerful reducing nature of Red P/HI which saturates all double bonds (C=C and C=O), and correctly deduces that the only remaining source of unsaturation is the ring itself, leading to a final IHD of 1. The reasoning is the most detailed and accurate among the correct options."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct answer (IHD = 1) with clear, concise reasoning and proper JSON-only output matching the required format; no extraneous content."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive answer with proper citations from search results, clearly explaining that red P/HI is described as \"daddy of all reducing agents\" that reduces all functional groups including C=C double bonds, leaving only the ring structure (IHD=1)"
+        },
+        {
+          "voter": "grok4",
+          "reason": "This agent's answer is the most comprehensive, incorporating search results with citations to confirm that red phosphorus/HI reduces all functional groups, including C=C bonds, leading to an IHD of 1 for the product."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}
