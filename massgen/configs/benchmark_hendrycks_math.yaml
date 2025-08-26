@@ -1,0 +1,55 @@
+# Benchmark Configuration for Hendrycks Math Level 5 Questions
+# Compares multi-agent vs single model performance
+
+benchmark:
+  name: "Hendrycks Math Level 5 Benchmark"
+  dataset: "EleutherAI/hendrycks_math"
+  question_type: "freeform"
+  max_questions: 10 # Limit for testing
+  filter_criteria:
+    level: "Level 5" # Only include Level 5 problems
+  
+  # Single Models to Test
+  single_models:
+    - name: "gpt-4o"
+      backend:
+        type: "openai"
+        model: "gpt-4o"
+      system_message: "You are a helpful AI assistant. For mathematics problems, provide your step-by-step solution and reasoning. Always end your response with your final answer enclosed in a box, like this: The answer is: \boxed{your answer here}. Provide confidence scores for your answer."
+    
+    - name: "gemini-2.5-flash"
+      backend:
+        type: "gemini"
+        model: "gemini-2.5-flash"
+      system_message: "You are a helpful AI assistant. For mathematics problems, provide your step-by-step solution and reasoning. Always end your response with your final answer enclosed in a box, like this: The answer is: \boxed{your answer here}. Provide confidence scores for your answer."
+    
+    
+    - name: "claude-3-5-haiku"
+      backend:
+        type: "claude"
+        model: "claude-3-5-haiku-20241022"
+      system_message: "You are a helpful AI assistant. For mathematics problems, provide your step-by-step solution and reasoning. Always end your response with your final answer enclosed in a box, like this: The answer is: \boxed{your answer here}. Provide confidence scores for your answer."
+
+    - name: "grok3mini"
+      backend:
+        type: "grok"
+        model: "grok-3-mini"
+      system_message: "You are a helpful AI assistant with web search capabilities. For any question involving current events, recent information, or real-time data, ALWAYS use web search first. For mathematics problems, provide your step-by-step solution and reasoning. Always end your response with your final answer enclosed in a box, like this: The answer is: \boxed{your answer here}. Provide confidence scores for your answer."
+
+  # Multi-Agent Configuration
+  multi_agent:
+    config_file: "three_agents_benchmark.yaml"
+    system_message: "You are a helpful AI assistant. For mathematics problems, provide your step-by-step solution and reasoning. Always end your response with your final answer enclosed in a box, like this: The answer is: \boxed{your answer here}. Provide confidence scores for your answer."
+  
+
+  # Metrics to Calculate
+  metrics:
+    - accuracy
+    - calibration_error
+    - confidence_scores
+  
+  # Output
+  output:
+    format: "table"
+    save_results: true
+    results_file: "benchmark_hendrycks_math_results.json"

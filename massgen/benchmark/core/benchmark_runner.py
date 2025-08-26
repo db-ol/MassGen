@@ -14,9 +14,9 @@ import os
 import re
 
 from massgen.cli import create_backend, create_agents_from_config
-from .load_dataset import HLEDatasetLoader
+from .load_dataset import DatasetLoader, HLEDatasetLoader
 
-class HLEBenchmarkRunner:
+class BenchmarkRunner:
     def __init__(self, config_path: str):
         self.config_path = config_path
         self.config = self._load_config(config_path)
@@ -24,6 +24,14 @@ class HLEBenchmarkRunner:
         self.logs = []
         self.current_questions = []
         self.judge_agent = None
+        
+    def get_benchmark_name(self):
+        """Get the benchmark name from config."""
+        return self.config['benchmark'].get('name', 'Benchmark')
+        
+    def get_dataset_name(self):
+        """Get the dataset name from config."""
+        return self.config['benchmark'].get('dataset', 'cais/hle')
         
     def _log(self, message: str):
         """Add message to logs and print to console."""
@@ -173,30 +181,38 @@ Return this exact JSON format:
                 'confidence': 0.0
             }
     
-    def load_hle_dataset(self, token: str) -> List[Dict]:
-        """Load and preprocess HLE dataset for benchmarking."""
-        self._log("📚 Loading HLE dataset...")
+    def load_dataset(self, token: str) -> List[Dict]:
+        """Load and preprocess dataset for benchmarking based on config."""
+        dataset_name = self.get_dataset_name()
+        benchmark_name = self.get_benchmark_name()
+        self._log(f"📚 Loading {benchmark_name} dataset from {dataset_name}...")
         
         # Get question type from config (default to multipleChoice for backward compatibility)
         question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
         self._log(f"📋 Question type to benchmark: {question_type}")
         
-        # Use the shared dataset loader
-        loader = HLEDatasetLoader(token)
+        # Get filter parameters if any
+        filter_params = self.config['benchmark'].get('filter_params', None)
         
-        if question_type == 'exactMatch':
-            questions = loader.load_exact_match_only()
-            self._log(f"📊 Loaded {len(questions)} exact match questions")
-        else:
-            # Default to multiple choice (existing behavior)
-            questions = loader.load_multiple_choice_only()
-            self._log(f"📊 Loaded {len(questions)} multiple choice questions")
+        # Use the generic dataset loader
+        loader = DatasetLoader(token, dataset_name)
+        # Pass the config to the loader so it can access config_name and other parameters
+        loader.config = self.config
+        
+        # Load dataset based on dataset name and question type
+        questions = loader.load_dataset_by_name(question_type, filter_params)
         
         # Limit to max_questions if specified
         max_q = self.config['benchmark'].get('max_questions', len(questions))
         limited_questions = questions[:max_q]
         
+        self._log(f"📊 Using {len(limited_questions)} out of {len(questions)} questions")
+        
         return limited_questions
+        
+    def load_hle_dataset(self, token: str) -> List[Dict]:
+        """Legacy method for backward compatibility."""
+        return self.load_dataset(token)
     
     async def benchmark_single_model(self, model_config: Dict, questions: List[Dict]) -> Dict[str, Any]:
         """Benchmark a single model on the questions."""
@@ -279,7 +295,11 @@ Return this exact JSON format:
                 extracted_answer = self._extract_answer_with_patterns(response_content, question_type)
 
                 # Simple comparison for single models
-                is_correct = extracted_answer.strip().lower() == correct_answer.strip().lower()
+                if correct_answer == "Unknown":
+                    self._log(f"    ⚠️ Warning: Correct answer is Unknown for question ID: {question['id']}")
+                    is_correct = False
+                else:
+                    is_correct = extracted_answer.strip().lower() == correct_answer.strip().lower()
 
                 if is_correct:
                     results['correct'] += 1
@@ -570,11 +590,12 @@ Return this exact JSON format:
 
     async def run_benchmark(self, token: str) -> Dict[str, Any]:
         """Run the complete benchmark."""
-        self._log("🚀 Starting HLE Lite Benchmark...")
+        benchmark_name = self.get_benchmark_name()
+        self._log(f"🚀 Starting {benchmark_name} Benchmark...")
         
         try:
             # Load dataset
-            questions = self.load_hle_dataset(token)
+            questions = self.load_dataset(token)
             self.current_questions = questions
             
             # Initialize results

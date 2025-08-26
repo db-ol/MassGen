@@ -640,9 +640,8 @@ async def run_benchmark(benchmark_config_path: str):
     """Run benchmark mode."""
     try:
         # Import benchmark runner
-        from .benchmark.core.benchmark_runner import HLEBenchmarkRunner
+        from .benchmark.core.benchmark_runner import BenchmarkRunner
         
-        print(f"🚀 Starting HLE Lite Benchmark...")
         print(f"📋 Config: {benchmark_config_path}")
         
         # Check if HF_API_KEY is available
@@ -653,7 +652,7 @@ async def run_benchmark(benchmark_config_path: str):
             return
         
         # Run benchmark
-        runner = HLEBenchmarkRunner(benchmark_config_path)
+        runner = BenchmarkRunner(benchmark_config_path)
         results = await runner.run_benchmark(token)
         runner.print_results_table()
         
