@@ -1,0 +1,44 @@
+{
+  "question_number": 115,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies the reaction as an enamine formation, which is crucial given the secondary amine starting material. Its reasoning for selecting both the aldehyde (A) and the stronger acid catalyst (B) is the most detailed and chemically accurate among all agents. Agent 1 makes a significant error by identifying the product as an imine."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most accurate and comprehensive analysis, correctly identifying this as enamine formation (not imine) from a secondary amine, properly explaining the mechanism, and giving solid reasoning for why TsOH is the better catalyst choice over acetic acid."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and accurate reasoning, correctly identifying the reaction as enamine formation from a secondary amine and aldehyde, and justifying the choice of TsOH as the stronger catalyst."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct, and JSON-only. It identifies the aldehyde as A and TsOH as the stronger, standard catalyst; also correctly rules out vinylcyclohexane due to hydroamination, matching the product’s enamine nature. Complies with the output format without extra text or code fences."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

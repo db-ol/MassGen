@@ -1,0 +1,40 @@
+{
+  "question_number": 194,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most precise calculation and the clearest step-by-step reasoning. It correctly identifies the proper time, calculates the Lorentz factor accurately, finds the dilated time, and then computes the distance, showing how the result aligns with the correct option C."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correct application of special relativity with clear identification of proper time, accurate Lorentz factor, and precise distance calculation that matches option C."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most precise and comprehensive calculation with clear step-by-step reasoning, showing exact values for the Lorentz factor, dilated time, and final distance calculation that leads to the correct answer."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most precise calculation of the Lorentz factor, dilated time, and distance, clearly explaining the special relativity concepts and matching option C accurately."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

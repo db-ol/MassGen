@@ -1,0 +1,44 @@
+{
+  "question_number": 123,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 correctly identifies the entire four-step reaction sequence. Crucially, it correctly predicts that the final acid-catalyzed step involves not just a simple rearrangement, but a significant skeletal rearrangement driven by the relief of ring strain in the cyclobutane ring, leading to the formation of the cyclopenta[c]pentalene framework, which matches option D."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 3 correctly identifies D as the rearranged cyclopenta[c]pentalene product and succinctly explains the key TsOH-promoted carbocationic rearrangement after methylenation. Other answers either choose the wrong option or misinterpret the final step."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent3 correctly identifies the critical Wagner-Meerwein rearrangement with skeletal reorganization that relieves ring strain, converting the cyclobutane-containing framework to the cyclopenta[c]pentalene system in option D. This mechanistic insight is essential and distinguishes the correct answer from simpler rearrangements that would retain the original strained framework."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent4 offers the most comprehensive and detailed reasoning, incorporating mechanistic insights into the acid-catalyzed rearrangement involving ring expansion to relieve strain in the cyclobutane system, correctly identifying product D while addressing weaknesses in conciseness from other answers choosing D."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

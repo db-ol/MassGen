@@ -1,0 +1,41 @@
+{
+  "question_number": 50,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most detailed and clear step-by-step derivation. It correctly calculates the Lorentz factor, determines the mean decay length in the lab frame, and properly applies the exponential decay law to find the resolution required to observe at least 30% of the decays. The final conclusion correctly identifies the closest option."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correctly computes gamma, mean decay length, applies the exponential decay law for 30% threshold, solves for distance, and selects the closest option B with clear, accurate steps."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most comprehensive, step-by-step solution with clear mathematical derivation of the exponential decay condition, proper calculation of all intermediate steps, and correct identification of the answer. The explanation is both rigorous and pedagogically excellent."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed step-by-step reasoning, correctly applies the exponential decay law for the fraction of particles traveling beyond the resolution distance, and identifies the closest matching option despite a slight numerical discrepancy."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

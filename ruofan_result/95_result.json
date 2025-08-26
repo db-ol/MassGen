@@ -1,0 +1,39 @@
+{
+  "question_number": 95,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents correctly identify the compound and provide sound reasoning. Agent1's reasoning is slightly more detailed and explicit, particularly in contrasting the expected spectral data for the incorrect options (e.g., specific wavenumber ranges for amide C=O, expected chemical shift for option C), which makes the justification slightly stronger and more comprehensive."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent1 provides the most complete, specific justification: correctly interprets the two N–H stretches as a primary amine, assigns the 1720 cm⁻¹ as an ester (contrasting with amide range), explains the ethyl ester quartet/triplet positions, identifies the para AA′BB′ aromatic pattern, and explicitly rules out B, C, and D with concrete spectral mismatches."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "More comprehensive analysis with explicit contrasts to incorrect options, providing stronger justification for the correct answer"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a more detailed and comprehensive reasoning, explicitly explaining the IR frequencies for amine vs. amide, the NMR shifts for the ethyl ester, the aromatic splitting pattern, and why each incorrect option fails to match the data."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gpt5",
+      "agent2": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

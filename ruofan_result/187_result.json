@@ -1,0 +1,47 @@
+{
+  "question_number": 187,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides a correct and complete solution. The reasoning is presented in a clear, step-by-step format within the JSON, making it very easy to understand the derivation of the answer."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, step-by-step reasoning in the required JSON format, correctly applying the Heisenberg uncertainty principle and the energy-momentum relation, leading to the accurate answer of approximately 10^{-16} J, which matches option A. This comprehensively addresses the original query."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct physics, concise derivation, and fully compliant with the “only JSON” output requirement (no extra text or code fences)."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most comprehensive and well-structured solution with clear step-by-step reasoning, proper citation of physics principles, and detailed calculations that are easy to follow while arriving at the correct answer."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

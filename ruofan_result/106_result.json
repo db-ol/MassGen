@@ -1,0 +1,40 @@
+{
+  "question_number": 106,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most thorough chemical reasoning. It correctly identifies two consecutive endo-selective Diels-Alder reactions and, critically, also accounts for the facial selectivity of the second addition (attack from the less-hindered face), which is essential for correctly determining the final stereochemistry."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent2’s answer is JSON-only, complies with the required format, and provides the most specific stereochemical rationale (endo–endo selectivity and facial approach) to distinguish D from C. The other answers either include extraneous text (agent1) or choose a likely incorrect stereoisomer without detailed justification (agent3)."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most complete and accurate mechanistic analysis, correctly identifying both endo selectivity and crucial facial selectivity that determines the final stereochemistry, with proper JSON formatting"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2's answer provides the most detailed and chemically accurate reasoning, incorporating both endo selectivity and the critical facial selectivity from the less-hindered face, which determines the specific stereoisomer. This addresses the original query comprehensively by explaining why option D is the major isomer."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

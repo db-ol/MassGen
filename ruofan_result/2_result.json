@@ -1,0 +1,44 @@
+{
+  "question_number": 2,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides a perfectly clear, step-by-step reasoning that is easy to follow, while also strictly adhering to the requested JSON-only output format. It combines the clarity of Agent 1 with the proper formatting of Agent 3."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 correctly solves the physics problem, provides comprehensive step-by-step reasoning, and most importantly adheres to the strict JSON-only output format requirement specified in the original message"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, step-by-step reasoning that correctly solves the problem, ignores extraneous information, and adheres strictly to the required JSON format."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct physics (Teq ∝ a^{-1/2}, Kepler’s law), clean JSON-only output, and notes the standard assumption about negligible planet masses."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

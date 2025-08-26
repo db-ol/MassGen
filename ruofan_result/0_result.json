@@ -1,0 +1,46 @@
+{
+  "question_number": 0,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the physical principle of gravitational compression and systematically applies it to each option. The reasoning is clear, logical, and directly leads to the correct answer without any extraneous information."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most systematic and comprehensive analysis, clearly explaining the physics of gravitational compression and methodically evaluating each option with correct reasoning leading to the right answer"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct: identifies that a and b have ~Earth density and explains gravitational compression, correctly selecting the 5-Earth-mass Earth-like planet as densest."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed reasoning, including density estimates based on mass-radius relations, systematic comparison, and clear mapping to the answer choices, making it the most comprehensive and educational response."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

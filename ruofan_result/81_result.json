@@ -1,0 +1,41 @@
+{
+  "question_number": 81,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 correctly identifies the reaction as an acid-catalyzed intramolecular electrophilic substitution. The reasoning accurately describes how the initial protonation of the alkene leads to a carbocation that can undergo two different cyclization pathways (one direct, one after rearrangement) to form the two products listed in option C, which are a six-membered chromane and a five-membered dihydrobenzofuran. This is the most plausible mechanism for the given reactant and conditions, making the reasoning superior to agents 1 and 2 who proposed a less likely intermolecular addition."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 3 correctly identifies the cationic cyclization pathways of an allyl aryl ether under HBr, leading to a chromane and a dihydrobenzofuran, which explains two TLC spots. Options A and D rely on intermolecular HBr addition (anti-Markovnikov requires peroxides) and B requires unlikely cleavage/Friedel–Crafts. Thus C is the most plausible."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 3 provides the most chemically accurate analysis, correctly identifying this as an acid-catalyzed intramolecular cyclization reaction rather than simple HBr addition. The explanation of competing C-cyclization vs O-cyclization pathways leading to chromane and dihydrobenzofuran products is mechanistically sound and best explains the formation of two distinct products observed on TLC."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides the most accurate and comprehensive reasoning for the formation of two cyclized products via acid-catalyzed intramolecular cyclization, which aligns with the observed TLC results and the chemistry of allyl aryl ethers under acidic conditions."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

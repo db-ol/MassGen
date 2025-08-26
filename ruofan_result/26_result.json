@@ -1,0 +1,43 @@
+{
+  "question_number": 26,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides a comprehensive and clear step-by-step calculation. It accurately determines the moles of H+ and OH-, identifies the limiting reactant, and correctly calculates the enthalpy of neutralization, arriving at the correct option. The detailed explanation makes it the most helpful and educational response."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-formatted explanation with clear step-by-step calculations, proper unit conversions, and detailed reasoning while arriving at the correct answer A (-2.72 kcal)"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 offers a detailed, accurate calculation of the limiting reactant and enthalpy of neutralization, ignoring the precipitation effect as it leads to the matching option A, consistent with the problem's likely intent and multiple-choice options."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct calculation and result; adheres strictly to the requested JSON-only format, unlike others. Uses proper limiting reagent logic and standard neutralization enthalpy to yield option A (-2.72 kcal)."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

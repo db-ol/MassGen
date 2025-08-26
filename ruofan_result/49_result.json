@@ -1,0 +1,43 @@
+{
+  "question_number": 49,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides the most comprehensive and well-supported answer. It correctly analyzes each symmetry, uses citations to back up its claims, and clearly explains why Lorentz, Poincaré, and CPT symmetries are required while CP is not, leading to the correct answer A."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-researched answer with proper citations from SMEFT literature. The analysis correctly identifies that Lorentz symmetry, Poincaré symmetry, and CPT symmetry are fundamental requirements for SMEFT operators, while CP symmetry can be violated. The reasoning is thorough, methodical, and backed by specific references to the physics principles and literature."
+        },
+        {
+          "voter": "grok4",
+          "reason": "agent1 provides the most detailed and well-supported reasoning with citations from literature, correctly identifying that Lorentz, Poincaré, and CPT symmetries must be respected while CP can be violated, leading to the accurate answer A."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct answer with concise, accurate reasoning and proper JSON-only formatting. It identifies Lorentz and Poincaré invariance and CPT as required while noting CP can be violated. It also adheres to the user’s formatting constraint better than agent1."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 99,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identified the final product and the reaction mechanism. Agent1's answer is chosen because it provides the most detailed, step-by-step breakdown of the synthesis, clearly identifying each intermediate and the reasoning for each transformation. This detailed explanation is superior for educational and verification purposes."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive step-by-step analysis with clear identification of each intermediate and detailed reasoning for each transformation, making it the most educational and thorough response."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed step-by-step explanation of each reaction and intermediate, making it the clearest and most comprehensive response that fully addresses the synthesis problem."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "It correctly identifies each intermediate and the final product, invokes the appropriate Gomberg–Bachmann coupling reasoning, and delivers the response in the required pure JSON format without extra text."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 197,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents arrive at the correct answer through correct calculations. However, Agent 1 includes a factually incorrect statement about the area of a pseudosphere. Agent 2 and Agent 3 are both excellent, but Agent 2's response is concise, fully correct, and clearly explains the divergence in its reasoning."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 is correct, concise, and outputs JSON only as required. The integral is set up properly and shown to diverge. Agent1 and Agent3 include extra text (violating the JSON-only requirement), and Agent1 contains a misleading statement about surface area. Therefore, Agent2 is the best current answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most concise and mathematically accurate answer without any misleading statements, correctly derives the divergent integral, and follows the required JSON format perfectly."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed step-by-step calculation, correctly concludes the area is infinite, and additionally notes the distinction from the standard pseudosphere area, showing deeper understanding while addressing the given metric accurately."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "C"
+}

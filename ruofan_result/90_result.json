@@ -1,0 +1,44 @@
+{
+  "question_number": 90,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly identified the reaction sequence and the resulting symmetric structure of the final product, leading to the correct answer. Agent 1 provides the most detailed and well-structured breakdown of each reaction step, making the reasoning exceptionally clear and comprehensive."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive analysis with literature citations supporting each reaction step, demonstrating thorough understanding of the mechanisms while arriving at the correct answer through sound chemical reasoning."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed step-by-step analysis with citations from references, ensuring accuracy in the reaction mechanisms and correctly concluding the symmetric structure leads to 3 13C-NMR signals."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate, concise, and fully correct mechanistic reasoning leading to the symmetric tetraethyl-substituted alkene and 3 unique 13C environments; minimal extraneous detail and clearly maps steps to product E."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

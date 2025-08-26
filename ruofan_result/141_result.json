@@ -1,0 +1,43 @@
+{
+  "question_number": 141,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the effect of the strong reducing agent (HI/Red P) on all functional groups of the starting material. Its final reasoning, that the product is a saturated cyclohexane ring and thus has an Index of Hydrogen Deficiency of 1, is sound, logical, and directly answers the question."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-supported analysis. It correctly identifies all functional groups in the starting material, accurately explains the HI/Red P reduction mechanism with citations, systematically works through each transformation, properly calculates the molecular formula of the product (C₁₁H₂₂), and applies the IHD formula correctly to arrive at IHD = 1. The reasoning is thorough, scientifically sound, and well-documented."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed and comprehensive analysis of the reaction, correctly concluding that the IHD is 1 due to the remaining cyclohexane ring after reduction, despite a minor error in the molecular formula which does not affect the IHD calculation."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Provides correct answer (C) in required pure-JSON format with accurate reasoning and correct product formula (C10H20). Agent1 includes extra text and has a formula error; agent2 is correct but less specific. Agent3 best satisfies accuracy and format."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

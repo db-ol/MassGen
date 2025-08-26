@@ -1,0 +1,43 @@
+{
+  "question_number": 80,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most detailed and comprehensive reasoning for both parts of the question, explaining the chemical principles for all four compounds involved."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and well-cited analysis with detailed explanations of tautomerism and optical isomerism principles, while arriving at the correct answer"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed and comprehensive reasoning, including citations and structural explanations for tautomerism and optical isomerism, fully addressing the original question accurately."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 is correct, concise, and adheres strictly to the required JSON-only output format. The chemistry reasoning is accurate for both tautomerism (benzoquinone does not tautomerize; cyclohexane-1,3,5-trione does) and optical isomerism (methyl 2-hydroxypropanoate is chiral; dimethyl fumarate is achiral)."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

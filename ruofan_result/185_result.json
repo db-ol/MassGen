@@ -1,0 +1,44 @@
+{
+  "question_number": 185,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies that the decay remains a multi-body process, so the energy spectrum stays continuous. It also correctly reasons that replacing two massive particles (V) with a single massless one (M) reduces the total mass of the final state, thereby increasing the Q-value (total energy released) and raising the endpoint of the E particles' energy spectrum. The reasoning is physically sound and thoroughly addresses both parts of the question."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and accurate physics analysis, correctly identifying both that the spectrum remains continuous (multi-body decay) and that the endpoint increases due to reduced final-state mass increasing the Q-value. The explanation clearly addresses the fundamental physics principles involved."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a correct and detailed reasoning that the spectrum remains continuous due to the multi-body nature of the decay and that the endpoint increases because replacing two massive V particles with one massless M increases the Q-value, making more energy available."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly identifies that both decays are multi-body so the E-spectrum stays continuous, and explains that replacing two light particles with a single massless one reduces final-state rest mass, increasing the available kinetic energy and thus the endpoint. Clear, accurate, and free of distracting artifacts."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

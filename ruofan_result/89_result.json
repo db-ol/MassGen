@@ -1,0 +1,41 @@
+{
+  "question_number": 89,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 correctly identifies the answer as B and provides the most accurate and detailed reasoning for all three reactions. It correctly applies the principles of carbocation stability and migratory aptitude for each step, making its explanation the most thorough and correct among the options."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 3 selects option B and provides clear, correct mechanistic reasoning for all three substrates: cation forms at the more stabilized center, then the group with higher migratory aptitude shifts (ethyl over methyl in A; phenyl over methyl in B; anisyl over phenyl in C), yielding the products listed in option B."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 3 provides the most detailed and accurate analysis of the Pinacol rearrangement mechanism, correctly identifying that carbocation formation occurs at the most stabilized position and properly applying migratory aptitude rules for all three compounds, leading to the correct answer B."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides the most detailed and accurate reasoning for the Pinacol rearrangement products, correctly identifying carbocation stability and migratory aptitudes for all three compounds, leading to option B."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 130,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "claudesonnet420250514": 2
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 provides the correct answer and adheres strictly to the JSON format. Its reasoning is the most chemically precise, as it not only describes the overall reaction but also correctly explains the regioselectivity for the formation of 5-methylhexane-2,3-dione, a detail missing from the other agents' explanations."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 gives the correct choice (D), adheres strictly to the required JSON-only format, and offers a concise mechanistic rationale including selectivity for the methylene alpha position. It's accurate and compliant, unlike Agent1 which violates the JSON-only instruction."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and detailed mechanistic explanation with proper scientific citations, systematically analyzes each option, and presents clear reasoning for why D is correct while explaining why other options are incorrect"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed mechanistic explanation, analyzes all options thoroughly, and correctly identifies D as the answer, addressing the original question comprehensively."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

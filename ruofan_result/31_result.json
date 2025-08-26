@@ -1,0 +1,44 @@
+{
+  "question_number": 31,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent3 correctly identifies 'A' as the answer. Its reasoning is the most concise and chemically accurate, correctly describing the tandem catalysis mechanism involving a Group 6 (VIa) chromium catalyst and aluminum-based activators. It also provides the most nuanced and accurate dismissal of the other options, particularly noting that the single-reactor industrial implementation (Statement C) is not standard practice, making Statement A the more fundamental and accurate choice."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 selects A, the correct option, with clear mechanistic justification for tandem ethylene oligomerization–polymerization and correctly notes aluminum-based activators do work and that one-reactor industrial implementation is not standard. Agent1 chooses C (incorrect), agent2 implies B and C are also correct (misleading), and agent4 overstates the industrial status. Agent3 is the most accurate and balanced."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent3 provides the most accurate and mechanistically focused answer. It correctly identifies that statement A is correct because Group VIa (chromium) catalysts with aluminum-based activators like MAO are used in tandem oligomerization-polymerization systems to create regular branches from ethylene alone. It also correctly identifies that statement D is false since aluminum activators DO work in these systems, and appropriately questions whether statement C represents standard one-reactor industrial practice."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent4 provides the most accurate analysis, correctly identifying A as the true statement while explaining why B, C, and D are incorrect based on the specifics of dual catalyst systems for regular branching in ethylene polymerization. This aligns well with the available search results and addresses the original question precisely."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

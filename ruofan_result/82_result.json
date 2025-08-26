@@ -1,0 +1,41 @@
+{
+  "question_number": 82,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies all substances and mixtures involved. Its primary method for solving the problem, using the law of conservation of atoms for the disproportionation reaction (total H in X = total H in Y = 12 + 6 = 18), is the most direct and rigorous approach. The reasoning is comprehensive and logically sound, making it the superior answer."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 correctly deduces Z as cyclohexane from the 14.28% H mass fraction, identifies Y as equimolar benzene and cyclohexane, applies conservation of hydrogen in the disproportionation to conclude a+b=18, and proposes valid X components (cyclohexene and 1,4-cyclohexadiene) consistent with all constraints. Clear, complete, and correct."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 provides the most thorough and chemically accurate analysis. Correctly identifies that both components of mixture X must decolorize bromine water, properly applies conservation of mass principles, and arrives at the correct answer of 18 hydrogen atoms through sound chemical reasoning."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most comprehensive and accurate reasoning, correctly identifying mixture X as cyclohexene (C6H10) and 1,4-cyclohexadiene (C6H8), leading to a total of 18 hydrogen atoms, and properly applying conservation of hydrogen atoms in the disproportionation reaction."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

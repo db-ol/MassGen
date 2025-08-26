@@ -1,0 +1,41 @@
+{
+  "question_number": 19,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents correctly solve the problem and choose option C. However, Agent 1 provides the most detailed, step-by-step explanation that is exceptionally clear and easy to follow. It meticulously calculates all intermediate values, making the entire process transparent and verifiable."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent1 gives the correct option C with clear, step-by-step calculations (dilution, buffer via Henderson–Hasselbalch, and hydrolysis at equivalence) and matches the requested JSON output format."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most detailed and well-structured solution with clear step-by-step calculations, proper handling of all chemical concepts, and arrives at the correct answer C (4.26; 8.52) with thorough explanations that are easy to follow and verify."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a comprehensive, step-by-step explanation with precise calculations, correctly addressing the pH values at 25% titration and equivalence point, matching option C. The response is detailed and verifies the results accurately."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

@@ -4,12 +4,12 @@
 
 
 # How many jobs you want at the same time
-CONCURRENCY=3
+CONCURRENCY=8
 
-for i in 6 14; do
+for i in 154 169 177; do
   echo $i
 done | xargs -n1 -P"$CONCURRENCY" -I{} \
-  uv run python -m massgen.cli --config four_agent_test.yaml --question-number {} --identified-voting
+  uv run python -m massgen.cli --config four_agent_test.yaml --question-number {}
 
 # uv run python -m massgen.cli --config four_agent_test.yaml --question-number 10
 

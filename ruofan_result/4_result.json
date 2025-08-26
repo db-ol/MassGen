@@ -1,0 +1,44 @@
+{
+  "question_number": 4,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents arrived at the correct answer with valid reasoning. However, Agent 2 provides the most thorough and methodical explanation, explicitly deriving the relationship between the semi-major axis, planet mass, and radial velocity before performing the calculation. This makes its reasoning the clearest and easiest to follow."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most systematic and thorough derivation, clearly showing the relationship between RV amplitude, orbital distance, and equilibrium temperature. The calculation is methodical and easy to follow, arriving at the correct answer of ~0.53."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most thorough and methodical explanation, correctly deriving the semi-major axis ratio from RV data and computing the temperature ratio step-by-step, addressing the original query accurately and completely."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct physics: uses K ∝ M_p a^{-1/2}, converts Doppler shifts to K ratio, combines with mass ratio to get sqrt(a2/a1)=0.535 and T_eq ratio accordingly. Clear, minimal, and accurate."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

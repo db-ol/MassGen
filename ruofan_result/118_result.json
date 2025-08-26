@@ -1,0 +1,40 @@
+{
+  "question_number": 118,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a comprehensive and accurate analysis of both reactions. It correctly identifies that enolate formation in reaction A can only occur at the C-6 position because the C-2 position is a quaternary carbon. It then correctly deduces the complex IUPAC name for product A and the correct name for product B, leading to the correct answer."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 correctly identifies the only enolizable site and provides the correct structures and names for both products, with clear, concise mechanistic reasoning. Agent1 misassigns product A; Agent3 is also correct but gives less detailed justification. Hence Agent2 is the best current answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 correctly identifies that enolate formation must occur at C6 since C2 is quaternary (no alpha-H available), and provides the most accurate analysis of both Michael addition reactions. The structural reasoning and product naming logic are sound for both reactions A and B."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed and accurate analysis of both reactions, correctly identifying the enolate formation site for the first reaction due to the absence of alpha-hydrogen at C2, and properly naming the products considering steric factors and stability. This aligns perfectly with the correct option A."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

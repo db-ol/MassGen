@@ -1,0 +1,44 @@
+{
+  "question_number": 21,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies the molecular formula as C12H22. It then accurately counts all the bonds (9 C-C, 2 C=C, and 22 C-H). The subsequent calculation for the enthalpy of formation is performed correctly, step-by-step, resulting in 1900 kJ/mol. Finally, the conversion to kJ/g using the molar mass is also correct, leading to the right answer. In contrast, Agent 1 fails at the first step by incorrectly determining the molecular formula. Agents 3 and 4 arrive at the correct answer, but Agent 2's reasoning is the most detailed and transparent, making it the superior response."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 correctly identifies the molecular formula (C12H22), counts bonds accurately (9 C–C, 2 C=C, 22 C–H), applies the atomization/bond energy cycle to get ΔHf = 1900 kJ/mol, and properly converts to 11.44 kJ/g (option A). Clear, correct, and complete."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and accurate reasoning, correctly identifying the molecular formula as C12H22, accurately counting bonds, performing the calculation to get 1900 kJ/mol, and converting to 11.44 kJ/g, matching option A. Other correct agents are less detailed, and agent1 has an incorrect formula."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 correctly identifies the molecular formula as C11H20, accurately counts all bond types, and performs the enthalpy calculation correctly to get 11.84 kJ/g, which matches option A. The other agents incorrectly determine the molecular formula as C12H22."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

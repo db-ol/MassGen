@@ -1,0 +1,40 @@
+{
+  "question_number": 42,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most accurate and common molecular mechanism for a dominant-negative mutation in a dimeric protein. The mutant subunit interferes with the wild-type by forming a non-functional heterodimer. Targeting this defective complex for proteasomal degradation is a classic and highly plausible cellular response, which effectively leads to the loss-of-function of the wild-type protein. Agent 1's reasoning contains a flaw by incorrectly dismissing the degradation pathway as leading to a recessive phenotype. Agent 3's reasoning is also correct and similar to Agent 2's, but Agent 2 is slightly more concise and has already received multiple correct votes."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 correctly identifies the dominant-negative mechanism for a mutation in the dimerization domain: the mutant subunit still binds the wild-type, rendering the heterodimer nonfunctional and often targeting it for degradation, thereby inactivating the wild-type product. This aligns with option C. Options A, B, and D are less consistent with a dominant-negative effect."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 correctly identifies that dominant-negative mutations in dimerization domains typically work through protein degradation - the mutant forms heterodimers with wild-type that are targeted for degradation, thus inactivating the wild-type protein. This is the most accurate molecular mechanism for this scenario."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2's answer effectively addresses the question by explaining a plausible mechanism for the dominant-negative mutation, where heterodimers are targeted for degradation, leading to loss-of-function of the wild-type allele. This aligns well with common molecular phenotypes in such scenarios and distinguishes it appropriately from other options."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gemini2.5pro",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

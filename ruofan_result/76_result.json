@@ -1,0 +1,41 @@
+{
+  "question_number": 76,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 correctly identifies that triisopropyl borate (B) has C3h symmetry. Its reasoning is the most accurate, explaining that the trigonal planar BO3 core provides the C3 axis and horizontal mirror plane, while the propeller-like arrangement of the isopropyl groups breaks the C2 axes that would elevate the symmetry to D3h. The agent also correctly identifies the point groups for the other distractors (C3v and D3h)."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 3 correctly identifies triisopropyl borate as C3h and succinctly contrasts the others (quinuclidine C3v; the planar trifuran hexaones D3h). The reasoning about the BO3 core providing C3 and σh while the alkoxy groups break σv/C2 is the most accurate and consistent with point-group conventions. Other agents incorrectly select D and/or include flawed symmetry arguments."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 3 correctly identifies triisopropyl borate as having C3h symmetry. The key insight is that this molecule has a trigonal-planar BO3 core providing the C3 axis and horizontal mirror plane (σh), while the bulky isopropyl groups break the in-plane C2 axes that would otherwise make it D3h. The search results confirm that mellitic trianhydride has D3h symmetry in its planar form, making agent3's analysis the most accurate."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3's answer correctly identifies triisopropyl borate as having C3h symmetry due to the trigonal-planar core with the isopropyl groups breaking higher symmetry elements, while accurately classifying the other options. The reasoning is concise, aligns with standard chemical symmetry examples, and is supported by the current vote consensus."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

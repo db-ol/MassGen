@@ -1,0 +1,44 @@
+{
+  "question_number": 147,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the clearest and most methodically structured reasoning. It correctly identifies the key principle, calculates the energy widths, establishes a clear and correct criterion for resolution (the separation must be greater than the broader energy width), and systematically evaluates each option against this criterion."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate application of time–energy uncertainty to compute natural linewidths, clear criterion for resolution, and correct elimination of options. Concise and numerically precise; directly answers the question with sufficient justification."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, well-structured explanation with accurate calculations of energy widths using the time-energy uncertainty principle, clearly evaluates all options, and justifies why only D allows clear resolution of the states."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis with proper citations, detailed step-by-step calculations, and systematic evaluation of all options. The physics reasoning is thorough and well-explained."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

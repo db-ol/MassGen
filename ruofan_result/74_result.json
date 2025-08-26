@@ -1,0 +1,44 @@
+{
+  "question_number": 74,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the physical limit of the aperture, uses the correct formulas for the minima of a circular aperture's diffraction pattern, and clearly calculates the difference between the first and second minima. The explanation is step-by-step and exceptionally clear."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most comprehensive and pedagogically clear explanation, showing all steps from polygon limit to circular aperture, proper Bessel function application, and explicit calculation of both minima positions and their difference, making it easiest to follow and verify."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, step-by-step explanation of the transition from polygon to circle, the Airy pattern, precise calculations for minima positions, and clear computation of the angular distance, directly addressing the query accurately and comprehensively."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, precise derivation using Bessel zeros with correct mapping (apothem a = radius), small-angle approximation, and direct computation of Δθ; yields the correct option A with clear reasoning."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

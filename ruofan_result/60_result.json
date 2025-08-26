@@ -1,0 +1,47 @@
+{
+  "question_number": 60,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most complete and accurate biochemical explanation. It correctly identifies two distinct and valid reasons for the disappearance of peaks with dual crosslinking (elimination of 'phantom peaks' and epitope masking), both of which are characteristic phenomena at active promoters and enhancers."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most comprehensive and biochemically accurate explanation, covering both artifact elimination and epitope masking, directly addressing why peaks disappear at active promoters and enhancers."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise, correct, and JSON-only. Identifies HOT regions at active promoters/enhancers as the source of disappearing PFA-only phantom peaks without speculative claims."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most comprehensive and well-cited explanation, properly referencing research literature to explain phantom peaks, HOT regions, and the mechanistic basis for why peaks disappear with DSG+PFA fixation specifically at active promoters and enhancers"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

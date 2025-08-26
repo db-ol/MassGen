@@ -1,0 +1,43 @@
+{
+  "question_number": 17,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly solve the problem. Agent 1 provides the most detailed, step-by-step reasoning, which is easy to follow and verify. It correctly calculates the moles of each species, performs the neutralization reactions in the correct order (strong acid first, then weak acid), calculates the concentration of the excess strong base, and then correctly determines the pOH and pH."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and clearly explained solution with step-by-step reasoning that is easy to follow, while maintaining complete accuracy in both the chemical principles and mathematical calculations."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed and comprehensive reasoning, correctly calculating the moles, neutralization steps, and pH, addressing the original message accurately."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "All agents are correct. Agent 2 is concise, clearly computes moles (including 2 OH− per Ba(OH)2), performs neutralizations in the right order, and arrives at the correct pH with clear arithmetic."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gemini2.5pro",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

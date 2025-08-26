@@ -1,0 +1,41 @@
+{
+  "question_number": 160,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most comprehensive and accurate response. The reasoning is laid out in a clear, step-by-step manner, correctly calculating both the classical and relativistic kinetic energies and then finding the difference. This is superior to Agent 1's flawed calculation and the overly brief responses from Agents 3 and 4."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 provides a correct, clearly explained relativistic two-body decay calculation and the classical partition, yielding a 5 MeV difference. The math is accurate and well-structured compared to the others."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 provides the most comprehensive and accurate solution with clear step-by-step calculations for both classical and relativistic cases, correctly arriving at the 5 MeV difference"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, accurate calculation of both classical and relativistic kinetic energies, correctly determining the difference as 5 MeV, which matches the problem's requirements and options."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

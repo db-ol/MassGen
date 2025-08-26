@@ -1,0 +1,43 @@
+{
+  "question_number": 153,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most comprehensive answer by not only explaining why the correct option is right but also by explicitly explaining why the other options are incorrect, which adds significant value and clarity."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Most comprehensive answer that explains the correct choice thoroughly and systematically eliminates the incorrect options, with supporting citation"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 offers the most comprehensive reasoning, explaining not only why B is correct but also why the other options are incorrect, providing added clarity and depth."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 is correct, concise, and strictly follows the requested JSON-only format, clearly identifying partial fraction decomposition as the enabler of parallelism. Agent 1 includes extra non-JSON text, violating the format requirement."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

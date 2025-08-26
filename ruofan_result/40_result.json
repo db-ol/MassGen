@@ -1,0 +1,43 @@
+{
+  "question_number": 40,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The reasoning is clear, logical, and correctly breaks down the experimental results. It accurately identifies that G2 is the upstream transcription factor because any mutation involving g2 results in a complete loss of resistance (0%), masking the effects of other genes. It also correctly deduces gene redundancy between G1 and G3 by observing that the double mutant (g1g3) has a much more severe phenotype (10%) than the additive effects of the single mutants, which is the defining characteristic of this interaction. This comprehensive analysis correctly eliminates all other options."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive analysis correctly identifying G2 as the upstream transcription factor and explaining gene redundancy between G1 and G3 based on the severe double mutant phenotype compared to single mutants"
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 selects the correct option (A), provides concise reasoning that matches the data (G2 essential/upstream; G1 & G3 partial and jointly severe implying redundancy), and correctly notes the epistasis inference is weak. It also adheres strictly to the required pure JSON output, unlike agent1’s fenced block."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a clear, concise reasoning that correctly identifies G2 as the transcription factor and notes the redundancy between G1 and G3, while appropriately acknowledging that the epistasis claim isn't strongly supported by the data, making it the most balanced and accurate among the answers that all select A as the best option."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

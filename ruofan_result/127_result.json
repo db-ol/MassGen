@@ -1,0 +1,41 @@
+{
+  "question_number": 127,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies the reaction as a Cope rearrangement and accurately describes the bond shifts. It correctly determines the structure of the product by identifying the new, longer parent chain (deca-1,5-diene) and the correct positions of the methyl and ethyl substituents, leading to the correct IUPAC name and answer B."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 correctly identifies the Cope rearrangement and, crucially, determines the correct main-chain selection after the new 2–7 bond forms. Tracing the 10‑carbon path 4–3–2–7–6–5–10–11–12–13 gives double-bond locants 1 and 5 and places substituents as 4‑ethyl and 3‑methyl, matching option B. The explanation is detailed and internally consistent."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most accurate mechanistic analysis of the Cope rearrangement, correctly identifying the [3,3]-sigmatropic rearrangement, the chair-like transition state, and the specific bond changes. The detailed explanation of how the sigma bond breaks between C4-C5, forms between C2-C7, and the pi bonds shift to give 4-ethyl-3-methyldeca-1,5-diene is mechanistically sound and matches the expected outcome of this thermal rearrangement."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and accurate explanation of the Cope rearrangement, correctly identifying the product as 4-ethyl-3-methyldeca-1,5-diene (option B), including the mechanistic details, bond changes, and proper IUPAC naming process."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

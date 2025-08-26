@@ -1,0 +1,41 @@
+{
+  "question_number": 137,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 4
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but agent3 provides a very clear and detailed explanation for each of the three reactions, correctly identifying the key chemical principles at play (1,4-addition, Stork Michael addition, active methylene) and explaining why the specific products are formed."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Clear, concise, and correct. Provides the right choice (A) with accurate mechanistic reasoning for all three reactions, stays closest to the requested JSON-only format."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed and technically accurate explanation, correctly identifying all key mechanistic details including the Stork enamine addition, proper regiochemistry, and tautomeric forms"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a clear, detailed, and accurate explanation for all three reactions, correctly identifying the products and reactants while adhering closely to the required format."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

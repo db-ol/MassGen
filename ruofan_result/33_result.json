@@ -1,0 +1,40 @@
+{
+  "question_number": 33,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 4
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most comprehensive and well-structured answer. It correctly identifies the assumptions of the Mott-Gurney equation, cites its sources, and then systematically analyzes each of the multiple-choice options, clearly explaining why option B is correct and the others are not. This detailed approach is superior to the more concise answers of the other agents."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 1 gives the correct choice (B) and clearly explains why each other option is incorrect, explicitly noting drift-dominated transport, trap-free single-carrier conditions, and Ohmic (barrier-free) injection. The reasoning is thorough and precise."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most comprehensive analysis with proper citations from search results, systematically evaluating each option with clear explanations of the physical requirements for the Mott-Gurney equation's validity."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a detailed analysis, citing sources and systematically evaluating each option, making it the most comprehensive and accurate response."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

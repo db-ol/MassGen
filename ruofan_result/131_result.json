@@ -1,0 +1,41 @@
+{
+  "question_number": 131,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most comprehensive and well-reasoned answer. It correctly identifies every unknown substance by methodically working through each clue in the problem statement, explains the relevant chemical reactions, and performs the final calculation accurately. Its detailed, step-by-step approach is superior to the other correct but overly concise answers."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 provides a thorough, correct identification of all species (X = LiAlD4, Y = D2O, W = D2, G = Al(OD)3, B = D2O), checks each clue (melting point ~277 K, violent reaction, reduction of keto acid to a diol with 2 O), and computes the cumulative mass correctly (8 + 27 = 35). Other agents are either less detailed or incorrect."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most comprehensive, methodical, and correct analysis, systematically identifying all unknown substances through logical deduction and accurately calculating the cumulative atomic masses to reach the correct answer C (35)"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and accurate reasoning, correctly identifying Substance X as LiAlD₄ and calculating the cumulative atomic masses to 35, addressing all clues effectively."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

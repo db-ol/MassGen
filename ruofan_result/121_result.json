@@ -1,0 +1,43 @@
+{
+  "question_number": 121,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 3,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent provides a correct and comprehensive explanation. It accurately identifies the source of chirality in compounds 1 (axial chirality/atropisomerism) and 2 (chiral center) and correctly explains why compounds 3 and 4 are achiral. The reasoning is clear, accurate, and fully addresses the user's question."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate and concise: correctly identifies axial chirality in 1 and a stereogenic center in 2, and properly explains why 3 and 4 are achiral. Matches the required output and addresses the question fully."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides a clear, accurate, and concise explanation correctly identifying axial chirality in compound 1 and the chiral center in compound 2, while properly explaining why compounds 3 and 4 are achiral. The reasoning is scientifically sound and leads to the correct answer."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed explanation, including specific substituents on the chiral carbon in compound 2 and clear reasoning for each compound's chirality or lack thereof."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "A"
+}

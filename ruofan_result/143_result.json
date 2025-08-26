@@ -1,0 +1,47 @@
+{
+  "question_number": 143,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 1,
+      "gpt5": 2,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides a concise yet mechanistically complete explanation. It correctly identifies the reaction as a tandem aza-Cope rearrangement–Mannich cyclization and accurately describes the key steps—the formation of a nine-membered ring intermediate and the subsequent transannular Mannich cyclization—that lead to the correct final product."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent 3 selects D and gives concise, substrate-appropriate aza-Cope reasoning without invoking an unnecessary Mannich step, and correctly rules out 1H tautomers for an N-vinyl (tertiary) nitrogen. It best addresses the original question."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a concise and accurate reasoning specific to the substrate, correctly identifying the product as D based on the aza-Cope rearrangement, the tertiary nitrogen ruling out 1H tautomers, and the correct placement of the double bond, without including extraneous or incorrect details about a tandem Mannich cyclization that does not apply to this substrate lacking an alcohol group."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most comprehensive mechanistic analysis with proper literature citations, detailed step-by-step explanation of the tandem aza-Cope rearrangement–Mannich cyclization, and correctly identifies the final product structure with clear reasoning."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

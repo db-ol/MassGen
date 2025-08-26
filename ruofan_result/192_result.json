@@ -1,0 +1,46 @@
+{
+  "question_number": 192,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the physics principle of time dilation, accurately performs the calculations for the Lorentz factor and the proper time experienced by the astronaut. The reasoning is presented in a clear, step-by-step manner that is easy to follow. It correctly deduces that the astronaut survives the journey and selects the closest numerical option, which is the appropriate way to answer the multiple-choice question."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, step-by-step reasoning with accurate calculations and clearly explains the application of time dilation, while correctly selecting the closest option."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correctly applies Lorentz time dilation with appropriate LMC distance, computes gamma and proper time succinctly, and selects the correct option (A) with clear, accurate reasoning."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-structured explanation, clearly showing each step of the calculation while maintaining mathematical accuracy. The reasoning is thorough, covering both the physics principles and the practical considerations about the astronaut's survival."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "A"
+}

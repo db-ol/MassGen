@@ -1,0 +1,42 @@
+{
+  "question_number": 32,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents provide the correct answer and a valid calculation. Agent1's reasoning is more detailed and walks through the entire logical process from first principles, making it slightly more comprehensive and easier to follow than Agent2's more direct formula-based approach. Both are excellent, but Agent1's detailed breakdown is preferable."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents provided correct solutions, but agent1 offers more detailed step-by-step explanation making it easier to follow the reasoning process while maintaining mathematical accuracy"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a more detailed and comprehensive step-by-step explanation of the calculation, making it easier to understand the process, even though it includes extra text outside the JSON format. The core answer and reasoning are correct and match the problem requirements."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct calculation and final choice; adheres strictly to the required JSON-only output format, unlike agent1 which added extra text."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

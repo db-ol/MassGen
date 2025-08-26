@@ -1,0 +1,43 @@
+{
+  "question_number": 88,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most thorough and well-supported answer. It correctly identifies the reaction type, the structural framework of the product (epithio bridge), and, most importantly, correctly explains that the specified heating condition favors the thermodynamically stable EXO product, leading to the correct stereochemistry in option C."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and scientifically accurate analysis. The search results confirm that under thermal conditions (heat), Diels-Alder reactions operate under thermodynamic control favoring exo products, especially for heterocycles like furan and thiophene with maleic anhydride. Agent1 correctly identifies that heat drives equilibrium toward the more stable exo product and provides literature citations supporting this principle. The specific stereochemistry assignment to answer C (4R,7S configuration for exo product) is also consistent with established stereochemical conventions for similar heterocyclic systems. Agent1 combines theoretical understanding with empirical evidence most effectively."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides a comprehensive and well-supported explanation for selecting option C as the EXO product, emphasizing thermodynamic control under heating conditions with relevant citations, including specific examples for thiophene. This addresses the original query effectively, aligning with the consensus from other strong answers."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 gives the correct choice (C), concise and accurate reasoning, and adheres exactly to the required JSON-only output format, unlike Agent 1 which includes extra text/formatting. Agent 3 selects the wrong option."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

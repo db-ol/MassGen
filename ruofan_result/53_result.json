@@ -1,0 +1,39 @@
+{
+  "question_number": 53,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 4
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Both agents are correct, but Agent 2's reasoning is slightly clearer and avoids a minor typo present in Agent 1's explanation. The calculation is accurate and the final answer is correct."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate use of L = βγ ħc/Γ with correct γ, βγ, and ħc/Γ values; computes 4.0655×10^-15 m matching option B. Clear and concise reasoning."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Both agents provided correct calculations using the standard particle physics formula l = βγ(ℏc/Γ). Agent2's answer is slightly more comprehensive, providing all intermediate values (γ ≈ 6.6667, β ≈ 0.9887, βγ ≈ 6.591) and clearly showing the conversion from fm to m. The calculation is accurate and yields the correct answer B (4.0655 × 10^-15 m)."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a clear, accurate calculation using the correct formula for mean decay distance, matching option B, and addresses the original query comprehensively without errors."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 2,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gpt5",
+      "agent2": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "B"
+}

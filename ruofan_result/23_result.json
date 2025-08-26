@@ -1,0 +1,43 @@
+{
+  "question_number": 23,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most detailed and systematic breakdown of the spectroscopic evidence. It logically eliminates incorrect options and uses the degree of unsaturation calculation to definitively confirm the correct formula, making its reasoning the most robust and educational."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and systematic analysis, including detailed spectroscopic interpretations, degree of unsaturation calculations, and clear elimination of other options. The reasoning is thorough and well-structured."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most comprehensive and accurate analysis, including a correct degree of unsaturation calculation (DBE=2) and systematic breakdown of all spectroscopic data, effectively addressing the original query."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent 2 is concise, strictly follows the required JSON-only format, and provides correct, complete reasoning (acid O–H, C=O, C=C, vinyl 1H NMR, m/z 45 COOH+ and IHD=2). Agent 1 violates the JSON-only requirement and has minor wording issues; Agent 3 contains a DBE mistake."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

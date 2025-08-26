@@ -1,0 +1,46 @@
+{
+  "question_number": 152,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct and provide sound reasoning. Agent 2's explanation is the most concise while still being mathematically complete, correctly identifying the memoryless property and performing the calculation accurately."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Correct answer and reasoning with minimal, clean JSON-only output that follows the required format; concise and mathematically complete."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most detailed step-by-step explanation, clearly showing the calculation of the decay constant and explaining the memoryless property. The reasoning is thorough and educational while arriving at the correct answer."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a clear, concise explanation using the memoryless property and accurate calculation, matching the correct answer of 44%."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

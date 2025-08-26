@@ -1,0 +1,43 @@
+{
+  "question_number": 140,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 correctly identifies the directing effects of all substituents and provides a logical and well-explained order. It correctly places the meta-directors as having the lowest para-yield, ordered by their deactivating strength (NO2 < COOH < COOC2H5). It also correctly orders the ortho/para directors, recognizing that steric hindrance increases para-yield for ethylbenzene over toluene, and that chlorobenzene exhibits very high para-selectivity, resulting in the highest yield. The final order (4 < 6 < 2 < 1 < 5 < 3) is chemically sound and corresponds to the correct option B."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 provides the most comprehensive and accurate analysis. The reasoning correctly identifies that meta-directing groups (NO2, COOH, COOC2H5) have the lowest para-isomer yields, ordered by their deactivating strength, while ortho/para-directing groups (CH3, C2H5, Cl) have higher para yields. The final order 4<6<2<1<5<3 is chemically sound and supported by experimental data showing chlorobenzene has exceptionally high para selectivity, ethyl groups favor para over methyl due to sterics, and the relative strengths of meta-directors."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a detailed, accurate reasoning based on directing effects, steric factors, and comparative yields, correctly ordering the substances as per standard organic chemistry knowledge, leading to option B."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct ordering (B) with concise, accurate reasoning and adheres to the requested plain JSON format without extra code block markup. It properly ranks meta directors (NO2 < COOH < COOR) and ortho/para directors (CH3 < C2H5 < Cl) for para fraction."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

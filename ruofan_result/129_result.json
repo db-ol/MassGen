@@ -1,0 +1,46 @@
+{
+  "question_number": 129,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 correctly identifies the reactants, the Diels-Alder reaction, and the major 'endo' product. Its reasoning accurately explains that in the endo isomer, the anhydride bridge protons (~3.5 ppm) are spatially proximate to the vinyl methyl groups (~1.7 ppm), leading to the observed NOESY cross-peak. The step-by-step analysis is clear and comprehensive. Agent 2 is also correct, but Agent 1's explanation is more detailed. Agent 3 incorrectly identifies the major product and the resulting spatial interactions."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most accurate and comprehensive analysis. It correctly identifies that the endo product is major (consistent with established Diels-Alder principles), includes proper citations, provides detailed step-by-step reasoning, and accurately explains the NOESY cross-peak interpretation. Agent3's claim that exo is major contradicts fundamental Diels-Alder stereoselectivity."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 is correct and concise, gives the required JSON-only output, and identifies the correct NOESY cross-peak (6H ~1.7 ppm with 2H ~3.5 ppm) consistent with the endo major product. Agent1 adds extraneous non-JSON text and code fencing, which violates the format constraint."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 correctly identifies the major product as the exo adduct due to steric hindrance and accurately explains the NOESY cross-peak between the 6H singlet at ~1.7 ppm (olefinic methyls) and the 2H singlet at ~3.5 ppm (anhydride CH protons) being strong in the exo isomer and weak in the endo, matching the problem description. Other agents misassign the proximity in the endo isomer."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

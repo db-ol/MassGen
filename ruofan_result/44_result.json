@@ -1,0 +1,44 @@
+{
+  "question_number": 44,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most comprehensive and educational response by including a clear, step-by-step derivation of the result, which is highly valuable for the user's understanding."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most complete and educational step-by-step derivation while maintaining correct physics and arriving at the right answer. The detailed calculation makes it easy to follow and understand the solution process."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed step-by-step calculation, clear substitution of values, and comprehensive reasoning that fully addresses the physics behind the threshold energy for pair production."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct result and reasoning, and it adheres strictly to the required JSON-only format without extraneous text."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

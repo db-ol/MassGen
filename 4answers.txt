@@ -1,0 +1,25 @@
+This is my directory:
+
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % pwd
+/Users/ruofanz/workspace/mass_gen/MassGen/massgen_logs_back/log_question_number_0_20250828_130355/agent_outputs
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % 
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % ls
+claudesonnet420250514.txt		final_presentation_grok4_latest.txt	gpt5.txt				system_status.txt
+final_presentation_grok4.txt		gemini2.5pro.txt			grok4.txt
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % 
+
+I have a folder called massgen_logs_back, inside there are 198 subfolders, log_question_number_<x>_<timestamp>, x ranges from 0 to 197
+
+and each subfolder has a folder agent_outputs, and inside it there are several txt files. 
+
+You need to go through claudesonnet420250514.txt, gemini2.5pro.txt, gpt5.txt and grok4.txt
+
+In the txt, find the pattern: "answer": "<A/B/C/D>"
+
+like "answer": "D"
+
+Write a python script for me, and generate the csv file, 5 columns, first one is the index number, ther rest of them are four agents answers
+
+If you can not find the pattern, let the value be  "NOT_FOUND", and in the end, print the not found list
+
+let the row names be claudesonnet420250514 , gemini2.5pro, gpt5 , grok4  insequence

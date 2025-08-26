@@ -1,0 +1,43 @@
+{
+  "question_number": 117,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 3 provides the most comprehensive and accurate reasoning. It correctly identifies the reaction type, catalyst, and product. Critically, it also identifies and corrects the errors in the user's initial premise regarding the type of amine and the intermediate formed. It also clearly explains why the other product options represent an intermediate stage, not the final product after hydrolysis."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a comprehensive and accurate explanation, correctly identifying the reaction as the Stork enamine alkylation, specifying TsOH as the catalyst, describing the mechanism including Michael addition and hydrolysis, and notably correcting errors in the original message regarding piperidine being a secondary amine forming an enamine, not an imine. This makes it the most thorough response."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 gives the correct choice (B) with concise, chemically sound reasoning that matches the mechanism and adheres strictly to the required JSON-only output format."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most concise yet complete answer following the required JSON format. The reasoning correctly identifies this as a Stork enamine reaction, explains why TsOH is preferred over HCl for enamine formation with secondary amines, describes the Michael addition mechanism, and correctly identifies the final hydrolyzed product. The answer is chemically accurate and well-structured."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "B"
+}

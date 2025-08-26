@@ -1,0 +1,40 @@
+{
+  "question_number": 30,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most accurate and complete reasoning. It correctly calculates the required acid volume using stoichiometry. Crucially, it uses the most appropriate method (solubility product, Ksp) to determine the pH of the resulting saturated solution and shows the calculation clearly and correctly."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate, complete, and clearly reasoned. It correctly computes the required acid volume via stoichiometry and determines the pH using the Ksp-based saturation condition, matching option A. The explanation is precise and avoids introducing dubious constants or side equilibria."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent2 provides the most accurate and complete reasoning, correctly using the Ksp approach to determine pH for a saturated solution created by the minimum acid volume, with clear calculations and proper chemical understanding."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a comprehensive and accurate reasoning, correctly calculating the stoichiometric acid volume and using the Ksp to determine the pH of the saturated solution, matching option A perfectly."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "B"
+}

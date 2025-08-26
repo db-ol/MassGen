@@ -1,0 +1,47 @@
+{
+  "question_number": 97,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "gpt5": 1,
+      "claudesonnet420250514": 1
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent4 provides the most thorough and accurate reasoning. It correctly identifies the products for all three reactions, and crucially, it is the only agent to spot the molecular formula inconsistency for product B in the options. It correctly deduces this is a likely typographical error in the question and proceeds to select the best possible answer based on the correct outcomes of the other two reactions. This demonstrates the most complete understanding of the chemical principles and critical evaluation of the question itself."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent4 provides a comprehensive synthesis of the other agents' insights, correctly identifies option C as the best choice, addresses the naming discrepancy in product B, and confirms the products for all reactions based on sigmatropic rearrangement principles."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent3 gives the correct choice (C) with clear, concise mechanistic reasoning for all three transformations and adheres to the strict JSON-only format without extraneous text."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive mechanistic analysis with proper identification of reaction types, detailed reasoning for each transformation, and systematic evaluation of all options with sound organic chemistry principles."
+        }
+      ]
+    },
+    "winner": "grok4",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "grok4",
+  "true_answer": "A"
+}

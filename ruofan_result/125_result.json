@@ -1,0 +1,44 @@
+{
+  "question_number": 125,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 correctly identifies the final product and provides a flawless analysis of its symmetry. It correctly recognizes that having two different substituents on C1 breaks the plane of symmetry, making all five ring methylene groups non-equivalent and the two protons on each methylene group diastereotopic. This leads to the correct calculation of 12 distinct signals (10 from the ring + 2 from the ethyl group). Agents 3 and 4 make a critical error in assuming a plane of symmetry exists."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and correct analysis. It correctly identifies the final product as ethyl 1-cyanocyclohexanecarboxylate and crucially recognizes that the two different substituents (CN and CO2Et) at C1 break the molecular symmetry. This makes all five CH2 groups on the ring non-equivalent with diastereotopic hydrogens, leading to 10 ring signals plus 2 ethyl signals for a total of 12. The reasoning is well-structured and arrives at the correct answer C."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent 3 identifies the correct final product and correctly applies symmetry and dynamic averaging: a 1,1-disubstituted cyclohexane with different groups at C1 retains Cs/C2 symmetry making C2≡C6, C3≡C5, and C4 distinct, and each CH2’s hydrogens are enantiotopic (not diastereotopic) in achiral NMR. Adds 2 ethyl signals to give 5 total. Also adheres to the required JSON-only format."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 correctly identifies the final product and provides accurate reasoning about the plane of symmetry in the molecule, leading to the correct count of 5 distinct hydrogen signals in the 1H NMR spectrum. The analysis properly accounts for the equivalence of protons due to symmetry and ring flipping, unlike the incorrect assumption of no symmetry in other answers."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "A"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 85,
+  "vote_results": {
+    "vote_counts": {
+      "grok4": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "grok4": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the key step in the synthesis: the formation of the kinetic enolate with LDA at the less hindered C6 position, rather than the more substituted C2 position. This leads to the correct regiochemistry of the methylation. The entire reaction sequence, including stereochemistry, is correctly analyzed, leading to the correct final product D."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent3 correctly identifies the key regioselectivity in step 3 - that LDA forms the kinetic enolate at the less substituted C6 position rather than the heavily substituted C2 position. This crucial insight leads to the correct final product structure with methyl at C6, not C2. The stereochemical analysis is also accurate."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Clear, mechanism-grounded reasoning: OTBS protection, 1,4-addition with enolate trapping, kinetic methylation at C6, and deprotection. It correctly justifies regio- and stereochemical outcomes (A1,3 strain, facial selectivity) leading to option D with full stereochemistry."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides a more detailed and comprehensive reasoning on the stereochemistry of each step, including the anti addition due to A1,3 strain and the facial selectivity for alkylation, leading to the correct structure D. This addresses the original message thoroughly."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

@@ -1,0 +1,44 @@
+{
+  "question_number": 101,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most detailed and accurate explanation for both complex organic reactions. It correctly identifies the named reactions involved (anionic oxy-Cope and Ireland-Claisen), explains the role of each reagent, and correctly predicts the final products, including the correct salt form for product B due to the lack of acidic workup. The reasoning is comprehensive and chemically precise, making it superior to the other agents' responses."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 2 provides the most comprehensive and mechanistically accurate analysis, correctly identifying both the anionic oxy-Cope rearrangement and Ireland-Claisen rearrangement with detailed step-by-step explanations, unlike Agent 1 which misidentified the second reaction mechanism."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and accurate reasoning, correctly identifying the anionic oxy-Cope rearrangement for the first reaction and the Ireland-Claisen rearrangement for the second, with emphasis on the lithium salt due to no acidic workup."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and correct identification of both mechanisms: anionic oxy‑Cope for A and Ireland–Claisen for B, with the correct products and proper note that absence of acidic workup gives the lithium carboxylate. Clearer and cleaner than others without mechanistic missteps."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

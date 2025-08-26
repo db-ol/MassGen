@@ -1,0 +1,43 @@
+{
+  "question_number": 61,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent 1 provides the most detailed and well-supported reasoning. It systematically breaks down the riddle, connects each phrase to a specific biological process, and uses citations to back up its claims, making it the most thorough and educational answer."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and well-cited answer, using web search to verify current understanding of SRP function. The response includes detailed molecular explanations with proper citations, clearly explains each part of the personified dialogue, and acknowledges the distinction between immediate (ER) and ultimate (extracellular space) destinations while correctly identifying why option C is the best answer among the choices given."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed reasoning with citations, clearly distinguishing immediate and ultimate destinations while correctly identifying the process and matching option C."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 gives the correct choice (C) with concise, accurate reasoning directly tied to the riddle’s cues (SRP, translation pause, ER glycosylation, rough ER) and uses the required pure JSON format. Agent1 includes extraneous narrative and formatting, while Agent3 is good but no better than Agent2; Agent2 is the cleanest and fully compliant."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

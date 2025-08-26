@@ -1,0 +1,43 @@
+{
+  "question_number": 165,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 2,
+      "grok4": 2
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents provide a correct answer and a valid derivation. Agent 1's reasoning is the most detailed and explicit, showing the full algebraic solution from the energy conservation principle, which makes it the clearest and most comprehensive of the three."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most detailed and explicit step-by-step derivation, showing the complete algebraic solution from energy conservation principle to the final answer, making it the clearest and most educational response."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Correct choice B with clear, rigorous energy-conservation derivation including rest mass energy; concise and accurate."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a correct and clear reasoning, including the explicit inclusion of rest energy and noting that it recovers the non-relativistic limit, which adds value."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "B"
+}

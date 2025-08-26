@@ -1,0 +1,41 @@
+{
+  "question_number": 86,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 2 provides the most accurate and comprehensive explanation. It correctly identifies the process as fluorescence, applies the principle of the Stokes shift, and systematically eliminates incorrect answers. Unlike Agent 1, it avoids the incorrect and confusing application of complementary colors."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Accurate computation of emission wavelength (~530 nm), correct application of Stokes shift to infer higher-energy absorption, clear elimination of other options, and concise, scientifically sound reasoning."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive and scientifically accurate explanation, correctly identifying fluorescence/Stokes shift as the key principle, systematically eliminating incorrect options, and avoiding the misleading complementary color discussion that confuses the issue"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent2 provides the most detailed and accurate reasoning, correctly applying the Stokes shift and eliminating options systematically without introducing unnecessary confusion about complementary colors."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gemini2.5pro",
+      "agent3": "gpt5",
+      "agent4": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}

@@ -1,0 +1,43 @@
+{
+  "question_number": 1,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "Agent 1 provides the most comprehensive and well-supported answer. It correctly identifies the absorption line, calculates the redshift, and most importantly, clearly explains why 21-cm absorption specifically traces the Cold Atomic Interstellar Medium as opposed to the Warm Atomic Medium, providing crucial context about the different phases of the ISM."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and scientifically rigorous analysis. They correctly identify the 3.9 microeV absorption line as the redshifted 21-cm hydrogen transition, calculate the appropriate redshift (~0.51) for the 2.1 Gpc distance, and accurately determine that such absorption would be observed in the Cold Atomic Interstellar Medium (CNM) in the Milky Way. The analysis includes proper citations from web search results, explains the physics of the spin-flip transition, and correctly notes that CNM is specifically traced through HI absorption measurements rather than emission. The reasoning is thorough, well-supported, and leads to the correct answer C."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed and comprehensive reasoning, correctly identifying the redshifted 21-cm HI absorption line and associating it with the cold atomic interstellar medium in the Milky Way, supported by relevant ISM phase details."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Concise and accurate: correctly converts 3.9 μeV to ~0.94 GHz, identifies it as redshifted H I 21‑cm with z≈0.5 (consistent with ~2.1 Gpc), and correctly concludes CNM is responsible for 21‑cm absorption in the Milky Way."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "C"
+}

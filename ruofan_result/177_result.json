@@ -1,0 +1,43 @@
+{
+  "question_number": 177,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "gpt5": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All agents are correct, but Agent1 provides the most comprehensive and well-structured reasoning. It clearly shows the step-by-step calculations for both the transition energy and the paramagnetic coupling term, making it the most thorough and educational response."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive and detailed solution with step-by-step calculations, correctly identifies the H-β transition, shows all numerical work, and arrives at the correct answer with proper scientific reasoning and appropriate significant figures."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed step-by-step calculation, correctly identifies the transition, and offers comprehensive reasoning that fully addresses the query."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 is correct, concise, and strictly follows the required pure JSON format. It computes both the Zeeman energy (~5.8×10^-5 eV at 1 T) and the transition energy (~2.55 eV at 486.1 nm), concluding ⟨H⟩ ≪ ΔE. Agent1, while thorough, includes code fences and malformed JSON, violating the format constraint."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "A"
+}

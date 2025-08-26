@@ -1,0 +1,46 @@
+{
+  "question_number": 111,
+  "vote_results": {
+    "vote_counts": {
+      "gpt5": 2,
+      "claudesonnet420250514": 1,
+      "grok4": 1
+    },
+    "voter_details": {
+      "gpt5": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The agent correctly identifies the answer via an intramolecular Diels-Alder reaction. The reasoning is chemically precise, concise, and perfectly formatted according to the instructions. It clearly explains how the structure of the starting material in option B leads to the target molecule, making it the superior response."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "Agent2 gives the correct choice (B), adheres strictly to the required JSON-only format, and provides concise, accurate IMDA-based reasoning. Agent1 violates the JSON-only constraint with extra prose, and Agent3, while correct and JSON-compliant, offers reasoning comparable to but not better than Agent2’s."
+        }
+      ],
+      "claudesonnet420250514": [
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent1 provides the most comprehensive analysis with detailed mechanistic reasoning, systematic evaluation of all options, and clear explanation of why option B is correct through IMDA reaction pathway"
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "grok4",
+          "reason": "Agent3 provides a concise, accurate reasoning for selecting option B via IMDA reaction, correctly identifies the key structural features of the precursor, and adheres strictly to the JSON output format without extraneous text."
+        }
+      ]
+    },
+    "winner": "gpt5",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "claudesonnet420250514",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gpt5",
+  "true_answer": "D"
+}

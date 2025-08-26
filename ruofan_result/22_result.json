@@ -1,0 +1,40 @@
+{
+  "question_number": 22,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 4
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identify the answer and provide sound reasoning. However, Agent 1 offers the most detailed and systematic breakdown of the complex 1H NMR splitting patterns. By assigning the 'doublet of triplets of quartets' and 'doublet of triplets of triplets' to specific protons within the molecule and explaining each coupling interaction step-by-step, it provides the clearest and most thorough justification for the correct answer."
+        },
+        {
+          "voter": "gpt5",
+          "reason": "All agents identified D correctly, but Agent 1 gives the clearest, most rigorous assignment of the dtq and dtt patterns to specific protons with a step-by-step coupling analysis, making it the strongest justification."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Agent 1 provides the most thorough and systematic analysis. It clearly explains the FTIR interpretation, then methodically works through the complex NMR splitting patterns by numbering the carbons and analyzing each methine proton's coupling interactions step-by-step. This detailed approach makes the complex spectroscopic reasoning accessible and verifiable, while still reaching the correct answer D."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Agent1 provides the most detailed and structured reasoning, explicitly assigning the complex NMR splitting patterns to specific protons in the molecule, which thoroughly addresses the identification based on the given data."
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "agent1": "gemini2.5pro",
+      "agent2": "gpt5",
+      "agent3": "grok4"
+    }
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "D"
+}
