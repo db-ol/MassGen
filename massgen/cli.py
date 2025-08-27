@@ -484,15 +484,19 @@ async def run_single_question(
             orchestrator_config.timeout_config = timeout_config
         orchestrator = Orchestrator(agents=agents, config=orchestrator_config)
         # Create a fresh UI instance for each question to ensure clean state
+        # Use simple display for JSON output to avoid rich formatting
+        display_type = "simple" if output_format == "json" else ui_config.get("display_type", "rich_terminal")
         ui = CoordinationUI(
-            display_type=ui_config.get("display_type", "rich_terminal"),
+            display_type=display_type,
             logging_enabled=ui_config.get("logging_enabled", True),
+            output_format=output_format,  # Pass output_format to CoordinationUI
         )
 
-        print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
-        print(f"Agents: {', '.join(agents.keys())}", flush=True)
-        print(f"Question: {question}", flush=True)
-        print("\n" + "=" * 60, flush=True)
+        if output_format != "json":
+            print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
+            print(f"Agents: {', '.join(agents.keys())}", flush=True)
+            print(f"Question: {question}", flush=True)
+            print("\n" + "=" * 60, flush=True)
 
         final_response = await ui.coordinate(orchestrator, question)
         return final_response
@@ -659,7 +663,7 @@ async def run_interactive_mode(
         print("\n👋 Goodbye!")
 
 
-async def run_benchmark(benchmark_config_path: str):
+async def run_benchmark(benchmark_config_path: str, dataset_name: str = None):
     """Run benchmark mode."""
     try:
         # Import benchmark runner
@@ -675,8 +679,15 @@ async def run_benchmark(benchmark_config_path: str):
             print("   Set HF_API_KEY in your .env file or environment")
             return
         
-        # Run benchmark
-        runner = HLEBenchmarkRunner(benchmark_config_path)
+        # Load config to get dataset name if not provided
+        if not dataset_name:
+            import yaml
+            with open(benchmark_config_path, 'r') as f:
+                config = yaml.safe_load(f)
+            dataset_name = config.get('benchmark', {}).get('dataset', 'hle-lite')
+        
+        # Run benchmark with dataset name
+        runner = HLEBenchmarkRunner(benchmark_config_path, dataset_name)
         results = await runner.run_benchmark(token)
         runner.print_results_table()
         
@@ -911,9 +922,16 @@ Environment Variables:
             response = await run_single_question(
                 args.question, agents, ui_config, **kwargs
             )
-            # if response:
-            #     print(f"\n{BRIGHT_GREEN}Final Response:{RESET}", flush=True)
-            #     print(f"{response}", flush=True)
+            if response:
+                # Check output format and print accordingly
+                output_format = ui_config.get("output_format", "text")
+                if output_format == "json":
+                    # Print JSON response
+                    print(response, flush=True)
+                else:
+                    # Print text response
+                    print(f"\n{BRIGHT_GREEN}Final Response:{RESET}", flush=True)
+                    print(f"{response}", flush=True)
         else:
             await run_interactive_mode(agents, ui_config, **kwargs)
 

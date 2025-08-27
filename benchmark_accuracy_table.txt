@@ -1,0 +1,85 @@
+# MMLU-PRO BENCHMARK RESULTS TABLE
+# Generated on: 2025-08-27 11:47:50
+# Dataset: MMLU-Pro
+# Total Questions: 50
+
+================================================================================
+ACCURACY SUMMARY TABLE
+================================================================================
+
+Question_ID | Correct | GPT-5 Nano | GLM-4.5 | Grok-4 | Gemini 2.5 Flash | Multi-Agent | Multi-Agent Selected
+------------|---------|------------|---------|--------|------------------|-------------|---------------------
+4327        | B       | ❌ (D)      | ❌ (No answer found) | ✅ (B)      | ✅ (B)      | ✅ (B)      | Majority
+3527        | D       | ✅ (D)      | ✅ (D)      | ✅ (D)      | ✅ (D)      | ✅ (D)      | Consensus
+8056        | B       | ✅ (B)      | ✅ (B)      | ✅ (B)      | ✅ (B)      | ✅ (B)      | Consensus
+3498        | H       | ✅ (H)      | ✅ (H)      | ✅ (H)      | ✅ (H)      | ✅ (No answer found) | Majority
+8926        | C       | ✅ (C)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | Consensus
+10857       | H       | ❌ (G)      | ❌ (G)      | ✅ (H)      | ❌ (G)      | ✅ (G)      | Majority
+5382        | E       | ✅ (E)      | ✅ (E)      | ✅ (E)      | ✅ (E)      | ✅ (E)      | Consensus
+3919        | I       | ✅ (I)      | ❌ (No answer found) | ✅ (I)      | ✅ (I)      | ✅ (I)      | Majority
+11913       | N/A     | ✅ (F)      | ❌ (No answer found) | ✅ (F)      | ✅ (F)      | ❌ (N/A)    | Consensus
+10373       | D       | ✅ (D)      | ✅ (D)      | ✅ (D)      | ✅ (D)      | ✅ (I)      | Majority
+6296        | D       | ✅ (D)      | ✅ (D)      | ❌ (A)      | ❌ (A)      | ✅ (A)      | Majority
+4837        | F       | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (No answer found) | Majority
+4219        | D       | ❌ (H)      | ❌ (H)      | ❌ (H)      | ❌ (H)      | ✅ (H)      | Consensus
+4250        | E       | ✅ (E)      | ✅ (E)      | ✅ (E)      | ✅ (E)      | ✅ (E)      | Consensus
+10836       | F       | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (No answer found) | Majority
+8311        | J       | ✅ (J)      | ✅ (J)      | ✅ (J)      | ✅ (J)      | ✅ (J)      | Consensus
+10802       | D       | ❌ (G)      | ✅ (D)      | ✅ (D)      | ✅ (D)      | ✅ (No answer found) | Majority
+8753        | D       | ✅ (D)      | ✅ (D)      | ✅ (D)      | ✅ (D)      | ✅ (D)      | Consensus
+1719        | I       | ✅ (I)      | ✅ (I)      | ✅ (I)      | ✅ (I)      | ✅ (I)      | Consensus
+4070        | G       | ✅ (G)      | ✅ (G)      | ✅ (G)      | ✅ (G)      | ✅ (G)      | Consensus
+9313        | D       | ✅ (D)      | ❌ (No answer found) | ✅ (D)      | ❌ (E)      | ✅ (E)      | Majority
+4960        | C       | ❌ (B)      | ✅ (C)      | ✅ (C)      | ❌ (E)      | ✅ (B)      | Majority
+2807        | N/A     | ❌ (A)      | ❌ (A)      | ❌ (G)      | ❌ (A)      | ❌ (N/A)    | Consensus
+11200       | D       | ❌ (C)      | ❌ (C)      | ❌ (C)      | ❌ (C)      | ✅ (No answer found) | Majority
+12023       | N/A     | ❌ (J)      | ❌ (No answer found) | ✅ (D)      | ❌ (F)      | ❌ (N/A)    | Consensus
+5112        | A       | ✅ (A)      | ✅ (A)      | ✅ (A)      | ✅ (A)      | ✅ (A)      | Consensus
+9334        | I       | ✅ (I)      | ❌ (No answer found) | ✅ (I)      | ✅ (I)      | ✅ (I)      | Majority
+4397        | H       | ✅ (H)      | ✅ (H)      | ✅ (H)      | ✅ (H)      | ✅ (H)      | Consensus
+11216       | C       | ❌ (D)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | Majority
+2082        | F       | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (F)      | Consensus
+7925        | I       | ✅ (I)      | ✅ (I)      | ✅ (I)      | ✅ (I)      | ✅ (I)      | Consensus
+6996        | A       | ✅ (A)      | ✅ (A)      | ✅ (A)      | ✅ (A)      | ✅ (No answer found) | Majority
+3918        | F       | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (F)      | Consensus
+3871        | C       | ✅ (C)      | ❌ (No answer found) | ✅ (C)      | ✅ (C)      | ✅ (C)      | Majority
+3353        | H       | ✅ (H)      | ❌ (No answer found) | ✅ (H)      | ✅ (H)      | ✅ (H)      | Majority
+2440        | C       | ✅ (C)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | Consensus
+403         | J       | ✅ (J)      | ✅ (J)      | ✅ (J)      | ✅ (J)      | ✅ (J)      | Consensus
+7237        | I       | ❌ (C)      | ❌ (C)      | ❌ (C)      | ❌ (C)      | ✅ (C)      | Consensus
+3620        | C       | ✅ (C)      | ❌ (No answer found) | ✅ (C)      | ❌ (M)      | ✅ (C)      | Majority
+636         | E       | ✅ (E)      | ❌ (No answer found) | ✅ (E)      | ✅ (E)      | ✅ (E)      | Majority
+5892        | F       | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (F)      | ✅ (No answer found) | Majority
+973         | H       | ✅ (H)      | ✅ (H)      | ✅ (H)      | ✅ (H)      | ✅ (H)      | Consensus
+3287        | G       | ✅ (G)      | ✅ (G)      | ✅ (G)      | ✅ (G)      | ✅ (G)      | Consensus
+5529        | B       | ❌ (F)      | ✅ (B)      | ❌ (E)      | ❌ (F)      | ✅ (B)      | Majority
+1317        | I       | ✅ (I)      | ❌ (No answer found) | ✅ (I)      | ✅ (I)      | ✅ (I)      | Majority
+704         | G       | ❌ (C)      | ✅ (G)      | ✅ (G)      | ✅ (G)      | ✅ (G)      | Majority
+2624        | E       | ✅ (E)      | ✅ (E)      | ✅ (E)      | ❌ (D)      | ✅ (E)      | Majority
+2149        | C       | ✅ (C)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | ✅ (C)      | Consensus
+11365       | A       | ✅ (A)      | ✅ (A)      | ✅ (A)      | ✅ (A)      | ✅ (A)      | Consensus
+2447        | F       | ✅ (F)      | ❌ (D)      | ❌ (D)      | ❌ (D)      | ✅ (D)      | Majority
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
+Model/System        | Correct | Total | Accuracy | Response Time
+-------------------|---------|-------|----------|---------------
+gpt5nano          | 38      | 50    | 0.760    | 958.93s
+grok4             | 43      | 50    | 0.860    | 4160.99s
+gemini25flash     | 37      | 50    | 0.740    | 947.92s
+glm45             | 33      | 50    | 0.660    | 15701.67s
+Multi-Agent       | 47      | 50    | 0.940    | 8325.26s
+
+================================================================================
+NOTES
+================================================================================
+
+- ✅ = Correct answer
+- ❌ = Wrong answer
+- N/A = No response or timeout
+- Consensus = All agents provided the same answer
+- Majority = Multi-agent chose the most common answer
+- Response Time = Total time for all questions
+- Generated on: 2025-08-27 11:47:50

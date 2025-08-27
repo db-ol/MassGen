@@ -1,0 +1,67 @@
+# Benchmark Configuration for Four Models Multi-Agent
+# GPT5nano + Zhipu GLM 4.5 + Grok 4 + Gemini 2.5 Flash
+
+benchmark:
+  name: "Four Models Multi-Agent Exact Match Benchmark"
+  dataset: "cais/hle"
+  question_type: "exactMatch"
+  max_questions: 3  # Adjust as needed
+  
+  # Judge model to judge the answer from multi agent's response
+  judge_model:
+    - name: "gpt-4o"
+      backend:
+        type: "openai"
+        model: "gpt-4o"
+      system_message: "You are a helpful AI assistant. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+             
+  # Single Models to Test
+  single_models:
+    - name: "gpt5nano"
+      backend:
+        type: "openai"
+        model: "gpt-5-nano"
+        enable_web_search: true
+        enable_code_interpreter: true
+      system_message: "You are a helpful AI assistant with reasoning, web search, and code execution capabilities. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+
+    - name: "glm45"
+      backend:
+        type: "zai"
+        model: "glm-4.5"
+        base_url: "https://api.z.ai/api/paas/v4/"
+        temperature: 0.7
+        top_p: 0.9
+      system_message: "You are a helpful AI assistant. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+
+    - name: "grok4"
+      backend:
+        type: "grok"
+        model: "grok-4"
+        enable_web_search: true
+      system_message: "You are a helpful AI assistant with web search capabilities. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+
+    - name: "gemini25flash"
+      backend:
+        type: "gemini"
+        model: "gemini-2.5-flash"
+        enable_web_search: true
+      system_message: "You are a helpful AI assistant with web search capabilities. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+
+  # Multi-Agent Configuration - references your four_models_mmlu_pro.yaml
+  multi_agent:
+    config_file: "four_models_mmlu_pro.yaml"
+    system_message: "You are a helpful AI assistant. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+  
+
+  # Metrics to Calculate
+  metrics:
+    - accuracy
+    - calibration_error
+    - confidence_scores
+  
+  # Output
+  output:
+    format: "json"
+    save_results: true
+    results_file: "benchmark_results_four_models.json"

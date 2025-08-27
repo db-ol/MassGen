@@ -1,0 +1,635 @@
+Model,Question_ID,Question,Response,Extracted_Answer,Correct_Answer,Is_Correct,Response_Time,Accuracy
+gpt5nano,4327,Calculate the equilibrium constant for the reaction at 300°K H_2 + D_2 \rightleftarrows 2HD using th...,"Using a zero-point energy (ZPE) based estimate (harmonic oscillator model) for H2 + D2 ⇌ 2HD:
+
+- ν_H2 = 4371 cm^-1, ν_HD = 3785 cm^-1, ν_D2 = 3092 cm^-1
+- Δν = ν_HD − (ν_H2 + ν_D2)/2 = 3785 − (4371 + ...",D,B,False,25.532188653945923,0.76
+gpt5nano,3527,Which of the following has an octet of electrons around the central atom?...,"Reasoning:
+- BF3: Boron has only 6 electrons around it (incomplete octet).
+- BeF2: Beryllium has 4 electrons around it (incomplete octet).
+- PF5: Phosphorus has 10 electrons around it (expanded octet)...",D,D,True,12.636176824569702,0.76
+gpt5nano,8056,"Ben rolls four fair 20-sided dice, and each of the dice has faces numbered from 1 to 20. What is the...","To find the probability, note that each die has a 1/2 chance of showing an even number. The four dice are independent, so the probability of exactly two evens is given by the binomial formula: C(4,2) ...",B,B,True,14.82026743888855,0.76
+gpt5nano,3498,"What occurs during phases M, G_0, G_1, S, and G_2 of thecell cycle?...","Explanation:
+- M phase: mitosis (cell division).
+- G0: quiescent/non-dividing state.
+- G1: cell growth and decision whether to re-enter the cycle.
+- S: DNA synthesis/replication.
+- G2: growth and prep...",H,H,True,11.628174543380737,0.76
+gpt5nano,8926,What is the range of the function y = 5 + 3 * sin(pi – x)?...,"Reasoning: sin(pi - x) = sin x, so y = 5 + 3 sin x has minimum 5 + 3(-1) = 2 and maximum 5 + 3(1) = 8. The range is [2, 8], which matches option C.
+
+The answer is: C...",C,C,True,8.400038719177246,0.76
+gpt5nano,10857," Construct a complete truth table for the following pairs of propositions. Then, using the truth tab...","Here's the truth table for O and P:
+
+- O P | ~O | ~O ⊃ P | O ∨ P
+- T T |  F |    T    |   T
+- T F |  F |    T    |   T
+- F T |  T |    T    |   T
+- F F |  T |    F    |   F
+
+From the table, ~O ⊃ P and...",G,H,False,15.380608558654785,0.76
+gpt5nano,5382,What kind of angle is formed where two perpendicular lines meet?...,"Two perpendicular lines form a 90-degree angle, which is a right angle. The answer is: E...",E,E,True,8.50393033027649,0.76
+gpt5nano,3919,The world's total reserve of coal and natural gas is estimated to be equivalent to 3.0 × 10^19 Kcal....,"- Convert consumption to kcal/year: 4.2 × 10^27 erg/year × (1 J / 1 × 10^7 erg) × (1 kcal / 4184 J) ≈ 4.2 × 10^20 J/year ÷ 4184 J/kcal ≈ 1.00 × 10^17 kcal/year.
+- Reserves: 3.0 × 10^19 kcal.
+- Years t...",I,I,True,11.928523063659668,0.76
+gpt5nano,11913,"A certain submerged body is to move horizontally through oil (\gamma = 52 lb/ft^3, \mu = 0.0006lb\bu...","To achieve Reynolds similarity (since the body is submerged and wave action is absent), set Re_p = Re_m:
+
+Re_p = ρ_p V_p L_p / μ_p,  Re_m = ρ_m V_m L_m / μ_m
+=> V_m = V_p (ρ_p/ρ_m) (L_p/L_m) (μ_m/μ_p)...",F,F,True,59.299137115478516,0.76
+gpt5nano,10373,"Let a undirected graph G with edges E = {<0,2>, <2,4>, <3,4>, <1,4>}, which <A,B> represent Node A i...",The answer is: D...,D,D,True,8.43517780303955,0.76
+gpt5nano,6296,With which of the following relatives is an individual most likely to share a common HLA haplotype?...,"- HLA haplotypes are inherited as blocks, one from each parent. 
+- A child (e.g., a sister’s nephew/niece) would share at least one haplotype with each parent, but the relative who is most likely to s...",D,D,True,42.01681685447693,0.76
+gpt5nano,4837,Which archaeological method is best for identifying large-scale land modifications?...,"Aerial photography is best for large-scale land modifications because it can cover wide areas and reveal surface expressions of earthworks, field systems, and terraces that are often invisible at grou...",F,F,True,12.13334846496582,0.76
+gpt5nano,4219,The unaided eye can perceive objects which have a diameterof 0.1 mm. What is the diameter in inches?...,"0.1 mm equals 0.1 / 25.4 inches ≈ 0.003937 inches. This matches option H (0.003937 inches).
+The answer is: H...",H,D,False,11.249711990356445,0.76
+gpt5nano,4250,How many moles of propane (C3H8) are there in 6.2 g of propane?...,"- Molar mass of propane (C3H8): 3(12.01 g/mol) + 8(1.008 g/mol) ≈ 44.1 g/mol.
+- Moles of propane in 6.2 g: 6.2 g / 44.1 g/mol ≈ 0.1406 mol ≈ 1.41 × 10^-1 mol.
+- Matching option: E (1.4 × 10^-1 mol).
+
+...",E,E,True,8.849889755249023,0.76
+gpt5nano,10836,The _ad nauseam_ fallacy is...,"Brief justification: The ad nauseam fallacy involves repeating a claim so often that people accept it as true; option F matches this idea exactly. 
+The answer is: F...",F,F,True,12.300023794174194,0.76
+gpt5nano,8311,Use Green's Theorem to evaluate $\oint_{C} xy dx + x^2y^3dy$ where $C$ is the triangle with vertices...,"Using Green's theorem, ∮C P dx + Q dy = ∬D (∂Q/∂x − ∂P/∂y) dA with P = xy and Q = x^2y^3 gives ∂Q/∂x = 2xy^3 and ∂P/∂y = x, so integrand is x(2y^3 − 1). The region D is the triangle with 0 ≤ x ≤ 1 and...",J,J,True,13.967395067214966,0.76
+gpt5nano,10802,Another name for hasty generalization is...,"Hasty generalization occurs when a broad conclusion is drawn from a small or unrepresentative sample, often based on personal experiences or isolated cases. Among the options, ""anecdotal evidence"" (G)...",G,D,False,7.888645172119141,0.76
+gpt5nano,8753,In how many ways can a set of 6 distinct letters be partitioned into 3 non-empty groups if each grou...,"We need to partition 6 distinct letters into 3 groups, each of size 2 (since 6 = 2+2+2). The number of ways to partition 6 elements into three unordered 2-element groups is (6)! / (2^3 3!) = 720 / (8*...",D,D,True,10.54399299621582,0.76
+gpt5nano,1719,A plantiff sued a defendant for injuries suffered m a fall on the sidewalk of the defendant's home. ...,"The statement by the plaintiff to the treating physician is admissible under the medical-diagnosis or treatment exception to hearsay (FRE 803(4)), as it concerns symptoms or causal history provided fo...",I,I,True,16.650127172470093,0.76
+gpt5nano,4070,Monatomic ions of the representative elements are often...,"Monatomic ions of the representative elements typically achieve a noble-gas electron configuration by gaining or losing electrons. This makes them isoelectronic with a noble gas (e.g., Na+ and Mg2+ ar...",G,G,True,9.471999883651733,0.76
+gpt5nano,9313,"A big fish swims upon and swallows a small fish that is at rest. Right after lunch, the fattened big...","When the big fish swallows the small fish, the system’s total momentum is conserved (the small fish has zero momentum since it is at rest). Before swallowing, the momentum is p_i = m_b v. After swallo...",D,D,True,35.079142332077026,0.76
+gpt5nano,4960,"This question refers to the following information.
+""The question as to who, and what, is responsible...","Reasoning:
+- A (machine gun): By the late 19th century, rapid-fire firearms (e.g., Maxim-type guns) gave European forces a decisive military edge, facilitating conquest and control in Africa.
+- C (joi...",B,C,False,14.915507793426514,0.76
+gpt5nano,2807,"In reference to a segment of DNA, which of the following molecules contains the fewest number of nuc...",The answer is: A...,A,I,False,14.766201257705688,0.76
+gpt5nano,11200, Which of the following best characterizes de Marneffe's view?...,"
+🔍 [Provider Tool: Web Search] Starting search...
+🔍 [Provider Tool: Web Search] Searching...
+✅ [Provider Tool: Web Search] Search completed
+🔍 [Search Query] 'de Marneffe drug policy view drugs should ...",C,D,False,18.901196718215942,0.76
+gpt5nano,12023,"A journal bearing of light-dutytype,has a 3 in. diameter, 3 in. lengthand is installed in a housing ...","- Given: D = 3 in, L = 3 in, μ = 0.025, N = 100 rpm, P_load = 1200 lb, T∞ = 60°F.
+- Friction force F = μ N = 0.025 × 1200 = 30 lb.
+- Surface speed v = π D N / 720 = π × 3 × 100 / 720 ≈ 1.31 ft/s.
+- Fr...",J,D,False,42.08202886581421,0.76
+gpt5nano,5112,Who was the WNBA's Most Valuable Player of 1999?...,"
+🔍 [Provider Tool: Web Search] Starting search...
+🔍 [Provider Tool: Web Search] Searching...
+✅ [Provider Tool: Web Search] Search completed
+🔍 [Search Query] '1999 WNBA MVP'
+The WNBA's 1999 Most Valuab...",A,A,True,18.698668003082275,0.76
+gpt5nano,9334,A mass $m$ moves in one dimension and is subject to a constant force $+F_0$ when $x<0$ and to a cons...,The motion is governed by m x'' = F0 for x < 0 and m x'' = -F0 for x > 0. This is equivalent to a particle in the V-shaped potential V(x) = F0|x| (taking V(0)=0). The phase portrait follows from energ...,I,I,True,30.351805686950684,0.76
+gpt5nano,4397,A chemist dissolves 10 g of an unknown protein in a liter of water at 25°C. The osmotic pressure is ...,"- Convert osmotic pressure to atm: π = 9.25 mmHg × (1 atm / 760 mmHg) ≈ 0.01217 atm.
+- Use π = cRT with c = n/V. Here n = mass/MW = 10 g / MW and V = 1 L, so π = (10/MW)RT.
+- Solve for MW: MW = (10 RT...",H,H,True,26.79971218109131,0.76
+gpt5nano,11216,An example of a morally impossible rule would be:...,The answer is: D...,D,C,False,19.40123963356018,0.76
+gpt5nano,2082,Research that demonstrates parents who play more roughly with male children and are more protective ...,"Research showing parents play more roughly with male children and are more protective of female children aligns with Social Learning Theory, which emphasizes differential reinforcement, modeling, and ...",F,F,True,8.631738185882568,0.76
+gpt5nano,7925,Write the unit rate for driving 308 km in 4 h. Round to the nearest hundredth if necessary....,"Calculation: 308 km ÷ 4 h = 77 km/h. Rounded to the nearest hundredth: 77.00 km/h, which matches 77 km/h. This corresponds to option I.
+
+The answer is: I...",I,I,True,8.981351852416992,0.76
+gpt5nano,6996,Characterize and differentiate capital widening from capi-tal deepening....,"Capital widening involves spreading existing capital across more workers, increasing total output while keeping capital per worker roughly constant; capital deepening involves increasing the amount of...",A,A,True,10.989043474197388,0.76
+gpt5nano,3918,"There is an appreciative sigh throughout the audience in the ""mad\textquotedblright scene of ""Luciad...","Using λ = v / f with v = 3.317 × 10^4 cm/s and f = 1024 s^-1:
+
+λ = (3.317 × 10^4) / 1024 ≈ 32.39 cm.
+
+This matches option F (32.39 cm).
+
+The answer is: F...",F,F,True,12.377068758010864,0.76
+gpt5nano,3871,A solution of 20.0 g of a non-volatile solute in 100 g of benzene at 30°C has a vapor pressure 13.4 ...,"
+💻 [Provider Tool: Code Interpreter] Starting execution...
+✅ [Provider Tool: Code Interpreter] Execution completed💻 [Code Executed]
+```
+13.4/121.8
+
+```
+The answer is: C
+🔧 Code Interpreter [Completed]:...",C,C,True,17.08196473121643,0.76
+gpt5nano,3353,"Referring to the independent random mating scheme of the previous problem, find the offspring genoty...",- Compute allele frequency p from both sexes: total A alleles = 2*(AA_m+AA_f) + (Aa_m+Aa_f) = 2*(600+400) + (0+400) = 2400; total alleles = 2*(1000 individuals per sex) = 4000; p = 2400/4000 = 0.6 (q ...,H,H,True,29.250444650650024,0.76
+gpt5nano,2440,Asking the “miracle question” is an initial intervention in which type of therapy?...,"The miracle question is a hallmark technique of Solution-Focused Brief Therapy (SFBT). It asks clients to imagine a night when a miracle happens and their problem is resolved, helping them articulate ...",C,C,True,12.069168090820312,0.76
+gpt5nano,403,The daily cost of producing n Gaped Ghouls at the Star Toys Factory is C(n) = 0.2n^2 + n + 900 where...,The answer is: J...,J,J,True,12.664454936981201,0.76
+gpt5nano,7237,Which of the following is most likely an example of production inputs that can be adjusted in the lo...,"In the short run, at least one input is fixed (usually the plant/factory size). The size of a manufacturing plant is a capital decision that can be changed only in the long run, not in the short run. ...",C,I,False,11.966015577316284,0.76
+gpt5nano,3620,Find thehydroniumion concentration of .1M HOAC (acetic acid) solution. Assume k_a = 1.75 x 10^-5 for...,"Acetic acid is a weak acid; use [H3O+] ≈ sqrt(Ka * C) for 0.1 M. Ka = 1.75e-5, C = 0.1 M, so [H3O+] ≈ sqrt(1.75e-6) ≈ 1.32e-3 M = 0.0013 M. This is valid since x/C ≈ 0.013.
+
+The answer is: C...",C,C,True,13.202834606170654,0.76
+gpt5nano,636,"Let $P(r,t,T)$ denote the price at time $t$ of $1 to be paid with certainty at time $T, t\leT$, if t...","
+💻 [Provider Tool: Code Interpreter] Starting execution...
+✅ [Provider Tool: Code Interpreter] Execution completed💻 [Code Executed]
+```
+import mpmath as mp
+
+P02 = 0.9445
+P13 = 0.9321
+
+lnP02 = mp....",E,E,True,55.99661993980408,0.76
+gpt5nano,5892,When it comes to measuring horses how long is a 'hand'?...,"Reasoning: In equestrian measurement, a ""hand"" is a standard unit equal to 4 inches, used to measure a horse's height at the withers. Therefore, the correct option is the one that equals four inches, ...",F,F,True,9.002180099487305,0.76
+gpt5nano,973,Which case was the first to define the meaning of the doctrine of 'margin of appreciation' as applie...,"The margin of appreciation was first articulated by the European Court of Human Rights in Handyside v United Kingdom (1976), which recognized that states possess a certain latitude in implementing Con...",H,H,True,14.8823881149292,0.76
+gpt5nano,3287,"In peas, tall (D) is dominant to dwarf (d) and yellow cotyledons (G) is dominant to green (g). A tal...","To get dwarfs in the progeny, both parents must carry the recessive d allele. Only option G (DdGg × Ddgg) provides this combination (one parent is DdGg and the other Ddgg), giving all tall offspring w...",G,G,True,20.283510446548462,0.76
+gpt5nano,5529,"As of 2016, about what percentage of adults aged 18 years or older were overweight?...","
+🔍 [Provider Tool: Web Search] Starting search...
+🔍 [Provider Tool: Web Search] Searching...
+✅ [Provider Tool: Web Search] Search completed
+🔍 [Search Query] 'As of 2016 what percentage of adults 18 an...",F,B,False,27.18259310722351,0.76
+gpt5nano,1317,"After graduating from law school, a graduate moved to a city where she had been offered a position i...","IIED requires extreme and outrageous conduct beyond all bounds of decency, with conduct that intentionally or recklessly causes severe emotional distress. Here, the bar-review company not only pressed...",I,I,True,28.935782194137573,0.76
+gpt5nano,704,"Shipley and Star ordered one lot of portable cassette machines from StereoElectonics, list-priced at...","Applying the terms:
+- (a) Net 30 days with ROG means due 30 days after receipt of goods. If received July 30, due date is August 29. Amount due is the full list price of $987.70 (no discount unless sp...",C,G,False,32.41412568092346,0.76
+gpt5nano,2624,The empirical literature suggests that when mothers give their children’s developmental and social h...,"Empirical studies on parental recall typically find that memories of concrete, observable developmental milestones and growth (e.g., motor development milestones and weight gain) are more accurate tha...",E,E,True,21.53228187561035,0.76
+gpt5nano,2149,Berkowitz (1971) revised the original frustration-aggression hypothesis by proposing that frustratio...,Berkowitz (1971) argued that frustration increases the probability of aggression only when there are cues in the environment that make aggression more likely or understandable as a response. In other ...,C,C,True,11.954176902770996,0.76
+gpt5nano,11365,Methane reacts with water vapor at 25°C by the following reaction : CH_4(g) + H_2O(g) \rightleftharp...,"Compute ΔH°rxn = [(-26.40) + 3(0)] - [(-17.89) + (-57.80)] = 49.29 kcal/mol.
+Compute ΔS°rxn = [47.3 + 3(31.2)] - [44.5 + 45.1] = 51.3 cal/(mol·K) = 0.0513 kcal/(mol·K).
+T = 298 K, so TΔS°rxn = 298 × 0...",A,A,True,17.719836473464966,0.76
+gpt5nano,2447,A meta-analysis of the research by Baltes and his colleagues (1999) indicates that instituting flexi...,"
+🔍 [Provider Tool: Web Search] Starting search...
+🔍 [Provider Tool: Web Search] Searching...
+✅ [Provider Tool: Web Search] Search completed
+🔍 [Search Query] 'Baltes 1999 meta-analysis flexible work ar...",F,F,True,39.1597466468811,0.76
+grok4,4327,Calculate the equilibrium constant for the reaction at 300°K H_2 + D_2 \rightleftarrows 2HD using th...,The answer is: B...,B,B,True,329.77462244033813,0.86
+grok4,3527,Which of the following has an octet of electrons around the central atom?...,The answer is: D...,D,D,True,10.131934642791748,0.86
+grok4,8056,"Ben rolls four fair 20-sided dice, and each of the dice has faces numbered from 1 to 20. What is the...",The answer is: B...,B,B,True,23.51954221725464,0.86
+grok4,3498,"What occurs during phases M, G_0, G_1, S, and G_2 of thecell cycle?...",The answer is: H...,H,H,True,14.713637113571167,0.86
+grok4,8926,What is the range of the function y = 5 + 3 * sin(pi – x)?...,The answer is: C...,C,C,True,14.122320175170898,0.86
+grok4,10857," Construct a complete truth table for the following pairs of propositions. Then, using the truth tab...",The answer is: H...,H,H,True,114.64193677902222,0.86
+grok4,5382,What kind of angle is formed where two perpendicular lines meet?...,The answer is: E...,E,E,True,6.46565580368042,0.86
+grok4,3919,The world's total reserve of coal and natural gas is estimated to be equivalent to 3.0 × 10^19 Kcal....,The answer is: I...,I,I,True,25.90134906768799,0.86
+grok4,11913,"A certain submerged body is to move horizontally through oil (\gamma = 52 lb/ft^3, \mu = 0.0006lb\bu...",The answer is: F...,F,F,True,367.3981053829193,0.86
+grok4,10373,"Let a undirected graph G with edges E = {<0,2>, <2,4>, <3,4>, <1,4>}, which <A,B> represent Node A i...",The answer is: D...,D,D,True,49.968318939208984,0.86
+grok4,6296,With which of the following relatives is an individual most likely to share a common HLA haplotype?...,The answer is: A...,A,D,False,184.3851134777069,0.86
+grok4,4837,Which archaeological method is best for identifying large-scale land modifications?...,The answer is: F...,F,F,True,13.216459035873413,0.86
+grok4,4219,The unaided eye can perceive objects which have a diameterof 0.1 mm. What is the diameter in inches?...,"The unaided eye can perceive objects with a diameter of 0.1 mm. To convert to inches, use the conversion factor: 1 mm = 0.039370 inches. Thus, 0.1 mm = 0.003937 inches, which matches option H.
+
+The an...",H,D,False,12.581958293914795,0.86
+grok4,4250,How many moles of propane (C3H8) are there in 6.2 g of propane?...,The answer is: E...,E,E,True,120.98348879814148,0.86
+grok4,10836,The _ad nauseam_ fallacy is...,The answer is: F...,F,F,True,14.35102891921997,0.86
+grok4,8311,Use Green's Theorem to evaluate $\oint_{C} xy dx + x^2y^3dy$ where $C$ is the triangle with vertices...,The answer is: J...,J,J,True,91.93569684028625,0.86
+grok4,10802,Another name for hasty generalization is...,The answer is: D...,D,D,True,11.866659879684448,0.86
+grok4,8753,In how many ways can a set of 6 distinct letters be partitioned into 3 non-empty groups if each grou...,The answer is: D...,D,D,True,58.767497539520264,0.86
+grok4,1719,A plantiff sued a defendant for injuries suffered m a fall on the sidewalk of the defendant's home. ...,The answer is: I...,I,I,True,85.15193438529968,0.86
+grok4,4070,Monatomic ions of the representative elements are often...,The answer is: G...,G,G,True,16.831883907318115,0.86
+grok4,9313,"A big fish swims upon and swallows a small fish that is at rest. Right after lunch, the fattened big...","The big fish approaches and swallows the small fish at rest, modeling an inelastic collision. Momentum is conserved, so the momentum of the fattened big fish is the same as the original big fish. Dire...",D,D,True,144.54986119270325,0.86
+grok4,4960,"This question refers to the following information.
+""The question as to who, and what, is responsible...",The answer is: C...,C,C,True,33.90172338485718,0.86
+grok4,2807,"In reference to a segment of DNA, which of the following molecules contains the fewest number of nuc...",The answer is: G...,G,I,False,189.63350319862366,0.86
+grok4,11200, Which of the following best characterizes de Marneffe's view?...,"The answer is: C
+📚 **Citations:**
+1. https://www.cambridge.org/core/books/legalization-of-drugs/F162075D7F4172CE4FA81E835FDDC2C6
+2. https://global.oup.com/us/companion.websites/9780190631314/resources...",C,D,False,232.9836447238922,0.86
+grok4,12023,"A journal bearing of light-dutytype,has a 3 in. diameter, 3 in. lengthand is installed in a housing ...",The answer is: D...,D,D,True,565.6441924571991,0.86
+grok4,5112,Who was the WNBA's Most Valuable Player of 1999?...,"The answer is: A
+📚 **Citations:**
+1. https://www.basketball-reference.com/wnba/awards/mvp.html
+2. https://www.wnba.com/history-mvp
+3. https://www.olympics.com/en/news/all-wnba-mvp-winners-complete-lis...",A,A,True,38.756895542144775,0.86
+grok4,9334,A mass $m$ moves in one dimension and is subject to a constant force $+F_0$ when $x<0$ and to a cons...,The answer is: I...,I,I,True,70.56904983520508,0.86
+grok4,4397,A chemist dissolves 10 g of an unknown protein in a liter of water at 25°C. The osmotic pressure is ...,The answer is: H...,H,H,True,46.872008085250854,0.86
+grok4,11216,An example of a morally impossible rule would be:...,The answer is: C...,C,C,True,70.1925938129425,0.86
+grok4,2082,Research that demonstrates parents who play more roughly with male children and are more protective ...,The answer is: F...,F,F,True,20.749733686447144,0.86
+grok4,7925,Write the unit rate for driving 308 km in 4 h. Round to the nearest hundredth if necessary....,"308 km divided by 4 h is exactly 77 km/h, no rounding needed. Option I matches this.
+
+The answer is: I...",I,I,True,10.466533422470093,0.86
+grok4,6996,Characterize and differentiate capital widening from capi-tal deepening....,The answer is: A...,A,A,True,17.100867748260498,0.86
+grok4,3918,"There is an appreciative sigh throughout the audience in the ""mad\textquotedblright scene of ""Luciad...",The answer is: F...,F,F,True,25.050843238830566,0.86
+grok4,3871,A solution of 20.0 g of a non-volatile solute in 100 g of benzene at 30°C has a vapor pressure 13.4 ...,The answer is: C...,C,C,True,153.15207839012146,0.86
+grok4,3353,"Referring to the independent random mating scheme of the previous problem, find the offspring genoty...",The answer is: H...,H,H,True,44.8165717124939,0.86
+grok4,2440,Asking the “miracle question” is an initial intervention in which type of therapy?...,The answer is: C...,C,C,True,9.798608541488647,0.86
+grok4,403,The daily cost of producing n Gaped Ghouls at the Star Toys Factory is C(n) = 0.2n^2 + n + 900 where...,"The cost C is a function of n, and n is a function of t: n(t) = t² + 100t.
+
+Thus, dC/dt = (dC/dn) * (dn/dt).
+
+dC/dn = 0.4n + 1.
+
+dn/dt = 2t + 100.
+
+So dC/dt = (0.4n + 1)(2t + 100).
+
+Substitute n(t): (...",J,J,True,66.1998655796051,0.86
+grok4,7237,Which of the following is most likely an example of production inputs that can be adjusted in the lo...,"The question is about identifying a fixed input in the short run (cannot be easily adjusted) but variable in the long run (can be adjusted with sufficient time and planning). In economic terms, capita...",C,I,False,107.18294072151184,0.86
+grok4,3620,Find thehydroniumion concentration of .1M HOAC (acetic acid) solution. Assume k_a = 1.75 x 10^-5 for...,The answer is: C...,C,C,True,21.090977668762207,0.86
+grok4,636,"Let $P(r,t,T)$ denote the price at time $t$ of $1 to be paid with certainty at time $T, t\leT$, if t...",The answer is: E...,E,E,True,124.9759111404419,0.86
+grok4,5892,When it comes to measuring horses how long is a 'hand'?...,"A hand is a unit of measurement used for the height of horses, standardized to equal 4 inches.
+
+The answer is: F...",F,F,True,9.184855937957764,0.86
+grok4,973,Which case was the first to define the meaning of the doctrine of 'margin of appreciation' as applie...,"The answer is: H
+📚 **Citations:**
+1. https://academic.oup.com/hrlr/article/18/3/495/5068636
+2. https://en.wikipedia.org/wiki/Margin_of_appreciation
+3. https://www.coe.int/t/dghl/cooperation/lisbonnetw...",H,H,True,103.4481930732727,0.86
+grok4,3287,"In peas, tall (D) is dominant to dwarf (d) and yellow cotyledons (G) is dominant to green (g). A tal...",The answer is: G...,G,G,True,53.550127267837524,0.86
+grok4,5529,"As of 2016, about what percentage of adults aged 18 years or older were overweight?...","Based on web search results from sources like the CDC and related health statistics for the US, the percentage of adults aged 18 or older who were overweight (including obese) as of 2016 was approxima...",E,B,False,140.2825107574463,0.86
+grok4,1317,"After graduating from law school, a graduate moved to a city where she had been offered a position i...",The answer is: I...,I,I,True,23.83527684211731,0.86
+grok4,704,"Shipley and Star ordered one lot of portable cassette machines from StereoElectonics, list-priced at...",The answer is: G...,G,G,True,108.48427295684814,0.86
+grok4,2624,The empirical literature suggests that when mothers give their children’s developmental and social h...,"The empirical literature, including studies on maternal recall in developmental contexts (e.g., from sources like PMC and ResearchGate), indicates that mothers' memories are most reliable for concrete...",E,E,True,33.86663317680359,0.86
+grok4,2149,Berkowitz (1971) revised the original frustration-aggression hypothesis by proposing that frustratio...,The answer is: C...,C,C,True,22.264370679855347,0.86
+grok4,11365,Methane reacts with water vapor at 25°C by the following reaction : CH_4(g) + H_2O(g) \rightleftharp...,The answer is: A...,A,A,True,29.548431158065796,0.86
+grok4,2447,A meta-analysis of the research by Baltes and his colleagues (1999) indicates that instituting flexi...,"The answer is: D
+📚 **Citations:**
+1. https://www.researchgate.net/publication/232480680_Flexible_and_Compressed_Workweek_Schedules_A_Meta-Analysis_of_Their_Effects_on_Work-Related_Criteria
+2. https://...",D,F,False,76.0177993774414,0.86
+gemini25flash,4327,Calculate the equilibrium constant for the reaction at 300°K H_2 + D_2 \rightleftarrows 2HD using th...,"To calculate the equilibrium constant (K) for the reaction H₂ + D₂ ⇌ 2HD at 300 K, we use the statistical mechanical expression:
+K = (q_HD² / (q_H₂ * q_D₂)) * exp(-ΔE₀ / kT)
+
+Where q_i is the molecula...",B,B,True,68.04949069023132,0.74
+gemini25flash,3527,Which of the following has an octet of electrons around the central atom?...,The answer is: D...,D,D,True,4.664330244064331,0.74
+gemini25flash,8056,"Ben rolls four fair 20-sided dice, and each of the dice has faces numbered from 1 to 20. What is the...","The problem asks for the probability that exactly two of four fair 20-sided dice show an even number.
+
+First, let's determine the probability of a single die showing an even number.
+A 20-sided die has...",B,B,True,8.402244091033936,0.74
+gemini25flash,3498,"What occurs during phases M, G_0, G_1, S, and G_2 of thecell cycle?...","The cell cycle is an ordered series of events that involves cell growth, DNA replication, and cell division. It is typically divided into two main phases: interphase (G1, S, G2) and the mitotic (M) ph...",H,H,True,29.498676538467407,0.74
+gemini25flash,8926,What is the range of the function y = 5 + 3 * sin(pi – x)?...,"The range of the sine function, sin(θ), is typically -1 ≤ sin(θ) ≤ 1.
+
+In the given function, y = 5 + 3 * sin(pi – x):
+
+1.  The term `sin(pi – x)` will have a range of -1 to 1, because the input `(pi ...",C,C,True,5.021353721618652,0.74
+gemini25flash,10857," Construct a complete truth table for the following pairs of propositions. Then, using the truth tab...","**Truth Table Construction:**
+
+Let's construct the truth table for the two propositions: `~O ⊃ P` and `O ∨ P`.
+
+| O | P | ~O | ~O ⊃ P | O ∨ P | (~O ⊃ P) ∧ (O ∨ P) |
+|---|---|----|--------|-------|----...",G,H,False,7.912952899932861,0.74
+gemini25flash,5382,What kind of angle is formed where two perpendicular lines meet?...,"Perpendicular lines are defined as two lines that intersect to form a 90-degree angle. This type of angle is known as a right angle. When two perpendicular lines meet, they actually form four right an...",E,E,True,12.330153703689575,0.74
+gemini25flash,3919,The world's total reserve of coal and natural gas is estimated to be equivalent to 3.0 × 10^19 Kcal....,"To determine how long the fuel reserves will last, we need to divide the total reserves by the annual consumption rate. However, the units for reserves and consumption are different (Kcal and ergs, re...",I,I,True,14.248575687408447,0.74
+gemini25flash,11913,"A certain submerged body is to move horizontally through oil (\gamma = 52 lb/ft^3, \mu = 0.0006lb\bu...","To solve this problem, we need to apply the principles of dynamic similarity using the Reynolds criterion, and then use the drag force equation.
+
+**1. Identify Given Values and Convert Units if necess...",F,F,True,91.63424134254456,0.74
+gemini25flash,10373,"Let a undirected graph G with edges E = {<0,2>, <2,4>, <3,4>, <1,4>}, which <A,B> represent Node A i...","The problem asks for the minimum vertex cover of graph G, given that node 0 is part of the vertex cover. The edges of the graph are E = {<0,2>, <2,4>, <3,4>, <1,4>}.
+
+A vertex cover is a set of vertic...",D,D,True,11.399247646331787,0.74
+gemini25flash,6296,With which of the following relatives is an individual most likely to share a common HLA haplotype?...,"An individual is most likely to share a common HLA haplotype with their son. This is because every child inherits one HLA haplotype from each parent. Therefore, an individual will always share one of ...",A,D,False,15.814537048339844,0.74
+gemini25flash,4837,Which archaeological method is best for identifying large-scale land modifications?...,Aerial photography is the best archaeological method for identifying large-scale land modifications. This technique is highly effective for revealing archaeological sites and patterns across extensive...,F,F,True,18.015638828277588,0.74
+gemini25flash,4219,The unaided eye can perceive objects which have a diameterof 0.1 mm. What is the diameter in inches?...,"To convert millimeters (mm) to inches, we use the conversion factor that 1 millimeter is approximately equal to 0.0393701 inches.
+
+Given diameter = 0.1 mm
+
+To convert this to inches, multiply the diam...",H,D,False,10.117794275283813,0.74
+gemini25flash,4250,How many moles of propane (C3H8) are there in 6.2 g of propane?...,"To determine the number of moles of propane (C3H8) in 6.2 g of propane, the molar mass of propane must first be calculated.
+
+1.  **Determine the atomic masses of carbon and hydrogen:**
+    *   The ato...",E,E,True,14.66770601272583,0.74
+gemini25flash,10836,The _ad nauseam_ fallacy is...,"The _ad nauseam_ fallacy, also known as argument from repetition or argumentum ad nauseam, is a logical fallacy where a conclusion or claim is asserted to be true simply because it has been repeated m...",F,F,True,13.341954231262207,0.74
+gemini25flash,8311,Use Green's Theorem to evaluate $\oint_{C} xy dx + x^2y^3dy$ where $C$ is the triangle with vertices...,"To evaluate the line integral using Green's Theorem, we first identify P and Q from the given integral $\oint_{C} xy dx + x^2y^3dy$:
+$P(x,y) = xy$
+$Q(x,y) = x^2y^3$
+
+Next, we calculate the partial der...",J,J,True,10.90981125831604,0.74
+gemini25flash,10802,Another name for hasty generalization is...,"The fallacy of hasty generalization is also known by several other names, including overgeneralization fallacy, faulty generalization, argument from small numbers, jumping to conclusions, and sweeping...",D,D,True,13.844119310379028,0.74
+gemini25flash,8753,In how many ways can a set of 6 distinct letters be partitioned into 3 non-empty groups if each grou...,"The problem asks us to find the number of ways to partition a set of 6 distinct letters into 3 non-empty groups, with each group containing at least 2 letters.
+
+First, let's determine the possible siz...",D,D,True,8.785297870635986,0.74
+gemini25flash,1719,A plantiff sued a defendant for injuries suffered m a fall on the sidewalk of the defendant's home. ...,"The question asks about the admissibility of a statement made by the plaintiff to a physician during treatment. This statement, where the plaintiff attributes their fall to dizziness and loss of equil...",I,I,True,21.435643196105957,0.74
+gemini25flash,4070,Monatomic ions of the representative elements are often...,"Monatomic ions of the representative elements are often isoelectronic with a noble gas. This means they have the same electron configuration as a noble gas atom.
+
+Representative elements, which are fo...",G,G,True,14.06540298461914,0.74
+gemini25flash,9313,"A big fish swims upon and swallows a small fish that is at rest. Right after lunch, the fattened big...","The user is asking about the changes a big fish experiences immediately after swallowing a smaller fish. We need to analyze each option based on fundamental physics principles.
+
+Here's a breakdown:
+
+1...",E,D,False,24.65035080909729,0.74
+gemini25flash,4960,"This question refers to the following information.
+""The question as to who, and what, is responsible...","The question asks which option contributed *least* to Europe's ability to penetrate Africa between 1750 and 1900 CE.
+
+Let's analyze each option based on historical context and the search results:
+
+*  ...",E,C,False,16.86655020713806,0.74
+gemini25flash,2807,"In reference to a segment of DNA, which of the following molecules contains the fewest number of nuc...","The question asks to identify the molecule that contains the fewest number of nucleotides among the given options, all in reference to a segment of DNA.
+
+Let's analyze the typical lengths of the molec...",A,I,False,31.650055170059204,0.74
+gemini25flash,11200, Which of the following best characterizes de Marneffe's view?...,Peter de Marneffe's view on drug policy can be characterized by a key distinction between the use of drugs and their sale and manufacturing. He argues that psychoactive drug use should be decriminaliz...,C,D,False,14.282066822052002,0.74
+gemini25flash,12023,"A journal bearing of light-dutytype,has a 3 in. diameter, 3 in. lengthand is installed in a housing ...","The search results confirm that the heat transfer coefficient (K or C) for self-cooled journal bearings can vary significantly, from around 1.0 to 7.0 Btu/min-ft²-°F depending on ventilation (Source 1...",F,D,False,86.90199828147888,0.74
+gemini25flash,5112,Who was the WNBA's Most Valuable Player of 1999?...,"The WNBA's Most Valuable Player of 1999 was Yolanda Griffith.
+
+The answer is: A🔍 [Builtin Tool: Web Search] Results integrated
+🔍 [Search Query] 'WNBA MVP 1999'
+...",A,A,True,9.369389772415161,0.74
+gemini25flash,9334,A mass $m$ moves in one dimension and is subject to a constant force $+F_0$ when $x<0$ and to a cons...,The problem describes a mass $m$ subject to a piecewise constant force: $+F_0$ when $x<0$ and $-F_0$ when $x>0$. This can be written as $F(x) = -F_0 \operatorname{sgn}(x)$. We are asked to calculate t...,I,I,True,21.173566102981567,0.74
+gemini25flash,4397,A chemist dissolves 10 g of an unknown protein in a liter of water at 25°C. The osmotic pressure is ...,"To solve this problem, we need to perform the following calculations:
+
+1.  **Calculate the molecular weight (MW) of the protein using the osmotic pressure formula.**
+    The osmotic pressure equation ...",H,H,True,22.5096652507782,0.74
+gemini25flash,11216,An example of a morally impossible rule would be:...,"Analysis of the options:
+
+A. **lie whenever doing so is necessary to prevent a catastrophe.** This is a consequentialist rule, often debated in ethics. While it might be difficult or morally challengi...",C,C,True,7.646807670593262,0.74
+gemini25flash,2082,Research that demonstrates parents who play more roughly with male children and are more protective ...,"The observation that parents play more roughly with male children and are more protective of female children is most consistent with **Social learning** theory.
+
+Social learning theory, particularly B...",F,F,True,21.765456438064575,0.74
+gemini25flash,7925,Write the unit rate for driving 308 km in 4 h. Round to the nearest hundredth if necessary....,"To find the unit rate for driving 308 km in 4 hours, divide the total distance by the total time. A unit rate expresses how many units of the first type of quantity correspond to one unit of the secon...",I,I,True,10.582947492599487,0.74
+gemini25flash,6996,Characterize and differentiate capital widening from capi-tal deepening....,"The search results confirm my understanding.
+
+*   **Capital widening** occurs when the capital stock increases at the same rate as the labor force, maintaining a constant capital-to-labor ratio. This ...",A,A,True,20.599541664123535,0.74
+gemini25flash,3918,"There is an appreciative sigh throughout the audience in the ""mad\textquotedblright scene of ""Luciad...","The problem asks to compute the wavelength of a high C sound wave. We are given the frequency of high C as 1,024 sec⁻¹ (or 1,024 Hz) and the velocity of sound in air as 3.317 × 10⁴ cm sec⁻¹.
+
+The rela...",F,F,True,11.217164278030396,0.74
+gemini25flash,3871,A solution of 20.0 g of a non-volatile solute in 100 g of benzene at 30°C has a vapor pressure 13.4 ...,"The problem asks for the mole fraction of a non-volatile solute given the vapor pressure lowering. Raoult's Law is applicable here. For a non-volatile solute, the lowering of vapor pressure (ΔP) is di...",C,C,True,13.499851703643799,0.74
+gemini25flash,3353,"Referring to the independent random mating scheme of the previous problem, find the offspring genoty...","To find the offspring genotype probabilities under an independent random mating scheme, we first need to calculate the allele frequencies for males and females in each population.
+
+**Population (a):**...",H,H,True,20.966601848602295,0.74
+gemini25flash,2440,Asking the “miracle question” is an initial intervention in which type of therapy?...,"The ""miracle question"" is an initial intervention commonly used in solution-focused therapy. Developed by Steve de Shazer and Insoo Kim Berg, it's a core technique in Solution-Focused Brief Therapy (S...",C,C,True,10.299740076065063,0.74
+gemini25flash,403,The daily cost of producing n Gaped Ghouls at the Star Toys Factory is C(n) = 0.2n^2 + n + 900 where...,"The problem asks for the rate of change of the total cost with respect to time, which can be represented as dC/dt.
+
+We are given two functions:
+1. The daily cost of producing n Caped Ghouls: C(n) = 0....",J,J,True,7.768124580383301,0.74
+gemini25flash,7237,Which of the following is most likely an example of production inputs that can be adjusted in the lo...,"The short run in economics is defined as a period where at least one factor of production is fixed, while the long run is a period where all factors of production are variable. We are looking for an i...",C,I,False,8.115620613098145,0.74
+gemini25flash,3620,Find thehydroniumion concentration of .1M HOAC (acetic acid) solution. Assume k_a = 1.75 x 10^-5 for...,"The search results confirm the method for calculating the hydronium ion concentration of a weak acid solution. Specifically, using an ICE table and the Ka expression is the correct approach. The appro...",M,C,False,14.716907024383545,0.74
+gemini25flash,636,"Let $P(r,t,T)$ denote the price at time $t$ of $1 to be paid with certainty at time $T, t\leT$, if t...","The price of a zero-coupon bond in the Vasicek model is given by the formula:
+$P(r,t,T) = A(T-t) \cdot e^{-B(T-t) \cdot r}$
+
+Where $A(T-t)$ and $B(T-t)$ are functions of the time to maturity $(T-t)$ a...",E,E,True,22.600658655166626,0.74
+gemini25flash,5892,When it comes to measuring horses how long is a 'hand'?...,"When measuring horses, a 'hand' is a standardized unit of length equal to four inches (10.16 cm). This unit is primarily used in English-speaking countries to measure the height of horses from the gro...",F,F,True,9.55122685432434,0.74
+gemini25flash,973,Which case was the first to define the meaning of the doctrine of 'margin of appreciation' as applie...,The European Court of Human Rights first defined the meaning of the doctrine of 'margin of appreciation' in the case of Handyside v United Kingdom (1976). This landmark judgment is widely recognized f...,H,H,True,9.68225646018982,0.74
+gemini25flash,3287,"In peas, tall (D) is dominant to dwarf (d) and yellow cotyledons (G) is dominant to green (g). A tal...","The problem states that a tall pea plant with yellow cotyledons was crossed with a tall pea plant with green cotyledons. The progeny exhibited the following phenotypic distribution: 6 tall, green; 5 t...",G,G,True,11.581372499465942,0.74
+gemini25flash,5529,"As of 2016, about what percentage of adults aged 18 years or older were overweight?...","As of 2015–2016, approximately 31.8% of adults aged 20 and over in the U.S. were overweight, according to estimates from the National Center for Health Statistics. Similarly, another analysis of CDC d...",F,B,False,15.018903732299805,0.74
+gemini25flash,1317,"After graduating from law school, a graduate moved to a city where she had been offered a position i...","To prevail on a claim for intentional infliction of emotional distress (IIED), the graduate must prove four elements: (1) the defendant (the bar-review company) acted intentionally or recklessly; (2) ...",I,I,True,20.90072274208069,0.74
+gemini25flash,704,"Shipley and Star ordered one lot of portable cassette machines from StereoElectonics, list-priced at...","For part (a), the terms are (n/30) ROG, which means the payment is due 30 days after the Receipt of Goods. The machines were received on July 30. July has 31 days. Counting 30 days from July 30: 1 day...",G,G,True,18.44034433364868,0.74
+gemini25flash,2624,The empirical literature suggests that when mothers give their children’s developmental and social h...,"The empirical literature suggests that when mothers give their children’s developmental and social histories, their memories are most accurate about specific events and dates. Studies indicate that mo...",D,E,False,12.143015623092651,0.74
+gemini25flash,2149,Berkowitz (1971) revised the original frustration-aggression hypothesis by proposing that frustratio...,Berkowitz (1971) revised the original frustration-aggression hypothesis by proposing that frustration leads to aggression when there are aggressive cues in the environment. He suggested that frustrati...,C,C,True,11.198773384094238,0.74
+gemini25flash,11365,Methane reacts with water vapor at 25°C by the following reaction : CH_4(g) + H_2O(g) \rightleftharp...,"To calculate the standard Gibbs free-energy change (ΔG°) for the reaction CH₄(g) + H₂O(g) ⇌ CO(g) + 3H₂(g) at 25°C, we use the formula ΔG° = ΔH° - TΔS°.
+
+First, we calculate the standard enthalpy chan...",A,A,True,20.36825132369995,0.74
+gemini25flash,2447,A meta-analysis of the research by Baltes and his colleagues (1999) indicates that instituting flexi...,"The meta-analysis by Baltes and colleagues (1999), titled ""Flexible and Compressed Workweek Schedules: A Meta-Analysis of Their Effects on Work-Related Criteria,"" examined the effects of flexible work...",D,F,False,27.565977573394775,0.74
+glm45,4327,Calculate the equilibrium constant for the reaction at 300°K H_2 + D_2 \rightleftarrows 2HD using th...,No response generated...,No answer found,B,False,1201.4323143959045,0.66
+glm45,3527,Which of the following has an octet of electrons around the central atom?...,"To determine which compound has an octet of electrons around the central atom, I'll analyze each option:
+
+A. BF3 (Boron trifluoride)
+- Boron has 3 valence electrons
+- Forms 3 bonds with fluorine atoms...",D,D,True,19.12421154975891,0.66
+glm45,8056,"Ben rolls four fair 20-sided dice, and each of the dice has faces numbered from 1 to 20. What is the...","To find the probability that exactly two of the four dice show an even number, I need to use the binomial probability formula.
+
+First, let's determine the probability of a single die showing an even n...",B,B,True,24.126338958740234,0.66
+glm45,3498,"What occurs during phases M, G_0, G_1, S, and G_2 of thecell cycle?...","I need to evaluate each option to determine which one correctly describes the phases of the cell cycle.
+
+The cell cycle consists of:
+- M phase: Mitosis (cell division)
+- G₀ phase: Quiescent phase for ...",H,H,True,32.364359617233276,0.66
+glm45,8926,What is the range of the function y = 5 + 3 * sin(pi – x)?...,"To find the range of the function y = 5 + 3 * sin(pi – x), I need to determine all possible values of y.
+
+First, I'll simplify the trigonometric expression. Using the identity sin(pi – x) = sin(x), th...",C,C,True,13.898000955581665,0.66
+glm45,10857," Construct a complete truth table for the following pairs of propositions. Then, using the truth tab...","I'll construct a truth table for the propositions ~O ⊃ P and O ∨ P.
+
+First, let's recall the truth tables for the logical operators:
+- Negation (~): ~T = F, ~F = T
+- Implication (⊃): T ⊃ T = T, T ⊃ F ...",G,H,False,1003.0838241577148,0.66
+glm45,5382,What kind of angle is formed where two perpendicular lines meet?...,The answer is: E...,E,E,True,6.41546368598938,0.66
+glm45,3919,The world's total reserve of coal and natural gas is estimated to be equivalent to 3.0 × 10^19 Kcal....,No response generated...,No answer found,I,False,1164.4852192401886,0.66
+glm45,11913,"A certain submerged body is to move horizontally through oil (\gamma = 52 lb/ft^3, \mu = 0.0006lb\bu...",No response generated...,No answer found,F,False,1370.2330453395844,0.66
+glm45,10373,"Let a undirected graph G with edges E = {<0,2>, <2,4>, <3,4>, <1,4>}, which <A,B> represent Node A i...","To find the minimum vertex cover that includes vertex 0, I need to check which set of vertices containing 0 covers all edges in the graph.
+
+The graph has edges: <0,2>, <2,4>, <3,4>, <1,4>
+
+Let's check...",D,D,True,36.77239394187927,0.66
+glm45,6296,With which of the following relatives is an individual most likely to share a common HLA haplotype?...,HLA (Human Leukocyte Antigen) haplotypes are groups of genes on chromosome 6 that are inherited together from each parent. Each person inherits one haplotype from their mother and one from their fathe...,D,D,True,50.70126533508301,0.66
+glm45,4837,Which archaeological method is best for identifying large-scale land modifications?...,"I need to determine which archaeological method is best for identifying large-scale land modifications. Let me analyze each option:
+
+A. Stratigraphic analysis - This focuses on soil layers and sequenc...",F,F,True,21.92591142654419,0.66
+glm45,4219,The unaided eye can perceive objects which have a diameterof 0.1 mm. What is the diameter in inches?...,"I need to convert 0.1 mm to inches.
+
+I know that 1 inch = 25.4 mm.
+
+So to convert mm to inches, I need to divide by 25.4:
+0.1 mm ÷ 25.4 = 0.003937 inches
+
+Looking at the options:
+A. 0.007874 inches
+B....",H,D,False,10.017132759094238,0.66
+glm45,4250,How many moles of propane (C3H8) are there in 6.2 g of propane?...,"To find the number of moles of propane (C3H8) in 6.2 g, I need to calculate the molar mass of propane first.
+
+The molar mass of propane (C3H8) is:
+- Carbon: 3 atoms × 12.01 g/mol = 36.03 g/mol
+- Hydro...",E,E,True,14.248132228851318,0.66
+glm45,10836,The _ad nauseam_ fallacy is...,"The _ad nauseam_ fallacy is a logical error where someone believes a statement is true simply because it has been repeated frequently, regardless of whether there's actual evidence to support it. The ...",F,F,True,16.735543489456177,0.66
+glm45,8311,Use Green's Theorem to evaluate $\oint_{C} xy dx + x^2y^3dy$ where $C$ is the triangle with vertices...,"To evaluate the line integral $\oint_{C} xy  dx + x^2 y^3  dy$ where $C$ is the triangle with vertices $(0,0)$, $(1,0)$, $(1,2)$ with positive orientation, Green's Theorem is applied. Green's Theorem ...",J,J,True,226.84768509864807,0.66
+glm45,10802,Another name for hasty generalization is...,The answer is: D. secundum quid...,D,D,True,19.951195240020752,0.66
+glm45,8753,In how many ways can a set of 6 distinct letters be partitioned into 3 non-empty groups if each grou...,"To solve this problem, I need to find the number of ways to partition a set of 6 distinct letters into 3 non-empty groups, with each group containing at least 2 letters.
+
+First, let's determine the po...",D,D,True,112.78392291069031,0.66
+glm45,1719,A plantiff sued a defendant for injuries suffered m a fall on the sidewalk of the defendant's home. ...,"I need to analyze whether the physician's testimony about what the plaintiff said regarding his fall would be admissible.
+
+The key issue here is whether this statement qualifies under an exception to ...",I,I,True,20.034436225891113,0.66
+glm45,4070,Monatomic ions of the representative elements are often...,"Monatomic ions of the representative elements are often isoelectronic with a noble gas. This is because representative elements (those in groups 1, 2, and 13-18) tend to gain or lose electrons to achi...",G,G,True,13.31570839881897,0.66
+glm45,9313,"A big fish swims upon and swallows a small fish that is at rest. Right after lunch, the fattened big...",No response generated...,No answer found,D,False,1501.2011528015137,0.66
+glm45,4960,"This question refers to the following information.
+""The question as to who, and what, is responsible...","I need to analyze which of these options contributed LEAST to Europe's ability to penetrate Africa between 1750 and 1900 C.E.
+
+Let me examine each option:
+
+A. The invention of the machine gun: Machine...",C,C,True,24.567522287368774,0.66
+glm45,2807,"In reference to a segment of DNA, which of the following molecules contains the fewest number of nuc...","To determine which molecule contains the fewest number of nucleotides, I need to analyze each option:
+
+A. the tRNA transcript from the original DNA
+tRNA molecules are small, typically only 73-93 nucle...",A,I,False,18.519917011260986,0.66
+glm45,11200, Which of the following best characterizes de Marneffe's view?...,The answer is: C...,C,D,False,7.818549633026123,0.66
+glm45,12023,"A journal bearing of light-dutytype,has a 3 in. diameter, 3 in. lengthand is installed in a housing ...",No response generated...,No answer found,D,False,1309.1517097949982,0.66
+glm45,5112,Who was the WNBA's Most Valuable Player of 1999?...,"I need to determine who won the WNBA's Most Valuable Player award in 1999. Let me recall the WNBA MVP history:
+
+The WNBA MVP award has been given annually since the league's inception in 1997. For the...",A,A,True,21.882318258285522,0.66
+glm45,9334,A mass $m$ moves in one dimension and is subject to a constant force $+F_0$ when $x<0$ and to a cons...,No response generated...,No answer found,I,False,1277.4825007915497,0.66
+glm45,4397,A chemist dissolves 10 g of an unknown protein in a liter of water at 25°C. The osmotic pressure is ...,"I'll solve this step by step, starting with finding the molecular weight using the osmotic pressure.
+
+The osmotic pressure formula is:
+π = MRT
+
+Where:
+π = osmotic pressure = 9.25 mmHg
+R = gas constant...",H,H,True,60.91645336151123,0.66
+glm45,11216,An example of a morally impossible rule would be:...,"I need to analyze each option to determine which represents a morally impossible rule.
+
+Option A: ""lie whenever doing so is necessary to prevent a catastrophe.""
+This is not morally impossible. Many et...",C,C,True,11.366825819015503,0.66
+glm45,2082,Research that demonstrates parents who play more roughly with male children and are more protective ...,The research showing that parents play more roughly with male children and are more protective of female children demonstrates differential treatment based on gender. This pattern is most consistent w...,F,F,True,17.120230436325073,0.66
+glm45,7925,Write the unit rate for driving 308 km in 4 h. Round to the nearest hundredth if necessary....,"To find the unit rate for driving 308 km in 4 h, I need to calculate the speed in km/h.
+
+Speed = Distance / Time
+Speed = 308 km / 4 h
+Speed = 77 km/h
+
+So the unit rate is 77 km/h.
+
+Looking at the opti...",I,I,True,4.285604476928711,0.66
+glm45,6996,Characterize and differentiate capital widening from capi-tal deepening....,"To answer this question, I need to identify the correct characterization and differentiation between capital widening and capital deepening.
+
+Capital widening refers to increasing the capital stock wh...",A,A,True,21.40016770362854,0.66
+glm45,3918,"There is an appreciative sigh throughout the audience in the ""mad\textquotedblright scene of ""Luciad...","To find the wavelength of the high C sound wave, I'll use the relationship between wavelength (λ), frequency (f), and velocity (v):
+
+v = f × λ
+
+Rearranging to solve for wavelength:
+λ = v / f
+
+Given:
+-...",F,F,True,7.1678407192230225,0.66
+glm45,3871,A solution of 20.0 g of a non-volatile solute in 100 g of benzene at 30°C has a vapor pressure 13.4 ...,No response generated...,No answer found,C,False,1285.1491012573242,0.66
+glm45,3353,"Referring to the independent random mating scheme of the previous problem, find the offspring genoty...",No response generated...,No answer found,H,False,1213.4678914546967,0.66
+glm45,2440,Asking the “miracle question” is an initial intervention in which type of therapy?...,"The ""miracle question"" is a hallmark technique used in solution-focused brief therapy. This intervention involves asking clients to imagine that a miracle has happened overnight and their problems hav...",C,C,True,9.869367837905884,0.66
+glm45,403,The daily cost of producing n Gaped Ghouls at the Star Toys Factory is C(n) = 0.2n^2 + n + 900 where...,"To find the rate of change of the total cost with respect to time, I need to find dC/dt.
+
+Given:
+- Cost function: C(n) = 0.2n² + n + 900
+- Production function: n(t) = t² + 100t (number of Gaped Ghouls...",J,J,True,20.168452501296997,0.66
+glm45,7237,Which of the following is most likely an example of production inputs that can be adjusted in the lo...,The answer is: C. The size of a manufacturing plant....,C,I,False,14.80009913444519,0.66
+glm45,3620,Find thehydroniumion concentration of .1M HOAC (acetic acid) solution. Assume k_a = 1.75 x 10^-5 for...,No response generated...,No answer found,C,False,1143.126478433609,0.66
+glm45,636,"Let $P(r,t,T)$ denote the price at time $t$ of $1 to be paid with certainty at time $T, t\leT$, if t...",No response generated...,No answer found,E,False,1161.4770052433014,0.66
+glm45,5892,When it comes to measuring horses how long is a 'hand'?...,"A hand is a unit of measurement used to determine the height of horses. It's a traditional unit that has been standardized in modern times. When measuring horses, one hand is equal to 4 inches. The me...",F,F,True,5.09258770942688,0.66
+glm45,973,Which case was the first to define the meaning of the doctrine of 'margin of appreciation' as applie...,"The doctrine of ""margin of appreciation"" is a fundamental principle in European human rights law that allows national authorities a degree of discretion in implementing the European Convention on Huma...",H,H,True,21.98596501350403,0.66
+glm45,3287,"In peas, tall (D) is dominant to dwarf (d) and yellow cotyledons (G) is dominant to green (g). A tal...","To solve this problem, I need to determine the genotypes of the parent plants based on the phenotypic ratios in their offspring.
+
+First, let's analyze the progeny ratios:
+- Tall vs. Dwarf: (6 + 5) : (...",G,G,True,39.887659788131714,0.66
+glm45,5529,"As of 2016, about what percentage of adults aged 18 years or older were overweight?...","Based on World Health Organization (WHO) data from 2016, approximately 39% of adults aged 18 years and older worldwide were overweight (including those with obesity). This statistic represents adults ...",B,B,True,18.0865797996521,0.66
+glm45,1317,"After graduating from law school, a graduate moved to a city where she had been offered a position i...",No response generated...,No answer found,I,False,1012.4762377738953,0.66
+glm45,704,"Shipley and Star ordered one lot of portable cassette machines from StereoElectonics, list-priced at...","Let's solve this step by step:
+
+Part (a):
+- Invoice date: June 10
+- Terms: (n/30) ROG
+- Machines received: July 30
+
+""ROG"" means ""Receipt of Goods,"" so the payment period starts from when the goods are...",G,G,True,15.950340270996094,0.66
+glm45,2624,The empirical literature suggests that when mothers give their children’s developmental and social h...,"The empirical literature suggests that when mothers give their children's developmental and social histories, the mothers' memories are most accurate about motor development and weight gain. This is b...",E,E,True,9.166966438293457,0.66
+glm45,2149,Berkowitz (1971) revised the original frustration-aggression hypothesis by proposing that frustratio...,The answer is: C. there are aggressive cues in the environment....,C,C,True,16.371068239212036,0.66
+glm45,11365,Methane reacts with water vapor at 25°C by the following reaction : CH_4(g) + H_2O(g) \rightleftharp...,"To calculate the standard Gibbs free-energy change for the reaction CH₄(g) + H₂O(g) ⇌ CO(g) + 3H₂(g), I'll use the formula:
+
+ΔG° = ΔH° - TΔS°
+
+First, I need to calculate ΔH° for the reaction:
+ΔH° = ΣΔ...",A,A,True,35.00237536430359,0.66
+glm45,2447,A meta-analysis of the research by Baltes and his colleagues (1999) indicates that instituting flexi...,"I need to determine which outcome is most positively affected by implementing flexitime based on the meta-analysis by Baltes and colleagues (1999).
+
+Let me think about what flexitime typically affects...",D,F,False,18.066248178482056,0.66
+multi_agent,4327,Calculate the equilibrium constant for the reaction at 300°K H_2 + D_2 \rightleftarrows 2HD using th...,"To calculate the equilibrium constant (K) for the reaction H₂ + D₂ ⇌ 2HD at 300°K, we need to use the full molecular partition functions for each species. The equilibrium constant can be expressed as:...",B,B,True,530.4170029163361,0.94
+multi_agent,3527,Which of the following has an octet of electrons around the central atom?...,"The central atom in a molecule or ion has an octet of electrons if it is surrounded by eight valence electrons. Let's examine each option:
+
+A. BF3 (Boron Trifluoride): Boron (B) is the central atom. B...",D,D,True,71.41549372673035,0.94
+multi_agent,8056,"Ben rolls four fair 20-sided dice, and each of the dice has faces numbered from 1 to 20. What is the...","{3}{16}
+B. \frac{3}{8}
+C. \frac{5}{24}
+D. \frac{5}{16}
+E. \frac{1}{8}
+F. \frac{5}{32}
+G. \frac{1}{2}
+H. \frac{1}{4}
+I. \frac{7}{16}
+J. \frac{5}{8}
+
+The answer is:
+📁 Log file: mass_coordination_2025082...",B,B,True,77.03495168685913,0.94
+multi_agent,3498,"What occurs during phases M, G_0, G_1, S, and G_2 of thecell cycle?...","Here is an analysis of each phase of the cell cycle as described in the options:
+
+*   M phase (Mitosis): This phase involves the division of the cell's nucleus (mitosis) and cytoplasm (cytokinesis) to...",No answer found,H,True,78.18382382392883,0.94
+multi_agent,8926,What is the range of the function y = 5 + 3 * sin(pi – x)?...,"To find the range of the function y = 5 + 3 * sin(pi – x), I'll analyze it step by step:
+
+1. First, I need to simplify sin(pi – x).
+   Using the trigonometric identity: sin(pi – x) = sin(x)
+   
+   So ...",C,C,True,54.216413497924805,0.94
+multi_agent,10857," Construct a complete truth table for the following pairs of propositions. Then, using the truth tab...","Analysis and Reasoning:
+
+1.  Construct a complete truth table for the propositions `~O ⊃ P` and `O ∨ P`:
+
+    | O     | P     | ~O    | ~O ⊃ P | O ∨ P |
+    | :---- | :---- | :---- | :------ | :---- |...",G,H,True,172.36781930923462,0.94
+multi_agent,5382,What kind of angle is formed where two perpendicular lines meet?...,"I need to answer this multiple choice question about what angle is formed when two perpendicular lines meet.
+
+Perpendicular lines are defined as two lines that intersect at exactly 90 degrees. Let me ...",E,E,True,64.21391320228577,0.94
+multi_agent,3919,The world's total reserve of coal and natural gas is estimated to be equivalent to 3.0 × 10^19 Kcal....,The world's total reserve of coal and natural gas is estimated to be equivalent to 3.0 × 10^19 Kcal. The world's present consumption of these fuels is 4.2 × 10^27 ergs/year. To determine how long the ...,I,I,True,89.6332950592041,0.94
+multi_agent,11913,N/A...,N/A...,N/A,N/A,False,600.0,0.94
+multi_agent,10373,"Let a undirected graph G with edges E = {<0,2>, <2,4>, <3,4>, <1,4>}, which <A,B> represent Node A i...","{<0,2>, <2,4>, <3,4>, <1,4>}, which <A,B> represent Node A is connected to Node B. What is the minimum vertex cover of G if 0 is one of vertex cover? Represent the vertex cover in a list of ascending ...",I,D,True,102.71569228172302,0.94
+multi_agent,6296,With which of the following relatives is an individual most likely to share a common HLA haplotype?...,"An individual inherits one HLA haplotype from their mother and one from their father. 
+
+*   A. Son: An individual will always pass one of their two HLA haplotypes to their son. Therefore, an individua...",A,D,True,285.3073399066925,0.94
+multi_agent,4837,Which archaeological method is best for identifying large-scale land modifications?...,"The best archaeological method for identifying large-scale land modifications is F. aerial photography.
+
+Aerial photography, including the use of drones and satellite imagery, provides a comprehensive...",No answer found,F,True,79.74850702285767,0.94
+multi_agent,4219,The unaided eye can perceive objects which have a diameterof 0.1 mm. What is the diameter in inches?...,"To convert millimeters to inches, we use the conversion factor that 1 inch is equal to 25.4 millimeters [1, 6, 8].
+
+Therefore, to find the diameter in inches for an object with a diameter of 0.1 mm, w...",H,D,True,74.60775828361511,0.94
+multi_agent,4250,How many moles of propane (C3H8) are there in 6.2 g of propane?...,"To determine the number of moles of propane (C3H8) in 6.2 g, we first need to calculate the molar mass of propane.
+
+The atomic mass of Carbon (C) is approximately 12.01 g/mol.
+The atomic mass of Hydro...",E,E,True,185.61792278289795,0.94
+multi_agent,10836,The _ad nauseam_ fallacy is...,"The _ad nauseam_ fallacy, also known as argument from repetition, occurs when a conclusion is asserted to be true simply because it has been stated repeatedly [1, 3, 5, 8]. The Latin term ""ad nauseam""...",No answer found,F,True,69.2078287601471,0.94
+multi_agent,8311,Use Green's Theorem to evaluate $\oint_{C} xy dx + x^2y^3dy$ where $C$ is the triangle with vertices...,"{C} xy dx + x^2y^3dy$ where $C$ is the triangle with vertices (0,0), (1,0), (1,2) with positive orientation
+
+Please choose from the following options:
+A. 1.0000
+B. -0.3333
+C. 2.3333
+D. 0.9876
+E. 1.567...",J,J,True,194.78309035301208,0.94
+multi_agent,10802,Another name for hasty generalization is...,"A hasty generalization is a logical fallacy where a conclusion is drawn from an insufficient or biased sample of evidence. It is also known as overgeneralization fallacy, faulty generalization, or arg...",No answer found,D,True,122.38374400138855,0.94
+multi_agent,8753,In how many ways can a set of 6 distinct letters be partitioned into 3 non-empty groups if each grou...,"We are looking for the number of ways to partition a set of 6 distinct letters into 3 non-empty groups, with each group containing at least 2 letters.
+
+Let the sizes of the three groups be $n_1, n_2, ...",D,D,True,177.84952664375305,0.94
+multi_agent,1719,A plantiff sued a defendant for injuries suffered m a fall on the sidewalk of the defendant's home. ...,"Reasoning: The physician’s cross-examination question asks whether the plaintiff told him, during treatment, that his fall resulted from a loss of equilibrium due to dizziness. This is a statement by ...",I,I,True,131.68186020851135,0.94
+multi_agent,4070,Monatomic ions of the representative elements are often...,Monatomic ions of the representative elements are often isoelectronic with a noble gas. This means they achieve a stable electron configuration by gaining or losing electrons to match the electron con...,G,G,True,73.01721024513245,0.94
+multi_agent,9313,"A big fish swims upon and swallows a small fish that is at rest. Right after lunch, the fattened big...","The big fish undergoes several changes after swallowing a smaller fish. 
+
+1.  Mass and Weight: When the big fish consumes the smaller fish, its total mass increases. Consequently, since weight is dire...",E,D,True,231.67709279060364,0.94
+multi_agent,4960,"This question refers to the following information.
+""The question as to who, and what, is responsible...","Reasoning:
+- In the 1750–1900 period, Europe’s penetration of Africa was aided by steam-powered ships (D), which enabled reliable long-distance travel and riverine access, and by the growth of joint-s...",B,C,True,249.54928350448608,0.94
+multi_agent,2807,N/A...,N/A...,N/A,N/A,False,600.0,0.94
+multi_agent,11200, Which of the following best characterizes de Marneffe's view?...,"Reasoning: Peter de Marneffe argues against full legalization by focusing on prohibiting production and sale of drugs (e.g., heroin) while not endorsing criminalization of personal use. The classic re...",No answer found,D,True,89.76449728012085,0.94
+multi_agent,12023,N/A...,N/A...,N/A,N/A,False,600.0,0.94
+multi_agent,5112,Who was the WNBA's Most Valuable Player of 1999?...,"Reasoning: The 1999 WNBA Most Valuable Player was Yolanda Griffith of the Sacramento Monarchs. The award results and contemporary reporting clearly identify Griffith as the MVP for the 1999 season, ah...",A,A,True,108.61595582962036,0.94
+multi_agent,9334,A mass $m$ moves in one dimension and is subject to a constant force $+F_0$ when $x<0$ and to a cons...,"{\frac{m A}{F_0}}$
+B. 6 $\sqrt{\frac{2 m A}{F_0}}$
+C. 4 $\sqrt{\frac{m A}{F_0}}$
+D. 2 $\sqrt{\frac{2 m A}{F_0}}$
+E. $\pi \sqrt{\frac{2 m A}{F_0}}$
+F. $\sqrt{\frac{8 m A}{F_0}}$
+G. 4 $\sqrt{\frac{m A}{...",I,I,True,152.16587090492249,0.94
+multi_agent,4397,A chemist dissolves 10 g of an unknown protein in a liter of water at 25°C. The osmotic pressure is ...,"To determine the molecular weight of the protein and the colligative properties (freezing point depression and boiling point elevation), we will use the osmotic pressure equation and the formulas for ...",H,H,True,85.63276147842407,0.94
+multi_agent,11216,An example of a morally impossible rule would be:...,"Let's analyze the question: ""An example of a morally impossible rule would be:"" with the given options.
+
+A morally impossible rule is one that is inherently contradictory or cannot be consistently fol...",C,C,True,119.38255548477173,0.94
+multi_agent,2082,Research that demonstrates parents who play more roughly with male children and are more protective ...,"The research describes differential treatment by parents based on the child's sex, with rougher play for boys and more protection for girls. This suggests that gender roles are shaped through environm...",F,F,True,75.24844217300415,0.94
+multi_agent,7925,Write the unit rate for driving 308 km in 4 h. Round to the nearest hundredth if necessary....,"To find the unit rate for driving 308 km in 4 hours, I need to calculate the speed in km/h by dividing the distance by the time:
+
+Unit rate = Distance ÷ Time
+Unit rate = 308 km ÷ 4 h
+Unit rate = 77 km...",I,I,True,60.581836462020874,0.94
+multi_agent,6996,Characterize and differentiate capital widening from capi-tal deepening....,"Capital widening occurs when the capital stock increases at the same rate as the labor force, thereby maintaining a constant capital-to-labor ratio. [1, 2, 5, 8] This means that more workers are provi...",No answer found,A,True,142.71543335914612,0.94
+multi_agent,3918,"There is an appreciative sigh throughout the audience in the ""mad\textquotedblright scene of ""Luciad...","Step-by-step reasoning:
+- Wavelength λ = speed v / frequency f.
+- Given v = 3.317 × 10^4 cm/s and f = 1024 s^-1.
+- λ = (3.317 × 10^4) / 1024 cm.
+- Compute: 1024 × 32 = 32768; 3.317 × 10^4 = 33170; rem...",F,F,True,72.1130359172821,0.94
+multi_agent,3871,A solution of 20.0 g of a non-volatile solute in 100 g of benzene at 30°C has a vapor pressure 13.4 ...,"The problem can be solved using Raoult's Law, which states that the lowering of vapor pressure (ΔP) is directly proportional to the mole fraction of the solute (X_solute) and the vapor pressure of the...",C,C,True,240.48779940605164,0.94
+multi_agent,3353,"Referring to the independent random mating scheme of the previous problem, find the offspring genoty...",We treat each population as an independent random mating pool with 1000 males and 1000 females. The mating probability for a given male genotype M and female genotype F is (N_M/1000)*(N_F/1000). Offsp...,H,H,True,145.29255533218384,0.94
+multi_agent,2440,Asking the “miracle question” is an initial intervention in which type of therapy?...,"The ""miracle question"" is a technique where the therapist asks the client to imagine that a miracle has occurred overnight and their problem is solved, then describe what would be different in their l...",C,C,True,81.44285225868225,0.94
+multi_agent,403,The daily cost of producing n Gaped Ghouls at the Star Toys Factory is C(n) = 0.2n^2 + n + 900 where...,"The cost function is C(n) = 0.2n² + n + 900, where n(t) = t² + 100t. To find dC/dt, use the chain rule: dC/dt = (dC/dn) * (dn/dt). dC/dn = 0.4n + 1, dn/dt = 2t + 100. Substituting n(t) gives dC/dt = (...",J,J,True,75.92254090309143,0.94
+multi_agent,7237,Which of the following is most likely an example of production inputs that can be adjusted in the lo...,"In economics, the short run is a period where at least one production input is fixed, typically capital, while variable inputs like labor and materials can be adjusted. In the long run, all inputs can...",C,I,True,102.46741008758545,0.94
+multi_agent,3620,Find thehydroniumion concentration of .1M HOAC (acetic acid) solution. Assume k_a = 1.75 x 10^-5 for...,"To find the hydronium ion concentration of a 0.1M acetic acid (HOAc) solution, we need to consider its dissociation equilibrium and use the given acid dissociation constant (Ka).
+
+The dissociation of ...",C,C,True,81.33685493469238,0.94
+multi_agent,636,"Let $P(r,t,T)$ denote the price at time $t$ of $1 to be paid with certainty at time $T, t\leT$, if t...","{-
+[glm45] B
+[glm45] (t
+[glm45] ,T
+[glm45] )r
+[glm45] }
+[glm45] $$
+[glm45] 
+[glm45] where
+[glm45] :
+[glm45] -
+[glm45] $
+[glm45] A
+[glm45] (t
+[glm45] ,T
+[glm45] )
+[glm45] =
+[glm45] \
+[glm45] exp
+[glm45...",E,E,True,222.61917090415955,0.94
+multi_agent,5892,When it comes to measuring horses how long is a 'hand'?...,"A ""hand"" is a unit of measurement specifically used for measuring the height of horses. One hand is equal to exactly 4 inches (10.16 cm). This measurement has been used for centuries in equestrian con...",No answer found,F,True,71.70103311538696,0.94
+multi_agent,973,Which case was the first to define the meaning of the doctrine of 'margin of appreciation' as applie...,"The European Court of Human Rights first explained the doctrine of 'margin of appreciation' in the case of *Handyside v United Kingdom* (1976). [3, 4, 5, 6, 7, 10, 15, 16, 22, 31] This case concerned ...",H,H,True,197.24957489967346,0.94
+multi_agent,3287,"In peas, tall (D) is dominant to dwarf (d) and yellow cotyledons (G) is dominant to green (g). A tal...","To determine the parental genotypes, we analyze the inheritance patterns of each trait separately.
+
+1. Analysis of Height (Tall vs. Dwarf):
+*   Tall (D) is dominant to dwarf (d).
+*   The total number ...",G,G,True,111.41479849815369,0.94
+multi_agent,5529,"As of 2016, about what percentage of adults aged 18 years or older were overweight?...","Based on the provided web search results, particularly the WHO fact sheet on obesity and overweight, in 2016, 39% of adults aged 18 years and over worldwide were overweight (defined as BMI ≥ 25, which...",B,B,True,301.3505051136017,0.94
+multi_agent,1317,"After graduating from law school, a graduate moved to a city where she had been offered a position i...",The user is asking to evaluate a multiple-choice question regarding a legal scenario involving intentional infliction of emotional distress (IIED). I need to determine if the graduate will prevail on ...,I,I,True,136.28297591209412,0.94
+multi_agent,704,"Shipley and Star ordered one lot of portable cassette machines from StereoElectonics, list-priced at...","To determine the payment due date and the amount paid, we need to analyze both parts of the question separately.
+
+Part (a): Payment due date with (n/30) ROG
+
+The terms ""(n/30) ROG"" mean that the net a...",G,G,True,154.21487402915955,0.94
+multi_agent,2624,The empirical literature suggests that when mothers give their children’s developmental and social h...,"Based on knowledge from developmental psychology and empirical studies on parental recall, mothers tend to have the most accurate memories for concrete, objective aspects of their children's developme...",E,E,True,117.13462424278259,0.94
+multi_agent,2149,Berkowitz (1971) revised the original frustration-aggression hypothesis by proposing that frustratio...,"The frustration-aggression hypothesis was originally proposed by Dollard et al. in 1939, stating that frustration always leads to some form of aggression. Leonard Berkowitz revised this in the 1960s a...",C,C,True,75.94803762435913,0.94
+multi_agent,11365,Methane reacts with water vapor at 25°C by the following reaction : CH_4(g) + H_2O(g) \rightleftharp...,"The problem asks for the standard Gibbs free-energy change (ΔG°) for the reaction: CH₄(g) + H₂O(g) ⇌ CO(g) + 3H₂(g) at 25°C (298 K).
+
+First, calculate the standard enthalpy change for the reaction (ΔH...",A,A,True,110.78296637535095,0.94
+multi_agent,2447,A meta-analysis of the research by Baltes and his colleagues (1999) indicates that instituting flexi...,"The meta-analysis by Baltes et al. (1999) examined the effects of flexitime on various outcomes. Based on the reported effect sizes, flexitime has a positive impact on productivity (d=0.165), job sati...",D,F,True,132.4340376853943,0.94

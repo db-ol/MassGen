@@ -1,0 +1,322 @@
+{
+  "total_questions": 61,
+  "questions": [
+    {
+      "question_number": 1,
+      "log_file": "mass_coordination_20250826_161824.json",
+      "error": "Expecting value: line 25 column 20 (char 5868)"
+    },
+    {
+      "question_number": 2,
+      "log_file": "mass_coordination_20250826_162143.json",
+      "error": "Expecting value: line 25 column 20 (char 2385)"
+    },
+    {
+      "question_number": 3,
+      "log_file": "mass_coordination_20250826_162934.json",
+      "error": "Expecting value: line 25 column 20 (char 2990)"
+    },
+    {
+      "question_number": 4,
+      "log_file": "mass_coordination_20250826_163524.json",
+      "error": "Expecting value: line 23 column 20 (char 700)"
+    },
+    {
+      "question_number": 5,
+      "log_file": "mass_coordination_20250826_163822.json",
+      "error": "Expecting value: line 10 column 17 (char 239)"
+    },
+    {
+      "question_number": 6,
+      "log_file": "mass_coordination_20250826_165514.json",
+      "error": "Expecting value: line 25 column 20 (char 2561)"
+    },
+    {
+      "question_number": 7,
+      "log_file": "mass_coordination_20250826_171310.json",
+      "error": "Expecting value: line 25 column 20 (char 4525)"
+    },
+    {
+      "question_number": 8,
+      "log_file": "mass_coordination_20250826_194658.json",
+      "error": "Expecting value: line 17 column 21 (char 717)"
+    },
+    {
+      "question_number": 9,
+      "log_file": "mass_coordination_20250826_194757.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 1186: invalid start byte"
+    },
+    {
+      "question_number": 10,
+      "log_file": "mass_coordination_20250826_194930.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 852: invalid start byte"
+    },
+    {
+      "question_number": 11,
+      "log_file": "mass_coordination_20250826_195045.json",
+      "error": "Expecting value: line 25 column 20 (char 1684)"
+    },
+    {
+      "question_number": 12,
+      "log_file": "mass_coordination_20250826_195225.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 456: invalid start byte"
+    },
+    {
+      "question_number": 13,
+      "log_file": "mass_coordination_20250826_195354.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 407: invalid start byte"
+    },
+    {
+      "question_number": 14,
+      "log_file": "mass_coordination_20250826_195502.json",
+      "error": "Expecting value: line 25 column 20 (char 2064)"
+    },
+    {
+      "question_number": 15,
+      "log_file": "mass_coordination_20250826_195737.json",
+      "error": "Expecting value: line 25 column 20 (char 1666)"
+    },
+    {
+      "question_number": 16,
+      "log_file": "mass_coordination_20250826_195919.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 1032: invalid start byte"
+    },
+    {
+      "question_number": 17,
+      "log_file": "mass_coordination_20250826_200133.json",
+      "error": "Expecting value: line 25 column 20 (char 6202)"
+    },
+    {
+      "question_number": 18,
+      "log_file": "mass_coordination_20250826_200242.json",
+      "error": "Expecting value: line 25 column 20 (char 3448)"
+    },
+    {
+      "question_number": 19,
+      "log_file": "mass_coordination_20250826_200649.json",
+      "error": "Expecting value: line 23 column 20 (char 1432)"
+    },
+    {
+      "question_number": 20,
+      "log_file": "mass_coordination_20250826_201649.json",
+      "error": "Expecting value: line 23 column 20 (char 1725)"
+    },
+    {
+      "question_number": 21,
+      "log_file": "mass_coordination_20250826_202650.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 298: invalid start byte"
+    },
+    {
+      "question_number": 22,
+      "log_file": "mass_coordination_20250826_202832.json",
+      "error": "Expecting value: line 21 column 20 (char 491)"
+    },
+    {
+      "question_number": 23,
+      "log_file": "mass_coordination_20250826_202905.json",
+      "error": "Expecting value: line 21 column 20 (char 476)"
+    },
+    {
+      "question_number": 24,
+      "log_file": "mass_coordination_20250826_203651.json",
+      "error": "Expecting value: line 23 column 20 (char 1456)"
+    },
+    {
+      "question_number": 25,
+      "log_file": "mass_coordination_20250826_204652.json",
+      "error": "Expecting value: line 23 column 20 (char 789)"
+    },
+    {
+      "question_number": 26,
+      "log_file": "mass_coordination_20250826_205035.json",
+      "error": "Expecting value: line 24 column 20 (char 605)"
+    },
+    {
+      "question_number": 27,
+      "log_file": "mass_coordination_20250826_205252.json",
+      "error": "Expecting value: line 26 column 20 (char 709)"
+    },
+    {
+      "question_number": 28,
+      "log_file": "mass_coordination_20250826_205651.json",
+      "error": "Expecting value: line 23 column 20 (char 724)"
+    },
+    {
+      "question_number": 29,
+      "log_file": "mass_coordination_20250826_210639.json",
+      "error": "Expecting value: line 26 column 20 (char 709)"
+    },
+    {
+      "question_number": 30,
+      "log_file": "mass_coordination_20250826_210653.json",
+      "error": "Expecting value: line 10 column 17 (char 239)"
+    },
+    {
+      "question_number": 31,
+      "log_file": "mass_coordination_20250826_210729.json",
+      "error": "Expecting value: line 21 column 20 (char 490)"
+    },
+    {
+      "question_number": 32,
+      "log_file": "mass_coordination_20250826_210822.json",
+      "error": "Expecting value: line 21 column 20 (char 490)"
+    },
+    {
+      "question_number": 33,
+      "log_file": "mass_coordination_20250826_210913.json",
+      "error": "Expecting value: line 25 column 20 (char 4114)"
+    },
+    {
+      "question_number": 34,
+      "log_file": "mass_coordination_20250826_211328.json",
+      "error": "Expecting value: line 21 column 20 (char 476)"
+    },
+    {
+      "question_number": 35,
+      "log_file": "mass_coordination_20250826_211353.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 473: invalid start byte"
+    },
+    {
+      "question_number": 36,
+      "log_file": "mass_coordination_20250826_211354.json",
+      "error": "Expecting value: line 21 column 20 (char 491)"
+    },
+    {
+      "question_number": 37,
+      "log_file": "mass_coordination_20250826_211529.json",
+      "error": "'utf-8' codec can't decode byte 0xa8 in position 291: invalid start byte"
+    },
+    {
+      "question_number": 38,
+      "log_file": "mass_coordination_20250826_211711.json",
+      "error": "Expecting value: line 25 column 20 (char 2426)"
+    },
+    {
+      "question_number": 39,
+      "log_file": "mass_coordination_20250826_211836.json",
+      "error": "Expecting value: line 25 column 20 (char 1348)"
+    },
+    {
+      "question_number": 40,
+      "log_file": "mass_coordination_20250826_211958.json",
+      "error": "Expecting value: line 25 column 20 (char 3998)"
+    },
+    {
+      "question_number": 41,
+      "log_file": "mass_coordination_20250826_212202.json",
+      "error": "Expecting value: line 10 column 17 (char 238)"
+    },
+    {
+      "question_number": 42,
+      "log_file": "mass_coordination_20250826_212306.json",
+      "error": "Expecting value: line 10 column 17 (char 239)"
+    },
+    {
+      "question_number": 43,
+      "log_file": "mass_coordination_20250826_212501.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 743: invalid start byte"
+    },
+    {
+      "question_number": 44,
+      "log_file": "mass_coordination_20250826_213428.json",
+      "error": "Expecting value: line 26 column 20 (char 707)"
+    },
+    {
+      "question_number": 45,
+      "log_file": "mass_coordination_20250826_213501.json",
+      "error": "Expecting value: line 25 column 20 (char 6858)"
+    },
+    {
+      "question_number": 46,
+      "log_file": "mass_coordination_20250826_213526.json",
+      "error": "Expecting value: line 26 column 20 (char 702)"
+    },
+    {
+      "question_number": 47,
+      "log_file": "mass_coordination_20250826_213651.json",
+      "question": "Unknown",
+      "model_answer": "No response",
+      "selected_agent": "Unknown",
+      "vote_results": {},
+      "success": false,
+      "extracted_answer": "No answer found",
+      "correct_answer": "Unknown",
+      "is_correct": false
+    },
+    {
+      "question_number": 48,
+      "log_file": "mass_coordination_20250826_213710.json",
+      "error": "Expecting value: line 21 column 20 (char 475)"
+    },
+    {
+      "question_number": 49,
+      "log_file": "mass_coordination_20250826_213853.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 256: invalid start byte"
+    },
+    {
+      "question_number": 50,
+      "log_file": "mass_coordination_20250826_213948.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 312: invalid start byte"
+    },
+    {
+      "question_number": 51,
+      "log_file": "mass_coordination_20250826_214721.json",
+      "error": "Expecting value: line 25 column 20 (char 2261)"
+    },
+    {
+      "question_number": 52,
+      "log_file": "mass_coordination_20250826_214823.json",
+      "error": "'utf-8' codec can't decode byte 0xa6 in position 842: invalid start byte"
+    },
+    {
+      "question_number": 53,
+      "log_file": "mass_coordination_20250826_214922.json",
+      "error": "Expecting value: line 25 column 20 (char 2628)"
+    },
+    {
+      "question_number": 54,
+      "log_file": "mass_coordination_20250826_215145.json",
+      "error": "Expecting value: line 25 column 20 (char 1121)"
+    },
+    {
+      "question_number": 55,
+      "log_file": "mass_coordination_20250826_215303.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 278: invalid start byte"
+    },
+    {
+      "question_number": 56,
+      "log_file": "mass_coordination_20250826_215354.json",
+      "error": "'utf-8' codec can't decode byte 0xa1 in position 519: invalid start byte"
+    },
+    {
+      "question_number": 57,
+      "log_file": "mass_coordination_20250826_215607.json",
+      "error": "Expecting value: line 25 column 20 (char 1772)"
+    },
+    {
+      "question_number": 58,
+      "log_file": "mass_coordination_20250826_215848.json",
+      "error": "Expecting value: line 17 column 21 (char 757)"
+    },
+    {
+      "question_number": 59,
+      "log_file": "mass_coordination_20250826_220415.json",
+      "error": "Expecting value: line 25 column 20 (char 2665)"
+    },
+    {
+      "question_number": 60,
+      "log_file": "mass_coordination_20250826_220550.json",
+      "error": "Expecting value: line 25 column 20 (char 1930)"
+    },
+    {
+      "question_number": 61,
+      "log_file": "mass_coordination_20250826_221342.json",
+      "error": "Expecting value: line 23 column 20 (char 1468)"
+    }
+  ],
+  "summary": {
+    "correct_answers": 0,
+    "incorrect_answers": 1,
+    "accuracy": 0.0
+  }
+}

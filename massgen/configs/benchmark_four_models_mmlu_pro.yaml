@@ -1,0 +1,100 @@
+# Benchmark Configuration for Four Models Multi-Agent on MMLU-Pro
+# GPT5nano + Zhipu GLM 4.5 + Grok 4 + Gemini 2.5 Flash
+
+benchmark:
+  name: "Four Models Multi-Agent MMLU-Pro Benchmark"
+  dataset: "mmlu-pro"
+  question_type: "multipleChoice"  # or "exactMatch"
+  max_questions: 50  # Randomly sample 100 questions
+  
+  # Timeout settings for benchmark
+  timeout_settings:
+    orchestrator_timeout_seconds: 300 # 10 minutes for benchmark
+  
+  # Judge model to judge the answer from multi agent's response
+  judge_model:
+    - name: "gpt-4o"
+      backend:
+        type: "openai"
+        model: "gpt-4o"
+      system_message: "You are a helpful AI assistant. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+             
+  # Single Models to Test
+  single_models:
+    - name: "gpt5nano"
+      backend:
+        type: "openai"
+        model: "gpt-5-nano"
+        enable_web_search: true
+        enable_code_interpreter: true
+      system_message: "You are a helpful AI assistant with reasoning, web search, and code execution capabilities. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z. Do not include any additional text after the answer letter."
+
+    - name: "grok4"
+      backend:
+        type: "grok"
+        model: "grok-4"
+        enable_web_search: true
+      system_message: "You are a helpful AI assistant with web search capabilities. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z. Do not include any additional text after the answer letter."
+
+    - name: "gemini25flash"
+      backend:
+        type: "gemini"
+        model: "gemini-2.5-flash"
+        enable_web_search: true
+      system_message: "You are a helpful AI assistant with web search capabilities. For multiple choice questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z. Do not include any additional text after the answer letter."
+
+    - name: "glm45"
+      backend:
+        type: "zai"
+        model: "glm-4.5"
+        base_url: "https://api.z.ai/api/paas/v4/"
+        temperature: 0.7
+        top_p: 0.9
+      system_message: "You are a helpful AI assistant. For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+
+  # Multi-Agent Configuration - references your four_models_mmlu_pro.yaml
+  multi_agent:
+    config_file: "four_models_mmlu_pro.yaml"
+    system_message: "You are a helpful AI assistant. For multiple choice questions, end with 'The answer is: X' where X is the letter (A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z). For exact match questions, provide the exact answer and end with 'The answer is: [your answer]'."
+  
+
+  # Metrics to Calculate
+  metrics:
+    - accuracy
+    - calibration_error
+    - confidence_scores
+  
+  # Output
+  output:
+    format: "json"  # This tells the benchmark runner to use --json flag
+    save_results: true
+    results_file: "benchmark_results_mmlu_pro.json"
+
+# Logging configuration
+logging:
+  # Enable automatic log rotation
+  rotation:
+    enabled: true
+    max_size_mb: 10  # Rotate when log reaches 10MB
+    backup_count: 5  # Keep 5 backup files
+    rotation_interval: "1 day"  # Rotate daily
+  
+  # Log levels
+  level: "INFO"
+  handlers:
+    - type: "file"
+      filename: "agent_outputs/benchmark_detailed.log"
+      level: "INFO"
+    - type: "console"
+      level: "INFO"
+  
+  # Log file paths
+  files:
+    benchmark: "agent_outputs/benchmark.log"
+    coordination: "logs/coordination.log"
+    errors: "logs/errors.log"
+  
+  # Console output
+  console:
+    enabled: true
+    level: "INFO"

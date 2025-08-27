@@ -43,6 +43,9 @@ dependencies = [
     "typing-extensions>=4.0.0",
     "claude-code-sdk>=0.0.19",
     "pillow>=11.3.0",
+    "matplotlib>=3.10.5",
+    "seaborn>=0.13.2",
+    "pandas>=2.3.1",
 ]
 
 [project.optional-dependencies]

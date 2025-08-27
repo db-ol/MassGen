@@ -12,18 +12,51 @@ from typing import List, Dict, Any
 from pathlib import Path
 import os
 import re
+import warnings
+import logging
+from logging.handlers import RotatingFileHandler
+
+# Suppress all warnings and set logging to ERROR only
+warnings.filterwarnings("ignore")
+logging.getLogger().setLevel(logging.ERROR)
+os.environ['PYTHONWARNINGS'] = 'ignore'
+
+# Suppress specific warnings
+try:
+    import urllib3
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+except ImportError:
+    pass
 
 from massgen.cli import create_backend, create_agents_from_config
-from .load_dataset import HLEDatasetLoader
+from .load_dataset import HLEDatasetLoader, get_dataset_loader
 
 class HLEBenchmarkRunner:
-    def __init__(self, config_path: str):
+    def __init__(self, config_path: str, dataset_name: str = "hle-lite"):
         self.config_path = config_path
         self.config = self._load_config(config_path)
         self.results = {}
         self.logs = []
         self.current_questions = []
         self.judge_agent = None
+        self.dataset_name = dataset_name
+        
+        # Set up rotating log handler
+        log_file = "agent_outputs/benchmark.log"
+        handler = RotatingFileHandler(
+            log_file, 
+            maxBytes=10*1024*1024,  # 10MB
+            backupCount=5
+        )
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        handler.setFormatter(formatter)
+        
+        # Get the logger and add handler
+        logger = logging.getLogger()
+        logger.addHandler(handler)
+        logger.setLevel(logging.INFO)
         
     def _log(self, message: str):
         """Add message to logs and print to console."""
@@ -78,6 +111,65 @@ class HLEBenchmarkRunner:
         except Exception as e:
             self._log(f"❌ Failed to create judge agent: {e}")
             return None
+
+    def _extract_answer_from_response(self, response: str, question_type: str) -> str:
+        """Extract answer from model response with better error handling."""
+        if not response or response.strip() == "":
+            return "No answer found"
+        
+        response = response.strip()
+        
+        try:
+            if question_type == "multipleChoice":
+                # Look for "The answer is: X" pattern
+                pattern = r"The answer is:\s*([A-Z])"
+                match = re.search(pattern, response, re.IGNORECASE)
+                if match:
+                    answer = match.group(1).upper()
+                    # Accept any letter A-Z (MMLU-Pro can have up to 26 options)
+                    if answer in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                        return answer
+                
+                # Fallback: look for single letter at the end
+                lines = response.split('\n')
+                for line in reversed(lines):
+                    line = line.strip()
+                    if len(line) == 1 and line.isalpha():
+                        return line.upper()
+                    # Check for patterns like "Answer: A" or "A)" or "A."
+                    match = re.search(r'[A-Z]\)?\.?$', line)
+                    if match:
+                        return match.group(0)[0].upper()
+                
+                # Look for LaTeX boxed format: $\boxed{X}$
+                pattern = r"\\boxed\{([A-Z])\}"
+                match = re.search(pattern, response, re.IGNORECASE)
+                if match:
+                    answer = match.group(1).upper()
+                    if answer in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                        return answer
+                
+                return "No answer found"
+                
+            elif question_type == "exactMatch":
+                # Look for "The answer is: [answer]" pattern
+                pattern = r"The answer is:\s*(.+)"
+                match = re.search(pattern, response, re.IGNORECASE)
+                if match:
+                    return match.group(1).strip()
+                
+                # Fallback: return the last non-empty line
+                lines = [line.strip() for line in response.split('\n') if line.strip()]
+                if lines:
+                    return lines[-1]
+                
+                return "No answer found"
+            else:
+                return "No answer found"
+                
+        except Exception as e:
+            print(f"Warning: Error extracting answer: {e}")
+            return "No answer found"
     
     async def _evaluate_response_with_judge(self, question: Dict, response: str, correct_answer: str) -> Dict[str, Any]:
         """Use judge model to evaluate if the response is correct and extract the answer."""
@@ -101,75 +193,69 @@ Question: {question['original_question']}
 Correct Answer: {correct_answer}
 Response: {response}
 
-Return this exact JSON format:
-{{
-    "extracted_answer": "the specific answer from the response",
-    "is_correct": true/false,
-    "reasoning": "brief explanation"
-}}"""
-        else:
+Return ONLY a JSON object with these fields:
+- "is_correct": true/false
+- "judge_reasoning": brief explanation
+- "extracted_answer": the answer extracted from the response
+- "confidence": 0.0-1.0
+
+JSON:"""
+        else:  # multipleChoice
             evaluation_prompt = f"""Evaluate this response and return ONLY a JSON object:
 
 Question: {question['original_question']}
 Correct Answer: {correct_answer}
 Response: {response}
 
-Return this exact JSON format:
-{{
-    "extracted_answer": "the answer letter (A, B, C, D, E, etc.)",
-    "is_correct": true/false,
-    "reasoning": "brief explanation"
-}}"""
+Return ONLY a JSON object with these fields:
+- "is_correct": true/false
+- "judge_reasoning": brief explanation
+- "extracted_answer": the letter (A, B, C, D, etc.) extracted from the response
+- "confidence": 0.0-1.0
+
+JSON:"""
         
         try:
-            messages = [{"role": "user", "content": evaluation_prompt}]
-            judge_response = ""
-            
-            async for chunk in judge_agent.chat(messages):
-                if chunk.type == "content" and chunk.content:
-                    judge_response += chunk.content
-                elif chunk.type == "error":
-                    self._log(f"    ❌ Judge evaluation error: {chunk.error}")
-                    break
+            # Get judge evaluation
+            judge_response = await judge_agent.get_response(evaluation_prompt)
             
             # Try to parse JSON response
             try:
-                # Extract JSON from the response (handle cases where there's extra text)
-                import re
-                json_match = re.search(r'\{.*\}', judge_response, re.DOTALL)
-                if json_match:
-                    json_str = json_match.group(0)
-                    evaluation_data = json.loads(json_str)
-                    
-                    return {
-                        'is_correct': evaluation_data.get('is_correct', False),
-                        'judge_reasoning': evaluation_data.get('reasoning', 'No reasoning provided'),
-                        'extracted_answer': evaluation_data.get('extracted_answer', 'No answer found'),
-                        'confidence': 0.8 if evaluation_data.get('is_correct', False) else 0.2
-                    }
+                # Look for JSON in the response
+                json_start = judge_response.find('{')
+                json_end = judge_response.rfind('}') + 1
+                if json_start != -1 and json_end > json_start:
+                    json_str = judge_response[json_start:json_end]
+                    evaluation = json.loads(json_str)
                 else:
-                    return {
-                        'is_correct': False,
-                        'judge_reasoning': 'No JSON found in judge response',
-                        'extracted_answer': 'No answer found',
-                        'confidence': 0.0
+                    # Fallback: extract answer manually
+                    extracted_answer = self._extract_answer_from_response(judge_response, question_type)
+                    evaluation = {
+                        'is_correct': extracted_answer.upper() == correct_answer.upper(),
+                        'judge_reasoning': 'Manual extraction',
+                        'extracted_answer': extracted_answer,
+                        'confidence': 0.5
                     }
-                    
-            except json.JSONDecodeError as e:
-                self._log(f"    ❌ Failed to parse judge JSON response: {e}")
-                return {
-                    'is_correct': False,
-                    'judge_reasoning': f'JSON parse error: {e}',
-                    'extracted_answer': 'No answer found',
-                    'confidence': 0.0
+            except json.JSONDecodeError:
+                # Fallback: extract answer manually
+                extracted_answer = self._extract_answer_from_response(judge_response, question_type)
+                evaluation = {
+                    'is_correct': extracted_answer.upper() == correct_answer.upper(),
+                    'judge_reasoning': 'Manual extraction due to JSON parse error',
+                    'extracted_answer': extracted_answer,
+                    'confidence': 0.5
                 }
             
+            return evaluation
+            
         except Exception as e:
-            self._log(f"    ❌ Judge evaluation failed: {e}")
+            self._log(f"❌ Judge evaluation failed: {e}")
+            # Fallback: extract answer manually
+            extracted_answer = self._extract_answer_from_response(response, question_type)
             return {
-                'is_correct': False,
-                'judge_reasoning': f'Judge error: {e}',
-                'extracted_answer': 'No answer found',
+                'is_correct': extracted_answer.upper() == correct_answer.upper(),
+                'judge_reasoning': f'Judge failed: {e}',
+                'extracted_answer': extracted_answer,
                 'confidence': 0.0
             }
     
@@ -276,7 +362,7 @@ Return this exact JSON format:
                 # Use pattern matching to extract answer from single model response
                 correct_answer = question['answer']
                 question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
-                extracted_answer = self._extract_answer_with_patterns(response_content, question_type)
+                extracted_answer = self._extract_answer_from_response(response_content, question_type)
 
                 # Simple comparison for single models
                 is_correct = extracted_answer.strip().lower() == correct_answer.strip().lower()
@@ -332,58 +418,6 @@ Return this exact JSON format:
         self._log(f"  Total response time: {results['response_time']:.2f}s")
         
         return results
-    
-    def _extract_answer_with_patterns(self, response: str, question_type: str = 'multipleChoice') -> str:
-        """Extract answer from single model response using pattern matching."""
-        if not response:
-            return "No answer found"
-        
-        response = response.strip()
-        
-        if question_type == 'exactMatch':
-            # Pattern 1: Look for "The answer is:" patterns
-            answer_patterns = [
-                r'[Tt]he answer is:\s*(.+)',
-                r'[Aa]nswer:\s*(.+)',
-                r'[Ee]xact answer:\s*(.+)',
-                r'[Ff]inal answer:\s*(.+)'
-            ]
-            
-            for pattern in answer_patterns:
-                matches = re.findall(pattern, response)
-                if matches:
-                    answer = matches[-1].strip()
-                    # Remove trailing punctuation and clean up
-                    answer = re.sub(r'[.!?]+$', '', answer)
-                    return answer
-            
-            # Pattern 2: Look for LaTeX boxed answers: \boxed{content}
-            boxed_matches = re.findall(r'\\boxed\{([^}]+)\}', response)
-            if boxed_matches:
-                return boxed_matches[-1].strip()
-            
-            return "No answer found"
-        
-        else:  # multipleChoice
-            # Pattern 1: Look for "The answer is:" patterns
-            answer_patterns = [
-                r'[Tt]he answer is:\s*([A-Z])',
-                r'[Aa]nswer:\s*([A-Z])',
-                r'[Oo]ption\s*([A-Z])',
-                r'[Cc]hoice\s*([A-Z])'
-            ]
-            
-            for pattern in answer_patterns:
-                matches = re.findall(pattern, response)
-                if matches:
-                    return matches[-1].strip()
-            
-            # Pattern 2: Look for LaTeX boxed answers: \boxed{X}
-            boxed_matches = re.findall(r'\\boxed\{([A-Z])\}', response)
-            if boxed_matches:
-                return boxed_matches[-1].strip()
-            
-            return "No answer found"
     
     def _resolve_config_path(self, ma_config_path: str) -> Path:
         """Resolve multi-agent config path."""
@@ -481,49 +515,112 @@ Return this exact JSON format:
                 # Parse response based on output format
                 if output_format == "json":
                     try:
-                        json_response = json.loads(result.stdout)
-                        response_content = json_response.get('response', '')
-                        selected_agent = json_response.get('selected_agent', 'unknown')
-                    except json.JSONDecodeError as e:
-                        self._log(f"    ❌ Failed to parse JSON response: {e}")
-                        response_content = result.stdout
-                        selected_agent = 'unknown'
+                        # Debug: log the raw stdout
+                        self._log(f"    Raw CLI output length: {len(result.stdout)}")
+                        if len(result.stdout) > 200:
+                            self._log(f"    Raw CLI output preview: {result.stdout[:200]}...")
+                        else:
+                            self._log(f"    Raw CLI output: {result.stdout}")
+                        
+                        # Clean the output to remove control characters that break JSON parsing
+                        cleaned_output = result.stdout
+                        # Remove control characters except newlines, tabs, and carriage returns
+                        cleaned_output = ''.join(char for char in cleaned_output if ord(char) >= 32 or char in '\n\r\t')
+                        
+                        # Try to extract JSON from the cleaned output
+                        json_start = cleaned_output.find('{')
+                        json_end = cleaned_output.rfind('}') + 1
+                        
+                        if json_start != -1 and json_end > json_start:
+                            json_content = cleaned_output[json_start:json_end]
+                            # Try to parse the JSON
+                            try:
+                                response_data = json.loads(json_content)
+                                response = response_data.get('response', '')
+                                self._log(f"    Successfully parsed JSON response: {len(response)} chars")
+                            except json.JSONDecodeError as json_err:
+                                self._log(f"    ❌ JSON decode error: {json_err}")
+                                # Try to extract answer directly from the content
+                                response = json_content
+                                self._log(f"    Using JSON content as response: {len(response)} chars")
+                        else:
+                            # Fallback: try to extract answer from text
+                            response = cleaned_output.strip()
+                            self._log(f"    No JSON found, using raw output: {len(response)} chars")
+                            
+                    except Exception as e:
+                        self._log(f"    ❌ Error parsing response: {e}")
+                        # Fallback to raw output
+                        response = result.stdout.strip()
+                        self._log(f"    Using fallback response: {len(response)} chars")
                 else:
-                    # Fallback to text parsing
-                    response_content = result.stdout
-                    selected_agent = 'unknown'
+                    response = result.stdout.strip()
                 
-                # Use judge model to evaluate the response
-                correct_answer = question['answer']
-                judge_start_time = time.time()
-                evaluation = await self._evaluate_response_with_judge(question, response_content, correct_answer)
-                judge_end_time = time.time()
-                judge_evaluation_time = judge_end_time - judge_start_time
+                # Judge evaluation
+                try:
+                    judge_agent = await self._create_judge_agent()
+                    
+                    # Create judge prompt
+                    judge_prompt = f"""Evaluate if the following answer is correct for the given question.
+
+Question: {question['original_question']}
+Correct Answer: {question['answer']}
+Model Answer: {response}
+
+Please respond with ONLY "CORRECT" or "INCORRECT" based on whether the model answer matches the correct answer."""
+
+                    self._log(f"     Judge prompt: {judge_prompt}")
+                    self._log(f"    🔍 Model response being judged: {response[:200]}...")
+
+                    # Get judge response using chat method
+                    messages = [{"role": "user", "content": judge_prompt}]
+                    judge_response_content = ""
+                    
+                    async for chunk in judge_agent.chat(messages):
+                        if chunk.type == "content" and chunk.content:
+                            judge_response_content += chunk.content
+                        elif chunk.type == "error":
+                            raise Exception(f"Judge error: {chunk.error}")
+                        elif chunk.type == "done":
+                            break
+                    
+                    judge_response = judge_response_content.strip()
+                    
+                    # FIXED LOGIC: Check for exact match, not substring
+                    is_correct = judge_response.upper() == "CORRECT"
+                    
+                    self._log(f"    ✅ Judge evaluation: {judge_response}")
+                    self._log(f"    🔍 Is correct: {is_correct}")
+                    
+                except Exception as e:
+                    self._log(f"    ❌ Judge evaluation failed: {e}")
+                    # Fallback: use pattern matching with correct field name
+                    is_correct = self._check_answer_pattern(response, question['answer'])
+                    self._log(f"    🔍 Fallback is_correct: {is_correct}")
                 
-                # Log judge evaluation time
-                self._log(f"    Judge evaluation time: {judge_evaluation_time:.2f}s")
-                
-                if evaluation['is_correct']:
-                    results['correct'] += 1
+                # Extract answer from response for logging
+                question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
+                extracted_answer = self._extract_answer_from_response(response, question_type)
                 
                 # Store results with both times
                 results['responses'].append({
                     'question_id': question['id'],
                     'question': question['original_question'],
-                    'response': response_content,
-                    'correct_answer': correct_answer,
-                    'judge_evaluation': evaluation,
-                    'is_correct': evaluation['is_correct'],
+                    'response': response,
+                    'correct_answer': question['answer'],
+                    'extracted_answer': extracted_answer,
+                    'judge_evaluation': {'is_correct': is_correct, 'judge_reasoning': judge_response.strip(), 'confidence': 0.0},
+                    'is_correct': is_correct,
                     'response_time': multi_agent_response_time,
-                    'judge_evaluation_time': judge_evaluation_time,
-                    'selected_agent': selected_agent
+                    'judge_evaluation_time': 0.0, # Judge evaluation time is not directly available from CLI output
+                    'selected_agent': 'unknown' # No direct agent selection in CLI output
                 })
                 
                 # Updated logging to show extracted answer vs correct answer
-                extracted_answer = evaluation.get('extracted_answer', 'No answer extracted')
-                self._log(f"    Answer: {extracted_answer}, Correct: {correct_answer} {'✅' if evaluation['is_correct'] else '❌'}")
-                if selected_agent != 'unknown':
-                    self._log(f"    Selected Agent: {selected_agent}")
+                self._log(f"    Answer: {extracted_answer}, Correct: {question['answer']} {'✅' if is_correct else '❌'}")
+                
+                if is_correct:
+                    results['correct'] += 1
                 
             except subprocess.TimeoutExpired:
                 self._log(f"    ❌ Timeout after 600 seconds")
@@ -569,51 +666,75 @@ Return this exact JSON format:
         return abs(avg_confidence - accuracy)
 
     async def run_benchmark(self, token: str) -> Dict[str, Any]:
-        """Run the complete benchmark."""
-        self._log("🚀 Starting HLE Lite Benchmark...")
+        """Run the benchmark with the specified dataset."""
+        self._log(f"🚀 Starting {self.dataset_name} Benchmark...")
+        
+        # Get the appropriate dataset loader
+        try:
+            dataset_loader = get_dataset_loader(self.dataset_name, token)
+        except Exception as e:
+            self._log(f"❌ Failed to get dataset loader: {e}")
+            return {}
+        
+        # Load questions based on question type
+        question_type = self.config['benchmark'].get('question_type', 'multipleChoice')
         
         try:
-            # Load dataset
-            questions = self.load_hle_dataset(token)
-            self.current_questions = questions
-            
-            # Initialize results
-            self.results = {
-                'single_models': {},
-                'multi_agent': {},
-                'summary': {}
-            }
-            
-            # Benchmark single models
-            for model_config in self.config['benchmark']['single_models']:
-                self._log(f"🧪 Benchmarking single model: {model_config['name']}")
-                results = await self.benchmark_single_model(model_config, questions)
-                self.results['single_models'][model_config['name']] = results
-            
-            # Benchmark multi-agent system
-            self._log(" Benchmarking multi-agent system...")
-            ma_results = await self.benchmark_multi_agent_cli(questions)
-            self.results['multi_agent'] = ma_results
-            
-            # Generate summary
-            self._generate_summary()
-            
-            # Print results
-            self.print_results_table()
-            
-            # Save detailed results
-            with open("benchmark_results.json", "w", encoding="utf-8") as f:
-                json.dump(self.results, f, indent=2, ensure_ascii=False)
-            
-            self._log("✅ Benchmark completed successfully!")
-            return self.results
-            
+            if question_type == 'multipleChoice':
+                if self.dataset_name.lower() in ['hle', 'hle-lite']:
+                    questions = dataset_loader.load_multiple_choice_only()
+                else:  # MMLU-Pro
+                    questions = dataset_loader.load_mcq_only()
+            elif question_type == 'exactMatch':
+                if self.dataset_name.lower() in ['hle', 'hle-lite']:
+                    questions = dataset_loader.load_exact_match_only()
+                else:  # MMLU-Pro
+                    questions = dataset_loader.load_exact_match_only()
+            else:
+                # Load all types
+                questions = dataset_loader.load_dataset()
         except Exception as e:
-            self._log(f"❌ Benchmark error: {e}")
-            raise
-        finally:
-            self._save_logs()
-    
+            self._log(f"❌ Failed to load dataset: {e}")
+            return {}
+        
+        # Limit questions if specified
+        max_questions = self.config['benchmark'].get('max_questions', len(questions))
+        if max_questions and max_questions < len(questions):
+            questions = questions[:max_questions]
+        
+        self.current_questions = questions
+        self._log(f"📋 Question type to benchmark: {question_type}")
+        
+        # Initialize results
+        self.results = {
+            'single_models': {},
+            'multi_agent': None,
+            'summary': {}
+        }
+        
+        # Benchmark single models
+        single_models = self.config['benchmark'].get('single_models', [])
+        for model_config in single_models:
+            model_name = model_config['name']
+            self._log(f"🧪 Benchmarking single model: {model_name}")
+            results = await self.benchmark_single_model(model_config, questions)
+            self.results['single_models'][model_name] = results
+        
+        # Benchmark multi-agent system
+        multi_agent_config = self.config['benchmark'].get('multi_agent')
+        if multi_agent_config:
+            self._log(" Benchmarking multi-agent system...")
+            results = await self.benchmark_multi_agent_cli(questions)
+            self.results['multi_agent'] = results
+        
+        # Generate summary
+        self._generate_summary()
+        
+        # Save results
+        self._save_results()
+        
+        return self.results
+
     def _generate_summary(self):
         """Generate summary statistics."""
         summary = {
@@ -735,3 +856,29 @@ Return this exact JSON format:
                     print(f"    Response: {ma_response['response'][:100]}...")
                     print(f"    Judge Evaluation: {ma_response.get('judge_evaluation', {}).get('judge_reasoning', 'N/A')}")
                     print(f"    Correct: {'✅' if ma_response['is_correct'] else '❌'}")
+
+    def _save_results(self):
+        """Save benchmark results to JSON file."""
+        try:
+            # Get results file path from config
+            results_file = self.config['benchmark'].get('results_file', 'benchmark_results.json')
+            
+            # Save results
+            with open(results_file, 'w', encoding='utf-8') as f:
+                json.dump(self.results, f, indent=2, ensure_ascii=False)
+            
+            self._log(f"💾 Results saved to {results_file}")
+            
+        except Exception as e:
+            self._log(f"❌ Failed to save results: {e}")
+
+    def _check_answer_pattern(self, response: str, correct_answer: str) -> bool:
+        """Check if the response contains the correct answer pattern."""
+        if not response or not correct_answer:
+            return False
+        
+        # Extract answer from response
+        extracted_answer = self._extract_answer_from_response(response, "multipleChoice")
+        
+        # Compare with correct answer
+        return extracted_answer.strip().lower() == correct_answer.strip().lower()

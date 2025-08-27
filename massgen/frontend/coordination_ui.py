@@ -24,6 +24,7 @@ class CoordinationUI:
         display_type: str = "terminal",
         logging_enabled: bool = True,
         enable_final_presentation: bool = False,
+        output_format: str = "text",  # Add output_format parameter
         **kwargs,
     ):
         """Initialize coordination UI.
@@ -34,10 +35,12 @@ class CoordinationUI:
             display_type: Type of display ("terminal", "simple", "rich_terminal", "textual_terminal")
             logging_enabled: Whether to enable real-time logging
             enable_final_presentation: Whether to ask winning agent to present final answer
+            output_format: Output format ("text", "json")
             **kwargs: Additional configuration passed to display/logger
         """
         self.enable_final_presentation = enable_final_presentation
         self.display = display
+        self.output_format = output_format  # Store output_format
         # Filter kwargs for logger (only pass logger-specific params)
         logger_kwargs = {
             k: v for k, v in kwargs.items() if k in ["filename", "update_frequency"]
@@ -196,6 +199,9 @@ class CoordinationUI:
 
         self.display.initialize(question, log_filename)
 
+        # Check if we should suppress display for JSON output
+        suppress_display = self.output_format == "json"
+
         try:
             # Process coordination stream
             full_response = ""
@@ -307,8 +313,9 @@ class CoordinationUI:
                     if self.logger:
                         self.logger.log_chunk(source, content, chunk.type)
 
-                    # Process content by source
-                    await self._process_content(source, content)
+                    # Only process content for display if not suppressing display
+                    if not suppress_display:
+                        await self._process_content(source, content)
 
             # Display vote results and get final presentation
             status = orchestrator.get_status()
@@ -499,7 +506,22 @@ class CoordinationUI:
                     f"⏱️  Duration: {session_info['duration']:.1f}s | Chunks: {session_info['total_chunks']} | Events: {session_info['orchestrator_events']}"
                 )
 
-            return final_result
+            # Format output according to output_format setting
+            if hasattr(self, 'output_format') and self.output_format == "json":
+                import json
+                # Create JSON response
+                json_response = {
+                    "response": final_result.strip() if final_result else "",
+                    "question": question,
+                    "agents": list(orchestrator.agents.keys()),
+                    "selected_agent": selected_agent,
+                    "vote_results": vote_results.get("vote_counts", {}) if 'vote_results' in locals() else {},
+                    "success": True
+                }
+                return json.dumps(json_response, indent=2, ensure_ascii=False)
+            else:
+                # Return plain text response
+                return final_result.strip() if final_result else ""
 
         except Exception:
             if self.logger:
