@@ -86,6 +86,7 @@ class Orchestrator(ChatAgent):
         config: Optional[AgentConfig] = None,
         snapshot_storage: Optional[str] = None,
         agent_temporary_workspace: Optional[str] = None,
+        show_real_agent_ids: bool = False,  # Add this parameter
     ):
         """
         Initialize MassGen orchestrator.
@@ -159,6 +160,8 @@ class Orchestrator(ChatAgent):
                     if provider_name == 'claude_code':
                         agent_workspace = workspace_path / agent_id
                         agent_workspace.mkdir(parents=True, exist_ok=True)
+
+        self.show_real_agent_ids = show_real_agent_ids  # Add this line
 
     async def chat(
         self,
@@ -777,23 +780,21 @@ class Orchestrator(ChatAgent):
             if conversation_context and conversation_context.get(
                 "conversation_history"
             ):
-                # Use conversation context-aware building
                 conversation = self.message_templates.build_conversation_with_context(
                     current_task=task,
-                    conversation_history=conversation_context.get(
-                        "conversation_history", []
-                    ),
+                    conversation_history=conversation_context["conversation_history"],
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
                     base_system_message=agent_system_message,
+                    show_real_ids=self.show_real_agent_ids,  # Add this parameter
                 )
             else:
-                # Fallback to standard conversation building
                 conversation = self.message_templates.build_initial_conversation(
                     task=task,
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
                     base_system_message=agent_system_message,
+                    show_real_ids=self.show_real_agent_ids,  # Add this parameter
                 )
 
             # Clean startup without redundant messages

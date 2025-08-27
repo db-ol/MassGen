@@ -501,7 +501,8 @@ async def run_single_question(
             agents=agents, 
             config=orchestrator_config,
             snapshot_storage=snapshot_storage,
-            agent_temporary_workspace=agent_temporary_workspace
+            agent_temporary_workspace=agent_temporary_workspace,
+            show_real_agent_ids=kwargs.get("show_real_agent_ids", False),
         )
         # Create a fresh UI instance for each question to ensure clean state
         # Use simple display for JSON output to avoid rich formatting
@@ -940,6 +941,9 @@ Environment Variables:
         # Add orchestrator configuration if present
         if "orchestrator" in config:
             kwargs["orchestrator"] = config["orchestrator"]
+        
+        # Add show_real_agent_ids configuration
+        kwargs["show_real_agent_ids"] = config.get("show_real_agent_ids", False)
 
         # Run mode based on whether question was provided
         if args.question:

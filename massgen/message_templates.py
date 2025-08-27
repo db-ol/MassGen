@@ -144,9 +144,9 @@ IMPORTANT: You are responding to the latest message in an ongoing conversation. 
 <END OF CURRENT ANSWERS>"""
 
     def format_current_answers_with_summaries(
-        self, agent_summaries: Dict[str, str]
+        self, agent_summaries: Dict[str, str], show_real_ids: bool = False
     ) -> str:
-        """Format current answers section with agent summaries (Case 2) using anonymous agent IDs."""
+        """Format current answers section with agent summaries (Case 2) using configurable agent ID display."""
         if "format_current_answers_with_summaries" in self._template_overrides:
             override = self._template_overrides["format_current_answers_with_summaries"]
             if callable(override):
@@ -154,14 +154,19 @@ IMPORTANT: You are responding to the latest message in an ongoing conversation. 
 
         lines = ["<CURRENT ANSWERS from the agents>"]
 
-        # Create anonymous mapping: agent1, agent2, etc.
-        agent_mapping = {}
-        for i, agent_id in enumerate(sorted(agent_summaries.keys()), 1):
-            agent_mapping[agent_id] = f"agent{i}"
+        if show_real_ids:
+            # Show real agent IDs
+            for agent_id, summary in agent_summaries.items():
+                lines.append(f"<{agent_id}> {summary} <end of {agent_id}>")
+        else:
+            # Create anonymous mapping: agent1, agent2, etc.
+            agent_mapping = {}
+            for i, agent_id in enumerate(sorted(agent_summaries.keys()), 1):
+                agent_mapping[agent_id] = f"agent{i}"
 
-        for agent_id, summary in agent_summaries.items():
-            anon_id = agent_mapping[agent_id]
-            lines.append(f"<{anon_id}> {summary} <end of {anon_id}>")
+            for agent_id, summary in agent_summaries.items():
+                anon_id = agent_mapping[agent_id]
+                lines.append(f"<{anon_id}> {summary} <end of {anon_id}>")
 
         lines.append("<END OF CURRENT ANSWERS>")
         return "\n".join(lines)
@@ -217,9 +222,9 @@ IMPORTANT: You are responding to the latest message in an ongoing conversation. 
         }
 
     def get_vote_tool(
-        self, valid_agent_ids: Optional[List[str]] = None
+        self, valid_agent_ids: Optional[List[str]] = None, show_real_ids: bool = False
     ) -> Dict[str, Any]:
-        """Get vote tool definition with anonymous agent IDs."""
+        """Get vote tool definition with configurable agent ID display."""
         if "vote_tool" in self._template_overrides:
             override = self._template_overrides["vote_tool"]
             if callable(override):
@@ -236,7 +241,7 @@ IMPORTANT: You are responding to the latest message in an ongoing conversation. 
                     "properties": {
                         "agent_id": {
                             "type": "string",
-                            "description": "Anonymous agent ID to vote for (e.g., 'agent1', 'agent2')",
+                            "description": "Agent ID to vote for",
                         },
                         "reason": {
                             "type": "string",
@@ -248,20 +253,23 @@ IMPORTANT: You are responding to the latest message in an ongoing conversation. 
             },
         }
 
-        # Create anonymous mapping for enum constraint
-        if valid_agent_ids:
+        if show_real_ids and valid_agent_ids:
+            # Use real agent IDs
+            tool_def["function"]["parameters"]["properties"]["agent_id"]["description"] = "Real agent ID to vote for (e.g., 'claude_code', 'gpt-5-nano')"
+            tool_def["function"]["parameters"]["properties"]["agent_id"]["enum"] = valid_agent_ids
+        elif valid_agent_ids:
+            # Create anonymous mapping for enum constraint
             anon_agent_ids = [f"agent{i}" for i in range(1, len(valid_agent_ids) + 1)]
-            tool_def["function"]["parameters"]["properties"]["agent_id"][
-                "enum"
-            ] = anon_agent_ids
+            tool_def["function"]["parameters"]["properties"]["agent_id"]["description"] = "Anonymous agent ID to vote for (e.g., 'agent1', 'agent2')"
+            tool_def["function"]["parameters"]["properties"]["agent_id"]["enum"] = anon_agent_ids
 
         return tool_def
 
     def get_standard_tools(
-        self, valid_agent_ids: Optional[List[str]] = None
+        self, valid_agent_ids: Optional[List[str]] = None, show_real_ids: bool = False
     ) -> List[Dict[str, Any]]:
         """Get standard tools for MassGen framework."""
-        return [self.get_new_answer_tool(), self.get_vote_tool(valid_agent_ids)]
+        return [self.get_new_answer_tool(), self.get_vote_tool(valid_agent_ids, show_real_ids)]
 
     def final_presentation_system_message(
         self, original_system_message: Optional[str] = None
@@ -317,19 +325,19 @@ Present your final coordinated answer in the most helpful and complete way possi
 {self.format_current_answers_empty()}"""
 
     def build_case2_user_message(
-        self, task: str, agent_summaries: Dict[str, str]
+        self, task: str, agent_summaries: Dict[str, str], show_real_ids: bool = False
     ) -> str:
         """Build Case 2 user message (summaries exist)."""
         return f"""{self.format_original_message(task)}
 
-{self.format_current_answers_with_summaries(agent_summaries)}"""
+{self.format_current_answers_with_summaries(agent_summaries, show_real_ids)}"""
 
     def build_evaluation_message(
-        self, task: str, agent_answers: Optional[Dict[str, str]] = None
+        self, task: str, agent_answers: Optional[Dict[str, str]] = None, show_real_ids: bool = False
     ) -> str:
         """Build evaluation user message for any case."""
         if agent_answers:
-            return self.build_case2_user_message(task, agent_answers)
+            return self.build_case2_user_message(task, agent_answers, show_real_ids)
         else:
             return self.build_case1_user_message(task)
 
@@ -338,6 +346,7 @@ Present your final coordinated answer in the most helpful and complete way possi
         current_task: str,
         conversation_history: Optional[List[Dict[str, str]]] = None,
         agent_answers: Optional[Dict[str, str]] = None,
+        show_real_ids: bool = False,
     ) -> str:
         """Build coordination context including conversation history and current state."""
         if "build_coordination_context" in self._template_overrides:
@@ -362,7 +371,7 @@ Present your final coordinated answer in the most helpful and complete way possi
         # Add agent answers
         if agent_answers:
             context_parts.append(
-                self.format_current_answers_with_summaries(agent_answers)
+                self.format_current_answers_with_summaries(agent_answers, show_real_ids)
             )
         else:
             context_parts.append(self.format_current_answers_empty())
@@ -379,6 +388,7 @@ Present your final coordinated answer in the most helpful and complete way possi
         agent_summaries: Optional[Dict[str, str]] = None,
         valid_agent_ids: Optional[List[str]] = None,
         base_system_message: Optional[str] = None,
+        show_real_ids: bool = False,
     ) -> Dict[str, Any]:
         """Build complete initial conversation for MassGen evaluation."""
         # Use agent's custom system message if provided, otherwise use default evaluation message
@@ -389,8 +399,8 @@ Present your final coordinated answer in the most helpful and complete way possi
             
         return {
             "system_message": system_message,
-            "user_message": self.build_evaluation_message(task, agent_summaries),
-            "tools": self.get_standard_tools(valid_agent_ids),
+            "user_message": self.build_evaluation_message(task, agent_summaries, show_real_ids),
+            "tools": self.get_standard_tools(valid_agent_ids, show_real_ids),
         }
 
     def build_conversation_with_context(
@@ -400,6 +410,7 @@ Present your final coordinated answer in the most helpful and complete way possi
         agent_summaries: Optional[Dict[str, str]] = None,
         valid_agent_ids: Optional[List[str]] = None,
         base_system_message: Optional[str] = None,
+        show_real_ids: bool = False,
     ) -> Dict[str, Any]:
         """Build complete conversation with conversation history context for MassGen evaluation."""
         # Use agent's custom system message if provided, otherwise use default context-aware message
@@ -411,9 +422,9 @@ Present your final coordinated answer in the most helpful and complete way possi
         return {
             "system_message": system_message,
             "user_message": self.build_coordination_context(
-                current_task, conversation_history, agent_summaries
+                current_task, conversation_history, agent_summaries, show_real_ids
             ),
-            "tools": self.get_standard_tools(valid_agent_ids),
+            "tools": self.get_standard_tools(valid_agent_ids, show_real_ids),
         }
 
     def build_final_presentation_message(

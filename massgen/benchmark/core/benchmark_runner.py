@@ -8,7 +8,7 @@ import json
 import time
 import subprocess
 import sys
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from pathlib import Path
 import os
 import re
@@ -613,7 +613,7 @@ Please respond with ONLY "CORRECT" or "INCORRECT" based on whether the model ans
                     'is_correct': is_correct,
                     'response_time': multi_agent_response_time,
                     'judge_evaluation_time': 0.0, # Judge evaluation time is not directly available from CLI output
-                    'selected_agent': 'unknown' # No direct agent selection in CLI output
+                    'selected_agent': response_data.get('selected_agent', 'unknown') if output_format == "json" else 'unknown'
                 })
                 
                 # Updated logging to show extracted answer vs correct answer

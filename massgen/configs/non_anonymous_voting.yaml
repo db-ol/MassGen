@@ -1,0 +1,31 @@
+agents:
+  - id: "claude_code"
+    backend:
+      type: "claude_code"
+      cwd: "claude_code_workspace"
+      allowed_tools:
+        - "Read"
+        - "Write"
+        - "Bash"
+        - "WebSearch"
+
+  - id: "gpt-5-nano"
+    backend:
+      type: "openai"
+      model: "gpt-5-nano"
+      enable_web_search: true
+      enable_code_interpreter: true
+
+  - id: "gemini-2.5-flash"
+    backend:
+      type: "gemini"
+      model: "gemini-2.5-flash"
+      enable_web_search: true
+      enable_code_execution: true
+
+# Enable non-anonymous voting
+show_real_agent_ids: true
+
+ui:
+  display_type: "rich_terminal"
+  logging_enabled: true
