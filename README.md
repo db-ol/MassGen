@@ -89,8 +89,8 @@ This project started with the "threads of thought" and "iterative refinement" id
 <summary><h3>🗺️ Roadmap</h3></summary>
 
 - Recent Achievements
-  - [v0.0.11](#recent-achievements-v0011)
-  - [v0.0.3 - v0.0.10](#previous-achievements-v003-v0010)
+  - [v0.0.12](#recent-achievements-v0012)
+  - [v0.0.3 - v0.0.11](#previous-achievements-v003-v0011)
 - [Key Future Enhancements](#key-future-enhancements)
   - Advanced Agent Collaboration
   - Expanded Model, Tool & Agent Integration
@@ -98,7 +98,7 @@ This project started with the "threads of thought" and "iterative refinement" id
   - Enhanced Developer Experience
   - Web Interface
   - Benchmark
-- [v0.0.12 Roadmap](#v0012-roadmap)
+- [v0.0.13 Roadmap](#v0013-roadmap)
 </details>
 
 <details open>
@@ -283,7 +283,7 @@ uv run python -m massgen.cli --backend claude_code --model sonnet "Can I use cla
 uv run python -m massgen.cli --backend claude_code --model sonnet "Debug this Python script"
 ```
 
-`--backend` is required for this type of backends.
+`--backend` is required for CLI-based backends. Note: `--model` parameter is required but ignored for Claude Code backend (uses Claude's latest model automatically).
 
 #### Multiple Agents from Config
 ```bash
@@ -556,6 +556,19 @@ timeout_settings:
 
 - `orchestrator_timeout_seconds`: Sets the maximum time allowed for the orchestration phase
 
+**Orchestrator Configuration:**
+
+Configure the orchestrator settings for managing agent workspace snapshots and temporary workspaces:
+
+```yaml
+orchestrator:
+  snapshot_storage: "claude_code_snapshots"        # Directory to store workspace snapshots
+  agent_temporary_workspace: "claude_code_temp_workspaces"  # Directory for temporary agent workspaces
+```
+
+- `snapshot_storage`: Directory where MassGen saves workspace snapshots for Claude Code agents to share context
+- `agent_temporary_workspace`: Directory where temporary agent workspaces are created and managed during collaboration
+
 #### Interactive Multi-Turn Mode
 
 MassGen supports an interactive mode where you can have ongoing conversations with the system:
@@ -713,72 +726,35 @@ MassGen is currently in its foundational stage, with a focus on parallel, asynch
 
 ⚠️ **Early Stage Notice:** As MassGen is in active development, please expect upcoming breaking architecture changes as we continue to refine and improve the system.
 
-### Recent Achievements (v0.0.11)
+### Recent Achievements (v0.0.12)
 
-✅ **Custom System Messages**: Enhanced system message configuration and preservation
-- Added `base_system_message` parameter to conversation builders for agent's custom system message
-- Orchestrator now passes agent's `get_configurable_system_message()` to conversation builders
-- Custom system messages properly combined with MassGen coordination instructions instead of being overwritten
-- Backend-specific system prompt customization (system_prompt, append_system_prompt)
+**🚀 Enhanced Claude Code Agent Context Sharing**
+- **Claude Agent Context Sharing**: Claude Code agents now share workspace context by maintaining snapshots and temporary workspace in orchestrator's side, enabling agents to build upon each other's work more effectively
 
-✅ **Claude Code Backend Enhancements**: Improved integration and configuration
-- Better system message handling and extraction
-- Enhanced JSON structured response parsing
-- Improved coordination action descriptions
+**📚 Documentation Improvement**
+- **Enhanced README**: Updated with current features and improved setup instructions
 
-✅ **Final Presentation & Agent Logic**: Enhanced multi-agent coordination
-- Improved final presentation handling for Claude Code agents
-- Better coordination between agents during final answer selection
-- Enhanced CLI presentation logic
-- Agent configuration improvements for workflow coordination
+### Previous Achievements (v0.0.3-v0.0.11)
 
-✅ **Evaluation Message Enhancement**: Improved synthesis instructions
-- Changed to "digest existing answers, combine their strengths, and do additional work to address their weaknesses"
-- Added "well" qualifier to evaluation questions
-- More explicit guidance for agents to synthesize and improve upon existing answers
+✅ **Custom System Messages (v0.0.11)**: Enhanced system message configuration and preservation with backend-specific system prompt customization
 
-✅ **New Configuration Files**: Introduced additional YAML configuration files
-- Added `multi_agent_playwright_automation.yaml` for browser automation workflows
+✅ **Claude Code Backend Enhancements (v0.0.11)**: Improved integration with better system message handling, JSON response parsing, and coordination action descriptions
 
-✅ **Documentation Updates**: Enhanced project documentation
-- Renamed roadmap from v0.0.11 to v0.0.12 for future planning
-- Updated README with latest features and improvements
-- Improved CONTRIBUTING guidelines
-- Enhanced configuration examples and best practices
+✅ **Azure OpenAI Support (v0.0.10)**: Integration with Azure OpenAI services including GPT-4.1 and GPT-5-chat models with async streaming
 
-### Previous Achievements (v0.0.3-v0.0.10)
+✅ **MCP (Model Context Protocol) Support (v0.0.9)**: Integration with MCP for advanced tool capabilities in Claude Code Agent, including Discord and Twitter integration
 
-✅ **Azure OpenAI Support (v0.0.10)**: Integration with Azure OpenAI services
-- New Azure OpenAI backend with async streaming capabilities
-- Support for Azure-hosted GPT-4.1 and GPT-5-chat models
-- Configuration examples for single and multi-agent Azure setups
+✅ **Timeout Management System (v0.0.8)**: Orchestrator-level timeout with graceful fallback and enhanced error messages
 
-✅ **MCP (Model Context Protocol) Support for Claude Code Agent (v0.0.9)**: Integration with MCP for advanced tool capabilities in Claude Code Agent
-- New MCP module with client implementation and transport layer
-- Support for MCP-based tool integration in Claude Code backend
-- Exception handling and transport management for MCP connections
+✅ **Local Model Support (v0.0.7)**: Complete LM Studio integration for running open-weight models locally with automatic server management
 
-✅ **Multi-Agent MCP Examples**: New configuration files demonstrating MCP integration
-- Discord and Twitter integration via MCP
-- Multi-agent setups with MCP-enabled tools
+✅ **GPT-5 Series Integration (v0.0.6)**: Support for OpenAI's GPT-5, GPT-5-mini, GPT-5-nano with advanced reasoning parameters
 
-✅ **Timeout Management System**: Timeout capabilities for better control and time management
-- Orchestrator-level timeout with graceful fallback
-- Enhanced error messages and warnings for timeout scenarios
+✅ **Claude Code Integration (v0.0.5)**: Native Claude Code backend with streaming capabilities and tool support
 
-✅ **Enhanced Display Features**: Improved visual feedback and user experience
-- Optimized message display formatting and synchronization
-- Better handling of concurrent agent outputs
+✅ **GLM-4.5 Model Support (v0.0.4)**: Integration with ZhipuAI's GLM-4.5 model family
 
-✅ **Foundation Architecture**: Complete multi-agent orchestration system with async streaming, builtin tools (code execution, web search), and multi-backend support
-
-✅ **GPT-5 Series Integration**: Support for OpenAI's GPT-5, GPT-5-mini, GPT-5-nano with advanced reasoning parameters and verbosity control
-
-✅ **Claude Code Integration**: Native Claude Code backend with streaming capabilities, tool support, and stateful conversation management
-
-✅ **GLM-4.5 Model Support**: Integration with ZhipuAI's GLM-4.5 model family with enhanced reasoning display and coordination UI
-
-✅ **Local Model Support**: Complete LM Studio integration for running open-weight models locally with automatic server management and zero-cost usage
+✅ **Foundation Architecture (v0.0.3)**: Complete multi-agent orchestration system with async streaming, builtin tools, and multi-backend support
 
 ✅ **Extended Provider Ecosystem**: Support for 15+ providers including Cerebras AI, Together AI, Fireworks AI, Groq, Nebius AI Studio, and OpenRouter
 
@@ -793,16 +769,16 @@ MassGen is currently in its foundational stage, with a focus on parallel, asynch
 
 We welcome community contributions to achieve these goals.
 
-### v0.0.12 Roadmap
+### v0.0.13 Roadmap
 
-Version 0.0.12 will focus on **Claude Code Context Sharing** and further enhancements. Key planned features include:
+Version 0.0.13 will focus on **Enhanced Logging System**, **Windows Platform Support**, and **Bug Fixes**. Key planned features include:
 
-- **Claude Code Context Integration**: 🔗 Enable context sharing between Claude Code agents and other agents
-- **Multi-Agent Context Synchronization**: 🔄 Allow multiple Claude Code agents to access each other's context
-- **Enhanced Backend Features**: 📊 Improved context management, state persistence, and cross-agent communication
-- **Advanced CLI Features**: Conversation save/load functionality, templates, export formats, and better multi-turn display
+- **Advanced Logging System**: 📊 Enhanced session logging, better debugging capabilities, and improved log management
+- **Windows Platform Support**: 🪟 Full Windows compatibility with platform-specific implementations and cross-platform tools
+- **Bug Fixes & Minor Improvements**: 🐛 Address various minor issues, CLI parameter handling, and backend stability improvements
+- **Enhanced Multi-Agent Synthesis**: 🤝 Enable agents to revise and improve their answers based on seeing other agents' work
 
-For detailed milestones and technical specifications, see the [full v0.0.12 roadmap](ROADMAP_v0.0.12.md).
+For detailed milestones and technical specifications, see the [full v0.0.13 roadmap](ROADMAP_v0.0.13.md).
 
 ---
 
