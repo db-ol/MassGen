@@ -17,12 +17,24 @@ from .base import LLMBackend, StreamChunk, TokenUsage
 from .chat_completions import ChatCompletionsBackend
 from .response import ResponseBackend
 from .grok import GrokBackend
+from .lmstudio import LMStudioBackend
 from .claude import ClaudeBackend
 from .gemini import GeminiBackend
 from .cli_base import CLIBackend
+
 # from .claude_code_cli import ClaudeCodeCLIBackend  # File removed
 from .claude_code import ClaudeCodeBackend
+
 # from .gemini_cli import GeminiCLIBackend
+
+# Azure OpenAI backend (optional)
+try:
+    from .azure_openai import AzureOpenAIBackend
+
+    AZURE_OPENAI_AVAILABLE = True
+except ImportError:
+    AZURE_OPENAI_AVAILABLE = False
+    AzureOpenAIBackend = None
 
 __all__ = [
     "LLMBackend",
@@ -31,9 +43,14 @@ __all__ = [
     "ChatCompletionsBackend",
     "ResponseBackend",
     "GrokBackend",
+    "LMStudioBackend",
     "ClaudeBackend",
     "GeminiBackend",
     "CLIBackend",
     "ClaudeCodeBackend",
     # "GeminiCLIBackend",
 ]
+
+# Add Azure OpenAI if available
+if AZURE_OPENAI_AVAILABLE:
+    __all__.append("AzureOpenAIBackend")

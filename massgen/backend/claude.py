@@ -25,6 +25,7 @@ import os
 import json
 from typing import Dict, List, Any, AsyncGenerator, Optional
 from .base import LLMBackend, StreamChunk
+from ..logger_config import log_backend_activity, log_backend_agent_message, log_stream_chunk
 
 
 class ClaudeBackend(LLMBackend):
@@ -169,6 +170,16 @@ class ClaudeBackend(LLMBackend):
         self, messages: List[Dict[str, Any]], tools: List[Dict[str, Any]], **kwargs
     ) -> AsyncGenerator[StreamChunk, None]:
         """Stream response using Claude's Messages API with full multi-tool support."""
+        # Extract agent_id for logging
+        agent_id = kwargs.get('agent_id', None)
+        
+        log_backend_activity(
+            "claude",
+            "Starting stream_with_tools",
+            {"num_messages": len(messages), "num_tools": len(tools) if tools else 0},
+            agent_id=agent_id
+        )
+        
         try:
             import anthropic
 
@@ -177,8 +188,8 @@ class ClaudeBackend(LLMBackend):
 
             # Merge constructor config with stream kwargs (stream kwargs take priority)
             all_params = {**self.config, **kwargs}
-            
-            # Extract framework-specific parameters  
+
+            # Extract framework-specific parameters
             enable_web_search = all_params.get("enable_web_search", False)
             enable_code_execution = all_params.get("enable_code_execution", False)
 
@@ -219,7 +230,12 @@ class ClaudeBackend(LLMBackend):
                 api_params["tools"] = combined_tools
 
             # Direct passthrough of all parameters except those handled separately
-            excluded_params = {"enable_web_search", "enable_code_execution", "agent_id", "session_id"}
+            excluded_params = {
+                "enable_web_search",
+                "enable_code_execution",
+                "agent_id",
+                "session_id",
+            }
             for key, value in all_params.items():
                 if key not in excluded_params and value is not None:
                     api_params[key] = value
@@ -227,6 +243,14 @@ class ClaudeBackend(LLMBackend):
             # Claude API requires max_tokens - add default if not provided
             if "max_tokens" not in api_params:
                 api_params["max_tokens"] = 4096
+            
+            # Log messages being sent
+            log_backend_agent_message(
+                agent_id or "default",
+                "SEND",
+                {"messages": converted_messages, "tools": len(combined_tools) if combined_tools else 0},
+                backend_name="claude"
+            )
 
             # Set up beta features and create stream
             if enable_code_execution:
@@ -325,6 +349,13 @@ class ClaudeBackend(LLMBackend):
                                 # Text content
                                 text_chunk = event.delta.text
                                 content += text_chunk
+                                log_backend_agent_message(
+                                    agent_id or "default",
+                                    "RECV",
+                                    {"content": text_chunk},
+                                    backend_name="claude"
+                                )
+                                log_stream_chunk("backend.claude", "content", text_chunk, agent_id)
                                 yield StreamChunk(type="content", content=text_chunk)
 
                             elif event.delta.type == "input_json_delta":
@@ -373,9 +404,11 @@ class ClaudeBackend(LLMBackend):
                                         )
 
                                         # Yield tool result as content
+                                        tool_result_msg = f"🔧 Code Execution [Completed]: {code}"
+                                        log_stream_chunk("backend.claude", "code_execution", code, agent_id)
                                         yield StreamChunk(
                                             type="content",
-                                            content=f"🔧 Code Execution [Completed]: {code}",
+                                            content=tool_result_msg,
                                         )
 
                                     elif tool_name == "web_search":
@@ -391,9 +424,11 @@ class ClaudeBackend(LLMBackend):
                                         )
 
                                         # Yield tool result as content
+                                        tool_result_msg = f"🔧 Web Search [Completed]: {query}"
+                                        log_stream_chunk("backend.claude", "web_search", query, agent_id)
                                         yield StreamChunk(
                                             type="content",
-                                            content=f"🔧 Web Search [Completed]: {query}",
+                                            content=tool_result_msg,
                                         )
 
                                     # Mark this tool as processed so we don't duplicate it later
@@ -446,6 +481,7 @@ class ClaudeBackend(LLMBackend):
 
                             # Yield user tool calls if any
                             if user_tool_calls:
+                                log_stream_chunk("backend.claude", "tool_calls", user_tool_calls, agent_id)
                                 yield StreamChunk(
                                     type="tool_calls", tool_calls=user_tool_calls
                                 )
@@ -457,6 +493,7 @@ class ClaudeBackend(LLMBackend):
                             }
                             if user_tool_calls:
                                 complete_message["tool_calls"] = user_tool_calls
+                            log_stream_chunk("backend.claude", "complete_message", complete_message, agent_id)
                             yield StreamChunk(
                                 type="complete_message",
                                 complete_message=complete_message,
@@ -467,6 +504,7 @@ class ClaudeBackend(LLMBackend):
                                 "role": "assistant",
                                 "content": content.strip(),
                             }
+                            log_stream_chunk("backend.claude", "complete_message", complete_message, agent_id)
                             yield StreamChunk(
                                 type="complete_message",
                                 complete_message=complete_message,
@@ -479,17 +517,30 @@ class ClaudeBackend(LLMBackend):
                         if enable_code_execution:
                             self.code_session_hours += 0.083  # 5 min minimum session
 
+                        log_stream_chunk("backend.claude", "done", None, agent_id)
                         yield StreamChunk(type="done")
                         return
 
                 except Exception as event_error:
+                    error_msg = f"Event processing error: {event_error}"
+                    log_stream_chunk("backend.claude", "error", error_msg, agent_id)
                     yield StreamChunk(
-                        type="error", error=f"Event processing error: {event_error}"
+                        type="error", error=error_msg
                     )
                     continue
 
         except Exception as e:
-            yield StreamChunk(type="error", error=f"Claude API error: {e}")
+            error_msg = f"Claude API error: {e}"
+            log_stream_chunk("backend.claude", "error", error_msg, agent_id)
+            yield StreamChunk(type="error", error=error_msg)
+        finally:
+            # Ensure the underlying HTTP client is properly closed to avoid event loop issues
+            try:
+                if hasattr(client, 'aclose'):
+                    await client.aclose()
+            except Exception:
+                # Suppress cleanup errors so we don't mask primary exceptions
+                pass
 
     def get_provider_name(self) -> str:
         """Get the provider name."""

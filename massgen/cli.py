@@ -40,6 +40,7 @@ import argparse
 import asyncio
 import io
 import json
+import logging
 import os
 import sys
 import time
@@ -53,9 +54,11 @@ from .backend.grok import GrokBackend
 from .backend.claude import ClaudeBackend
 from .backend.gemini import GeminiBackend
 from .backend.chat_completions import ChatCompletionsBackend
+from .backend.lmstudio import LMStudioBackend
 from .backend.claude_code import ClaudeCodeBackend
+from .backend.azure_openai import AzureOpenAIBackend
 from .chat_agent import SingleAgent, ConfigurableAgent
-from .agent_config import AgentConfig
+from .agent_config import AgentConfig, TimeoutConfig
 from .orchestrator import Orchestrator
 from .frontend.coordination_ui import CoordinationUI
 
@@ -100,6 +103,8 @@ class ConfigurationError(Exception):
     pass
 
 
+
+
 def load_config_file(config_path: str) -> Dict[str, Any]:
     """Load configuration from YAML or JSON file."""
     path = Path(config_path)
@@ -131,15 +136,30 @@ def load_config_file(config_path: str) -> Dict[str, Any]:
 
 
 def create_backend(backend_type: str, **kwargs) -> Any:
-    """Create backend instance from type and parameters."""
+    """Create backend instance from type and parameters.
+
+    Supported backend types:
+    - openai: OpenAI API (requires OPENAI_API_KEY)
+    - grok: xAI Grok (requires XAI_API_KEY)
+    - claude: Anthropic Claude (requires ANTHROPIC_API_KEY)
+    - gemini: Google Gemini (requires GOOGLE_API_KEY or GEMINI_API_KEY)
+    - chatcompletion: OpenAI-compatible providers (auto-detects API key based on base_url)
+
+    For chatcompletion backend, the following providers are auto-detected:
+    - Cerebras AI (cerebras.ai) -> CEREBRAS_API_KEY
+    - Together AI (together.ai/together.xyz) -> TOGETHER_API_KEY
+    - Fireworks AI (fireworks.ai) -> FIREWORKS_API_KEY
+    - Groq (groq.com) -> GROQ_API_KEY
+    - Nebius AI Studio (studio.nebius.ai) -> NEBIUS_API_KEY
+    - OpenRouter (openrouter.ai) -> OPENROUTER_API_KEY
+    """
     backend_type = backend_type.lower()
 
     if backend_type == "openai":
         api_key = kwargs.get("api_key") or os.getenv("OPENAI_API_KEY")
         if not api_key:
             raise ConfigurationError(
-                "OpenAI API key not found. Set OPENAI_API_KEY or provide "
-                "in config."
+                "OpenAI API key not found. Set OPENAI_API_KEY or provide " "in config."
             )
         return ResponseBackend(api_key=api_key)
 
@@ -174,7 +194,7 @@ def create_backend(backend_type: str, **kwargs) -> Any:
     elif backend_type == "chatcompletion":
         api_key = kwargs.get("api_key")
         base_url = kwargs.get("base_url")
-        
+
         # Determine API key based on base URL if not explicitly provided
         if not api_key:
             if base_url and "cerebras.ai" in base_url:
@@ -189,7 +209,7 @@ def create_backend(backend_type: str, **kwargs) -> Any:
                     raise ConfigurationError(
                         "ZAI API key not found. Set ZAI_API_KEY or provide in config."
                     )
-        
+
         return ChatCompletionsBackend(api_key=api_key)
 
     elif backend_type == "zai":
@@ -200,11 +220,19 @@ def create_backend(backend_type: str, **kwargs) -> Any:
                 "ZAI API key not found. Set ZAI_API_KEY or provide in config."
             )
         return ChatCompletionsBackend(api_key=api_key)
-    
+
+        # ChatCompletionsBackend now handles provider-specific API key detection internally
+        # Just pass through all kwargs including api_key and base_url
+        return ChatCompletionsBackend(**kwargs)
+
+    elif backend_type == "lmstudio":
+        # LM Studio local server (OpenAI-compatible). Defaults handled by backend.
+        return LMStudioBackend(**kwargs)
+
     elif backend_type == "claude_code":
         # ClaudeCodeBackend using claude-code-sdk-python
         # Authentication handled by backend (API key or subscription)
-        
+
         # Validate claude-code-sdk availability
         try:
             import claude_code_sdk
@@ -212,12 +240,24 @@ def create_backend(backend_type: str, **kwargs) -> Any:
             raise ConfigurationError(
                 "claude-code-sdk not found. Install with: pip install claude-code-sdk"
             )
-        
+
         return ClaudeCodeBackend(**kwargs)
+
+    elif backend_type == "azure_openai":
+        api_key = kwargs.get("api_key") or os.getenv("AZURE_OPENAI_API_KEY")
+        endpoint = kwargs.get("base_url") or os.getenv("AZURE_OPENAI_ENDPOINT")
+        if not api_key:
+            raise ConfigurationError(
+                "Azure OpenAI API key not found. Set AZURE_OPENAI_API_KEY or provide in config."
+            )
+        if not endpoint:
+            raise ConfigurationError(
+                "Azure OpenAI endpoint not found. Set AZURE_OPENAI_ENDPOINT or provide base_url in config."
+            )
+        return AzureOpenAIBackend(**kwargs)
 
     else:
         raise ConfigurationError(f"Unsupported backend type: {backend_type}")
-
 
 
 def create_agents_from_config(config: Dict[str, Any]) -> Dict[str, ConfigurableAgent]:
@@ -225,12 +265,13 @@ def create_agents_from_config(config: Dict[str, Any]) -> Dict[str, ConfigurableA
     agents = {}
 
     agent_entries = (
-        [config["agent"]] if "agent" in config else
-        config.get("agents", None)
+        [config["agent"]] if "agent" in config else config.get("agents", None)
     )
 
     if not agent_entries:
-        raise ConfigurationError("Configuration must contain either 'agent' or 'agents' section")
+        raise ConfigurationError(
+            "Configuration must contain either 'agent' or 'agents' section"
+        )
 
     for i, agent_data in enumerate(agent_entries, start=1):
         backend_config = agent_data.get("backend", {})
@@ -238,10 +279,13 @@ def create_agents_from_config(config: Dict[str, Any]) -> Dict[str, ConfigurableA
         # Infer backend type from model if not explicitly provided
         backend_type = backend_config.get("type") or (
             get_backend_type_from_model(backend_config["model"])
-            if "model" in backend_config else None
+            if "model" in backend_config
+            else None
         )
         if not backend_type:
-            raise ConfigurationError("Backend type must be specified or inferrable from model")
+            raise ConfigurationError(
+                "Backend type must be specified or inferrable from model"
+            )
 
         backend = create_backend(backend_type, **backend_config)
         backend_params = {k: v for k, v in backend_config.items() if k != "type"}
@@ -259,11 +303,25 @@ def create_agents_from_config(config: Dict[str, Any]) -> Dict[str, ConfigurableA
             agent_config = AgentConfig.create_zai_config(**backend_params)
         elif backend_type_lower == "chatcompletion":
             agent_config = AgentConfig.create_chatcompletion_config(**backend_params)
+        elif backend_type_lower == "lmstudio":
+            agent_config = AgentConfig.create_lmstudio_config(**backend_params)
         else:
             agent_config = AgentConfig(backend_params=backend_config)
 
         agent_config.agent_id = agent_data.get("id", f"agent{i}")
-        agent_config.custom_system_instruction = agent_data.get("system_message")
+        
+        # Route system_message to backend-specific system prompt parameter
+        system_msg = agent_data.get("system_message")
+        if system_msg:
+            if backend_type_lower == "claude_code":
+                # For Claude Code, use append_system_prompt to preserve Claude Code capabilities
+                agent_config.backend_params["append_system_prompt"] = system_msg
+            else:
+                # For other backends, fall back to deprecated custom_system_instruction
+                # TODO: Add backend-specific routing for other backends
+                agent_config.custom_system_instruction = system_msg
+
+        # Timeout configuration will be applied to orchestrator instead of individual agents
 
         agent = ConfigurableAgent(config=agent_config, backend=backend)
         agents[agent.config.agent_id] = agent
@@ -272,20 +330,23 @@ def create_agents_from_config(config: Dict[str, Any]) -> Dict[str, ConfigurableA
 
 
 def create_simple_config(
-    backend_type: str, model: str, system_message: Optional[str] = None, base_url: Optional[str] = None
+    backend_type: str,
+    model: str,
+    system_message: Optional[str] = None,
+    base_url: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Create a simple single-agent configuration."""
     backend_config = {"type": backend_type, "model": model}
     if base_url:
         backend_config["base_url"] = base_url
-    
+
     return {
         "agent": {
             "id": "agent1",
             "backend": backend_config,
             "system_message": system_message or "You are a helpful AI assistant.",
         },
-        "ui": {"display_type": "rich_terminal", "logging_enabled": True},
+        "ui": {"display_type": "simple", "logging_enabled": True},
     }
 
 
@@ -294,6 +355,7 @@ async def run_question_with_history(
     agents: Dict[str, SingleAgent],
     ui_config: Dict[str, Any],
     history: List[Dict[str, Any]],
+    **kwargs,
 ) -> str:
     """Run MassGen with a question and conversation history."""
     # Build messages including history
@@ -334,10 +396,25 @@ async def run_question_with_history(
 
     else:
         # Multi-agent mode with history
-        orchestrator = Orchestrator(agents=agents)
+        # Create orchestrator config with timeout settings
+        timeout_config = kwargs.get("timeout_config")
+        orchestrator_config = AgentConfig()
+        if timeout_config:
+            orchestrator_config.timeout_config = timeout_config
+        
+        # Get context sharing parameters from kwargs (if present in config)
+        snapshot_storage = kwargs.get("orchestrator", {}).get("snapshot_storage")
+        agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
+        
+        orchestrator = Orchestrator(
+            agents=agents, 
+            config=orchestrator_config,
+            snapshot_storage=snapshot_storage,
+            agent_temporary_workspace=agent_temporary_workspace
+        )
         # Create a fresh UI instance for each question to ensure clean state
         ui = CoordinationUI(
-            display_type=ui_config.get("display_type", "rich_terminal"),
+            display_type=ui_config.get("display_type", "simple"),
             logging_enabled=ui_config.get("logging_enabled", True),
         )
 
@@ -370,8 +447,13 @@ async def run_question_with_history(
 
 
 async def run_single_question(
+<<<<<<< HEAD
     question: str, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any]
 ) -> Dict[str, Any]:
+=======
+    question: str, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any], **kwargs
+) -> str:
+>>>>>>> leezekun/new_logging_sys
     """Run MassGen with a single question."""
     output_format = ui_config.get("output_format", "text")
     
@@ -428,40 +510,34 @@ async def run_single_question(
 
     else:
         # Multi-agent mode
-        orchestrator = Orchestrator(agents=agents)
+        # Create orchestrator config with timeout settings
+        timeout_config = kwargs.get("timeout_config")
+        orchestrator_config = AgentConfig()
+        if timeout_config:
+            orchestrator_config.timeout_config = timeout_config
         
-        if output_format == "json":
-            # Redirect stdout to capture all output
-            old_stdout = sys.stdout
-            captured_output = io.StringIO()
-            sys.stdout = captured_output
-            
-            try:
-                # Create a fresh UI instance for each question to ensure clean state
-                ui = CoordinationUI(
-                    display_type="simple",  # Use simple display for JSON mode
-                    logging_enabled=False,  # Disable logging for JSON mode
-                )
-                
-                final_response = await ui.coordinate(orchestrator, question)
-                
-            finally:
-                # Restore stdout
-                sys.stdout = old_stdout
+        # Get context sharing parameters from kwargs (if present in config)
+        snapshot_storage = kwargs.get("orchestrator", {}).get("snapshot_storage")
+        agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
         
-        else:
-            # Normal text mode
-            ui = CoordinationUI(
-                display_type=ui_config.get("display_type", "rich_terminal"),
-                logging_enabled=ui_config.get("logging_enabled", True),
-            )
-            
-            print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
-            print(f"Agents: {', '.join(agents.keys())}", flush=True)
-            print(f"Question: {question}", flush=True)
-            print("\n" + "=" * 60, flush=True)
-            
-            final_response = await ui.coordinate(orchestrator, question)
+        orchestrator = Orchestrator(
+            agents=agents, 
+            config=orchestrator_config,
+            snapshot_storage=snapshot_storage,
+            agent_temporary_workspace=agent_temporary_workspace
+        )
+        # Create a fresh UI instance for each question to ensure clean state
+        ui = CoordinationUI(
+            display_type=ui_config.get("display_type", "simple"),
+            logging_enabled=ui_config.get("logging_enabled", True),
+        )
+
+        print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
+        print(f"Agents: {', '.join(agents.keys())}", flush=True)
+        print(f"Question: {question}", flush=True)
+        print("\n" + "=" * 60, flush=True)
+
+        final_response = await ui.coordinate(orchestrator, question)
         
         # Get the selected agent from the orchestrator
         selected_agent = getattr(orchestrator, '_selected_agent', None)
@@ -486,7 +562,7 @@ def print_help_messages():
 
 
 async def run_interactive_mode(
-    agents: Dict[str, SingleAgent], ui_config: Dict[str, Any]
+    agents: Dict[str, SingleAgent], ui_config: Dict[str, Any], **kwargs
 ):
     """Run MassGen in interactive mode with conversation history."""
     print(f"\n{BRIGHT_CYAN}🤖 MassGen Interactive Mode{RESET}", flush=True)
@@ -511,7 +587,7 @@ async def run_interactive_mode(
     else:
         mode = "Multi-Agent Coordination"
     print(f"   Mode: {mode}", flush=True)
-    print(f"   UI: {ui_config.get('display_type', 'rich_terminal')}", flush=True)
+    print(f"   UI: {ui_config.get('display_type', 'simple')}", flush=True)
 
     print_help_messages()
 
@@ -607,7 +683,7 @@ async def run_interactive_mode(
                 print(f"\n🔄 {BRIGHT_YELLOW}Processing...{RESET}", flush=True)
 
                 response = await run_question_with_history(
-                    question, agents, ui_config, conversation_history
+                    question, agents, ui_config, conversation_history, **kwargs
                 )
 
                 if response:
@@ -686,22 +762,28 @@ Examples:
   # Interactive mode
   python -m massgen.cli --config config.yaml
   
-  # JSON output format
-  python -m massgen.cli --json --config config.yaml "What is the capital of France?"
-  python -m massgen.cli --output-format json --config config.yaml "What is 2+2?"
-  
-  # Run benchmark
-  python -m massgen.cli --benchmark --benchmark-config benchmark.yaml
+  # Timeout control examples
+  python -m massgen.cli --config config.yaml --orchestrator-timeout 600 "Complex task"
   
   # Create sample configurations
   python -m massgen.cli --create-samples
 
 Environment Variables:
-  OPENAI_API_KEY      - Required for OpenAI backend
-  XAI_API_KEY         - Required for Grok backend  
-  ANTHROPIC_API_KEY   - Required for Claude backend
-  CEREBRAS_API_KEY    - Required for CEREBRAS CLOUD API (chatcompletion backend)
-  HF_API_KEY          - Required for benchmarking (HLE dataset access)
+    OPENAI_API_KEY      - Required for OpenAI backend
+    XAI_API_KEY         - Required for Grok backend
+    ANTHROPIC_API_KEY   - Required for Claude backend
+    GOOGLE_API_KEY      - Required for Gemini backend (or GEMINI_API_KEY)
+    ZAI_API_KEY         - Required for ZAI backend 
+  
+    CEREBRAS_API_KEY    - For Cerebras AI (cerebras.ai)
+    TOGETHER_API_KEY    - For Together AI (together.ai, together.xyz)
+    FIREWORKS_API_KEY   - For Fireworks AI (fireworks.ai)
+    GROQ_API_KEY        - For Groq (groq.com)
+    NEBIUS_API_KEY      - For Nebius AI Studio (studio.nebius.ai)
+    OPENROUTER_API_KEY  - For OpenRouter (openrouter.ai)
+    
+  Note: The chatcompletion backend auto-detects the provider from the base_url
+        and uses the appropriate environment variable for API key.
         """,
     )
 
@@ -720,7 +802,17 @@ Environment Variables:
     config_group.add_argument(
         "--backend",
         type=str,
-        choices=["chatcompletion", "claude", "gemini", "grok", "openai", "claude_code", "zai"],
+        choices=[
+            "chatcompletion",
+            "claude",
+            "gemini",
+            "grok",
+            "openai",
+            "azure_openai",
+            "claude_code",
+            "zai",
+            "lmstudio",
+        ],
         help="Backend type for quick setup",
     )
 
@@ -747,7 +839,9 @@ Environment Variables:
         "--system-message", type=str, help="System message for quick setup"
     )
     parser.add_argument(
-        "--base-url", type=str, help="Base URL for API endpoint (e.g., https://api.cerebras.ai/v1/chat/completions)"
+        "--base-url",
+        type=str,
+        help="Base URL for API endpoint (e.g., https://api.cerebras.ai/v1/chat/completions)",
     )
 
     # UI options
@@ -755,35 +849,37 @@ Environment Variables:
         "--no-display", action="store_true", help="Disable visual coordination display"
     )
     parser.add_argument("--no-logs", action="store_true", help="Disable logging")
-    
-    # Output format options
     parser.add_argument(
-        "--json", action="store_true", help="Output results in JSON format"
+        "--debug", action="store_true", help="Enable debug mode with verbose logging"
     )
-    parser.add_argument(
-        "--output-format", 
-        type=str, 
-        choices=["text", "json"], 
-        default="text",
-        help="Output format for results (default: text)"
+
+    # Timeout options
+    timeout_group = parser.add_argument_group(
+        "timeout settings", "Override timeout settings from config"
+    )
+    timeout_group.add_argument(
+        "--orchestrator-timeout",
+        type=int,
+        help="Maximum time for orchestrator coordination in seconds (default: 1800)",
+    )
     )
 
     args = parser.parse_args()
 
-    # Validate benchmark arguments
-    if args.benchmark and not args.benchmark_config:
-        parser.error("--benchmark-config is required when using --benchmark")
+    # Always setup logging (will save INFO to file, console output depends on debug flag)
+    from .logger_config import setup_logging, logger
+    setup_logging(debug=args.debug)
     
-    if args.benchmark and args.question:
-        parser.error("Cannot use --benchmark with a question. Use --benchmark for evaluation mode.")
+    if args.debug:
+        logger.info("Debug mode enabled")
+        logger.debug(f"Command line arguments: {vars(args)}")
 
-    # Validate other arguments
-    if not args.benchmark:
-        if not args.backend:
-            if not args.model and not args.config:
-                parser.error(
-                    "If there is not --backend, either --config or --model must be specified"
-                )
+    # Validate arguments
+    if not args.backend:
+        if not args.model and not args.config:
+            parser.error(
+                "If there is not --backend, either --config or --model must be specified"
+            )
 
     try:
         # Handle benchmark mode
@@ -794,6 +890,9 @@ Environment Variables:
         # Load or create configuration
         if args.config:
             config = load_config_file(args.config)
+            if args.debug:
+                logger.debug(f"Loaded config from file: {args.config}")
+                logger.debug(f"Config content: {json.dumps(config, indent=2)}")
         else:
             model = args.model
             if args.backend:
@@ -805,8 +904,14 @@ Environment Variables:
             else:
                 system_message = None
             config = create_simple_config(
-                backend_type=backend, model=model, system_message=system_message, base_url=args.base_url
+                backend_type=backend,
+                model=model,
+                system_message=system_message,
+                base_url=args.base_url,
             )
+            if args.debug:
+                logger.debug(f"Created simple config with backend: {backend}, model: {model}")
+                logger.debug(f"Config content: {json.dumps(config, indent=2)}")
 
         # Apply command-line overrides
         ui_config = config.get("ui", {})
@@ -814,26 +919,56 @@ Environment Variables:
             ui_config["display_type"] = "simple"
         if args.no_logs:
             ui_config["logging_enabled"] = False
-        
-        # Set output format
-        output_format = "json" if args.json else args.output_format
-        ui_config["output_format"] = output_format
+        if args.debug:
+            ui_config["debug"] = True
+            # Enable logging if debug is on
+            ui_config["logging_enabled"] = True
+            # # Force simple UI in debug mode
+            # ui_config["display_type"] = "simple"
+
+        # Apply timeout overrides from CLI arguments
+        timeout_settings = config.get("timeout_settings", {})
+        if args.orchestrator_timeout is not None:
+            timeout_settings["orchestrator_timeout_seconds"] = args.orchestrator_timeout
+
+        # Update config with timeout settings
+        config["timeout_settings"] = timeout_settings
 
         # Create agents
+        if args.debug:
+            from .logger_config import logger
+            logger.debug("Creating agents from config...")
         agents = create_agents_from_config(config)
 
         if not agents:
             raise ConfigurationError("No agents configured")
+        
+        if args.debug:
+            from .logger_config import logger
+            logger.debug(f"Created {len(agents)} agent(s): {list(agents.keys())}")
+
+        # Create timeout config from settings and put it in kwargs
+        timeout_settings = config.get("timeout_settings", {})
+        timeout_config = (
+            TimeoutConfig(**timeout_settings) if timeout_settings else TimeoutConfig()
+        )
+
+        kwargs = {"timeout_config": timeout_config}
+        
+        # Add orchestrator configuration if present
+        if "orchestrator" in config:
+            kwargs["orchestrator"] = config["orchestrator"]
 
         # Run mode based on whether question was provided
         if args.question:
-            result = await run_single_question(args.question, agents, ui_config)
-            if output_format == "json":
-                # Output JSON response
-                print(json.dumps(result, indent=2))
-            # else: original text output is handled in run_single_question
+            response = await run_single_question(
+                args.question, agents, ui_config, **kwargs
+            )
+            # if response:
+            #     print(f"\n{BRIGHT_GREEN}Final Response:{RESET}", flush=True)
+            #     print(f"{response}", flush=True)
         else:
-            await run_interactive_mode(agents, ui_config)
+            await run_interactive_mode(agents, ui_config, **kwargs)
 
     except ConfigurationError as e:
         print(f"❌ Configuration error: {e}", flush=True)

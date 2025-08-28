@@ -88,6 +88,9 @@ This project started with the "threads of thought" and "iterative refinement" id
 <details open>
 <summary><h3>🗺️ Roadmap</h3></summary>
 
+- Recent Achievements
+  - [v0.0.12](#recent-achievements-v0012)
+  - [v0.0.3 - v0.0.11](#previous-achievements-v003-v0011)
 - [Key Future Enhancements](#key-future-enhancements)
   - Advanced Agent Collaboration
   - Expanded Model, Tool & Agent Integration
@@ -95,7 +98,7 @@ This project started with the "threads of thought" and "iterative refinement" id
   - Enhanced Developer Experience
   - Web Interface
   - Benchmark
-- [v0.0.7 Roadmap](#v007-roadmap)
+- [v0.0.13 Roadmap](#v0013-roadmap)
 </details>
 
 <details open>
@@ -131,7 +134,7 @@ graph TB
     subgraph Collaborative Agents
         A1[Agent 1<br/>🏗️ Anthropic/Claude + Tools]
         A2[Agent 2<br/>🌟 Google/Gemini + Tools]
-        A3[Agent 3<br/>🤖 OpenAI/GPT/O + Tools]
+        A3[Agent 3<br/>🤖 OpenAI/GPT + Tools]
         A4[Agent 4<br/>⚡ xAI/Grok + Tools]
     end
 
@@ -180,28 +183,26 @@ uv venv
 ```bash
 # Claude Code CLI - Advanced coding assistant
 npm install -g @anthropic-ai/claude-code
+
+# LM Studio - Local model inference
+# For MacOS/Linux
+sudo ~/.lmstudio/bin/lms bootstrap
+# For Windows
+cmd /c %USERPROFILE%/.lmstudio/bin/lms.exe bootstrap
 ```
 
 ### 2. 🔐 API Configuration
 
-Create a `.env` file in the `massgen` directory with your API keys:
+Using the template file `.env.example` to create a `.env` file in the `massgen` directory with your API keys. Note that only the API keys of the models used by your MassGen agent team is needed.
 
 ```bash
 # Copy example configuration
 cp .env.example .env
-
-# Edit with your API keys
-ANTHROPIC_API_KEY=your-anthropic-key-here
-GEMINI_API_KEY=your-gemini-key-here
-OPENAI_API_KEY=your-openai-key-here
-XAI_API_KEY=your-xai-key-here
-ZAI_API_KEY=your-zai-key-here
 ```
 
-Make sure you set up the API key for the model you want to use.
-
 **Useful links to get API keys:**
- - [Cerabras](https://inference-docs.cerebras.ai/introduction)
+ - [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/)
+ - [Cerebras](https://inference-docs.cerebras.ai/introduction)
  - [Claude](https://docs.anthropic.com/en/api/overview)
  - [Gemini](https://ai.google.dev/gemini-api/docs)
  - [Grok](https://docs.x.ai/docs/overview)
@@ -212,8 +213,27 @@ Make sure you set up the API key for the model you want to use.
 
 #### Models
 
-The system currently supports multiple model providers with advanced capabilities: **Anthropic Claude**, **Claude Code**, **Google Gemini**, **OpenAI**, **xAI Grok**, **Z AI**. 
-More providers and local inference of open-weight models (using vllm or sglang) are welcome to be added.
+The system currently supports multiple model providers with advanced capabilities:
+
+**API-based Models:**
+- **Azure OpenAI** (NEW in v0.0.10): GPT-4, GPT-4o, GPT-3.5-turbo, GPT-4.1, GPT-5-chat
+- **Cerebras AI**: GPT-OSS-120B...
+- **Claude**: Claude Haiku 3.5, Claude Sonnet 4, Claude Opus 4...
+- **Claude Code**: Native Claude Code SDK with comprehensive dev tools
+- **Gemini**: Gemini 2.5 Flash, Gemini 2.5 Pro...
+- **Grok**: Grok-4, Grok-3, Grok-3-mini...
+- **OpenAI**: GPT-5 series (GPT-5, GPT-5-mini, GPT-5-nano)...
+- **Together AI**, **Fireworks AI**, **Groq**, **Nebius AI Studio**, **OpenRouter**: LLaMA, Mistral, Qwen...
+- **Z AI**: GLM-4.5
+
+**Local Model Support (NEW in v0.0.7):**
+- **LM Studio**: Run open-weight models locally with automatic server management
+  - Automatic LM Studio CLI installation
+  - Auto-download and loading of models
+  - Zero-cost usage reporting
+  - Support for LLaMA, Mistral, Qwen and other open-weight models
+
+More providers and local inference engines (vllm, sglang) are welcome to be added.
 
 #### Tools
 
@@ -221,14 +241,15 @@ MassGen agents can leverage various tools to enhance their problem-solving capab
 
 **Supported Built-in Tools by Backend:**
 
-| Backend | Live Search | Code Execution | File Operations | Advanced Features |
-|---------|:-----------:|:--------------:|:---------------:|:-----------------|
-| **Claude API** | ✅ | ✅ | ❌ | Web search, code interpreter |
-| **Claude Code** | ✅ | ✅ | ✅ | **Native Claude Code SDK, comprehensive dev tools** |
-| **Gemini API** | ✅ | ✅ | ❌ | Web search, code execution |
-| **Grok API** | ✅ | ❌ | ❌ | Web search only |
-| **OpenAI API** | ✅ | ✅ | ❌ | Web search, code interpreter |
-| **ZAI API** | ❌ | ❌ | ❌ | - |
+| Backend | Live Search | Code Execution | File Operations | MCP Support | Advanced Features |
+|---------|:-----------:|:--------------:|:---------------:|:-----------:|:-----------------|
+| **Azure OpenAI** (NEW in v0.0.10) | ❌ | ❌ | ❌ | ❌ | Code interpreter, Azure deployment management |
+| **Claude API** | ✅ | ✅ | ❌ | ❌ | Web search, code interpreter |
+| **Claude Code** | ✅ | ✅ | ✅ | ✅ | **Native Claude Code SDK, comprehensive dev tools, MCP integration** |
+| **Gemini API** | ✅ | ✅ | ❌ | ❌ | Web search, code execution |
+| **Grok API** | ✅ | ❌ | ❌ | ❌ | Web search only |
+| **OpenAI API** | ✅ | ✅ | ❌ | ❌ | Web search, code interpreter |
+| **ZAI API** | ❌ | ❌ | ❌ | ❌ | - |
 
 ### 4. 🏃 Run MassGen
 
@@ -236,43 +257,76 @@ MassGen agents can leverage various tools to enhance their problem-solving capab
 
 **API-based backends:**
 ```bash
-uv run python -m massgen.cli --model gemini-2.5-flash "Which AI won IMO in 2025?"
-uv run python -m massgen.cli --model gpt-5-mini "Which AI won IMO in 2025?"
-uv run python -m massgen.cli --model grok-3-mini "Which AI won IMO in 2025?"
-uv run python -m massgen.cli --model glm-4.5 "Which AI won IMO in 2025?"
+uv run python -m massgen.cli --model claude-3-5-sonnet-latest "When is your knowledge up to"
+uv run python -m massgen.cli --model gemini-2.5-flash "When is your knowledge up to"
+uv run python -m massgen.cli --model grok-3-mini "When is your knowledge up to"
+uv run python -m massgen.cli --model gpt-5-nano "When is your knowledge up to"
+
+uv run python -m massgen.cli --backend chatcompletion --base-url https://api.cerebras.ai/v1 --model gpt-oss-120b "When is your knowledge up to"
+
+# Azure OpenAI (NEW in v0.0.10, requires environment variables)
+uv run python -m massgen.cli --backend azure_openai --model gpt-4.1 "When is your knowledge up to"
 ```
-All supported models can be found [here](massgen/utils.py).
+
+All the models with a default backend can be found [here](massgen/utils.py).
+
+**Local models (NEW in v0.0.7):**
+```bash
+# Use LM Studio with automatic model management
+uv run python -m massgen.cli --config lmstudio.yaml "Explain quantum computing"
+```
 
 **CLI-based backends**:
 ```bash
 # Claude Code - Native Claude Code SDK with comprehensive dev tools
-uv run python -m massgen.cli --backend claude_code "Can I use claude-3-5-haiku for claude code?"
-uv run python -m massgen.cli --backend claude-code "Debug this Python script"
+uv run python -m massgen.cli --backend claude_code --model sonnet "Can I use claude-3-5-haiku for claude code?"
+uv run python -m massgen.cli --backend claude_code --model sonnet "Debug this Python script"
 ```
 
-`--backend` is required for this type of backends.
+`--backend` is required for CLI-based backends. Note: `--model` parameter is required but ignored for Claude Code backend (uses Claude's latest model automatically).
 
 #### Multiple Agents from Config
 ```bash
 # Use configuration file
-uv run python -m massgen.cli --config three_agents_default.yaml "Compare different approaches to renewable energy"
+uv run python -m massgen.cli --config three_agents_default.yaml "Summarize latest news of github.com/Leezekun/MassGen"
 
 # Mixed API and CLI backends
-uv run python -m massgen.cli --config claude_code_flash2.5.yaml "Complex coding task requiring multiple perspectives"
+uv run python -m massgen.cli --config claude_code_flash2.5.yaml "find 5 papers which are related to multi-agent scaling system Massgen, download them and list their title in markdown"
+uv run python -m massgen.cli --config claude_code_gpt5nano.yaml "find 5 papers which are related to multi-agent scaling system Massgen, download them and list their title in markdown"
+
+# Azure OpenAI configurations (NEW in v0.0.10)
+uv run python -m massgen.cli --config azure_openai_single.yaml "What is machine learning?"
+uv run python -m massgen.cli --config azure_openai_multi.yaml "Compare different approaches to renewable energy"
+
+# MCP-enabled configurations (NEW in v0.0.9)
+uv run python -m massgen.cli --config multi_agent_playwright_automation.yaml "Browse https://github.com/Leezekun/MassGen and generate reports with screenshots"
+uv run python -m massgen.cli --config claude_code_discord_mcp_example.yaml "Extract 3 latest discord messages"
+uv run python -m massgen.cli --config claude_code_twitter_mcp_example.yaml "Search for the 3 latest tweets from @massgen_ai"
+
+# Hybrid local and API-based models (NEW in v0.0.7)
+uv run python -m massgen.cli --config two_agents_opensource_lmstudio.yaml "Analyze this algorithm's complexity"
+uv run python -m massgen.cli --config gpt5nano_glm_qwen.yaml "Design a distributed system architecture"
+
+# Debug mode for troubleshooting
+uv run python -m massgen.cli --model claude-3-5-sonnet-latest --debug "What is machine learning?"
+uv run python -m massgen.cli --config three_agents_default.yaml --debug "Debug multi-agent coordination"
 ```
 
 All available quick configuration files can be found [here](massgen/configs).
+
+See MCP server setup guides: [Discord MCP](massgen/configs/DISCORD_MCP_SETUP.md) | [Twitter MCP](massgen/configs/TWITTER_MCP_ENESCINAR_SETUP.md) | [Playwright MCP](massgen/configs/PLAYWRIGHT_MCP_SETUP.md) | 
 
 #### CLI Configuration Parameters
 
 | Parameter          | Description |
 |-------------------|-------------|
 | `--config`         | Path to YAML configuration file with agent definitions, model parameters, backend parameters and UI settings |
-| `--backend`        | Backend type for quick setup without a config file (`claude`, `claude_code`, `gemini`, `grok`, `openai`, `zai`). Optional because we can infer backend type through model.|
-| `--model`          | Model name for quick setup (e.g., `gemini-2.5-flash`, `gpt-5-nano`, ...). See all [supported models](massgen/utils.py). `--config` and `--model` are mutually exclusive - use one or the other. |
+| `--backend`        | Backend type for quick setup without a config file (`claude`, `claude_code`, `gemini`, `grok`, `openai`, `azure_openai`, `zai`). Optional for [models with default backends](massgen/utils.py).|
+| `--model`          | Model name for quick setup (e.g., `gemini-2.5-flash`, `gpt-5-nano`, ...). `--config` and `--model` are mutually exclusive - use one or the other. |
 | `--system-message` | System prompt for the agent in quick setup mode. If `--config` is provided, `--system-message` is omitted. |
 | `--no-display`     | Disable real-time streaming UI coordination display (fallback to simple text output).|
 | `--no-logs`        | Disable real-time logging.|
+| `--debug`          | Enable debug mode with verbose logging. Shows detailed orchestrator activities, agent messages, backend operations, and tool calls. Debug logs are saved to `agent_outputs/log_{time}/massgen_debug.log`. |
 | `"<your question>"`         | Optional single-question input; if omitted, MassGen enters interactive chat mode. |
 
 #### Configuration File Format
@@ -288,7 +342,7 @@ Use the `agent` field to define a single agent with its backend and settings:
 agent: 
   id: "<agent_name>"
   backend:
-    type: "chatcompletion" | "claude" | "claude_code" | "gemini" | "grok" | "openai" | "zai" #Type of backend 
+    type: "azure_openai" | "chatcompletion" | "claude" | "claude_code" | "gemini" | "grok" | "openai" | "zai" | "lmstudio" #Type of backend 
     model: "<model_name>" # Model name
     api_key: "<optional_key>"  # API key for backend. Uses env vars by default.
   system_message: "..."    # System Message for Single Agent
@@ -302,7 +356,7 @@ Use the `agents` field to define multiple agents, each with its own backend and 
 agents:  # Multiple agents (alternative to 'agent')
   - id: "<agent1 name>"
     backend: 
-      type: "chatcompletion" | "claude" | "claude_code" | "gemini" | "grok" | "openai" | "zai" #Type of backend
+      type: "azure_openai" | "chatcompletion" | "claude" | "claude_code" | "gemini" | "grok" | "openai" |  "zai" | "lmstudio" #Type of backend
       model: "<model_name>" # Model name
       api_key: "<optional_key>"  # API key for backend. Uses env vars by default.
     system_message: "..."    # System Message for Single Agent
@@ -373,12 +427,26 @@ backend:
   #     return_citations: true       # Include search result citations 
 ```
 
+#### Azure OpenAI
+
+```yaml
+backend:
+  type: "azure_openai"
+  model: "gpt-4.1"                     # Azure OpenAI deployment name
+  base_url: "https://your-resource.openai.azure.com/"  # Azure OpenAI endpoint
+  api_key: "<optional_key>"          # API key for backend. Uses AZURE_OPENAI_API_KEY env var by default.
+  api_version: "2024-02-15-preview" # Azure OpenAI API version
+  temperature: 0.7                   # Creativity vs consistency (0.0-1.0)
+  max_tokens: 2500                   # Maximum response length
+  enable_code_interpreter: true      # Code interpreter capability
+```
+
 #### OpenAI
 
 ```yaml
 backend:
   type: "openai"
-  model: "gpt-5"                     # Model name
+  model: "gpt-5-mini"                # Model name
   api_key: "<optional_key>"          # API key for backend. Uses env vars by default.
   temperature: 0.7                   # Creativity vs consistency (0.0-1.0, GPT-5 series models and GPT o-series models don't support this)
   max_tokens: 2500                   # Maximum response length (GPT-5 series models and GPT o-series models don't support this)
@@ -400,8 +468,29 @@ backend:
   api_key: "<optional_key>"          # API key for backend. Uses env vars by default.
   
   # Claude Code specific options
+  system_prompt: "" # Custom system prompt to replace default
   append_system_prompt: ""  # Custom system prompt to append
   max_thinking_tokens: 4096                   # Maximum thinking tokens
+
+  # MCP (Model Context Protocol) servers configuration
+  mcp_servers:
+    # Discord integration server
+    discord:
+      type: "stdio"                    # Communication type: stdio (standard input/output)
+      command: "npx"                    # Command to execute: Node Package Execute
+      args: ["-y", "mcp-discord", "--config", "YOUR_DISCORD_TOKEN"]  # Arguments: -y (auto-confirm), mcp-discord package, config with Discord bot token
+    
+    # Playwright web automation server
+    playwright:
+      type: "stdio"                    # Communication type: stdio (standard input/output)
+      command: "npx"                    # Command to execute: Node Package Execute
+      args: [
+        "@playwright/mcp@latest",
+        "--browser=chrome",              # Use Chrome browser
+        "--caps=vision,pdf",             # Enable vision and PDF capabilities
+        "--user-data-dir=/tmp/playwright-profile", # Persistent browser profile
+        "--save-trace"                 # Save Playwright traces for debugging
+      ]
   
   # Tool configuration (Claude Code's native tools)
   allowed_tools:
@@ -417,9 +506,10 @@ backend:
     - "WebFetch"       # Fetch web content
     - "TodoWrite"      # Task management
     - "NotebookEdit"   # Jupyter notebook editing
-    # MCP tools (if available)
-    - "mcp__ide__getDiagnostics"
-    - "mcp__ide__executeCode"
+    # MCP tools (if available), MCP tools will be auto-discovered from the server
+    - "mcp__discord__discord_login"
+    - "mcp__discord__discord_readmessages"
+    - "mcp__playwright"
 ```
 
 #### ZAI
@@ -432,6 +522,16 @@ backend:
   api_key: "<optional_key>"          # API key for backend. Uses env vars by default.
   temperature: 0.7                   # Creativity vs consistency (0.0-1.0)
   top_p: 0.7                    # Nucleus sampling cutoff; keeps smallest set of tokens with cumulative probability ≥ top_p
+```
+
+#### LM Studio (NEW in v0.0.7)
+
+```yaml
+backend:
+  type: "lmstudio"
+  model: "qwen2.5-7b-instruct"       # Model to load in LM Studio
+  temperature: 0.7                   # Creativity vs consistency (0.0-1.0)
+  max_tokens: 2000                   # Maximum response length
 ```
 
 **UI Configuration:**
@@ -450,12 +550,36 @@ ui:
   - `"simple"`: Plain text output without any formatting or special display features
 - `logging_enabled`: When `true`, saves detailed timestamp, agent outputs and system status
 
+**Time Control Configuration:**
+
+Configure timeout settings to control how long MassGen's orchestrator can run:
+
+```yaml
+timeout_settings:
+  orchestrator_timeout_seconds: 30   # Maximum time for orchestration
+```
+
+- `orchestrator_timeout_seconds`: Sets the maximum time allowed for the orchestration phase
+
+**Orchestrator Configuration:**
+
+Configure the orchestrator settings for managing agent workspace snapshots and temporary workspaces:
+
+```yaml
+orchestrator:
+  snapshot_storage: "claude_code_snapshots"        # Directory to store workspace snapshots
+  agent_temporary_workspace: "claude_code_temp_workspaces"  # Directory for temporary agent workspaces
+```
+
+- `snapshot_storage`: Directory where MassGen saves workspace snapshots for Claude Code agents to share context
+- `agent_temporary_workspace`: Directory where temporary agent workspaces are created and managed during collaboration
+
 #### Interactive Multi-Turn Mode
 
 MassGen supports an interactive mode where you can have ongoing conversations with the system:
 
 ```bash
-# Start interactive mode with a single agent
+# Start interactive mode with a single agent (no tool enabled by default)
 uv run python -m massgen.cli --model gpt-5-mini
 
 # Start interactive mode with configuration file
@@ -588,6 +712,18 @@ uv run python -m massgen.cli --config massgen/configs/claude_code_flash2.5_gptos
 uv run python -m massgen.cli --backend claude_code "Refactor this Python code to use async/await and add error handling"
 ```
 
+### 5. 🌐 Web Automation & Browser Tasks
+```bash
+# Multi-agent web automation with Playwright MCP
+uv run python -m massgen.cli --config massgen/configs/multi_agent_playwright_automation.yaml "browse https://github.com/Leezekun/MassGen and suggest improvement. Include screenshots and suggestions in a PDF."
+
+# Web scraping and analysis
+uv run python -m massgen.cli --config massgen/configs/multi_agent_playwright_automation.yaml "Navigate to https://news.ycombinator.com, extract the top 10 stories, and create a summary report"
+
+# E-commerce testing automation
+uv run python -m massgen.cli --config massgen/configs/multi_agent_playwright_automation.yaml "Test the checkout flow on an e-commerce site and generate a detailed test report"
+```
+
 ---
 
 ## 🗺️ Roadmap
@@ -596,25 +732,59 @@ MassGen is currently in its foundational stage, with a focus on parallel, asynch
 
 ⚠️ **Early Stage Notice:** As MassGen is in active development, please expect upcoming breaking architecture changes as we continue to refine and improve the system.
 
+### Recent Achievements (v0.0.12)
+
+**🚀 Enhanced Claude Code Agent Context Sharing**
+- **Claude Agent Context Sharing**: Claude Code agents now share workspace context by maintaining snapshots and temporary workspace in orchestrator's side, enabling agents to build upon each other's work more effectively
+
+**📚 Documentation Improvement**
+- **Enhanced README**: Updated with current features and improved setup instructions
+
+### Previous Achievements (v0.0.3-v0.0.11)
+
+✅ **Custom System Messages (v0.0.11)**: Enhanced system message configuration and preservation with backend-specific system prompt customization
+
+✅ **Claude Code Backend Enhancements (v0.0.11)**: Improved integration with better system message handling, JSON response parsing, and coordination action descriptions
+
+✅ **Azure OpenAI Support (v0.0.10)**: Integration with Azure OpenAI services including GPT-4.1 and GPT-5-chat models with async streaming
+
+✅ **MCP (Model Context Protocol) Support (v0.0.9)**: Integration with MCP for advanced tool capabilities in Claude Code Agent, including Discord and Twitter integration
+
+✅ **Timeout Management System (v0.0.8)**: Orchestrator-level timeout with graceful fallback and enhanced error messages
+
+✅ **Local Model Support (v0.0.7)**: Complete LM Studio integration for running open-weight models locally with automatic server management
+
+✅ **GPT-5 Series Integration (v0.0.6)**: Support for OpenAI's GPT-5, GPT-5-mini, GPT-5-nano with advanced reasoning parameters
+
+✅ **Claude Code Integration (v0.0.5)**: Native Claude Code backend with streaming capabilities and tool support
+
+✅ **GLM-4.5 Model Support (v0.0.4)**: Integration with ZhipuAI's GLM-4.5 model family
+
+✅ **Foundation Architecture (v0.0.3)**: Complete multi-agent orchestration system with async streaming, builtin tools, and multi-backend support
+
+✅ **Extended Provider Ecosystem**: Support for 15+ providers including Cerebras AI, Together AI, Fireworks AI, Groq, Nebius AI Studio, and OpenRouter
+
 ### Key Future Enhancements:
 
--   **Advanced Agent Collaboration:** Exploring improved communication patterns and consensus-building protocols to improve agent synergy.
--   **Expanded Model, Tool & Agent Integration:** Adding support for more models/tools/agents, including a wider range of tools like MCP Servers, and coding agents.
--   **Improved Performance & Scalability:** Optimizing the streaming and logging mechanisms for better performance and resource management.
--   **Enhanced Developer Experience:** Introducing a more modular agent design and a comprehensive benchmarking framework for easier extension and evaluation.
--   **Web Interface:** Developing a web-based UI for better visualization and interaction with the agent ecosystem.
+-   **Advanced Agent Collaboration:** Exploring improved communication patterns and consensus-building protocols to improve agent synergy
+-   **Expanded Model, Tool & Agent Integration:** Adding & enhancing support for more models/tools/agents, including a wider range of tools like MCP Servers, and coding agents
+-   **Improved Performance & Scalability:** Optimizing the streaming and logging mechanisms for better performance and resource management
+-   **Enhanced Developer Experience:** Introducing a more modular agent design and a comprehensive benchmarking framework for easier extension and evaluation
+-   **Web Interface:** Developing a web-based UI for better visualization and interaction with the agent ecosystem
+-   **Claude Code Context Sharing:** Enabling seamless Claude code agents context sharing and other models (planned for v0.0.12)
 
-We welcome community contributions to help us achieve these goals.
+We welcome community contributions to achieve these goals.
 
-### v0.0.7 Roadmap
+### v0.0.13 Roadmap
 
-Version 0.0.7 focuses primarily on **Local Model Support**, enabling integration with local inference engines for open-weight models. Key enhancements include:
+Version 0.0.13 will focus on **Enhanced Logging System**, **Windows Platform Support**, and **Bug Fixes**. Key planned features include:
 
-- **Local Model Integration** (Required): 🚀 Support for backends like LM Studio/vllm/sglang to run open-weight models locally
-- **Enhanced Backend Features** (Optional): 🔄 Improved error handling, health monitoring, and backend stability enhancements
-- **Advanced CLI Features** (Optional): Conversation save/load functionality, templates, export formats, and better multi-turn display
+- **Advanced Logging System**: 📊 Enhanced session logging, better debugging capabilities, and improved log management
+- **Windows Platform Support**: 🪟 Full Windows compatibility with platform-specific implementations and cross-platform tools
+- **Bug Fixes & Minor Improvements**: 🐛 Address various minor issues, CLI parameter handling, and backend stability improvements
+- **Enhanced Multi-Agent Synthesis**: 🤝 Enable agents to revise and improve their answers based on seeing other agents' work
 
-For detailed milestones and technical specifications, see the [full v0.0.7 roadmap](ROADMAP_v0.0.7.md).
+For detailed milestones and technical specifications, see the [full v0.0.13 roadmap](ROADMAP_v0.0.13.md).
 
 ---
 

@@ -21,6 +21,7 @@ import os
 from typing import Dict, List, Any, AsyncGenerator, Optional
 from .chat_completions import ChatCompletionsBackend
 from .base import StreamChunk
+from ..logger_config import log_backend_activity, log_backend_agent_message, log_stream_chunk
 
 
 class GrokBackend(ChatCompletionsBackend):
@@ -35,9 +36,26 @@ class GrokBackend(ChatCompletionsBackend):
         self, messages: List[Dict[str, Any]], tools: List[Dict[str, Any]], **kwargs
     ) -> AsyncGenerator[StreamChunk, None]:
         """Stream response using xAI's OpenAI-compatible API."""
-
+        # Extract agent_id for logging
+        agent_id = kwargs.get('agent_id', None)
+        
+        log_backend_activity(
+            self.get_provider_name(),
+            "Starting stream_with_tools",
+            {"num_messages": len(messages), "num_tools": len(tools) if tools else 0},
+            agent_id=agent_id
+        )
+        
         # Convert messages for Grok API compatibility
         grok_messages = self._convert_messages_for_grok(messages)
+        
+        # Log messages being sent
+        log_backend_agent_message(
+            agent_id or "default",
+            "SEND",
+            {"messages": grok_messages, "tools": len(tools) if tools else 0},
+            backend_name=self.get_provider_name()
+        )
 
         try:
             import openai
@@ -47,7 +65,7 @@ class GrokBackend(ChatCompletionsBackend):
 
             # Merge constructor config with stream kwargs (stream kwargs take priority)
             all_params = {**self.config, **kwargs}
-            
+
             # Extract framework-specific parameters
             enable_web_search = all_params.get("enable_web_search", False)
 
@@ -69,18 +87,20 @@ class GrokBackend(ChatCompletionsBackend):
                 if key not in excluded_params and value is not None:
                     api_params[key] = value
 
-
             # Add Live Search parameters if enabled (Grok-specific)
             if enable_web_search:
                 # Check for conflict with manually specified search_parameters
                 existing_extra = api_params.get("extra_body", {})
-                if isinstance(existing_extra, dict) and "search_parameters" in existing_extra:
+                if (
+                    isinstance(existing_extra, dict)
+                    and "search_parameters" in existing_extra
+                ):
                     yield StreamChunk(
                         type="error",
-                        error="Conflict: Cannot use both 'enable_web_search: true' and manual 'extra_body.search_parameters'. Use one or the other."
+                        error="Conflict: Cannot use both 'enable_web_search: true' and manual 'extra_body.search_parameters'. Use one or the other.",
                     )
                     return
-                
+
                 # Merge search_parameters into existing extra_body
                 search_params = {"mode": "auto", "return_citations": True}
                 merged_extra = existing_extra.copy()
@@ -90,14 +110,24 @@ class GrokBackend(ChatCompletionsBackend):
             # Create stream
             stream = await client.chat.completions.create(**api_params)
 
-            # Use base class streaming handler
-            async for chunk in self.handle_chat_completions_stream(
-                stream, enable_web_search
+            # Use base class streaming handler with logging
+            async for chunk in self.handle_chat_completions_stream_with_logging(
+                stream, enable_web_search, agent_id
             ):
                 yield chunk
 
         except Exception as e:
-            yield StreamChunk(type="error", error=f"Grok API error: {e}")
+            error_msg = f"Grok API error: {e}"
+            log_stream_chunk("backend.grok", "error", error_msg, agent_id)
+            yield StreamChunk(type="error", error=error_msg)
+        finally:
+            # Ensure the underlying HTTP client is properly closed to avoid event loop issues
+            try:
+                if hasattr(client, 'aclose'):
+                    await client.aclose()
+            except Exception:
+                # Suppress cleanup errors so we don't mask primary exceptions
+                pass
 
     def get_provider_name(self) -> str:
         """Get the name of this provider."""

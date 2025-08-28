@@ -77,6 +77,19 @@ class ChatAgent(ABC):
         """Reset agent state for new conversation."""
         pass
 
+    @abstractmethod
+    def get_configurable_system_message(self) -> Optional[str]:
+        """
+        Get the user-configurable part of the system message.
+        
+        Returns the domain expertise, role definition, or custom instructions
+        that were configured for this agent, without backend-specific details.
+        
+        Returns:
+            The configurable system message if available, None otherwise
+        """
+        pass
+
     # Common conversation management
     def get_conversation_history(self) -> List[Dict[str, Any]]:
         """Get full conversation history."""
@@ -251,7 +264,6 @@ class SingleAgent(ChatAgent):
             else:
                 # Stateless: send full conversation history
                 backend_messages = self.conversation_history.copy()
-        
         # Create backend stream and process it
         backend_stream = self.backend.stream_with_tools(
             messages=backend_messages,
@@ -292,6 +304,10 @@ class SingleAgent(ChatAgent):
                 {"role": "system", "content": self.system_message}
             )
 
+    def get_configurable_system_message(self) -> Optional[str]:
+        """Get the user-configurable part of the system message."""
+        return self.system_message
+
     def set_model(self, model: str) -> None:
         """Set the model for this agent."""
         self.model = model
@@ -320,11 +336,11 @@ class ConfigurableAgent(SingleAgent):
     This bridges the gap between SingleAgent and the MassGen system by supporting
     all the advanced configuration options (web search, code execution, etc.)
     while maintaining the simple chat interface.
-    
+
     TODO: Consider merging with SingleAgent. The main difference is:
     - SingleAgent: backend parameters passed directly to constructor/methods
     - ConfigurableAgent: backend parameters come from AgentConfig object
-    
+
     Could be unified by making SingleAgent accept an optional config parameter
     and using _get_backend_params() pattern for all parameter sources.
     """
@@ -375,6 +391,29 @@ class ConfigurableAgent(SingleAgent):
             }
         )
         return status
+
+    def get_configurable_system_message(self) -> Optional[str]:
+        """Get the user-configurable part of the system message for ConfigurableAgent."""
+        # Try multiple sources in order of preference
+        
+        # First check if backend has system prompt configuration
+        if self.config and self.config.backend_params:
+            backend_params = self.config.backend_params
+            
+            # For Claude Code: prefer system_prompt (complete override) 
+            if "system_prompt" in backend_params:
+                return backend_params["system_prompt"]
+            
+            # Then append_system_prompt (additive)
+            if "append_system_prompt" in backend_params:
+                return backend_params["append_system_prompt"]
+        
+        # Fall back to custom_system_instruction (deprecated but still supported)
+        if self.config and self.config.custom_system_instruction:
+            return self.config.custom_system_instruction
+            
+        # Finally fall back to parent class implementation
+        return super().get_configurable_system_message()
 
 
 # =============================================================================

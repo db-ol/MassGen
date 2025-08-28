@@ -6,11 +6,23 @@ TODO: This file is outdated - check claude_code config and
 deprecated patterns. Update to reflect current backend architecture.
 """
 
+import warnings
 from dataclasses import dataclass, field
 from typing import Dict, Optional, Any, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .message_templates import MessageTemplates
+
+
+@dataclass
+class TimeoutConfig:
+    """Configuration for timeout settings in MassGen.
+
+    Args:
+        orchestrator_timeout_seconds: Maximum time for orchestrator coordination (default: 1800s = 30min)
+    """
+
+    orchestrator_timeout_seconds: int = 1800  # 30 minutes
 
 
 @dataclass
@@ -25,6 +37,7 @@ class AgentConfig:
         message_templates: Custom message templates (None=default)
         agent_id: Optional agent identifier for this configuration
         custom_system_instruction: Additional system instruction prepended to evaluation message
+        timeout_config: Timeout and resource limit configuration
     """
 
     # Core backend configuration (includes tool enablement)
@@ -35,7 +48,38 @@ class AgentConfig:
 
     # Agent customization
     agent_id: Optional[str] = None
-    custom_system_instruction: Optional[str] = None
+    _custom_system_instruction: Optional[str] = field(default=None, init=False)
+
+    # Timeout and resource limits
+    timeout_config: TimeoutConfig = field(default_factory=TimeoutConfig)
+
+    @property
+    def custom_system_instruction(self) -> Optional[str]:
+        """
+        DEPRECATED: Use backend-specific system prompt parameters instead.
+        
+        For Claude Code: use append_system_prompt or system_prompt in backend_params
+        For other backends: use their respective system prompt parameters
+        """
+        if self._custom_system_instruction is not None:
+            warnings.warn(
+                "custom_system_instruction is deprecated. Use backend-specific "
+                "system prompt parameters instead (e.g., append_system_prompt for Claude Code)",
+                DeprecationWarning,
+                stacklevel=2
+            )
+        return self._custom_system_instruction
+    
+    @custom_system_instruction.setter
+    def custom_system_instruction(self, value: Optional[str]) -> None:
+        if value is not None:
+            warnings.warn(
+                "custom_system_instruction is deprecated. Use backend-specific "
+                "system prompt parameters instead (e.g., append_system_prompt for Claude Code)",
+                DeprecationWarning,
+                stacklevel=2
+            )
+        self._custom_system_instruction = value
 
     @classmethod
     def create_chatcompletion_config(
@@ -72,7 +116,7 @@ class AgentConfig:
             backend_params["enable_code_interpreter"] = True
 
         return cls(backend_params=backend_params)
-    
+
     @classmethod
     def create_openai_config(
         cls,
@@ -155,6 +199,25 @@ class AgentConfig:
         return cls(backend_params=backend_params)
 
     @classmethod
+    def create_lmstudio_config(
+        cls,
+        model: str = "gpt-4o-mini",
+        enable_web_search: bool = False,
+        **kwargs,
+    ) -> "AgentConfig":
+        """Create LM Studio configuration (OpenAI-compatible local server).
+
+        Args:
+            model: Local model name exposed by LM Studio
+            enable_web_search: No builtin web search; kept for interface parity
+            **kwargs: Additional backend parameters (e.g., base_url, api_key)
+        """
+        backend_params = {"model": model, **kwargs}
+        if enable_web_search:
+            backend_params["enable_web_search"] = True
+        return cls(backend_params=backend_params)
+
+    @classmethod
     def create_gemini_config(
         cls,
         model: str = "gemini-2.5-flash",
@@ -199,6 +262,50 @@ class AgentConfig:
         return cls(backend_params=backend_params)
 
     @classmethod
+    def create_azure_openai_config(
+        cls,
+        deployment_name: str = "gpt-4",
+        endpoint: Optional[str] = None,
+        api_key: Optional[str] = None,
+        api_version: str = "2024-02-15-preview",
+        **kwargs,
+    ) -> "AgentConfig":
+        """Create Azure OpenAI configuration.
+
+        Args:
+            deployment_name: Azure OpenAI deployment name (e.g., "gpt-4", "gpt-35-turbo")
+            endpoint: Azure OpenAI endpoint URL (optional, uses AZURE_OPENAI_ENDPOINT env var)
+            api_key: Azure OpenAI API key (optional, uses AZURE_OPENAI_API_KEY env var)
+            api_version: Azure OpenAI API version (default: 2024-02-15-preview)
+            **kwargs: Additional backend parameters (e.g., temperature, max_tokens)
+
+        Examples:
+            # Basic configuration using environment variables
+            config = AgentConfig.create_azure_openai_config("gpt-4")
+
+            # Custom endpoint and API key
+            config = AgentConfig.create_azure_openai_config(
+                deployment_name="gpt-4-turbo",
+                endpoint="https://your-resource.openai.azure.com/",
+                api_key="your-api-key"
+            )
+        """
+        backend_params = {
+            "type": "azure_openai",
+            "model": deployment_name,  # For Azure OpenAI, model is the deployment name
+            "api_version": api_version,
+            **kwargs,
+        }
+
+        # Add Azure-specific parameters if provided
+        if endpoint:
+            backend_params["base_url"] = endpoint
+        if api_key:
+            backend_params["api_key"] = api_key
+
+        return cls(backend_params=backend_params)
+
+    @classmethod
     def create_claude_code_config(
         cls,
         model: str = "claude-sonnet-4-20250514",
@@ -219,7 +326,7 @@ class AgentConfig:
             model: Claude model name (default: claude-sonnet-4-20250514)
             system_prompt: Custom system prompt for the agent
             allowed_tools: [LEGACY] List of allowed tools (use disallowed_tools instead)
-            disallowed_tools: List of dangerous operations to block 
+            disallowed_tools: List of dangerous operations to block
                             (default: ["Bash(rm*)", "Bash(sudo*)", "Bash(su*)", "Bash(chmod*)", "Bash(chown*)"])
             max_thinking_tokens: Maximum tokens for internal thinking (default: 8000)
             cwd: Current working directory for file operations
@@ -228,7 +335,7 @@ class AgentConfig:
         Examples:
             # Maximum power configuration (recommended)
             config = AgentConfig.create_claude_code_config()
-            
+
             # Custom security restrictions
             config = AgentConfig.create_claude_code_config(
                 disallowed_tools=["Bash(rm*)", "Bash(sudo*)", "WebSearch"]
@@ -424,9 +531,9 @@ class AgentConfig:
         # Add custom system instruction if provided
         if self.custom_system_instruction:
             base_system = conversation["system_message"]
-            conversation["system_message"] = (
-                f"{self.custom_system_instruction}\n\n{base_system}"
-            )
+            conversation[
+                "system_message"
+            ] = f"{self.custom_system_instruction}\n\n{base_system}"
 
         # Add backend configuration
         conversation.update(
@@ -569,6 +676,9 @@ class AgentConfig:
             "backend_params": self.backend_params,
             "agent_id": self.agent_id,
             "custom_system_instruction": self.custom_system_instruction,
+            "timeout_config": {
+                "orchestrator_timeout_seconds": self.timeout_config.orchestrator_timeout_seconds,
+            },
         }
 
         # Handle message_templates serialization
@@ -595,6 +705,12 @@ class AgentConfig:
         agent_id = data.get("agent_id")
         custom_system_instruction = data.get("custom_system_instruction")
 
+        # Handle timeout_config
+        timeout_config = TimeoutConfig()
+        timeout_data = data.get("timeout_config", {})
+        if timeout_data:
+            timeout_config = TimeoutConfig(**timeout_data)
+
         # Handle message_templates
         message_templates = None
         template_data = data.get("message_templates")
@@ -608,6 +724,7 @@ class AgentConfig:
             message_templates=message_templates,
             agent_id=agent_id,
             custom_system_instruction=custom_system_instruction,
+            timeout_config=timeout_config,
         )
 
 
