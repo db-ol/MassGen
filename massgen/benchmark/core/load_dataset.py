@@ -206,6 +206,14 @@ class DatasetLoader:
             choices = sample.get('choices', [])
             answer_choice = sample.get('answer_choice', '')
             
+            # Parse choices string if it's a string representation of a list
+            if isinstance(choices, str):
+                import ast
+                try:
+                    choices = ast.literal_eval(choices)
+                except (ValueError, SyntaxError):
+                    choices = []
+            
             # Format choices as A, B, C, etc.
             formatted_choices = ""
             choice_to_letter = {}

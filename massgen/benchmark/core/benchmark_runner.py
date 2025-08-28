@@ -668,41 +668,97 @@ Return this exact JSON format:
         self.results['summary'] = summary
     
     def print_results_table(self):
-        """Print and save results table."""
-        # Get multi-agent components
-        ma_components = self._get_multi_agent_components()
+        """Print and save results table in MuSR format."""
+        benchmark_name = self.get_benchmark_name()
+        dataset_name = self.get_dataset_name()
         
-        # Create table
-        table_lines = []
-        table_lines.append("=" * 80)
-        table_lines.append("HLE LITE BENCHMARK RESULTS")
-        table_lines.append("=" * 80)
-        table_lines.append(f"{'Model/System':<25} {'Accuracy':<10} {'Calibration':<12} {'Response Time':<15}")
-        table_lines.append("-" * 80)
+        # Print header
+        print(f"\n{benchmark_name.upper()} - (EXACT MATCH QUESTIONS 1-{len(self.current_questions)})")
+        print("=" * 80)
         
-        # Single models
-        for model_name, results in self.results['single_models'].items():
-            accuracy = results['correct'] / results['total'] if results['total'] > 0 else 0
-            table_lines.append(f"{model_name:<25} {accuracy:.3f}      {results['calibration_error']:.3f}        {results['response_time']:.2f}s")
+        # Get model names for header
+        model_names = list(self.results['single_models'].keys())
+        has_multi_agent = bool(self.results['multi_agent'])
         
-        # Multi-agent
-        if self.results['multi_agent']:
-            ma_results = self.results['multi_agent']
-            accuracy = ma_results['correct'] / ma_results['total'] if ma_results['total'] > 0 else 0
-            table_lines.append(f"{'Multi-Agent':<25} {accuracy:.3f}      {ma_results.get('calibration_error', 0.0):.3f}        {ma_results['response_time']:.2f}s")
-            table_lines.append(f"  Components: {ma_components}")
+        # Create header line
+        header_parts = ["Question", "Correct"]
+        for model_name in model_names:
+            # Simplify model names for display
+            display_name = self._get_display_name(model_name)
+            header_parts.append(display_name)
         
-        table_lines.append("=" * 80)
+        if has_multi_agent:
+            header_parts.extend(["Multi-Agent", "Multi-Agent Selected"])
         
-        # Print to console
-        for line in table_lines:
-            print(line)
+        header_line = " | ".join(f"{part}" for part in header_parts)
+        separator_line = "-" * len(header_line)
         
-        # Save to file (overwrite)
-        with open("benchmark.txt", "w", encoding="utf-8") as f:
-            f.write("\n".join(table_lines))
+        print(f"\n{header_line}")
+        print(separator_line)
         
-        self._log("📊 Results table saved to benchmark.txt")
+        # Print each question's results
+        for i, question in enumerate(self.current_questions):
+            question_num = i + 1
+            correct_answer = question['answer']
+            
+            row_parts = [str(question_num).ljust(8), correct_answer.ljust(7)]
+            
+            # Add single model results
+            for model_name in model_names:
+                model_results = self.results['single_models'][model_name]
+                if i < len(model_results['responses']):
+                    response = model_results['responses'][i]
+                    extracted_answer = response.get('extracted_answer', 'N/A')
+                    is_correct = response.get('is_correct', False)
+                    result_str = f"{extracted_answer} | {'✓' if is_correct else '✗'}"
+                else:
+                    result_str = "N/A | ✗"
+                
+                # Adjust spacing based on model name length
+                display_name = self._get_display_name(model_name)
+                padding = max(len(display_name), 8)
+                row_parts.append(result_str.ljust(padding))
+            
+            # Add multi-agent results
+            if has_multi_agent:
+                ma_results = self.results['multi_agent']
+                if i < len(ma_results['responses']):
+                    ma_response = ma_results['responses'][i]
+                    ma_extracted = ma_response.get('judge_evaluation', {}).get('extracted_answer', 'N/A')
+                    ma_correct = ma_response.get('is_correct', False)
+                    ma_selected = ma_response.get('selected_agent', 'unknown')
+                    
+                    ma_result_str = f"{ma_extracted} | {'✓' if ma_correct else '✗'}"
+                    ma_selected_str = f"{ma_selected} | {'✓' if ma_correct else '✗'}"
+                else:
+                    ma_result_str = "N/A | ✗"
+                    ma_selected_str = "N/A | ✗"
+                
+                row_parts.extend([ma_result_str.ljust(12), ma_selected_str])
+            
+            print(" | ".join(row_parts))
+        
+        # Print accuracy summary
+        print("\nAccuracy:")
+        for model_name in model_names:
+            display_name = self._get_display_name(model_name)
+            accuracy = self.results['single_models'][model_name]['accuracy']
+            print(f"{display_name}: {accuracy:.3f}")
+        
+        if has_multi_agent:
+            ma_accuracy = self.results['multi_agent']['accuracy']
+            print(f"Multi-Agent: {ma_accuracy:.3f}")
+            print(f"Multi-Agent Selected: {ma_accuracy:.3f}")
+    
+    def _get_display_name(self, model_name: str) -> str:
+        """Convert internal model names to display names."""
+        name_mapping = {
+            'gpt5': 'GPT-5',
+            'gemini25pro': 'Gemini 2.5 Pro',
+            'grok4': 'Grok 4',
+            'claudesonnet420250514': 'Claude Sonnet 4'
+        }
+        return name_mapping.get(model_name, model_name)
     
     def _get_multi_agent_components(self) -> str:
         """Get multi-agent system components."""

@@ -43,18 +43,6 @@ benchmark:
     config_file: "four_agents_advanced.yaml"
     system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
   
-  # Judge Model Configuration for Multi-Agent Evaluation
-  judge_model:
-    - name: "gpt5_judge"
-      backend:
-        type: "openai"
-        model: "gpt-5"
-        text:
-          verbosity: "medium"
-        reasoning:
-          effort: "medium"
-          summary: "auto"
-      system_message: "You are an expert judge evaluating AI responses to multiple choice questions. Your task is to extract the answer from the response and determine if it matches the correct answer. Always respond with valid JSON format."
 
   # Metrics to Calculate
   metrics:
@@ -64,6 +52,7 @@ benchmark:
   
   # Output
   output:
+
     format: "table"
     save_results: true
-    results_file: "benchmark_musr_results_judgeModel.json"
+    results_file: "results_benchmark_musr_10.json"
