@@ -447,13 +447,8 @@ async def run_question_with_history(
 
 
 async def run_single_question(
-<<<<<<< HEAD
-    question: str, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any]
-) -> Dict[str, Any]:
-=======
     question: str, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any], **kwargs
 ) -> str:
->>>>>>> leezekun/new_logging_sys
     """Run MassGen with a single question."""
     output_format = ui_config.get("output_format", "text")
     
@@ -861,7 +856,6 @@ Environment Variables:
         "--orchestrator-timeout",
         type=int,
         help="Maximum time for orchestrator coordination in seconds (default: 1800)",
-    )
     )
 
     args = parser.parse_args()
