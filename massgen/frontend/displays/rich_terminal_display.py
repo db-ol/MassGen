@@ -271,7 +271,10 @@ class RichTerminalDisplay(TerminalDisplay):
         )  # Extra delay after punctuation
 
         # File-based output system
-        self.output_dir = kwargs.get("output_dir", "agent_outputs")
+        # Use centralized log session directory
+        from massgen.logger_config import get_log_session_dir
+        log_session_dir = get_log_session_dir()
+        self.output_dir = kwargs.get("output_dir", log_session_dir / "agent_outputs")
         self.agent_files = {}
         self.system_status_file = None
         self._selected_agent = None
@@ -2456,12 +2459,21 @@ class RichTerminalDisplay(TerminalDisplay):
 
         # Agent mapping section
         agent_mapping = vote_results.get("agent_mapping", {})
+        anonymous_voting = vote_results.get("anonymous_voting", True)
+        
         if agent_mapping:
-            vote_content.append("\n🔀 Agent Mapping:\n", style=self.colors["primary"])
-            for anon_id, real_id in sorted(agent_mapping.items()):
-                vote_content.append(
-                    f"   {anon_id} → {real_id}\n", style=self.colors["info"]
-                )
+            if anonymous_voting:
+                vote_content.append("\n🔀 Anonymous Agent Mapping:\n", style=self.colors["primary"])
+                for anon_id, real_id in sorted(agent_mapping.items()):
+                    vote_content.append(
+                        f"   {anon_id} → {real_id}\n", style=self.colors["info"]
+                    )
+            else:
+                vote_content.append("\n🔍 Non-Anonymous Agent IDs:\n", style=self.colors["primary"])
+                for agent_id in sorted(agent_mapping.keys()):
+                    vote_content.append(
+                        f"   {agent_id}\n", style=self.colors["info"]
+                    )
 
         # Tie-breaking info
         if is_tie:
@@ -3090,9 +3102,8 @@ class RichTerminalDisplay(TerminalDisplay):
     ):
         """Save the final presentation content to a text file in agent_outputs directory."""
         try:
-            # Create filename with timestamp
-            timestamp = time.strftime("%Y%m%d_%H%M%S")
-            filename = f"final_presentation_{selected_agent}_{timestamp}.txt"
+            # Create filename without timestamp (already in parent directory)
+            filename = f"final_presentation_{selected_agent}.txt"
             file_path = Path(self.output_dir) / filename
 
             # Write the final presentation content
@@ -3120,9 +3131,8 @@ class RichTerminalDisplay(TerminalDisplay):
     def _initialize_final_presentation_file(self, selected_agent: str) -> Path:
         """Initialize a new final presentation file and return the file path."""
         try:
-            # Create filename with timestamp
-            timestamp = time.strftime("%Y%m%d_%H%M%S")
-            filename = f"final_presentation_{selected_agent}_{timestamp}.txt"
+            # Create filename without timestamp (already in parent directory)
+            filename = f"final_presentation_{selected_agent}.txt"
             file_path = Path(self.output_dir) / filename
 
             # Write the initial header

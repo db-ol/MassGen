@@ -1,7 +1,7 @@
 """
 MassGen Coordination UI
 
-Main interface for coordinating agents with visual display and logging.
+Main interface for coordinating agents with visual display.
 """
 
 import time
@@ -11,20 +11,17 @@ from .displays.base_display import BaseDisplay
 from .displays.terminal_display import TerminalDisplay
 from .displays.simple_display import SimpleDisplay
 from .displays.rich_terminal_display import RichTerminalDisplay, is_rich_available
-from .logging.realtime_logger import RealtimeLogger
 
 
 class CoordinationUI:
-    """Main coordination interface with display and logging capabilities."""
+    """Main coordination interface with display capabilities."""
 
     def __init__(
         self,
         display: Optional[BaseDisplay] = None,
-        logger: Optional[RealtimeLogger] = None,
+        logger: Optional[Any] = None,
         display_type: str = "terminal",
-        logging_enabled: bool = True,
         enable_final_presentation: bool = False,
-        output_format: str = "text",  # Add output_format parameter
         **kwargs,
     ):
         """Initialize coordination UI.
@@ -33,23 +30,12 @@ class CoordinationUI:
             display: Custom display instance (overrides display_type)
             logger: Custom logger instance
             display_type: Type of display ("terminal", "simple", "rich_terminal", "textual_terminal")
-            logging_enabled: Whether to enable real-time logging
             enable_final_presentation: Whether to ask winning agent to present final answer
-            output_format: Output format ("text", "json")
             **kwargs: Additional configuration passed to display/logger
         """
         self.enable_final_presentation = enable_final_presentation
         self.display = display
-        self.output_format = output_format  # Store output_format
-        # Filter kwargs for logger (only pass logger-specific params)
-        logger_kwargs = {
-            k: v for k, v in kwargs.items() if k in ["filename", "update_frequency"]
-        }
-        self.logger = (
-            logger
-            if logger is not None
-            else (RealtimeLogger(**logger_kwargs) if logging_enabled else None)
-        )
+        self.logger = logger
         self.display_type = display_type
         self.config = kwargs
 
@@ -139,7 +125,7 @@ class CoordinationUI:
     async def coordinate(
         self, orchestrator, question: str, agent_ids: Optional[List[str]] = None
     ) -> str:
-        """Coordinate agents with visual display and logging.
+        """Coordinate agents with visual display.
 
         Args:
             orchestrator: MassGen orchestrator instance
@@ -198,9 +184,6 @@ class CoordinationUI:
             print()
 
         self.display.initialize(question, log_filename)
-
-        # Check if we should suppress display for JSON output
-        suppress_display = self.output_format == "json"
 
         try:
             # Process coordination stream
@@ -313,9 +296,8 @@ class CoordinationUI:
                     if self.logger:
                         self.logger.log_chunk(source, content, chunk.type)
 
-                    # Only process content for display if not suppressing display
-                    if not suppress_display:
-                        await self._process_content(source, content)
+                    # Process content by source
+                    await self._process_content(source, content)
 
             # Display vote results and get final presentation
             status = orchestrator.get_status()
@@ -506,22 +488,7 @@ class CoordinationUI:
                     f"⏱️  Duration: {session_info['duration']:.1f}s | Chunks: {session_info['total_chunks']} | Events: {session_info['orchestrator_events']}"
                 )
 
-            # Format output according to output_format setting
-            if hasattr(self, 'output_format') and self.output_format == "json":
-                import json
-                # Create JSON response
-                json_response = {
-                    "response": final_result.strip() if final_result else "",
-                    "question": question,
-                    "agents": list(orchestrator.agents.keys()),
-                    "selected_agent": selected_agent,
-                    "vote_results": vote_results.get("vote_counts", {}) if 'vote_results' in locals() else {},
-                    "success": True
-                }
-                return json.dumps(json_response, indent=2, ensure_ascii=False)
-            else:
-                # Return plain text response
-                return final_result.strip() if final_result else ""
+            return final_result
 
         except Exception:
             if self.logger:
@@ -1251,7 +1218,7 @@ class CoordinationUI:
 async def coordinate_with_terminal_ui(
     orchestrator, question: str, enable_final_presentation: bool = False, **kwargs
 ) -> str:
-    """Quick coordination with terminal UI and logging.
+    """Quick coordination with terminal UI.
 
     Args:
         orchestrator: MassGen orchestrator instance
@@ -1273,7 +1240,7 @@ async def coordinate_with_terminal_ui(
 async def coordinate_with_simple_ui(
     orchestrator, question: str, enable_final_presentation: bool = False, **kwargs
 ) -> str:
-    """Quick coordination with simple UI and logging.
+    """Quick coordination with simple UI.
 
     Args:
         orchestrator: MassGen orchestrator instance
@@ -1294,7 +1261,7 @@ async def coordinate_with_simple_ui(
 async def coordinate_with_rich_ui(
     orchestrator, question: str, enable_final_presentation: bool = False, **kwargs
 ) -> str:
-    """Quick coordination with rich terminal UI and logging.
+    """Quick coordination with rich terminal UI.
 
     Args:
         orchestrator: MassGen orchestrator instance

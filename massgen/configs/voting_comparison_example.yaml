@@ -1,0 +1,50 @@
+# MassGen Voting Comparison Configuration
+# This configuration demonstrates how to set up agents for comparing anonymous vs identified voting
+
+# Configuration for Anonymous Voting (default behavior)
+agents:
+  - id: "gemini2.5flash"
+    backend:
+      type: "gemini"
+      model: "gemini-2.5-flash"
+      enable_web_search: true
+
+  - id: "gpt5nano"
+    backend:
+      type: "openai"
+      model: "gpt-5-nano"
+      enable_web_search: true
+      enable_code_interpreter: true
+
+  - id: "claude3.5haiku"
+    backend:
+      type: "claude"
+      model: "claude-3-5-haiku-20241022"
+      enable_web_search: true
+
+ui:
+  display_type: "rich_terminal"
+  logging_enabled: true
+
+# Orchestrator configuration
+orchestrator:
+  # Note: anonymous_voting is True by default
+  # To enable identified voting, use --identified-voting CLI flag
+# or set anonymous_voting: false here
+
+# Example for identified voting:
+# anonymous_voting: false
+  
+  # Context sharing settings (optional)
+  snapshot_storage: "massgen_logs/snapshots"
+  agent_temporary_workspace: "massgen_logs/temp_workspace"
+
+# Usage examples:
+# 
+# Anonymous voting (default):
+# uv run python -m massgen.cli --config voting_comparison_example.yaml "Compare different approaches to renewable energy"
+#
+# Identified voting:
+# uv run python -m massgen.cli --config voting_comparison_example.yaml --identified-voting "Compare different approaches to renewable energy"
+#
+# Or modify the config file to set anonymous_voting: false

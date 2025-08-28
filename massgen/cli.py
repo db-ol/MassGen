@@ -17,32 +17,14 @@ Usage examples:
 
     # Multiple agents from config
     python -m massgen.cli --config multi_agent.yaml "Compare different approaches to renewable energy"  # noqa
-    
-    # Run benchmark
-    python -m massgen.cli --benchmark --benchmark-config benchmark.yaml
-    
-    # JSON output format
-    python -m massgen.cli --json --config config.yaml "What is the capital of France?"
-    python -m massgen.cli --output-format json --config config.yaml "What is 2+2?"
-    
-    # Create sample configurations
-    python -m massgen.cli --create-samples
-
-Environment Variables:
-  OPENAI_API_KEY      - Required for OpenAI backend
-  XAI_API_KEY         - Required for Grok backend  
-  ANTHROPIC_API_KEY   - Required for Claude backend
-  CEREBRAS_API_KEY    - Required for CEREBRAS CLOUD API (chatcompletion backend)
-  HF_API_KEY          - Required for benchmarking (HLE dataset access)
 """
 
 import argparse
 import asyncio
-import io
 import json
+import logging
 import os
 import sys
-import time
 import yaml
 from pathlib import Path
 from typing import Dict, Any, Optional, List
@@ -100,6 +82,8 @@ class ConfigurationError(Exception):
     """Configuration error for CLI."""
 
     pass
+
+
 
 
 def load_config_file(config_path: str) -> Dict[str, Any]:
@@ -343,7 +327,7 @@ def create_simple_config(
             "backend": backend_config,
             "system_message": system_message or "You are a helpful AI assistant.",
         },
-        "ui": {"display_type": "rich_terminal", "logging_enabled": True},
+        "ui": {"display_type": "simple", "logging_enabled": True},
     }
 
 
@@ -403,15 +387,19 @@ async def run_question_with_history(
         snapshot_storage = kwargs.get("orchestrator", {}).get("snapshot_storage")
         agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
         
+        # Get anonymous voting configuration
+        anonymous_voting = not kwargs.get("identified_voting", False)
+        
         orchestrator = Orchestrator(
             agents=agents, 
             config=orchestrator_config,
             snapshot_storage=snapshot_storage,
-            agent_temporary_workspace=agent_temporary_workspace
+            agent_temporary_workspace=agent_temporary_workspace,
+            anonymous_voting=anonymous_voting
         )
         # Create a fresh UI instance for each question to ensure clean state
         ui = CoordinationUI(
-            display_type=ui_config.get("display_type", "rich_terminal"),
+            display_type=ui_config.get("display_type", "simple"),
             logging_enabled=ui_config.get("logging_enabled", True),
         )
 
@@ -447,8 +435,6 @@ async def run_single_question(
     question: str, agents: Dict[str, SingleAgent], ui_config: Dict[str, Any], **kwargs
 ) -> str:
     """Run MassGen with a single question."""
-    output_format = ui_config.get("output_format", "text")
-    
     # Check if we should use orchestrator for single agents (default: False for backward compatibility)
     use_orchestrator_for_single = ui_config.get(
         "use_orchestrator_for_single_agent", True
@@ -458,11 +444,10 @@ async def run_single_question(
         # Single agent mode with existing SimpleDisplay frontend
         agent = next(iter(agents.values()))
 
-        if output_format == "text":
-            print(f"\n🤖 {BRIGHT_CYAN}Single Agent Mode{RESET}", flush=True)
-            print(f"Agent: {agent.agent_id}", flush=True)
-            print(f"Question: {question}", flush=True)
-            print("\n" + "=" * 60, flush=True)
+        print(f"\n🤖 {BRIGHT_CYAN}Single Agent Mode{RESET}", flush=True)
+        print(f"Agent: {agent.agent_id}", flush=True)
+        print(f"Question: {question}", flush=True)
+        print("\n" + "=" * 60, flush=True)
 
         messages = [{"role": "user", "content": question}]
         response_content = ""
@@ -470,19 +455,15 @@ async def run_single_question(
         async for chunk in agent.chat(messages):
             if chunk.type == "content" and chunk.content:
                 response_content += chunk.content
-                if output_format == "text":
-                    print(chunk.content, end="", flush=True)
+                print(chunk.content, end="", flush=True)
             elif chunk.type == "builtin_tool_results":
                 # Skip builtin_tool_results to avoid duplication with real-time streaming
                 continue
             elif chunk.type == "error":
-                if output_format == "text":
-                    print(f"\n❌ Error: {chunk.error}", flush=True)
+                print(f"\n❌ Error: {chunk.error}", flush=True)
                 return ""
 
-        if output_format == "text":
-            print("\n" + "=" * 60, flush=True)
-        
+        print("\n" + "=" * 60, flush=True)
         return response_content
 
     else:
@@ -497,27 +478,26 @@ async def run_single_question(
         snapshot_storage = kwargs.get("orchestrator", {}).get("snapshot_storage")
         agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
         
+        # Get anonymous voting configuration
+        anonymous_voting = not kwargs.get("identified_voting", False)
+        
         orchestrator = Orchestrator(
             agents=agents, 
             config=orchestrator_config,
             snapshot_storage=snapshot_storage,
             agent_temporary_workspace=agent_temporary_workspace,
-            show_real_agent_ids=kwargs.get("show_real_agent_ids", False),
+            anonymous_voting=anonymous_voting
         )
         # Create a fresh UI instance for each question to ensure clean state
-        # Use simple display for JSON output to avoid rich formatting
-        display_type = "simple" if output_format == "json" else ui_config.get("display_type", "rich_terminal")
         ui = CoordinationUI(
-            display_type=display_type,
+            display_type=ui_config.get("display_type", "simple"),
             logging_enabled=ui_config.get("logging_enabled", True),
-            output_format=output_format,  # Pass output_format to CoordinationUI
         )
 
-        if output_format != "json":
-            print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
-            print(f"Agents: {', '.join(agents.keys())}", flush=True)
-            print(f"Question: {question}", flush=True)
-            print("\n" + "=" * 60, flush=True)
+        print(f"\n🤖 {BRIGHT_CYAN}Multi-Agent Mode{RESET}", flush=True)
+        print(f"Agents: {', '.join(agents.keys())}", flush=True)
+        print(f"Question: {question}", flush=True)
+        print("\n" + "=" * 60, flush=True)
 
         final_response = await ui.coordinate(orchestrator, question)
         return final_response
@@ -558,7 +538,7 @@ async def run_interactive_mode(
     else:
         mode = "Multi-Agent Coordination"
     print(f"   Mode: {mode}", flush=True)
-    print(f"   UI: {ui_config.get('display_type', 'rich_terminal')}", flush=True)
+    print(f"   UI: {ui_config.get('display_type', 'simple')}", flush=True)
 
     print_help_messages()
 
@@ -684,45 +664,6 @@ async def run_interactive_mode(
         print("\n👋 Goodbye!")
 
 
-async def run_benchmark(benchmark_config_path: str, dataset_name: str = None):
-    """Run benchmark mode."""
-    try:
-        # Import benchmark runner
-        from .benchmark.core.benchmark_runner import HLEBenchmarkRunner
-        
-        print(f"🚀 Starting HLE Lite Benchmark...")
-        print(f"📋 Config: {benchmark_config_path}")
-        
-        # Check if HF_API_KEY is available
-        token = os.getenv("HF_API_KEY")
-        if not token:
-            print("❌ HF_API_KEY environment variable required for benchmarking")
-            print("   Set HF_API_KEY in your .env file or environment")
-            return
-        
-        # Load config to get dataset name if not provided
-        if not dataset_name:
-            import yaml
-            with open(benchmark_config_path, 'r') as f:
-                config = yaml.safe_load(f)
-            dataset_name = config.get('benchmark', {}).get('dataset', 'hle-lite')
-        
-        # Run benchmark with dataset name
-        runner = HLEBenchmarkRunner(benchmark_config_path, dataset_name)
-        results = await runner.run_benchmark(token)
-        runner.print_results_table()
-        
-        print(f"\n✅ Benchmark completed successfully!")
-        
-    except ImportError as e:
-        print(f"❌ Benchmark module not found: {e}")
-        print("   Make sure the benchmark module is properly installed")
-    except Exception as e:
-        print(f"❌ Benchmark error: {e}")
-        import traceback
-        traceback.print_exc()
-
-
 async def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -743,13 +684,6 @@ Examples:
   # Interactive mode
   python -m massgen.cli --config config.yaml
   
-  # JSON output format
-  python -m massgen.cli --json --config config.yaml "What is the capital of France?"
-  python -m massgen.cli --output-format json --config config.yaml "What is 2+2?"
-  
-  # Run benchmark
-  python -m massgen.cli --benchmark --benchmark-config benchmark.yaml
-  
   # Timeout control examples
   python -m massgen.cli --config config.yaml --orchestrator-timeout 600 "Complex task"
   
@@ -757,20 +691,18 @@ Examples:
   python -m massgen.cli --create-samples
 
 Environment Variables:
-  OPENAI_API_KEY      - Required for OpenAI backend
-  XAI_API_KEY         - Required for Grok backend  
-  ANTHROPIC_API_KEY   - Required for Claude backend
-  GOOGLE_API_KEY      - Required for Gemini backend (or GEMINI_API_KEY)
-  ZAI_API_KEY         - Required for ZAI backend 
-  CEREBRAS_API_KEY    - Required for CEREBRAS CLOUD API (chatcompletion backend)
-  HF_API_KEY          - Required for benchmarking (HLE dataset access)
+    OPENAI_API_KEY      - Required for OpenAI backend
+    XAI_API_KEY         - Required for Grok backend
+    ANTHROPIC_API_KEY   - Required for Claude backend
+    GOOGLE_API_KEY      - Required for Gemini backend (or GEMINI_API_KEY)
+    ZAI_API_KEY         - Required for ZAI backend 
   
-  # Additional provider-specific keys for chatcompletion backend:
-  TOGETHER_API_KEY    - For Together AI (together.ai, together.xyz)
-  FIREWORKS_API_KEY   - For Fireworks AI (fireworks.ai)
-  GROQ_API_KEY        - For Groq (groq.com)
-  NEBIUS_API_KEY      - For Nebius AI Studio (studio.nebius.ai)
-  OPENROUTER_API_KEY  - For OpenRouter (openrouter.ai)
+    CEREBRAS_API_KEY    - For Cerebras AI (cerebras.ai)
+    TOGETHER_API_KEY    - For Together AI (together.ai, together.xyz)
+    FIREWORKS_API_KEY   - For Fireworks AI (fireworks.ai)
+    GROQ_API_KEY        - For Groq (groq.com)
+    NEBIUS_API_KEY      - For Nebius AI Studio (studio.nebius.ai)
+    OPENROUTER_API_KEY  - For OpenRouter (openrouter.ai)
     
   Note: The chatcompletion backend auto-detects the provider from the base_url
         and uses the appropriate environment variable for API key.
@@ -806,18 +738,6 @@ Environment Variables:
         help="Backend type for quick setup",
     )
 
-    # Benchmark options
-    parser.add_argument(
-        "--benchmark", 
-        action="store_true", 
-        help="Run benchmark mode"
-    )
-    parser.add_argument(
-        "--benchmark-config", 
-        type=str, 
-        help="Path to benchmark configuration file (required with --benchmark)"
-    )
-
     # Quick setup options
     parser.add_argument(
         "--model",
@@ -839,17 +759,15 @@ Environment Variables:
         "--no-display", action="store_true", help="Disable visual coordination display"
     )
     parser.add_argument("--no-logs", action="store_true", help="Disable logging")
-    
-    # Output format options
     parser.add_argument(
-        "--json", action="store_true", help="Output results in JSON format"
+        "--debug", action="store_true", help="Enable debug mode with verbose logging"
     )
+    
+    # Voting options
     parser.add_argument(
-        "--output-format", 
-        type=str, 
-        choices=["text", "json"], 
-        default="text",
-        help="Output format for results (default: text)"
+        "--identified-voting", 
+        action="store_true", 
+        help="Enable identified voting (agents see real IDs instead of agent1, agent2, etc.)"
     )
 
     # Timeout options
@@ -864,30 +782,28 @@ Environment Variables:
 
     args = parser.parse_args()
 
-    # Validate benchmark arguments
-    if args.benchmark and not args.benchmark_config:
-        parser.error("--benchmark-config is required when using --benchmark")
+    # Always setup logging (will save INFO to file, console output depends on debug flag)
+    from .logger_config import setup_logging, logger
+    setup_logging(debug=args.debug)
     
-    if args.benchmark and args.question:
-        parser.error("Cannot use --benchmark with a question. Use --benchmark for evaluation mode.")
+    if args.debug:
+        logger.info("Debug mode enabled")
+        logger.debug(f"Command line arguments: {vars(args)}")
 
-    # Validate other arguments
-    if not args.benchmark:
-        if not args.backend:
-            if not args.model and not args.config:
-                parser.error(
-                    "If there is not --backend, either --config or --model must be specified"
-                )
+    # Validate arguments
+    if not args.backend:
+        if not args.model and not args.config:
+            parser.error(
+                "If there is not --backend, either --config or --model must be specified"
+            )
 
     try:
-        # Handle benchmark mode
-        if args.benchmark:
-            await run_benchmark(args.benchmark_config)
-            return
-
         # Load or create configuration
         if args.config:
             config = load_config_file(args.config)
+            if args.debug:
+                logger.debug(f"Loaded config from file: {args.config}")
+                logger.debug(f"Config content: {json.dumps(config, indent=2)}")
         else:
             model = args.model
             if args.backend:
@@ -904,6 +820,9 @@ Environment Variables:
                 system_message=system_message,
                 base_url=args.base_url,
             )
+            if args.debug:
+                logger.debug(f"Created simple config with backend: {backend}, model: {model}")
+                logger.debug(f"Config content: {json.dumps(config, indent=2)}")
 
         # Apply command-line overrides
         ui_config = config.get("ui", {})
@@ -911,10 +830,12 @@ Environment Variables:
             ui_config["display_type"] = "simple"
         if args.no_logs:
             ui_config["logging_enabled"] = False
-        
-        # Set output format
-        output_format = "json" if args.json else args.output_format
-        ui_config["output_format"] = output_format
+        if args.debug:
+            ui_config["debug"] = True
+            # Enable logging if debug is on
+            ui_config["logging_enabled"] = True
+            # # Force simple UI in debug mode
+            # ui_config["display_type"] = "simple"
 
         # Apply timeout overrides from CLI arguments
         timeout_settings = config.get("timeout_settings", {})
@@ -925,10 +846,17 @@ Environment Variables:
         config["timeout_settings"] = timeout_settings
 
         # Create agents
+        if args.debug:
+            from .logger_config import logger
+            logger.debug("Creating agents from config...")
         agents = create_agents_from_config(config)
 
         if not agents:
             raise ConfigurationError("No agents configured")
+        
+        if args.debug:
+            from .logger_config import logger
+            logger.debug(f"Created {len(agents)} agent(s): {list(agents.keys())}")
 
         # Create timeout config from settings and put it in kwargs
         timeout_settings = config.get("timeout_settings", {})
@@ -942,24 +870,17 @@ Environment Variables:
         if "orchestrator" in config:
             kwargs["orchestrator"] = config["orchestrator"]
         
-        # Add show_real_agent_ids configuration
-        kwargs["show_real_agent_ids"] = config.get("show_real_agent_ids", False)
+        # Add anonymous voting configuration
+        kwargs["identified_voting"] = args.identified_voting
 
         # Run mode based on whether question was provided
         if args.question:
             response = await run_single_question(
                 args.question, agents, ui_config, **kwargs
             )
-            if response:
-                # Check output format and print accordingly
-                output_format = ui_config.get("output_format", "text")
-                if output_format == "json":
-                    # Print JSON response
-                    print(response, flush=True)
-                else:
-                    # Print text response
-                    print(f"\n{BRIGHT_GREEN}Final Response:{RESET}", flush=True)
-                    print(f"{response}", flush=True)
+            # if response:
+            #     print(f"\n{BRIGHT_GREEN}Final Response:{RESET}", flush=True)
+            #     print(f"{response}", flush=True)
         else:
             await run_interactive_mode(agents, ui_config, **kwargs)
 
