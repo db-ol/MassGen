@@ -385,12 +385,15 @@ Return this exact JSON format:
             return "No answer found"
         
         else:  # multipleChoice
-            # Pattern 1: Look for "The answer is:" patterns
+            # Pattern 1: Look for "The answer is:" patterns (ordered by specificity)
             answer_patterns = [
                 r'[Tt]he answer is:\s*([A-Z])',
                 r'[Aa]nswer:\s*([A-Z])',
                 r'[Oo]ption\s*([A-Z])',
-                r'[Cc]hoice\s*([A-Z])'
+                r'[Cc]hoice\s*([A-Z])',
+                r'\(([A-Z])\)',         # Letter in parentheses
+                r'([A-Z])\)',           # Letter followed by closing parenthesis
+                r'\b([A-Z])\.\s*$'      # Single letter with period at end only
             ]
             
             for pattern in answer_patterns:

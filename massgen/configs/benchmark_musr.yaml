@@ -5,38 +5,36 @@ benchmark:
   name: "MuSR Narrative Benchmark"
   dataset: "TAUR-Lab/MuSR"
   question_type: "multipleChoice"
-  max_questions: 10 # Limit for testing
+  max_questions: 50 # Limit for testing
   
   # Single Models to Test
   single_models:
-    - name: "gpt-4o"
+    - name: "gpt5nano"
       backend:
         type: "openai"
-        model: "gpt-4o"
+        model: "gpt-5-nano"
+        text:
+          verbosity: "medium"
+        reasoning:
+          effort: "medium"
+          summary: "auto"
       system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
     
-    - name: "gemini-2.5-flash"
-      backend:
-        type: "gemini"
-        model: "gemini-2.5-flash"
-      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
-    
-    
-    - name: "claude-3-5-haiku"
-      backend:
-        type: "claude"
-        model: "claude-3-5-haiku-20241022"
-      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
-
-    - name: "grok3mini"
+    - name: "grok4"
       backend:
         type: "grok"
-        model: "grok-3-mini"
-      system_message: "You are a helpful AI assistant with web search capabilities. For any question involving current events, recent information, or real-time data, ALWAYS use web search first. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+        model: "grok-4"
+      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+    
+    - name: "claudesonnet420250514"
+      backend:
+        type: "claude_code"
+        model: "claude-sonnet-4-20250514"
+      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
 
   # Multi-Agent Configuration
   multi_agent:
-    config_file: "three_agents_benchmark.yaml"
+    config_file: "four_agents_advanced.yaml"
     system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
   
 

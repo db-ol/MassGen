@@ -191,28 +191,33 @@ class DatasetLoader:
         """Load and preprocess MuSR dataset for benchmarking."""
         print(f"📚 Loading MuSR dataset from {self.dataset_name}...")
         
-        dataset = load_dataset("TAUR-Lab/MuSR", token=self.token)
+        dataset = load_dataset(self.dataset_name, token=self.token)
+        print(f"📊 Available splits: {list(dataset.keys())}")
+        print(f"📊 Dataset structure: {dataset}")
+        
+        # Use the first available split if 'train' doesn't exist
+        split_name = 'train' if 'train' in dataset else list(dataset.keys())[0]
+        print(f"📊 Using split: {split_name}")
         
         questions = []
-        for sample in dataset['train']:  # Using 'train' split for MuSR
-            story = sample.get('story', '')
+        for sample in dataset[split_name]:  # Using available split for MuSR
+            narrative = sample.get('narrative', '')
             question_text = sample.get('question', '')
             choices = sample.get('choices', [])
-            answer = sample.get('answer', '')
+            answer_choice = sample.get('answer_choice', '')
             
             # Format choices as A, B, C, etc.
             formatted_choices = ""
+            choice_to_letter = {}
             for i, choice in enumerate(choices):
-                formatted_choices += f"{chr(65 + i)}. {choice}\n"
+                letter = chr(65 + i)
+                formatted_choices += f"{letter}. {choice}\n"
+                choice_to_letter[choice] = letter
                 
-            # Find the correct answer index
-            correct_index = choices.index(answer) if answer in choices else -1
-            if correct_index >= 0:
-                correct_answer = chr(65 + correct_index)  # Convert to A, B, C, etc.
-            else:
-                correct_answer = "Unknown"
+            # Convert answer_choice (person name) to letter format (A, B, C, etc.)
+            correct_answer = choice_to_letter.get(answer_choice, "Unknown") if answer_choice else "Unknown"
                 
-            formatted_question = f"Story: {story}\n\nQuestion: {question_text}\n\nPlease choose from the following options:\n{formatted_choices}\nThe answer is:"
+            formatted_question = f"Story: {narrative}\n\nQuestion: {question_text}\n\nPlease choose from the following options:\n{formatted_choices}\nThe answer is:"
             
             processed_question = {
                 'id': str(len(questions)),

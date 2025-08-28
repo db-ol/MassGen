@@ -1,0 +1,41 @@
+# MassGen Four Agent Advanced Configuration
+
+agents:
+  - id: "gemini2.5pro"
+    backend:
+      type: "gemini"
+      model: "gemini-2.5-pro"
+      enable_web_search: true
+      # enable_code_execution: true
+    # system_message: "You are a helpful AI assistant with web search and code execution capabilities. For any question involving current events, recent information, or real-time data, ALWAYS use web search first."
+
+  - id: "gpt5nano"
+    backend:
+      type: "openai"
+      model: "gpt-5-nano"
+      text:
+        verbosity: "medium"
+      reasoning:
+        effort: "medium"
+        summary: "auto"
+      enable_web_search: true
+      enable_code_interpreter: true
+    # system_message: "You are a helpful AI assistant with web search and code execution capabilities. For any question involving current events, recent information, or real-time data, ALWAYS use web search first."
+
+  - id: "grok4"
+    backend:
+      type: "grok"
+      model: "grok-4"
+      enable_web_search: true
+    # system_message: "You are a helpful AI assistant with web search capabilities. For any question involving current events, recent information, or real-time data, ALWAYS use web search first."
+
+  - id: "claudesonnet420250514"
+    backend:
+      type: "claude_code"
+      model: "claude-sonnet-4-20250514"
+      # enable_web_search: true
+    # system_message: "You are a helpful AI assistant with web search capabilities. For any question involving current events, recent information, or real-time data, ALWAYS use web search first."
+
+ui:
+  display_type: "rich_terminal"
+  logging_enabled: true
