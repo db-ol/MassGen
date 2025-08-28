@@ -5,43 +5,15 @@ benchmark:
   name: "MuSR Narrative Benchmark"
   dataset: "TAUR-Lab/MuSR"
   question_type: "multipleChoice"
-  max_questions: 10 # Limit for testing
+  max_questions: 100 # Limit for testing
   
-  # Single Models to Test
-  single_models:
-    - name: "gpt5"
-      backend:
-        type: "openai"
-        model: "gpt-5"
-        text:
-          verbosity: "medium"
-        reasoning:
-          effort: "medium"
-          summary: "auto"
-      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
-    
-    - name: "gemini25pro"
-      backend:
-        type: "gemini"
-        model: "gemini-2.5-pro"
-      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
-    
-    - name: "grok4"
-      backend:
-        type: "grok"
-        model: "grok-4"
-      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
-    
-    - name: "claudesonnet420250514"
-      backend:
-        type: "claude_code"
-        model: "claude-sonnet-4-20250514"
-      system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+  # Single Models to Test (empty list - using multi-agent instead)
+  single_models: []
 
   # Multi-Agent Configuration
   multi_agent:
     config_file: "four_agents_advanced.yaml"
-    system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning, but always end your response with ONLY the letter of your chosen option in this exact format: The answer is: X, where X is A, B, C, D, ...Z .Do not include any additional text after the answer letter and provide confidence scores."
+    system_message: "You are a helpful AI assistant. For narrative questions, provide your analysis and reasoning. Please give your answer in the following JSON format: ```json {\"answer\": <str>} ``` Please don't generate anything except JSON format."
   
   # Judge Model Configuration for Multi-Agent Evaluation
   judge_model:
@@ -54,7 +26,7 @@ benchmark:
         reasoning:
           effort: "medium"
           summary: "auto"
-      system_message: "You are an expert judge evaluating AI responses to multiple choice questions. Your task is to extract the answer from the response and determine if it matches the correct answer. Always respond with valid JSON format."
+      system_message: "You are an expert judge evaluating AI responses to multiple choice questions. Your task is to extract the answer from the response and determine if it matches the correct answer. Please give your answer in the following JSON format: ```json {\"answer\": <str>} ``` Please don't generate anything except JSON format."
 
   # Metrics to Calculate
   metrics:
@@ -66,4 +38,4 @@ benchmark:
   output:
     format: "table"
     save_results: true
-    results_file: "benchmark_musr_results_judgeModel.json"
+    results_file: "benchmark_musr_results_100.json"
