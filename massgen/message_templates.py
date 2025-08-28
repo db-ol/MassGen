@@ -266,7 +266,7 @@ IMPORTANT: You are responding to the latest message in an ongoing conversation. 
                 # Anonymous voting: agent1, agent2, etc.
                 agent_id_options = [f"agent{i}" for i in range(1, len(valid_agent_ids) + 1)]
             else:
-                # Non-anonymous voting: use real agent IDs
+                # Identified voting: use real agent IDs
                 agent_id_options = valid_agent_ids
             
             tool_def["function"]["parameters"]["properties"]["agent_id"][

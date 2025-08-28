@@ -388,7 +388,7 @@ async def run_question_with_history(
         agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
         
         # Get anonymous voting configuration
-        anonymous_voting = not kwargs.get("non_anonymous_voting", False)
+        anonymous_voting = not kwargs.get("identified_voting", False)
         
         orchestrator = Orchestrator(
             agents=agents, 
@@ -479,7 +479,7 @@ async def run_single_question(
         agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
         
         # Get anonymous voting configuration
-        anonymous_voting = not kwargs.get("non_anonymous_voting", False)
+        anonymous_voting = not kwargs.get("identified_voting", False)
         
         orchestrator = Orchestrator(
             agents=agents, 
@@ -765,9 +765,9 @@ Environment Variables:
     
     # Voting options
     parser.add_argument(
-        "--non-anonymous-voting", 
+        "--identified-voting", 
         action="store_true", 
-        help="Enable non-anonymous voting (agents see real IDs instead of agent1, agent2, etc.)"
+        help="Enable identified voting (agents see real IDs instead of agent1, agent2, etc.)"
     )
 
     # Timeout options
@@ -871,7 +871,7 @@ Environment Variables:
             kwargs["orchestrator"] = config["orchestrator"]
         
         # Add anonymous voting configuration
-        kwargs["non_anonymous_voting"] = args.non_anonymous_voting
+        kwargs["identified_voting"] = args.identified_voting
 
         # Run mode based on whether question was provided
         if args.question:

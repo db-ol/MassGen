@@ -73,22 +73,22 @@ async def test_voting_modes():
     except Exception as e:
         print(f"❌ Error creating anonymous voting orchestrator: {e}")
     
-    # Test 2: Non-Anonymous Voting
-    print("\n🔍 Test 2: Non-Anonymous Voting Mode")
+    # Test 2: Identified Voting
+    print("\n🔍 Test 2: Identified Voting Mode")
     print("-" * 30)
     
     try:
-        orchestrator_nonanon = Orchestrator(
+        orchestrator_identified = Orchestrator(
             agents=agents,
             anonymous_voting=False
         )
         
-        print(f"✅ Non-anonymous voting orchestrator created successfully")
-        print(f"   Configuration: anonymous_voting = {orchestrator_nonanon.anonymous_voting}")
+        print(f"✅ Identified voting orchestrator created successfully")
+        print(f"   Configuration: anonymous_voting = {orchestrator_identified.anonymous_voting}")
         
         # Check workflow tools
         vote_tool = None
-        for tool in orchestrator_nonanon.workflow_tools:
+        for tool in orchestrator_identified.workflow_tools:
             if tool.get("function", {}).get("name") == "vote":
                 vote_tool = tool
                 break
@@ -99,7 +99,7 @@ async def test_voting_modes():
             print(f"   Vote tool description: {agent_id_param.get('description', 'Not set')}")
         
     except Exception as e:
-        print(f"❌ Error creating non-anonymous voting orchestrator: {e}")
+        print(f"❌ Error creating identified voting orchestrator: {e}")
     
     # Test 3: Message Templates
     print("\n🔍 Test 3: Message Template Differences")
@@ -120,13 +120,13 @@ async def test_voting_modes():
             print(f"   Agent ID enum: {agent_id_param.get('enum', 'Not set')}")
             print(f"   Description: {agent_id_param.get('description', 'Not set')}")
         
-        # Test non-anonymous voting templates
-        nonanon_tools = templates.get_standard_tools(list(agents.keys()), anonymous_voting=False)
-        nonanon_vote_tool = next((t for t in nonanon_tools if t.get("function", {}).get("name") == "vote"), None)
+        # Test identified voting templates
+        identified_tools = templates.get_standard_tools(list(agents.keys()), anonymous_voting=False)
+        identified_vote_tool = next((t for t in identified_tools if t.get("function", {}).get("name") == "vote"), None)
         
-        if nonanon_vote_tool:
-            print(f"✅ Non-anonymous voting tools created")
-            agent_id_param = nonanon_vote_tool["function"]["parameters"]["properties"]["agent_id"]
+        if identified_vote_tool:
+            print(f"✅ Identified voting tools created")
+            agent_id_param = identified_vote_tool["function"]["parameters"]["properties"]["agent_id"]
             print(f"   Agent ID enum: {agent_id_param.get('enum', 'Not set')}")
             print(f"   Description: {agent_id_param.get('description', 'Not set')}")
         
@@ -138,11 +138,11 @@ async def test_voting_modes():
         }
         
         anon_format = templates.format_current_answers_with_summaries(test_answers, anonymous_voting=True)
-        nonanon_format = templates.format_current_answers_with_summaries(test_answers, anonymous_voting=False)
+        identified_format = templates.format_current_answers_with_summaries(test_answers, anonymous_voting=False)
         
         print(f"\n📝 Answer Formatting Comparison:")
         print(f"   Anonymous format preview: {anon_format[:100]}...")
-        print(f"   Non-anonymous format preview: {nonanon_format[:100]}...")
+        print(f"   Identified format preview: {identified_format[:100]}...")
         
     except Exception as e:
         print(f"❌ Error testing message templates: {e}")
@@ -152,12 +152,12 @@ async def test_voting_modes():
     print("\nTo run actual experiments:")
     print("1. Set up your API keys in environment variables")
     print("2. Use the voting_comparison_example.yaml config")
-    print("3. Run with --non-anonymous-voting flag to compare modes")
+    print("3. Run with --identified-voting flag to compare modes")
     print("\nExample commands:")
     print("  # Anonymous voting (default)")
     print("  uv run python -m massgen.cli --config massgen/configs/voting_comparison_example.yaml 'Your question'")
-    print("\n  # Non-anonymous voting")
-    print("  uv run python -m massgen.cli --config massgen/configs/voting_comparison_example.yaml --non-anonymous-voting 'Your question'")
+    print("\n  # Identified voting")
+    print("  uv run python -m massgen.cli --config massgen/configs/voting_comparison_example.yaml --identified-voting 'Your question'")
 
 
 if __name__ == "__main__":

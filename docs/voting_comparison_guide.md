@@ -1,6 +1,6 @@
 # MassGen Voting Mechanism Comparison Guide
 
-This guide provides detailed instructions on how to use MassGen's anonymous and non-anonymous voting features for experimental comparison.
+This guide provides detailed instructions on how to use MassGen's anonymous and identified voting features for experimental comparison.
 
 ## 🎭 Voting Mechanism Overview
 
@@ -11,10 +11,10 @@ MassGen supports two voting modes:
 - Real identities are hidden to avoid bias based on model names
 - Promotes objective evaluation based on answer quality
 
-### 2. Non-Anonymous Voting
-- Agents see real agent IDs (such as model names)
+### 2. Identified Voting
+- Agents see real agent IDs (such as model names: `claude3.5haiku`, `gemini2.5flash`, `gpt5nano`, etc.)
 - May vote based on model reputation or historical performance
-- Suitable for studying the impact of identity information on voting decisions
+- May affect self-voting tendencies and vote/improve ratio
 
 ## 🚀 Usage Methods
 
@@ -29,13 +29,13 @@ uv run python -m massgen.cli --config config.yaml "Your question"
 uv run python -m massgen.cli --backend openai --model gpt-4o-mini "Your question"
 ```
 
-#### Non-Anonymous Voting
+#### Identified Voting
 ```bash
-# Using --non-anonymous-voting flag
-uv run python -m massgen.cli --config config.yaml --non-anonymous-voting "Your question"
+# Using --identified-voting flag
+uv run python -m massgen.cli --config config.yaml --identified-voting "Your question"
 
 # Quick setup
-uv run python -m massgen.cli --backend openai --model gpt-4o-mini --non-anonymous-voting "Your question"
+uv run python -m massgen.cli --backend openai --model gpt-4o-mini --identified-voting "Your question"
 ```
 
 ### Configuration File Method
@@ -47,70 +47,31 @@ Set the `orchestrator.anonymous_voting` parameter in the configuration file:
 orchestrator:
   anonymous_voting: true  # Or omit this line
 
-# Non-anonymous voting
+# Identified voting
 orchestrator:
   anonymous_voting: false
 ```
 
-## 🔬 Experimental Design Suggestions
+## 🔬 Experiments
 
-### Experiment 1: Voting Consistency Comparison
-**Objective**: Compare agent voting consistency under anonymous and non-anonymous voting
+### Objective
+Compare the behavioral patterns of anonymous vs. identified voting mechanisms in multi-agent coordination systems.
 
-**Steps**:
-1. Use the same question and agent configuration
-2. Run anonymous and non-anonymous voting separately
-3. Record voting distribution and consensus achievement
-4. Analyze differences in voting reasons
+### Research Questions
+1. How does agent identity visibility affect voting distribution patterns across agents?
+2. Does identity visibility increase or decrease self-voting frequency?
+3. How does the vote/improvement ratio differ between anonymous and identified voting modes?
+4. Which voting mechanism achieves consensus more reliably and in fewer rounds?
+5. Do voting reasons differ in objectivity and identity-related content between the two modes?
+6. Which voting mechanism produces statistically higher answer accuracy?
 
-**Command Examples**:
-```bash
-# Anonymous voting
-uv run python -m massgen.cli --config voting_comparison_example.yaml "Analyze future development trends of artificial intelligence"
-
-# Non-anonymous voting
-uv run python -m massgen.cli --config voting_comparison_example.yaml --non-anonymous-voting "Analyze future development trends of artificial intelligence"
-```
-
-### Experiment 2: Voting Reason Analysis
-**Objective**: Analyze agent decision reasons under different voting modes
-
-**Focus Points**:
-- Whether voting reasons mention model identity
-- Level of detail and objectivity in reasons
-- Existence of reputation-based voting
-
-### Experiment 3: Consensus Achievement Efficiency
-**Objective**: Compare consensus achievement efficiency under two modes
-
-**Metrics**:
-- Number of voting rounds
-- Time to reach consensus
-- Frequency of vote changes
-
-## 📊 Result Analysis
-
-### Voting Result Display
-
-#### Anonymous Voting Mode
-```
-🔀 Anonymous Agent Mapping:
-   agent1 → gemini2.5flash
-   agent2 → gpt5nano
-   agent3 → claude3.5haiku
-```
-
-#### Non-Anonymous Voting Mode
-```
-🔍 Non-Anonymous Agent IDs:
-   claude3.5haiku
-   gemini2.5flash
-   gpt5nano
-```
+### Note on Counterfactual Analysis
+While comparing identical answers under different voting modes would provide ideal controlled experiments, this analysis is not currently implemented. The current approach focuses on statistical comparison across different runs, as agent responses are non-deterministic. Future versions may include counterfactual analysis options for more rigorous experimental control.
 
 ### Key Metrics
-
-1. **Voting Distribution**: Number of votes each agent receives
-2. **Voting Reasons**: Specific reasons for agent voting
-3. **Consensus Achievement**: Whether consensus is reached, which round
-4. **Vote Changes**: Whether agents change their votes
+1. **Voting Distribution**: Count of votes allocated to each agent in each voting round
+2. **Self-Voting Frequency**: Percentage of rounds where agents vote for their own answers for each agent
+3. **Vote/Improvement Ratio**: Ratio of voting decisions to improvement decisions for each agent
+4. **Consensus Round**: Round number when consensus is reached
+5. **Voting Reasons**: Text analysis of voting rationales for bias indicators and identity references
+6. **Answer Quality**: Statistical comparison of final answer quality between voting mechanisms
