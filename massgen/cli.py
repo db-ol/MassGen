@@ -397,11 +397,15 @@ async def run_question_with_history(
         snapshot_storage = kwargs.get("orchestrator", {}).get("snapshot_storage")
         agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
         
+        # Get anonymous voting configuration
+        anonymous_voting = not kwargs.get("non_anonymous_voting", False)
+        
         orchestrator = Orchestrator(
             agents=agents, 
             config=orchestrator_config,
             snapshot_storage=snapshot_storage,
-            agent_temporary_workspace=agent_temporary_workspace
+            agent_temporary_workspace=agent_temporary_workspace,
+            anonymous_voting=anonymous_voting
         )
         # Create a fresh UI instance for each question to ensure clean state
         ui = CoordinationUI(
@@ -486,11 +490,15 @@ async def run_single_question(
         snapshot_storage = kwargs.get("orchestrator", {}).get("snapshot_storage")
         agent_temporary_workspace = kwargs.get("orchestrator", {}).get("agent_temporary_workspace")
         
+        # Get anonymous voting configuration
+        anonymous_voting = not kwargs.get("non_anonymous_voting", False)
+        
         orchestrator = Orchestrator(
             agents=agents, 
             config=orchestrator_config,
             snapshot_storage=snapshot_storage,
-            agent_temporary_workspace=agent_temporary_workspace
+            agent_temporary_workspace=agent_temporary_workspace,
+            anonymous_voting=anonymous_voting
         )
 
         from .logger_config import setup_logging, logger
@@ -771,6 +779,13 @@ Environment Variables:
     parser.add_argument(
         "--debug", action="store_true", help="Enable debug mode with verbose logging"
     )
+    
+    # Voting options
+    parser.add_argument(
+        "--non-anonymous-voting", 
+        action="store_true", 
+        help="Enable non-anonymous voting (agents see real IDs instead of agent1, agent2, etc.)"
+    )
 
     parser.add_argument(
         "--question-number",
@@ -880,6 +895,9 @@ Environment Variables:
         # Add orchestrator configuration if present
         if "orchestrator" in config:
             kwargs["orchestrator"] = config["orchestrator"]
+        
+        # Add anonymous voting configuration
+        kwargs["non_anonymous_voting"] = args.non_anonymous_voting
 
         from datasets import load_dataset
 
