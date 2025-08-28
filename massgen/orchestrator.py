@@ -1672,7 +1672,7 @@ Final Session ID: {session_id}.
             for i, real_id in enumerate(sorted(agent_answers.keys()), 1):
                 agent_mapping[f"agent{i}"] = real_id
         else:
-            # Non-anonymous voting: use real IDs directly
+            # Identified voting: use real IDs directly
             for real_id in sorted(agent_answers.keys()):
                 agent_mapping[real_id] = real_id
 

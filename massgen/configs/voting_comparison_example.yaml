@@ -1,5 +1,5 @@
 # MassGen Voting Comparison Configuration
-# This configuration demonstrates how to set up agents for comparing anonymous vs non-anonymous voting
+# This configuration demonstrates how to set up agents for comparing anonymous vs identified voting
 
 # Configuration for Anonymous Voting (default behavior)
 agents:
@@ -29,11 +29,11 @@ ui:
 # Orchestrator configuration
 orchestrator:
   # Note: anonymous_voting is True by default
-  # To enable non-anonymous voting, use --non-anonymous-voting CLI flag
-  # or set anonymous_voting: false here
-  
-  # Example for non-anonymous voting:
-  # anonymous_voting: false
+  # To enable identified voting, use --identified-voting CLI flag
+# or set anonymous_voting: false here
+
+# Example for identified voting:
+# anonymous_voting: false
   
   # Context sharing settings (optional)
   snapshot_storage: "massgen_logs/snapshots"
@@ -44,7 +44,7 @@ orchestrator:
 # Anonymous voting (default):
 # uv run python -m massgen.cli --config voting_comparison_example.yaml "Compare different approaches to renewable energy"
 #
-# Non-anonymous voting:
-# uv run python -m massgen.cli --config voting_comparison_example.yaml --non-anonymous-voting "Compare different approaches to renewable energy"
+# Identified voting:
+# uv run python -m massgen.cli --config voting_comparison_example.yaml --identified-voting "Compare different approaches to renewable energy"
 #
 # Or modify the config file to set anonymous_voting: false
