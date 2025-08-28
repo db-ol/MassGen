@@ -88,12 +88,13 @@ class Orchestrator(ChatAgent):
 
     def __init__(
         self,
-        agents: Dict[str, ChatAgent],
+        agents: Optional[Dict[str, ChatAgent]] = None,
         orchestrator_id: str = "orchestrator",
         session_id: Optional[str] = None,
         config: Optional[AgentConfig] = None,
         snapshot_storage: Optional[str] = None,
         agent_temporary_workspace: Optional[str] = None,
+        anonymous_voting: bool = True,  # New: Anonymous voting configuration option
     ):
         """
         Initialize MassGen orchestrator.
@@ -107,16 +108,20 @@ class Orchestrator(ChatAgent):
             agent_temporary_workspace: Optional path for agent temporary workspaces
         """
         super().__init__(session_id)
+        
+        # Set anonymous voting configuration FIRST (before it's used)
+        self.anonymous_voting = anonymous_voting
+        
         self.orchestrator_id = orchestrator_id
-        self.agents = agents
-        self.agent_states = {aid: AgentState() for aid in agents.keys()}
+        self.agents = agents or {}
+        self.agent_states = {aid: AgentState() for aid in self.agents.keys()}
         self.config = config or AgentConfig.create_openai_config()
 
         # Get message templates from config
         self.message_templates = self.config.message_templates or MessageTemplates()
         # Create workflow tools for agents (vote and new_answer)
         self.workflow_tools = self.message_templates.get_standard_tools(
-            list(agents.keys())
+            list(self.agents.keys()), self.anonymous_voting
         )
 
         # MassGen-specific state
@@ -167,6 +172,8 @@ class Orchestrator(ChatAgent):
                     if provider_name == 'claude_code':
                         agent_workspace = workspace_path / agent_id
                         agent_workspace.mkdir(parents=True, exist_ok=True)
+
+
 
     async def chat(
         self,
@@ -845,6 +852,7 @@ class Orchestrator(ChatAgent):
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
                     base_system_message=agent_system_message,
+                    anonymous_voting=self.anonymous_voting,
                 )
             else:
                 # Fallback to standard conversation building
@@ -853,6 +861,7 @@ class Orchestrator(ChatAgent):
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
                     base_system_message=agent_system_message,
+                    anonymous_voting=self.anonymous_voting,
                 )
             
             # Log the messages being sent to the agent with backend info
@@ -1656,10 +1665,16 @@ Final Session ID: {session_id}.
             if not winner:
                 winner = tied_agents[0] if tied_agents else None
 
-        # Create agent mapping for anonymous display
+        # Create agent mapping based on voting configuration
         agent_mapping = {}
-        for i, real_id in enumerate(sorted(agent_answers.keys()), 1):
-            agent_mapping[f"agent{i}"] = real_id
+        if self.anonymous_voting:
+            # Anonymous voting: map real IDs to anonymous IDs (agent1, agent2, etc.)
+            for i, real_id in enumerate(sorted(agent_answers.keys()), 1):
+                agent_mapping[f"agent{i}"] = real_id
+        else:
+            # Non-anonymous voting: use real IDs directly
+            for real_id in sorted(agent_answers.keys()):
+                agent_mapping[real_id] = real_id
 
         return {
             "vote_counts": vote_counts,
@@ -1670,6 +1685,7 @@ Final Session ID: {session_id}.
             "agents_with_answers": len(agent_answers),
             "agents_voted": len([v for v in votes.values() if v.get("agent_id")]),
             "agent_mapping": agent_mapping,
+            "anonymous_voting": self.anonymous_voting,  # Add voting type information
         }
 
     def _determine_final_agent_from_states(self) -> Optional[str]:
@@ -1824,6 +1840,7 @@ def create_orchestrator(
     config: Optional[AgentConfig] = None,
     snapshot_storage: Optional[str] = None,
     agent_temporary_workspace: Optional[str] = None,
+    anonymous_voting: bool = True,
 ) -> Orchestrator:
     """
     Create a MassGen orchestrator with sub-agents.
@@ -1848,4 +1865,5 @@ def create_orchestrator(
         config=config,
         snapshot_storage=snapshot_storage,
         agent_temporary_workspace=agent_temporary_workspace,
+        anonymous_voting=anonymous_voting,
     )
