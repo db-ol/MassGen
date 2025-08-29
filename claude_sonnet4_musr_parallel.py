@@ -115,7 +115,8 @@ def main():
         print(f"Processing {len(items)} questions from {split} in parallel (max_workers={MAX_WORKERS})...")
 
         results = []
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
+        try:
             futures = {executor.submit(process_question, idx, item, client): idx for idx, item in items}
 
             for future in tqdm(as_completed(futures), total=len(futures), desc=f"Processing {split}"):
@@ -138,6 +139,8 @@ def main():
                         "pred_answer": "",
                         "correct": "",
                     })
+        finally:
+            executor.shutdown(wait=True)
 
         results.sort(key=lambda x: x["idx"])
         all_results.extend(results)

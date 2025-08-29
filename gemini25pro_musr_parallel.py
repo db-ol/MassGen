@@ -94,12 +94,18 @@ def process_question(idx, item, model):
     }
 
 def main():
-    if not GEMINI_API_KEY:
-        raise RuntimeError("Please set GEMINI_API_KEY or GOOGLE_API_KEY in your environment.")
+    if not GOOGLE_API_KEY:
+        raise RuntimeError("Please set GOOGLE_API_KEY in your environment.")
 
-    print("Initializing Gemini client...")
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel(MODEL)
+    print("Initializing Google client...")
+    genai.configure(api_key=GOOGLE_API_KEY)
+    client = genai.GenerativeModel(
+        'gemini-2.5-pro',
+        generation_config=genai.types.GenerationConfig(
+            candidate_count=1,
+            # temperature=0, # Gemini API has issues with temp=0
+        )
+    )
 
     all_results = []
     total_correct = 0
@@ -117,8 +123,9 @@ def main():
         print(f"Processing {len(items)} questions from {split} in parallel (max_workers={MAX_WORKERS})...")
 
         results = []
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            futures = {executor.submit(process_question, idx, item, model): idx for idx, item in items}
+        executor = ThreadPoolExecutor(max_workers=MAX_WORKERS)
+        try:
+            futures = {executor.submit(process_question, idx, item, client): idx for idx, item in items}
 
             for future in tqdm(as_completed(futures), total=len(futures), desc=f"Processing {split}"):
                 try:
@@ -140,6 +147,8 @@ def main():
                         "pred_answer": "",
                         "correct": "",
                     })
+        finally:
+            executor.shutdown(wait=True)
 
         results.sort(key=lambda x: x["idx"])
         all_results.extend(results)
