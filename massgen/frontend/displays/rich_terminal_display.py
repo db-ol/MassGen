@@ -2459,12 +2459,21 @@ class RichTerminalDisplay(TerminalDisplay):
 
         # Agent mapping section
         agent_mapping = vote_results.get("agent_mapping", {})
+        anonymous_voting = vote_results.get("anonymous_voting", True)
+        
         if agent_mapping:
-            vote_content.append("\n🔀 Agent Mapping:\n", style=self.colors["primary"])
-            for anon_id, real_id in sorted(agent_mapping.items()):
-                vote_content.append(
-                    f"   {anon_id} → {real_id}\n", style=self.colors["info"]
-                )
+            if anonymous_voting:
+                vote_content.append("\n🔀 Anonymous Agent Mapping:\n", style=self.colors["primary"])
+                for anon_id, real_id in sorted(agent_mapping.items()):
+                    vote_content.append(
+                        f"   {anon_id} → {real_id}\n", style=self.colors["info"]
+                    )
+            else:
+                vote_content.append("\n🔍 Non-Anonymous Agent IDs:\n", style=self.colors["primary"])
+                for agent_id in sorted(agent_mapping.keys()):
+                    vote_content.append(
+                        f"   {agent_id}\n", style=self.colors["info"]
+                    )
 
         # Tie-breaking info
         if is_tie:
