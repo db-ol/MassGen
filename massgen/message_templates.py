@@ -166,6 +166,59 @@ IMPORTANT: You are responding to the latest message in an ongoing conversation. 
         lines.append("<END OF CURRENT ANSWERS>")
         return "\n".join(lines)
 
+    def format_current_voting_status(
+        self, vote_results: Optional[Dict[str, Any]] = None
+    ) -> str:
+        """Format current voting status section to show agents the latest voting information."""
+        if "format_current_voting_status" in self._template_overrides:
+            override = self._template_overrides["format_current_voting_status"]
+            if callable(override):
+                return override(vote_results)
+            return str(override)
+
+        if not vote_results or not vote_results.get("vote_counts"):
+            return """<CURRENT VOTING STATUS>
+(no votes cast yet)
+<END OF CURRENT VOTING STATUS>"""
+
+        lines = ["<CURRENT VOTING STATUS>"]
+        
+        # Get vote counts and voter details
+        vote_counts = vote_results.get("vote_counts", {})
+        voter_details = vote_results.get("voter_details", {})
+        agent_mapping = vote_results.get("agent_mapping", {})
+        
+        # Create reverse mapping: real_id -> anon_id for voter anonymization
+        reverse_mapping = {real_id: anon_id for anon_id, real_id in agent_mapping.items()}
+        
+        # Show current vote distribution
+        if vote_counts:
+            lines.append("Current vote distribution:")
+            for real_agent_id, count in vote_counts.items():
+                # Convert real agent ID to anonymous ID
+                agent_anon = reverse_mapping.get(real_agent_id, real_agent_id)
+                lines.append(f"  {agent_anon}: {count} vote(s)")
+            
+            # Show voting details if available
+            if voter_details:
+                lines.append("")
+                lines.append("Voting details:")
+                for real_agent_id, voters in voter_details.items():
+                    # Convert real agent ID to anonymous ID
+                    agent_anon = reverse_mapping.get(real_agent_id, real_agent_id)
+                    lines.append(f"  {agent_anon} received votes from:")
+                    for voter_info in voters:
+                        # Convert voter_id to anonymous ID
+                        real_voter_id = voter_info.get("voter", "unknown")
+                        voter_anon = reverse_mapping.get(real_voter_id, real_voter_id)
+                        reason = voter_info.get("reason", "No reason provided")
+                        lines.append(f"    - {voter_anon}: {reason}")
+        else:
+            lines.append("(no votes cast yet)")
+            
+        lines.append("<END OF CURRENT VOTING STATUS>")
+        return "\n".join(lines)
+
     def enforcement_message(self) -> str:
         """Enforcement message for Case 3 (non-workflow responses)."""
         if "enforcement_message" in self._template_overrides:
@@ -307,19 +360,36 @@ Present the best possible coordinated answer by combining the strengths from all
 {self.format_current_answers_empty()}"""
 
     def build_case2_user_message(
-        self, task: str, agent_summaries: Dict[str, str]
+        self, task: str, agent_summaries: Dict[str, str], vote_results: Optional[Dict[str, Any]] = None
     ) -> str:
-        """Build Case 2 user message (summaries exist)."""
-        return f"""{self.format_original_message(task)}
+        """Build Case 2 user message (summaries exist) with optional voting status."""
+        if "build_case2_user_message" in self._template_overrides:
+            override = self._template_overrides["build_case2_user_message"]
+            if callable(override):
+                return override(task, agent_summaries, vote_results)
+            return str(override)
 
-{self.format_current_answers_with_summaries(agent_summaries)}"""
+        message_parts = [
+            self.format_original_message(task),
+            "",
+            self.format_current_answers_with_summaries(agent_summaries)
+        ]
+        
+        # Add voting status if available
+        if vote_results:
+            message_parts.extend([
+                "",
+                self.format_current_voting_status(vote_results)
+            ])
+            
+        return "\n".join(message_parts)
 
     def build_evaluation_message(
-        self, task: str, agent_answers: Optional[Dict[str, str]] = None
+        self, task: str, agent_answers: Optional[Dict[str, str]] = None, vote_results: Optional[Dict[str, Any]] = None
     ) -> str:
-        """Build evaluation user message for any case."""
+        """Build evaluation user message for any case with optional voting status."""
         if agent_answers:
-            return self.build_case2_user_message(task, agent_answers)
+            return self.build_case2_user_message(task, agent_answers, vote_results)
         else:
             return self.build_case1_user_message(task)
 
@@ -328,12 +398,13 @@ Present the best possible coordinated answer by combining the strengths from all
         current_task: str,
         conversation_history: Optional[List[Dict[str, str]]] = None,
         agent_answers: Optional[Dict[str, str]] = None,
+        vote_results: Optional[Dict[str, Any]] = None,
     ) -> str:
         """Build coordination context including conversation history and current state."""
         if "build_coordination_context" in self._template_overrides:
             override = self._template_overrides["build_coordination_context"]
             if callable(override):
-                return override(current_task, conversation_history, agent_answers)
+                return override(current_task, conversation_history, agent_answers, vote_results)
             return str(override)
 
         context_parts = []
@@ -356,6 +427,11 @@ Present the best possible coordinated answer by combining the strengths from all
             )
         else:
             context_parts.append(self.format_current_answers_empty())
+
+        # Add voting status if available
+        if vote_results:
+            context_parts.append("")  # Empty line for spacing
+            context_parts.append(self.format_current_voting_status(vote_results))
 
         return "\n".join(context_parts)
 
@@ -390,6 +466,7 @@ Present the best possible coordinated answer by combining the strengths from all
         agent_summaries: Optional[Dict[str, str]] = None,
         valid_agent_ids: Optional[List[str]] = None,
         base_system_message: Optional[str] = None,
+        vote_results: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """Build complete conversation with conversation history context for MassGen evaluation."""
         # Use agent's custom system message if provided, otherwise use default context-aware message
@@ -401,7 +478,7 @@ Present the best possible coordinated answer by combining the strengths from all
         return {
             "system_message": system_message,
             "user_message": self.build_coordination_context(
-                current_task, conversation_history, agent_summaries
+                current_task, conversation_history, agent_summaries, vote_results
             ),
             "tools": self.get_standard_tools(valid_agent_ids),
         }

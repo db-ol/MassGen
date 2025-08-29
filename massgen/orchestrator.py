@@ -836,7 +836,10 @@ class Orchestrator(ChatAgent):
             if conversation_context and conversation_context.get(
                 "conversation_history"
             ):
-                # Use conversation context-aware building
+                # Get current voting status to include in agent messages
+                current_vote_results = self._get_vote_results()
+                
+                # Use conversation context-aware building with voting status
                 conversation = self.message_templates.build_conversation_with_context(
                     current_task=task,
                     conversation_history=conversation_context.get(
@@ -845,15 +848,29 @@ class Orchestrator(ChatAgent):
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
                     base_system_message=agent_system_message,
+                    vote_results=current_vote_results,
                 )
             else:
-                # Fallback to standard conversation building
+                # Get current voting status to include in agent messages
+                current_vote_results = self._get_vote_results()
+                
+                # Fallback to standard conversation building with voting status
                 conversation = self.message_templates.build_initial_conversation(
                     task=task,
                     agent_summaries=answers,
                     valid_agent_ids=list(answers.keys()) if answers else None,
                     base_system_message=agent_system_message,
                 )
+                
+                # Add voting status to user message if available
+                if current_vote_results and current_vote_results.get("vote_counts"):
+                    # Modify the user message to include voting status
+                    conversation["user_message"] = self.message_templates.build_evaluation_message(
+                        task, answers, current_vote_results
+                    )
+            
+            # Log the complete messages being sent to the agent for voting verification
+            logger.info(f"[VOTING_DEBUG] Agent {agent_id} - FULL USER MESSAGE:\n{conversation['user_message']}")
             
             # Log the messages being sent to the agent with backend info
             backend_name = None
