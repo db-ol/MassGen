@@ -870,8 +870,8 @@ Environment Variables:
         if "orchestrator" in config:
             kwargs["orchestrator"] = config["orchestrator"]
         
-        # Add anonymous voting configuration
-        kwargs["identified_voting"] = args.identified_voting
+        # Add anonymous voting configuration from config file or CLI flag
+        kwargs["identified_voting"] = config.get("show_real_agent_ids", False) or args.identified_voting
 
         # Run mode based on whether question was provided
         if args.question:
