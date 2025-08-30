@@ -9,21 +9,21 @@
       "claudesonnet420250514": [
         {
           "voter": "gemini2.5pro",
-          "reason": "Agent 1 provides the most comprehensive and well-structured answer. It correctly identifies the right option and provides detailed, cited explanations for why each of the other options is incorrect. The breakdown by theory is clear and easy to follow."
+          "reason": "This agent provides the most comprehensive and well-supported answer. It correctly identifies Superstring Theory as the correct option and systematically explains why each of the other options is incorrect, backing up its claims with citations."
         },
         {
           "voter": "claudesonnet420250514",
-          "reason": "Agent1 provides the most comprehensive and well-cited analysis, correctly explaining why each theory does or doesn't require regularization at high energies, with proper citations supporting each claim"
+          "reason": "Provides the most comprehensive and well-researched answer with detailed citations from web search results, thoroughly explaining why each option does or doesn't require regularization, with specific evidence for superstring theory being UV-finite"
         },
         {
           "voter": "grok4",
-          "reason": "Agent1 provides a comprehensive, well-cited analysis of each option, clearly explaining why Superstring Theory is the correct choice that never requires regularization at high energies, addressing the original question thoroughly."
+          "reason": "This agent's answer is the most comprehensive, providing detailed explanations for each option backed by citations from web searches, clearly demonstrating why Superstring Theory is the correct choice without requiring regularization at high energies."
         }
       ],
       "gpt5": [
         {
           "voter": "gpt5",
-          "reason": "Agent 2 provides the correct choice (C) with concise, accurate reasoning specific to UV behavior, mentions modular invariance and IR caveat, and adheres strictly to the required JSON-only format. Agent 1 violates the JSON-only requirement and includes dubious citations; Agent 3 is good but slightly less precise."
+          "reason": "Concise, correct JSON-only answer selecting C with accurate reasoning about UV finiteness in perturbative superstring theory; adheres to the required output format unlike the more verbose alternative."
         }
       ]
     },
@@ -33,10 +33,11 @@
     "agents_with_answers": 3,
     "agents_voted": 4,
     "agent_mapping": {
-      "agent1": "claudesonnet420250514",
-      "agent2": "gpt5",
-      "agent3": "grok4"
-    }
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
   },
   "selected_agent": "claudesonnet420250514",
   "true_answer": "C"

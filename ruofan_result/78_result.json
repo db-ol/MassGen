@@ -1,0 +1,44 @@
+{
+  "question_number": 78,
+  "vote_results": {
+    "vote_counts": {
+      "gemini2.5pro": 2,
+      "gpt5": 2
+    },
+    "voter_details": {
+      "gemini2.5pro": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "All three agents correctly identify that there are 3 optically active compounds. However, gemini2.5pro provides the most detailed and clear step-by-step reasoning for each of the seven compounds, explaining why each is or is not optically active. This makes it the most helpful and complete answer."
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most comprehensive and detailed reasoning for each compound, clearly explaining why each is chiral or achiral."
+        }
+      ],
+      "gpt5": [
+        {
+          "voter": "gpt5",
+          "reason": "Accurate count (3) with clear, correct stereochemical justifications. It correctly identifies (2R,3S)-dimethylsuccinic acid as meso, (2R,3R) as chiral, explains why (R)-cyclohex-3-en-1-ol is chiral via nonequivalent ring paths due to the C3–C4 double bond, and notes the S3 symmetry for cis-1,3,5-triol. Concise and precise."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most concise yet comprehensive explanation, clearly distinguishing meso compounds from chiral ones and explaining the stereochemistry with precise terminology"
+        }
+      ]
+    },
+    "winner": "gemini2.5pro",
+    "is_tie": true,
+    "total_votes": 4,
+    "agents_with_answers": 3,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "gemini2.5pro",
+  "true_answer": "C"
+}

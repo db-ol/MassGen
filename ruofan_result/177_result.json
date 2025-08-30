@@ -9,21 +9,21 @@
       "claudesonnet420250514": [
         {
           "voter": "gemini2.5pro",
-          "reason": "All agents are correct, but Agent1 provides the most comprehensive and well-structured reasoning. It clearly shows the step-by-step calculations for both the transition energy and the paramagnetic coupling term, making it the most thorough and educational response."
+          "reason": "This agent provided the most comprehensive and well-supported answer. It correctly identified the specific hydrogen transition, showed clear calculations for both energy terms, and supported its claims with citations. The final reasoning was both accurate and detailed."
         },
         {
           "voter": "claudesonnet420250514",
-          "reason": "Agent1 provides the most comprehensive and detailed solution with step-by-step calculations, correctly identifies the H-β transition, shows all numerical work, and arrives at the correct answer with proper scientific reasoning and appropriate significant figures."
+          "reason": "Most comprehensive answer with detailed citations, proper identification of the spectral line, clear step-by-step calculation, and additional physical context explaining why the result makes sense"
         },
         {
           "voter": "grok4",
-          "reason": "Agent1 provides the most detailed step-by-step calculation, correctly identifies the transition, and offers comprehensive reasoning that fully addresses the query."
+          "reason": "Provides the most detailed reasoning with citations, confirming the transition and calculations thoroughly, while agreeing with others on the correct answer A."
         }
       ],
       "gpt5": [
         {
           "voter": "gpt5",
-          "reason": "Agent2 is correct, concise, and strictly follows the required pure JSON format. It computes both the Zeeman energy (~5.8×10^-5 eV at 1 T) and the transition energy (~2.55 eV at 486.1 nm), concluding ⟨H⟩ ≪ ΔE. Agent1, while thorough, includes code fences and malformed JSON, violating the format constraint."
+          "reason": "Correct, concise, and adheres to the required JSON-only format. Computes μB B ≈ 5.79×10^-5 eV and ΔE ≈ 2.55 eV, concluding ⟨H⟩ ≪ ΔE (option A)."
         }
       ]
     },
@@ -33,10 +33,11 @@
     "agents_with_answers": 3,
     "agents_voted": 4,
     "agent_mapping": {
-      "agent1": "claudesonnet420250514",
-      "agent2": "gpt5",
-      "agent3": "grok4"
-    }
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
   },
   "selected_agent": "claudesonnet420250514",
   "true_answer": "A"

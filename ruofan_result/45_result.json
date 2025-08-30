@@ -2,42 +2,44 @@
   "question_number": 45,
   "vote_results": {
     "vote_counts": {
-      "claudesonnet420250514": 3,
+      "gemini2.5pro": 3,
       "gpt5": 1
     },
     "voter_details": {
-      "claudesonnet420250514": [
+      "gemini2.5pro": [
         {
           "voter": "gemini2.5pro",
-          "reason": "Agent 1 provides the most comprehensive and clear step-by-step derivation. It starts from the fundamental principles of conservation of energy and momentum, shows all the algebraic steps, and arrives at the correct numerical answer. This makes the reasoning easy to follow and verify."
+          "reason": "All agents are correct, but gemini2.5pro provides the most detailed step-by-step derivation and explanation of the physics involved, making it the most helpful and comprehensive answer."
         },
         {
           "voter": "claudesonnet420250514",
-          "reason": "Agent1 provides the most comprehensive and educational solution with detailed step-by-step derivation from conservation laws, complete algebraic work, and clear explanations that make the physics transparent and verifiable."
+          "reason": "Provides the most comprehensive and pedagogical explanation with clear step-by-step derivation, making the physics principles and mathematical approach easily understandable while maintaining accuracy"
         },
         {
           "voter": "grok4",
-          "reason": "Agent1 provides a comprehensive step-by-step derivation using conservation of energy and momentum, including algebraic solving, which thoroughly addresses the problem and educates on the physics involved."
+          "reason": "Provides the most detailed step-by-step explanation of the physics and calculations, making it the most comprehensive answer."
         }
       ],
       "gpt5": [
         {
           "voter": "gpt5",
-          "reason": "Correct physics and numerics, concise, and cleanly formatted as the requested JSON without extraneous text. It cites the standard two-body decay formulas and computes KE_μ ≈ 4.12 MeV and E_ν ≈ 29.8 MeV, matching option B."
+          "reason": "Correct, concise, and strictly JSON-formatted answer with proper two-body decay formulas and numerical results matching option B. Other answers include extra text or minor unit confusion."
         }
       ]
     },
-    "winner": "claudesonnet420250514",
+    "winner": "gemini2.5pro",
     "is_tie": false,
     "total_votes": 4,
-    "agents_with_answers": 3,
+    "agents_with_answers": 4,
     "agents_voted": 4,
     "agent_mapping": {
-      "agent1": "claudesonnet420250514",
-      "agent2": "gpt5",
-      "agent3": "grok4"
-    }
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
   },
-  "selected_agent": "claudesonnet420250514",
+  "selected_agent": "gemini2.5pro",
   "true_answer": "B"
 }

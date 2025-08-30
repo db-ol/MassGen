@@ -9,21 +9,21 @@
       "claudesonnet420250514": [
         {
           "voter": "gemini2.5pro",
-          "reason": "All agents correctly identified the answer. However, Agent 1 provides the most comprehensive and well-structured reasoning by individually analyzing each option, explaining the underlying biological principle, and concluding its relevance to the research question."
+          "reason": "This agent provided the most detailed and well-structured reasoning. It correctly identified the right answer and gave a thorough, cited explanation for why each of the other options was either a valid or invalid experimental approach, demonstrating a strong understanding of the underlying cell biology."
         },
         {
           "voter": "claudesonnet420250514",
-          "reason": "Provides the most comprehensive and well-structured analysis with detailed explanations of why each experimental option would or wouldn't be useful, supported by relevant citations, while maintaining scientific accuracy throughout"
+          "reason": "Provides the most comprehensive analysis with detailed scientific reasoning and proper citations explaining why each experimental approach would or would not be useful for investigating mitochondrial drug effects. The answer correctly identifies that glucose uptake assays on isolated mitochondria are not physiologically relevant since mitochondria don't directly uptake glucose."
         },
         {
           "voter": "grok4",
-          "reason": "Agent1's answer is comprehensive, well-structured with citations, and accurately explains why option B is irrelevant to mitochondrial function while detailing the relevance of the others."
+          "reason": "This agent's answer provides a thorough, detailed explanation for each option, including why B is incorrect and how the others are relevant, making it the most comprehensive response."
         }
       ],
       "gpt5": [
         {
           "voter": "gpt5",
-          "reason": "Agent 2 provides the correct choice (B) with concise, accurate reasoning and adheres exactly to the required JSON-only response format, unlike Agent 1 which includes extra text beyond JSON. Agent 3 is also correct, but Agent 2’s explanation is slightly clearer about why the other options assess mitochondrial function."
+          "reason": "Clear, concise, and correct: identifies that mitochondria do not uptake glucose so option B is uninformative, and briefly validates why A, C, and D are appropriate mitochondrial assays. No unnecessary fluff or dubious citations."
         }
       ]
     },
@@ -33,10 +33,11 @@
     "agents_with_answers": 3,
     "agents_voted": 4,
     "agent_mapping": {
-      "agent1": "claudesonnet420250514",
-      "agent2": "gpt5",
-      "agent3": "grok4"
-    }
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
   },
   "selected_agent": "claudesonnet420250514",
   "true_answer": "B"

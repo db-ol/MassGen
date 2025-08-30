@@ -1,0 +1,109 @@
+This is my directory:
+
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % pwd
+/Users/ruofanz/workspace/mass_gen/MassGen/massgen_logs_origin/log_question_number_0_20250828_130355/agent_outputs
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % 
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % ls
+claudesonnet420250514.txt		final_presentation_grok4_latest.txt	gpt5.txt				system_status.txt
+final_presentation_grok4.txt		gemini2.5pro.txt			grok4.txt
+(base) ruofanz@Ruofans-MacBook-Air agent_outputs % 
+
+I have a folder called massgen_logs_origin, inside there are 198 subfolders, log_question_number_<x>_<timestamp>, x ranges from 0 to 197
+
+and each subfolder has a folder agent_outputs, and inside it there are several txt files. 
+
+I have a dataset, you can read the dataset using this
+
+        # Login using e.g. `huggingface-cli login` to access this dataset
+        ds = load_dataset("fingertap/GPQA-Diamond")
+
+        question_number = <x>
+        case = ds["test"][question_number]
+
+        # Print fields
+        print("=" * 60)
+        print("Question:", case["question"])
+        print("=" * 60)
+        print("True Answer:", case["answer"])
+        print("=" * 60)
+
+我现在需要以下这些metric
+
+(1) Correct Answer: 在massgen里，每个model  选择正确答案的次数
+你需要比较 case["answer"] 和 <model>.txt 里的 answer, 
+<model>.txt 里的 answer 你可以搜这个pattern "answer": "<A/B/C/D>",
+可能你会发现多个pattern, 取最后一个
+如果没有发现这个pattern, 那就是model 没有给出正确答案。 你最后需要得到这四个value
+claudesonnet420250514：xx次
+gemini2.5pro：xx次
+gpt5：xx次
+grok4：xx次
+
+我需要198个case的总和
+
+(2) Self voting: 自己投自己的次数 / voting recorded 次数
+这个数你可以分析 system_status.txt
+pattern是 <model>: ✅ Vote recorded for [<model>]
+例如 gemini2.5pro: ✅ Vote recorded for [gemini2.5pro] 是gemini2.5pro 自己投自己， gemini2.5pro: ✅ Vote recorded for [gpt5] 不是自己投自己
+你最后需要print出这个：
+claudesonnet420250514：自己投自己的次数 / voting recorded 次数
+gemini2.5pro：自己投自己的次数 / voting recorded 次数
+gpt5：自己投自己的次数 / voting recorded 次数
+grok4：自己投自己的次数 / voting recorded 次数
+我需要198个case的总和
+
+
+(3) Vote/Improvement Ratio:  voting recorded 次数 / Answer provided 次数
+voting recorded 次数 统计和 (2) 一模一样
+Answer provided 次数 统计方法是这样:
+还是分析 system_status.txt，你可以搜pattern: 
+<model>: ✅ Answer provided
+
+你最后需要print出这个：
+claudesonnet420250514：voting recorded 次数 / Answer provided 次数
+gemini2.5pro：voting recorded 次数 / Answer provided 次数
+gpt5：voting recorded 次数 / Answer provided 次数
+grok4：voting recorded 次数 / Answer provided 次数
+我需要198个case的总和
+
+(4) Tie Ratio: 平局的次数
+分析 system_status.txt的最后一行
+看是否出现: "tie-broken by registration order"
+
+
+(5)Consensus Round
+分析 system_status.txt
+搜索pattern:
+<model>: ✅ Answer provided
+比如 在这个 system_status.txt 里
+gpt5: ✅ Answer provided 出现了3次
+claudesonnet420250514: ✅ Answer provided 出现了 2次
+gpt5: ✅ Answer provided 出现了 1次
+gemini2.5pro: ✅ Answer provided 没有出现
+那这个值就是3，我们把这个值叫做model_max_value
+然后这个metric需要每个case单独分析，最后得出一个198 size的list
+list的element是 {"case_index":"<case index>", "model": "<model>", "consensus_round": "<model_max_value>"}
+
+
+(6) Voting Distribution: Vote recorded for [model], 每个model被投的票数的总共的值，一个case可能被多次投票
+分析 system_status.txt
+搜索pattern:
+<model>: ✅ Vote recorded for [<model>]
+比如
+gemini2.5pro: ✅ Vote recorded for [grok4]
+那么 grok4 被投票的次数就 +1
+
+你最后需要print出这个：
+claudesonnet420250514：被投的票数
+gemini2.5pro：被投的票数
+gpt5：被投的票数
+grok4：被投的票数
+我需要198个case的总和
+
+给我写一个python script, print出这些metric
+
+注意：
+  • [14:05:14] 🔄 gemini2.5pro: ✅ Vote recorded for [grok4]
+  • [14:05:27] 🔄 gpt5: ✅ Answer provided
+这个是system_status.txt 里的样式，你写re的时候注意一下, 你可以去掉所有的特殊符号什么的然后再提取
+

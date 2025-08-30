@@ -66,7 +66,7 @@ def main():
     parser = argparse.ArgumentParser(description="Extract agent answers into CSV.")
     parser.add_argument(
         "--root",
-        default="/Users/ruofanz/workspace/mass_gen/MassGen/massgen_logs_show_voting_before",
+        default="/Users/ruofanz/workspace/mass_gen/MassGen/massgen_logs_origin",
         help="Root folder containing log_question_number_* subfolders.",
     )
     parser.add_argument(

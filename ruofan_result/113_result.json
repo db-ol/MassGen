@@ -1,0 +1,45 @@
+{
+  "question_number": 113,
+  "vote_results": {
+    "vote_counts": {
+      "claudesonnet420250514": 3,
+      "grok4": 1
+    },
+    "voter_details": {
+      "claudesonnet420250514": [
+        {
+          "voter": "gemini2.5pro",
+          "reason": "The answer correctly identifies the reaction as Ring-Opening Cross-Metathesis (ROCM) and the starting material as D. It provides the most comprehensive and well-structured reasoning by analyzing the product, deducing the necessary features of the starting material, and systematically evaluating why option D is correct and the other options are incorrect."
+        },
+        {
+          "voter": "claudesonnet420250514",
+          "reason": "Provides the most comprehensive mechanistic analysis with proper citations, correctly identifying bicyclo[3.2.0]hept-6-ene as having the required ring strain in the cyclobutene portion for ROCM, with detailed explanation of how the reaction proceeds to form the observed product structure"
+        },
+        {
+          "voter": "grok4",
+          "reason": "Provides the most detailed and accurate analysis, correctly identifying D as the starting material with a clear mechanistic explanation, while refuting other options and addressing the ring strain and product structure match."
+        }
+      ],
+      "grok4": [
+        {
+          "voter": "gpt5",
+          "reason": "Selects D with clear, concise ROCM reasoning, correctly notes methyl retention issue in A/C and mismatch of B (exocyclic vs side-chain alkenes). Answer aligns with expected mechanism and product substituents."
+        }
+      ]
+    },
+    "winner": "claudesonnet420250514",
+    "is_tie": false,
+    "total_votes": 4,
+    "agents_with_answers": 4,
+    "agents_voted": 4,
+    "agent_mapping": {
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gemini2.5pro": "gemini2.5pro",
+      "gpt5": "gpt5",
+      "grok4": "grok4"
+    },
+    "anonymous_voting": false
+  },
+  "selected_agent": "claudesonnet420250514",
+  "true_answer": "D"
+}

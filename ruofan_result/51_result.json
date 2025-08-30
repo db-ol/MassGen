@@ -9,34 +9,34 @@
       "claudesonnet420250514": [
         {
           "voter": "gemini2.5pro",
-          "reason": "All agents correctly identified the kinematic constraints and chose the right option. However, agent1's answer is the most comprehensive, as it systematically fetches and cites the mass of each fermion before applying the constraint, making its reasoning the most transparent and well-supported."
+          "reason": "The agent correctly identifies the kinematic constraint and applies it to all relevant fermions. It provides a clear, well-structured explanation with specific mass values and citations, making the reasoning easy to follow and verify. The final answer is correct."
         },
         {
           "voter": "claudesonnet420250514",
-          "reason": "Agent 1 provides the most comprehensive analysis with detailed web search verification of fermion masses, clear step-by-step kinematic calculations, and thorough explanation of why each decay channel is or isn't allowed, while still arriving at the correct answer C."
+          "reason": "Both agents provided correct answers, but claudesonnet420250514 offered more comprehensive explanations with detailed mass values, clear kinematic analysis, and proper citations while maintaining the required JSON format"
         },
         {
           "voter": "grok4",
-          "reason": "Agent1 provides the most detailed and comprehensive reasoning, including cited fermion masses and step-by-step kinematic checks, fully addressing the original query on allowed decays."
+          "reason": "Provides detailed masses for all relevant fermions, clearly lists allowed and forbidden decays, and matches the correct option C with comprehensive reasoning."
         }
       ],
       "gpt5": [
         {
           "voter": "gpt5",
-          "reason": "Agent2 gives the correct option C with succinct, accurate threshold reasoning and adheres strictly to the required JSON-only format, unlike agent1 which includes extraneous narrative."
+          "reason": "Provides the correct option (C) with accurate mass-threshold reasoning and complies with the required JSON-only output format."
         }
       ]
     },
     "winner": "claudesonnet420250514",
     "is_tie": false,
     "total_votes": 4,
-    "agents_with_answers": 3,
+    "agents_with_answers": 2,
     "agents_voted": 4,
     "agent_mapping": {
-      "agent1": "claudesonnet420250514",
-      "agent2": "gpt5",
-      "agent3": "grok4"
-    }
+      "claudesonnet420250514": "claudesonnet420250514",
+      "gpt5": "gpt5"
+    },
+    "anonymous_voting": false
   },
   "selected_agent": "claudesonnet420250514",
   "true_answer": "C"
